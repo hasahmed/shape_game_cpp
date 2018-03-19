@@ -1,5 +1,5 @@
+#define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
-#include <OpenGL/gl3.h>
 #include <iostream>
 
 const char* vertex_shader =
