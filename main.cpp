@@ -1,5 +1,6 @@
 #include <GLFW/glfw3.h>
 #include <OpenGL/gl3.h>
+#include <iostream>
 
 const char* vertex_shader =
 "#version 400\n"
@@ -25,14 +26,18 @@ int main(void) {
      glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
      glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
     if (!window) {
         glfwTerminate();
         return -1;
     }
-
-
+    glfwMakeContextCurrent(window);
+    const GLubyte* renderer = glGetString(GL_RENDERER); // get renderer string
+    const GLubyte* version = glGetString(GL_VERSION); // version as a string
+    printf("Renderer: %s\n", renderer);
+    printf("OpenGL version supported %s\n", version);
 
     GLuint vao = 0;
     glGenVertexArrays(1, &vao);
@@ -55,7 +60,6 @@ int main(void) {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
     /* Make the window's context current */
-    glfwMakeContextCurrent(window);
     glClearColor(0.0f, 1.0f, 1.0f, 0.5f);
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vs, 1, &vertex_shader, NULL);
@@ -67,6 +71,7 @@ int main(void) {
     glAttachShader(shader_programme, fs);
     glAttachShader(shader_programme, vs);
     glLinkProgram(shader_programme);
+    int err = GL_NO_ERROR;
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
@@ -75,6 +80,11 @@ int main(void) {
         glBindVertexArray(vao);
         // draw points 0-3 from the currently bound VAO with current in-use shader
         glDrawArrays(GL_TRIANGLES, 0, 3);
+        //if ((err = glGetError()) != GL_NO_ERROR) {
+            //glfwTerminate();
+            //std::cout << err << std::endl;
+            //return err;
+        //}
         //update other events like input handling
         glfwPollEvents();
         // put the stuff we've been drawing onto the display
