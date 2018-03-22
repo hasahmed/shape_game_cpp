@@ -1,23 +1,29 @@
 #define GLFW_INCLUDE_GLCOREARB
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "GLHandler.hpp"
 //#include "main.hpp"
 
 const char *vertex_shader =
-"#version 400\n"
+"#version 410\n"
 "in vec3 vp;"
 "void main() {"
 "  gl_Position = vec4(vp, 1.0);"
 "}";
 const char *fragment_shader =
-"#version 400\n"
+"#version 410\n"
 "out vec4 frag_color;"
 "uniform vec4 incolor;"
 "void main() {"
 "frag_color = incolor;"
 "}";
-//"  frag_colour = vec4(1.0, 0.0, 0.0, 1.0);"
-#define check_gl_error() _check_gl_error(__FILE__,__LINE__)
+#define check_gl_error() shapegame::GLHandler::_check_gl_error(__FILE__,__LINE__)
+
+int should_quit_loop = false;
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    if (key == GLFW_KEY_ESCAPE) should_quit_loop = true;
+    //std::cout << key << ":" << scancode << ":" << action << ":" << mods << std::endl;
+}
 
 
 void _check_gl_error(const char *file, int line) {
@@ -93,7 +99,7 @@ int main() {
     glDetachShader(shader_prog, vs);
     glDeleteShader(fs);
     glDeleteShader(vs);
-    check_gl_error();
+    //check_gl_error();
     //end delete shaders
 
 
@@ -114,11 +120,11 @@ int main() {
     GLuint vbo = 0;
     glGenBuffers(1, &vbo);
     GLint uniloc = glGetUniformLocation(shader_prog, "incolor");
-    check_gl_error();
+    //check_gl_error();
     //glUniform4vf count should be 1 because we are sending in 1 vec4 to the shader
     glUniform4fv(uniloc, 1, color);
 
-    check_gl_error();
+    //check_gl_error();
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_STATIC_DRAW);
@@ -129,6 +135,7 @@ int main() {
     glClearColor(0.0f, 1.0f, 1.0f, 0.5f);
 
 
+    glfwSetKeyCallback(window, key_callback);
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -137,6 +144,7 @@ int main() {
         glDrawArrays(GL_TRIANGLES, 0, 3);
         //update other events like input handling
         glfwPollEvents();
+        if (should_quit_loop) break;
         // put the stuff we've been drawing onto the display
         glfwSwapBuffers(window);
     }
