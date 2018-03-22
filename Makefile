@@ -8,6 +8,9 @@ DIST_NAME=shape-game.a
 SRC=$(wildcard *.cpp)
 OBJS=$(SRC:.cpp=.o)
 
+run: main
+	./$(EXE)
+
 main: $(OBJS)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
