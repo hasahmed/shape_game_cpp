@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "GLHandler.hpp"
+#include "Window.hpp"
 //#include "main.hpp"
 
 const char *vertex_shader =
@@ -19,9 +20,9 @@ const char *fragment_shader =
 "}";
 #define check_gl_error() shapegame::GLHandler::_check_gl_error(__FILE__,__LINE__)
 
-int should_quit_loop = false;
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (key == GLFW_KEY_ESCAPE) should_quit_loop = true;
+    if (key == GLFW_KEY_ESCAPE)
+         glfwSetWindowShouldClose(window, true);
     //std::cout << key << ":" << scancode << ":" << action << ":" << mods << std::endl;
 }
 
@@ -49,27 +50,10 @@ int err = GL_NO_ERROR;
 //must enable alpha channel
 int main() {
     GLFWwindow* window;
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
-    //uncomment these lines if on Apple OS X
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window) {
-        glfwTerminate();
-        return -1;
-    }
-    glfwMakeContextCurrent(window);
-    const GLubyte* renderer = glGetString(GL_RENDERER); // get renderer string
-    const GLubyte* version = glGetString(GL_VERSION); // version as a string
-    printf("Renderer: %s\n", renderer);
-    printf("OpenGL version supported %s\n", version);
+    shapegame::Window w(640, 480, "Hello World!");
+    window = w.window_handle;
+    printf("Renderer: %s\n", w.renderer);
+    printf("OpenGL version supported %s\n", w.version);
 
 
     float points[] = {
@@ -139,12 +123,10 @@ int main() {
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glBindVertexArray(vao);
         // draw points 0-3 from the currently bound VAO with current in-use shader
         glDrawArrays(GL_TRIANGLES, 0, 3);
         //update other events like input handling
         glfwPollEvents();
-        if (should_quit_loop) break;
         // put the stuff we've been drawing onto the display
         glfwSwapBuffers(window);
     }
