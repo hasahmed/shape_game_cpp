@@ -18,7 +18,7 @@ const char *fragment_shader =
 "void main() {"
 "frag_color = incolor;"
 "}";
-#define check_gl_error() shapegame::GLHandler::_check_gl_error(__FILE__,__LINE__)
+#define gl_check_error() _gl_check_error(__FILE__,__LINE__)
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (key == GLFW_KEY_ESCAPE)
@@ -27,7 +27,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 }
 
 
-void _check_gl_error(const char *file, int line) {
+void _gl_check_error(const char *file, int line) {
     using namespace std;
     GLenum err (glGetError());
     while(err!=GL_NO_ERROR) {
@@ -52,8 +52,7 @@ int main() {
     GLFWwindow* window;
     shapegame::Window w(640, 480, "Hello World!");
     window = w.window_handle;
-    printf("Renderer: %s\n", w.renderer);
-    printf("OpenGL version supported %s\n", w.version);
+    std::cout << w.info_string() << std::endl;
 
 
     float points[] = {
@@ -87,10 +86,7 @@ int main() {
     //end delete shaders
 
 
-    float color[] = {1.0, 1.0, 0.0, 0.0};
-
-    std::cout << typeid(color).name() << std::endl;
-
+    float color[] = {1.0, 1.0, 0.0, 1.0};
 
 
     //vao
@@ -117,6 +113,8 @@ int main() {
 
     /* Make the window's context current */
     glClearColor(0.0f, 1.0f, 1.0f, 0.5f);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
     glfwSetKeyCallback(window, key_callback);

@@ -1,10 +1,12 @@
 #include "Window.hpp"
 #include <stdexcept>
+#include <iostream>
+#include <cstring>
 shapegame::Window::Window(int width, int height, std::string window_title) {
 
     if (!glfwInit())
         throw std::runtime_error("glfw failed to initilize");
-    //uncomment these lines if on Apple OS X
+
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -20,6 +22,11 @@ shapegame::Window::Window(int width, int height, std::string window_title) {
         throw std::runtime_error("glfw failed to create window");
     }
     glfwMakeContextCurrent(window_handle);
-    this->renderer = glGetString(GL_RENDERER); // get renderer string
-    this->version = glGetString(GL_VERSION); // version as a string
+    this->gl_renderer = glGetString(GL_RENDERER); // get renderer string
+    this->gl_version = glGetString(GL_VERSION); // version as a string
+}
+std::string shapegame::Window::info_string() {
+    std::string render_str((char*)(this->gl_renderer));
+    std::string version_str((char*)(this->gl_version));
+    return "Renderer: " + render_str + "\n" + "OpenGL version supported: " + version_str;
 }
