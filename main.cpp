@@ -24,6 +24,7 @@ const char *fragment_shader =
 "void main() {"
 "frag_color = incolor;"
 "}";
+float color[4] = {1.0, 1.0, 0.0, 1.0};
 #define gl_check_error() _gl_check_error(__FILE__,__LINE__)
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -126,7 +127,6 @@ int main() {
 
     //set up vertext data
     //------------------------------------------------------------------------
-    float color[] = {1.0, 1.0, 0.0, 1.0};
     //float points[] = {
         //-0.5f, -0.5f, 0.0f, // left
         //0.5f, -0.5f, 0.0f, // right
@@ -205,12 +205,6 @@ int main() {
         glBindVertexArray(0);
         //end ebo
 
-
-
-        //non ebo
-        //glDrawArrays(GL_TRIANGLES, 0, 3);
-        //glBindBuffer(GL_ARRAY_BUFFER, vbo);
-        //glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_DYNAMIC_DRAW);
 
         //update other events like input handling
         glfwPollEvents();
