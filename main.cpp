@@ -60,95 +60,124 @@ int err = GL_NO_ERROR;
 
 //must enable alpha channel
 int main() {
+
+
+
+
+    //window creation
+    //------------------------------------------------------------------------
     GLFWwindow* window;
     shapegame::Window w(640, 480, "Hello World!");
     window = w.window_handle;
     std::cout << w.info_string() << std::endl;
-
-
-    float points[] = {
-        0.0f,  0.5f,  0.0f,
-        0.5f, -0.5f,  0.0f,
-        -0.5f, -0.5f,  0.0f
-    };
+    glfwSetKeyCallback(window, key_callback);
 
 
 
-    //makeing of shader program
+
+
+
+
+    //compile and link shaders
+    //------------------------------------------------------------------------
+    //vert
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vs, 1, &vertex_shader, NULL);
     glCompileShader(vs);
-    //check err
     check_shader_err(vs);
-    //check err
+    //end vert
 
+    //frag
     GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fs, 1, &fragment_shader, NULL);
     glCompileShader(fs);
-    //check err
     check_shader_err(fs);
-    //check err
+    //end frag
+
+
+    //shader prog
     GLuint shader_prog = glCreateProgram();
     glAttachShader(shader_prog, fs);
     glAttachShader(shader_prog, vs);
     glLinkProgram(shader_prog);
-    //check err
     check_shader_err(fs);
-    //check err
     glUseProgram(shader_prog);
-    //end making of shader program
+    //end shader prog
 
-    //delete shaders because they are linked into a program, so shader_prog is all we need
-    //glDetachShader(shader_prog, fs);
-    //glDetachShader(shader_prog, vs);
+    //delete shader
     glDeleteShader(fs);
     glDeleteShader(vs);
-    //end delete shaders
+    //end delete shader
 
 
+
+
+
+
+    //set up vertext data
+    //------------------------------------------------------------------------
     float color[] = {1.0, 1.0, 0.0, 1.0};
+    float points[] = {
+        -0.5f, -0.5f, 0.0f, // left
+        0.5f, -0.5f, 0.0f, // right
+        0.0f,  0.5f, 0.0f  // top
+    };
+
+    //float points[] = {
+        //0.5f,  0.5f, 0.0f,  // top right
+        //0.5f, -0.5f, 0.0f,  // bottom right
+        //-0.5f, -0.5f, 0.0f,  // bottom left
+        //-0.5f,  0.5f, 0.0f   // top left
+    //};
+    //unsigned int indices[] = {  // note that we start from 0!
+        //0, 1, 3,   // first triangle
+        //1, 2, 3    // second triangle
+    //};
 
 
 
 
     //vbo
-    GLuint vbo = 0;
-    glGenBuffers(1, &vbo);
-    GLint uniloc = glGetUniformLocation(shader_prog, "incolor");
-    //check_gl_error();
-    //glUniform4vf count should be 1 because we are sending in 1 vec4 to the shader
-    glUniform4fv(uniloc, 1, color);
-
-    //check_gl_error();
-
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    //glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_DYNAMIC_DRAW);
-    glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_DYNAMIC_DRAW); //dynamic because it will be modified often and updated often
-
-    //vao
-    GLuint vao = 0;
+    GLuint vbo, vao;
     glGenVertexArrays(1, &vao);
+    glGenBuffers(1, &vbo);
     glBindVertexArray(vao);
-    //end vao
-
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_DYNAMIC_DRAW); //dynamic because it will be modified often and updated often
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
     glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0); //this is actually an unbinding
+    glBindVertexArray(0); //also an unbinding
+    gl_check_error();
 
-    /* Make the window's context current */
-    glClearColor(0.0f, 1.0f, 1.0f, 0.5f);
+
+    GLint uniloc = glGetUniformLocation(shader_prog, "incolor");
+    glUniform4fv(uniloc, 1, color);
+    gl_check_error();
+
+    //GLuint ebo;
+    //glGenBuffers(1, &ebo);
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    gl_check_error();
 
-    glfwSetKeyCallback(window, key_callback);
+    glClearColor(0.0f, 1.0f, 1.0f, 0.5f);
     /* Loop until the user closes the window */
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
     while (!glfwWindowShouldClose(window)) {
         points[0] += 0.1;
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        // draw points 0-3 from the currently bound VAO with current in-use shader
-        //glBindVertexArray(vao);
         glDrawArrays(GL_TRIANGLES, 0, 3);
-        //glDrawArrays(GL_LINE_STRIP, 0, 3);
+        glBindVertexArray(vao);
+
+        //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+        //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         //update other events like input handling
         glfwPollEvents();
         // put the stuff we've been drawing onto the display
