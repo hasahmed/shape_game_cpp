@@ -168,13 +168,15 @@ int main() {
 
     glClearColor(0.0f, 1.0f, 1.0f, 0.5f);
     /* Loop until the user closes the window */
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     while (!glfwWindowShouldClose(window)) {
-        points[0] += 0.1;
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glDrawArrays(GL_TRIANGLES, 0, 3);
         glBindVertexArray(vao);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ARRAY_BUFFER, 9 * sizeof(float), points, GL_DYNAMIC_DRAW);
 
         //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
         //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
