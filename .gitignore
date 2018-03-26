@@ -4,3 +4,5 @@
 main.dSYM/*
 Session.vim
 main
+*.code-workspace
+.DS_Store

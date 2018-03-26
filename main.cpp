@@ -4,7 +4,6 @@
 #include <chrono>
 #include "GLHandler.hpp"
 #include "Window.hpp"
-//#include "main.hpp"
 
 typedef std::chrono::high_resolution_clock Clock;
 
