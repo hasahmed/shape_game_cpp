@@ -1,5 +1,5 @@
 CC=c++
-CXXFLAGS=-std=c++14 -c -g
+CXXFLAGS=-std=c++14 -g
 LDFLAGS=-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo -g
 EXE=main
 DIST_NAME=shape-game.a
