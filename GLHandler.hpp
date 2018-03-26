@@ -4,6 +4,10 @@
 #include <iostream>
 namespace shapegame {
     class GLHandler {
+        private: 
+            GLFWwindow *window_handle;
+            GLuint vbo, vao, ebo;
+
         public:
             float color[4] = {1.0, 1.0, 0.0, 1.0};
             float points[12] = {
@@ -32,7 +36,7 @@ namespace shapegame {
                 "frag_color = incolor;"
                 "}";
             GLuint shader_prog;
-            GLHandler();
+            GLHandler(GLFWwindow *window_handle);
             void check_shader_err(int shader){
                 char infoLog[512];
                 int success;
@@ -43,5 +47,7 @@ namespace shapegame {
                 }
             }
             //void _check_gl_error(const char *file, int line);
+
+            void run();
     };
 }

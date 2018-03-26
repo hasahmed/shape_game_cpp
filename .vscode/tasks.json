@@ -11,6 +11,16 @@
 				"kind": "build",
 				"isDefault": true
 			}
+		},
+		{
+			"label": "clean",
+			"type": "shell",
+			"command": "make clean"
+		},
+		{
+			"label": "compile",
+			"type": "shell",
+			"command": "make main"
 		}
 	]
 }
