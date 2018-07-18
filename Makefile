@@ -1,5 +1,5 @@
-CC=c++
-CXXFLAGS=-std=c++14 -g
+CXX=c++-7
+CXXFLAGS=-std=c++17 -g
 LDFLAGS=-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo -g
 EXE=main
 DIST_NAME=shape-game.a
@@ -12,7 +12,7 @@ run: main
 	./$(EXE)
 
 main: $(OBJS)
-	$(CC) -o $@ $^ $(LDFLAGS)
+	$(CXX) -o $@ $^ $(LDFLAGS)
 
 .PHONY: clean
 clean:
