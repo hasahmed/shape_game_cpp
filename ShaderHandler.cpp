@@ -7,7 +7,7 @@
 
 std::string shapegame::ShaderHandler::read_shader(std::string path) {
     //the file path is built here. note it doesn't support windows. Perhpas change later with boost or homeroll
-    std::string shader_path(std::string("shaders") + std::string("/") + path);
+    std::string shader_path(path);
     std::ifstream shader_file(shader_path);
     std::vector<std::string> file_buff;
     file_buff.push_back(std::string());
