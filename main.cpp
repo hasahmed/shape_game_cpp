@@ -4,6 +4,7 @@
 #include <chrono>
 #include "GLHandler.hpp"
 #include "Window.hpp"
+#include "ShaderHandler.hpp"
 
 typedef std::chrono::high_resolution_clock Clock;
 
@@ -18,6 +19,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 }
 
 int main() {
+
     GLFWwindow* window;
     shapegame::Window w(1140, 480, "Hello World!");
     window = w.window_handle;
