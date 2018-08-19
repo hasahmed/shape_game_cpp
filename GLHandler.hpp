@@ -40,7 +40,7 @@ namespace shapegame {
             void check_shader_err(int shader){
                 char infoLog[512];
                 int success;
-                glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+                //glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
                 if(!success) {
                     glGetShaderInfoLog(shader, 512, NULL, infoLog);
                     std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
