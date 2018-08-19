@@ -1,6 +1,7 @@
-CXX=cc
-CXXFLAGS=-std=c++17 -g
-LDFLAGS= `pkg-config --libs lglfw3` -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo -g
+CXX=c++
+INC_DIR=-Iglad/include
+CXXFLAGS=-std=c++17 -g $(INC_DIR)
+LDFLAGS= `pkg-config --libs lglfw3` -ldl
 EXE=main
 DIST_NAME=shape-game.a
 

@@ -1,6 +1,7 @@
 #include "GLHandler.hpp"
 #include <iostream>
 #define GLFW_INCLUDE_GLCOREARB
+#define GLFW_DLL
 #include <GLFW/glfw3.h>
 #include <chrono>
 #include "Globals.hpp"

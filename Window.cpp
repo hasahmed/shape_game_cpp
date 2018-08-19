@@ -23,6 +23,7 @@ shapegame::Window::Window(int width, int height, std::string window_title) {
         throw std::runtime_error("glfw failed to create window");
     }
     glfwMakeContextCurrent(window_handle);
+    gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
     this->gl_renderer = glGetString(GL_RENDERER); // get renderer string
     this->gl_version = glGetString(GL_VERSION); // version as a string
 }
