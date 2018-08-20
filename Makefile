@@ -1,17 +1,24 @@
-CXX=c++
-INC_DIR=-Iglad/include
-CXXFLAGS=-std=c++17 -g $(INC_DIR)
-LDFLAGS= `pkg-config --libs glfw3` -ldl
-EXE=main
-DIST_NAME=shape-game.a
+UNAME := $(shell uname -s)
+CXXFLAGS = -std=c++17 -g
+SRC = $(wildcard *.cpp)
+OBJS = $(SRC:.cpp=.o)
 
-ecc:
-	@echo $(OS)
+ifeq ($(UNAME),Linux)
+	CXX := c++
+	LDFLAGS := `pkg-config --libs glfw3` -ldl
+	INC_DIR := -Iglad/include
+	CXXFLAGS += $(INC_DIR)
+	OBJS += glad.o
+endif
 
+ifeq ($(UNAME),Darwin)
+	CXX := c++-7
+	LDFLAGS=-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo -g
+endif
 
-SRC=$(wildcard *.cpp)
-OBJS=$(SRC:.cpp=.o)
-OBJS += glad.o
+EXE = main
+DIST_NAME = shape-game.a
+
 
 all: objs
 
@@ -22,6 +29,7 @@ objs: $(OBJS)
 	$(CXX) -o $(EXE) $^ $(LDFLAGS)
 
 
+#linux specific
 glad.o:
 	$(CXX) $(CXXFLAGS) -c -o glad.o glad/src/glad.c
 
