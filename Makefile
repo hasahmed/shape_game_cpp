@@ -5,20 +5,24 @@ LDFLAGS= `pkg-config --libs glfw3` -ldl
 EXE=main
 DIST_NAME=shape-game.a
 
+ecc:
+	@echo $(OS)
+
 
 SRC=$(wildcard *.cpp)
 OBJS=$(SRC:.cpp=.o)
+OBJS += glad.o
 
 all: objs
 
 run: all
 	./$(EXE)
 
-objs: $(OBJS) glad.o
+objs: $(OBJS)
 	$(CXX) -o $(EXE) $^ $(LDFLAGS)
 
 
-glad-obj:
+glad.o:
 	$(CXX) $(CXXFLAGS) -c -o glad.o glad/src/glad.c
 
 
@@ -27,6 +31,6 @@ glad-obj:
 clean:
 	@echo "Cleaning..."
 	@rm -f $(OBJS) $(EXE)
-	@rm -rf main.dSYM
+	@rm -rf *.dSYM
 	@echo "Done cleaning"
 
