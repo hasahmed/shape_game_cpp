@@ -1,5 +1,7 @@
 #pragma once
+#ifndef __MACH__
 #include <glad/glad.h>
+#endif
 #include <GLFW/glfw3.h>
 #include <string>
 namespace shapegame {
