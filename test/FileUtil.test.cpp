@@ -1,7 +1,9 @@
 #include "../FileUtil.hpp"
 #include <iostream>
+#include <vector>
 
 int main(){
-    auto x = shapegame::FileUtil::read_file("dummy-data/10-lines.txt");
-    std::cout << x[0] << std::endl;
+
+    std::string str = shapegame::FileUtil::read("dummy-data/lines.txt");
+    std::cout << str;
 }
