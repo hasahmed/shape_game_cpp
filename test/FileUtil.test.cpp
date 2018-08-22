@@ -4,6 +4,6 @@
 
 int main(){
 
-    std::string str = shapegame::FileUtil::read("dummy-data/lines.txt");
+    std::string str = shapegame::FileUtil::read("../shaders/default.frag");
     std::cout << str;
 }
