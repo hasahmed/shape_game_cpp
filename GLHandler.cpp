@@ -72,6 +72,8 @@ shapegame::GLHandler::GLHandler(GLFWwindow *window_handle) {
     //input to shader program
     GLint uniloc = glGetUniformLocation(this->shader_prog, "incolor");
     glUniform4fv(uniloc, 1, color);
+    //GLint uniloc = glGetUniformLocation(this->shader_prog, "screen_res");
+    //glUniform2f(uniloc, );
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -99,7 +101,7 @@ typedef std::chrono::high_resolution_clock Clock;
         glBindVertexArray(vao);
 
 
-        points[0] += 0.01;
+        //points[0] += 0.01;
 
         //std::cout << this->shader_prog << std::endl;
         GLuint uniloc = glGetUniformLocation(this->shader_prog, "mouse");
