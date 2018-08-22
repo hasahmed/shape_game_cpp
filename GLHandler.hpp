@@ -27,10 +27,12 @@ namespace shapegame {
             };
             GLuint shader_prog;
             GLHandler(GLFWwindow *window_handle);
+            double mouse_x, mouse_y;
 
 
             //methods
             void check_shader_err(int shader);
+            //void cursor_position_callback(GLFWwindow *window, double x, double y);
             void run();
     };
 }
