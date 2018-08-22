@@ -7,7 +7,5 @@
 namespace shapegame {
 
     class ShaderHandler{
-        public:
-        static std::string read_shader(std::string path);
     };
 }

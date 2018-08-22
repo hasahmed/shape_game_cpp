@@ -5,15 +5,16 @@
 #include <GLFW/glfw3.h>
 #include <chrono>
 #include "Globals.hpp"
+#include "FileUtil.hpp"
 
-//shapegame::GLHandler::GLHandler() {}
 shapegame::GLHandler::GLHandler(GLFWwindow *window_handle) {
     this->window_handle = window_handle;
 
     //compile and link shaders
     //------------------------------------------------------------------------
     //vert
-
+    std::string _vert_shader = FileUtil::read("shaders/default.vert");
+    const char *vertex_shader = _vert_shader.c_str();
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vs, 1, &vertex_shader, NULL);
     glCompileShader(vs);
@@ -21,6 +22,8 @@ shapegame::GLHandler::GLHandler(GLFWwindow *window_handle) {
     //end vert
 
     //frag
+    std::string _frag_shader = FileUtil::read("shaders/default.frag");
+    const char *fragment_shader = _frag_shader.c_str();
     GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fs, 1, &fragment_shader, NULL);
     glCompileShader(fs);
@@ -71,47 +74,15 @@ shapegame::GLHandler::GLHandler(GLFWwindow *window_handle) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glClearColor(0.0f, 1.0f, 1.0f, 0.5f);
 
-// typedef std::chrono::high_resolution_clock Clock;
-//     int fps = 0;
-//     double second_count = 0;
-//     while (!glfwWindowShouldClose(this->window_handle)) {
-//         shapegame::gl_check_error();
-//         auto t1 = Clock::now();
-//         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//         glBindVertexArray(vao);
-
-
-//         points[0] += 0.01;
-
-//         //ebo
-//         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-//         glBindBuffer(GL_ARRAY_BUFFER, vbo);
-//         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float), &points[0]);
-//         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-//         glBindVertexArray(0);
-//         //end ebo
-
-
-//         //update other events like input handling
-        // glfwPollEvents();
-        // // put the stuff we've been drawing onto the display
-        // glfwSwapInterval(1);
-        // glfwSwapBuffers(this->window_handle);
-        // auto t2 = Clock::now();
-        // std::chrono::duration<double> elapsed_seconds = t2 - t1;
-        // second_count += elapsed_seconds.count();
-        // //std::cout << second_count << std::endl;
-        // fps++;
-        // //std::cout << "delta: " << elapsed_seconds.count() << std::endl;
-        // if (second_count >= 1.0) {
-        //     fps = 0;
-        //     second_count = 0;
-        // }
-        // //std::cout << "delta: " << std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() << std::endl;
-    // }
-
-    // glfwTerminate();
-
+}
+void shapegame::GLHandler::check_shader_err(int shader){
+    char infoLog[512];
+    int success = 1;
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+    if(!success) {
+        glGetShaderInfoLog(shader, 512, NULL, infoLog);
+        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+    }
 }
 
 void shapegame::GLHandler::run() {
