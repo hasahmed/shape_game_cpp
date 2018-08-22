@@ -32,12 +32,14 @@ shapegame::GLHandler::GLHandler(GLFWwindow *window_handle) {
 
 
     //shader prog
-    GLuint shader_prog = glCreateProgram();
-    glAttachShader(shader_prog, fs);
-    glAttachShader(shader_prog, vs);
-    glLinkProgram(shader_prog);
+    this->shader_prog = glCreateProgram();
+    glBindAttribLocation(this->shader_prog, 2, "mouse_vert");
+    //std::cout << this->shader_prog << std::endl;
+    glAttachShader(this->shader_prog, fs);
+    glAttachShader(this->shader_prog, vs);
+    glLinkProgram(this->shader_prog);
     check_shader_err(fs);
-    glUseProgram(shader_prog);
+    glUseProgram(this->shader_prog);
     //end shader prog
 
     //delete shader
@@ -67,7 +69,8 @@ shapegame::GLHandler::GLHandler(GLFWwindow *window_handle) {
     glBindBuffer(GL_ARRAY_BUFFER, 0); //this is actually an unbinding
     glBindVertexArray(0); //also an unbinding
 
-    GLint uniloc = glGetUniformLocation(shader_prog, "incolor");
+    //input to shader program
+    GLint uniloc = glGetUniformLocation(this->shader_prog, "incolor");
     glUniform4fv(uniloc, 1, color);
 
     glEnable(GL_BLEND);
@@ -90,12 +93,24 @@ typedef std::chrono::high_resolution_clock Clock;
     int fps = 0;
     double second_count = 0;
     while (!glfwWindowShouldClose(this->window_handle)) {
+        glfwGetCursorPos(this->window_handle, &mouse_x, &mouse_y);
         auto t1 = Clock::now();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glBindVertexArray(vao);
 
 
         points[0] += 0.01;
+
+        //std::cout << this->shader_prog << std::endl;
+        GLuint uniloc = glGetUniformLocation(this->shader_prog, "mouse");
+        glUniform2f(uniloc, mouse_x, mouse_y);
+        //std::cout << uniloc << std::endl;
+        //gl_check_error();
+        uniloc = glGetUniformLocation(this->shader_prog, "mouse_vert");
+        gl_check_error();
+        //std::cout << uniloc << std::endl;
+        glUniform2f(uniloc, mouse_x, mouse_y);
+        //gl_check_error();
 
 
         //ebo
