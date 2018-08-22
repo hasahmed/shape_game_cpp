@@ -6,6 +6,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "FileUtil.hpp"
+#include "Window.hpp"
 
 namespace shapegame {
     class GLHandler {
@@ -26,7 +27,7 @@ namespace shapegame {
                 1, 2, 3    // second triangle
             };
             GLuint shader_prog;
-            GLHandler(GLFWwindow *window_handle);
+            GLHandler(Window *window);
             double mouse_x, mouse_y;
 
 

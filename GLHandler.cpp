@@ -6,9 +6,10 @@
 #include <chrono>
 #include "Globals.hpp"
 #include "FileUtil.hpp"
+#include "Window.hpp"
 
-shapegame::GLHandler::GLHandler(GLFWwindow *window_handle) {
-    this->window_handle = window_handle;
+shapegame::GLHandler::GLHandler(Window *window) {
+    this->window_handle = window->window_handle;
 
     //compile and link shaders
     //------------------------------------------------------------------------

@@ -23,11 +23,11 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 
 int main() {
 
-    GLFWwindow* window;
-    shapegame::Window w(1140, 480, "Hello World!");
-    window = w.window_handle;
-    std::cout << w.info_string() << std::endl;
-    glfwSetKeyCallback(window, key_callback);
-    shapegame::GLHandler gl(window);
+    //GLFWwindow* window;
+    shapegame::Window window(1140, 480, "Hello World!");
+    //window = w.window_handle;
+    std::cout << window.info_string() << std::endl;
+    glfwSetKeyCallback(window.window_handle, key_callback);
+    shapegame::GLHandler gl(&window);
     gl.run();
 }
