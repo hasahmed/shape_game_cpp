@@ -73,8 +73,8 @@ shapegame::GLHandler::GLHandler(Window *window) {
     //input to shader program
     GLint uniloc = glGetUniformLocation(this->shader_prog, "incolor");
     glUniform4fv(uniloc, 1, color);
-    //GLint uniloc = glGetUniformLocation(this->shader_prog, "screen_res");
-    //glUniform2f(uniloc, );
+    uniloc = glGetUniformLocation(this->shader_prog, "screen_res");
+    glUniform2f(uniloc, window->width, window->height);
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -97,6 +97,7 @@ typedef std::chrono::high_resolution_clock Clock;
     double second_count = 0;
     while (!glfwWindowShouldClose(this->window_handle)) {
         glfwGetCursorPos(this->window_handle, &mouse_x, &mouse_y);
+        int mouse_pressed = glfwGetMouseButton(this->window_handle, GLFW_MOUSE_BUTTON_LEFT);
         auto t1 = Clock::now();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glBindVertexArray(vao);
@@ -106,13 +107,13 @@ typedef std::chrono::high_resolution_clock Clock;
 
         //std::cout << this->shader_prog << std::endl;
         GLuint uniloc = glGetUniformLocation(this->shader_prog, "mouse");
-        glUniform2f(uniloc, mouse_x, mouse_y);
+        glUniform3f(uniloc, mouse_x, mouse_y, mouse_pressed);
         //std::cout << uniloc << std::endl;
         //gl_check_error();
-        uniloc = glGetUniformLocation(this->shader_prog, "mouse_vert");
-        gl_check_error();
-        //std::cout << uniloc << std::endl;
-        glUniform2f(uniloc, mouse_x, mouse_y);
+        //uniloc = glGetUniformLocation(this->shader_prog, "mouse_vert");
+        //gl_check_error();
+        ////std::cout << uniloc << std::endl;
+        //glUniform2f(uniloc, mouse_x, mouse_y);
         //gl_check_error();
 
 
