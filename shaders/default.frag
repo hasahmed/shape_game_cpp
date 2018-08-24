@@ -6,6 +6,11 @@ uniform vec2 screen_res;
 
 void main() {
     frag_color = incolor;
-    frag_color.xy = sin(mouse.xy / 1000);
-    frag_color.r = mouse.z;
+    if (gl_FragCoord.x > mouse.x)
+        frag_color = vec4(1.0, 0.0, 0.0, 1.0);
+    else
+        frag_color = vec4(0.0, 1.0, 0.0, 1.0);
+    frag_color.y = sin(mouse.y / 1000);
+    if (mouse.z > 0)
+        frag_color.r = mouse.z;
 }

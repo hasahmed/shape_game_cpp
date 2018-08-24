@@ -22,9 +22,15 @@ namespace shapegame {
                 -0.5f, -0.5f, 0.0f,  // bottom left
                 -0.5f,  0.5f, 0.0f   // top left
             };
-            unsigned int indices[6] = {  // note that we start from 0!
+            //this is two triangls for square
+            unsigned int indices[6] = {
                 0, 1, 3,   // first triangle
                 1, 2, 3    // second triangle
+            };
+
+            float line_points[4] = {
+                -0.9, 0.9, //top left
+                0.5, -0.5
             };
             GLuint shader_prog;
             GLHandler(Window *window);
