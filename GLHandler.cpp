@@ -101,10 +101,9 @@ void shapegame::GLHandler::run() {
     while (!glfwWindowShouldClose(this->window_handle)) {
         auto t2 = Clock::now();
         std::chrono::duration<float> elapsed_seconds = t2 - t1;
-        printf("%f\n", elapsed_seconds.count());
         glfwGetCursorPos(this->window_handle, &mouse_x, &mouse_y);
         int mouse_pressed = glfwGetMouseButton(this->window_handle, GLFW_MOUSE_BUTTON_LEFT);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
         glBindVertexArray(vao);
 
 
@@ -115,13 +114,13 @@ void shapegame::GLHandler::run() {
         glUniform3f(uniloc, mouse_x, mouse_y, mouse_pressed);
         auto u_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
         uniloc = glGetUniformLocation(this->shader_prog, "u_time");
-        glUniform1f(uniloc, elapsed_seconds.count());
+        GLCALL(glUniform1f(uniloc, elapsed_seconds.count()));
 
         //ebo
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-        glBindBuffer(GL_ARRAY_BUFFER, vbo);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float), &points[0]);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo));
+        GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
+        GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float), &points[0]));
+        GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
         //gl_check_error();
         //glDrawElements(GL_LINE_STRIP, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
