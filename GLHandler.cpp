@@ -60,17 +60,17 @@ shapegame::GLHandler::GLHandler(Window *window) {
     GLCALL(glBufferData(GL_ARRAY_BUFFER, sizeof(square_points), square_points, GL_DYNAMIC_DRAW)); //dynamic because it will be modified often and updated often
 
     //-----------------------------------------ebo
-    glGenBuffers(1, &ebo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    GLCALL(glGenBuffers(1, &ebo));
+    GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo));
+    GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW));
     //<-----------------------------------------ebo
 
 
     //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), NULL);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0); //this is actually an unbinding
-    glBindVertexArray(0); //also an unbinding
+    GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL));
+    GLCALL(glEnableVertexAttribArray(0));
+    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0)); //this is actually an unbinding
+    GLCALL(glBindVertexArray(0)); //also an unbinding
 
     //input to shader program
     GLint uniloc = glGetUniformLocation(this->shader_prog, "incolor");
