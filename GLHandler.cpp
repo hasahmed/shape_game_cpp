@@ -1,5 +1,7 @@
+#include <typeinfo>
 #include "GLHandler.hpp"
 #include <iostream>
+#include <ctime>
 #define GLFW_INCLUDE_GLCOREARB
 #define GLFW_DLL
 #include <GLFW/glfw3.h>
@@ -93,13 +95,15 @@ void shapegame::GLHandler::check_shader_err(int shader){
 }
 
 void shapegame::GLHandler::run() {
-typedef std::chrono::high_resolution_clock Clock;
-    int fps = 0;
+    typedef std::chrono::high_resolution_clock Clock;
+    auto t1 = Clock::now();
     double second_count = 0;
     while (!glfwWindowShouldClose(this->window_handle)) {
+        auto t2 = Clock::now();
+        std::chrono::duration<float> elapsed_seconds = t2 - t1;
+        printf("%f\n", elapsed_seconds.count());
         glfwGetCursorPos(this->window_handle, &mouse_x, &mouse_y);
         int mouse_pressed = glfwGetMouseButton(this->window_handle, GLFW_MOUSE_BUTTON_LEFT);
-        auto t1 = Clock::now();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glBindVertexArray(vao);
 
@@ -109,20 +113,17 @@ typedef std::chrono::high_resolution_clock Clock;
         //std::cout << this->shader_prog << std::endl;
         GLuint uniloc = glGetUniformLocation(this->shader_prog, "mouse");
         glUniform3f(uniloc, mouse_x, mouse_y, mouse_pressed);
-        //std::cout << uniloc << std::endl;
-        //gl_check_error();
-        //uniloc = glGetUniformLocation(this->shader_prog, "mouse_vert");
-        //gl_check_error();
-        ////std::cout << uniloc << std::endl;
-        //glUniform2f(uniloc, mouse_x, mouse_y);
-        //gl_check_error();
-
+        auto u_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        uniloc = glGetUniformLocation(this->shader_prog, "u_time");
+        glUniform1f(uniloc, elapsed_seconds.count());
 
         //ebo
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float), &points[0]);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        //gl_check_error();
+        //glDrawElements(GL_LINE_STRIP, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
         //end ebo
 
@@ -132,16 +133,11 @@ typedef std::chrono::high_resolution_clock Clock;
         // put the stuff we've been drawing onto the display
         glfwSwapInterval(1);
         glfwSwapBuffers(this->window_handle);
-        auto t2 = Clock::now();
-        std::chrono::duration<double> elapsed_seconds = t2 - t1;
-        second_count += elapsed_seconds.count();
+        //std::cout << elapsed_seconds.count() << std::endl;
+        //second_count += elapsed_seconds.count();
         //std::cout << second_count << std::endl;
-        fps++;
+        //fps++;
         //std::cout << "delta: " << elapsed_seconds.count() << std::endl;
-        if (second_count >= 1.0) {
-            fps = 0;
-            second_count = 0;
-        }
     }
 
     glfwTerminate();

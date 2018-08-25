@@ -28,9 +28,9 @@ namespace shapegame {
                 1, 2, 3    // second triangle
             };
 
-            float line_points[4] = {
-                -0.9, 0.9, //top left
-                0.5, -0.5
+            float line_points[6] = {
+                -0.9, 0.9, 0.0, //top left
+                0.5, -0.5, 0.0
             };
             GLuint shader_prog;
             GLHandler(Window *window);
