@@ -53,11 +53,11 @@ shapegame::GLHandler::GLHandler(Window *window) {
 
 
     //vbo
-    glGenVertexArrays(1, &vao);
-    glGenBuffers(1, &vbo);
-    glBindVertexArray(vao);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_DYNAMIC_DRAW); //dynamic because it will be modified often and updated often
+    GLCALL(glGenVertexArrays(1, &vao));
+    GLCALL(glGenBuffers(1, &vbo));
+    GLCALL(glBindVertexArray(vao));
+    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
+    GLCALL(glBufferData(GL_ARRAY_BUFFER, sizeof(square_points), square_points, GL_DYNAMIC_DRAW)); //dynamic because it will be modified often and updated often
 
     //-----------------------------------------ebo
     glGenBuffers(1, &ebo);
@@ -107,7 +107,7 @@ void shapegame::GLHandler::run() {
         glBindVertexArray(vao);
 
 
-        //points[0] += 0.01;
+        //square_points[0] += 0.01;
 
         //std::cout << this->shader_prog << std::endl;
         GLuint uniloc = glGetUniformLocation(this->shader_prog, "mouse");
@@ -119,7 +119,7 @@ void shapegame::GLHandler::run() {
         //ebo
         GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
-        GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float), &points[0]));
+        GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float), &square_points[0]));
         GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
         //gl_check_error();
         //glDrawElements(GL_LINE_STRIP, 6, GL_UNSIGNED_INT, 0);

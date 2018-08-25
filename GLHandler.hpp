@@ -16,7 +16,7 @@ namespace shapegame {
 
         public:
             float color[4] = {1.0, 1.0, 0.0, 1.0};
-            float points[12] = {
+            float square_points[12] = {
                 0.5f,  0.5f, 0.0f,  // top right
                 0.5f, -0.5f, 0.0f,  // bottom right
                 -0.5f, -0.5f, 0.0f,  // bottom left
