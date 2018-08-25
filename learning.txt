@@ -1,0 +1,7 @@
+input to the graphics pipline:
+    3D coordinates that should form a triangle. These coordinates are in an
+    array called Vertex Data.
+    This vertex data is a collection of verticies, and here a vertex means
+    a collection of data per 3D coordinate. This data is reprsented using
+    VERTEX ATTRIBUTES that can contain any data, but for now were going to assume its
+    just a 3D position, and a color
