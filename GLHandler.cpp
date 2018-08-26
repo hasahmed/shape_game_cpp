@@ -53,17 +53,11 @@ shapegame::GLHandler::GLHandler(Window *window) {
 
 
     //vbo
-    GLCALL(glGenVertexArrays(1, &vao));
-    GLCALL(glGenBuffers(1, &vbo));
-    GLCALL(glBindVertexArray(vao));
-    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
+    GLCALL(glGenVertexArrays(1, &vao)); //generates vertex attribute array
+    GLCALL(glGenBuffers(1, &vbo)); //generates 1 gpu buffer object
+    GLCALL(glBindVertexArray(vao)); //binds current buffers to current vao
+    GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo)); //binds vbo to the array buffer portion of gpu memory?
     GLCALL(glBufferData(GL_ARRAY_BUFFER, sizeof(square_points), square_points, GL_DYNAMIC_DRAW)); //dynamic because it will be modified often and updated often
-
-    //-----------------------------------------ebo
-    GLCALL(glGenBuffers(1, &ebo));
-    GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo));
-    GLCALL(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW));
-    //<-----------------------------------------ebo
 
 
     //glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), NULL);
@@ -104,27 +98,27 @@ void shapegame::GLHandler::run() {
         glfwGetCursorPos(this->window_handle, &mouse_x, &mouse_y);
         int mouse_pressed = glfwGetMouseButton(this->window_handle, GLFW_MOUSE_BUTTON_LEFT);
         GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-        glBindVertexArray(vao);
+
+        GLCALL(glBindVertexArray(vao));
+        GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
+        GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL));
+        GLCALL(glDrawArrays(GL_TRIANGLES, 0, 3));
 
 
         //square_points[0] += 0.01;
 
         //std::cout << this->shader_prog << std::endl;
         GLuint uniloc = glGetUniformLocation(this->shader_prog, "mouse");
-        glUniform3f(uniloc, mouse_x, mouse_y, mouse_pressed);
+        GLCALL(glUniform3f(uniloc, mouse_x, mouse_y, mouse_pressed));
         auto u_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
         uniloc = glGetUniformLocation(this->shader_prog, "u_time");
         GLCALL(glUniform1f(uniloc, elapsed_seconds.count()));
 
-        //ebo
-        GLCALL(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo));
-        GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
-        GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float), &square_points[0]));
-        GLCALL(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
+        //GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
+        //GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float), square_points));
+        //GLCALL(glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0));
         //gl_check_error();
-        //glDrawElements(GL_LINE_STRIP, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
-        //end ebo
+        GLCALL(glBindVertexArray(0));
 
 
         //update other events like input handling
