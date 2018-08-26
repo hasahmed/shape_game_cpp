@@ -1,14 +1,8 @@
-#include <typeinfo>
 #include "GLHandler.hpp"
 #include <iostream>
 #include <ctime>
-#define GLFW_INCLUDE_GLCOREARB
-#define GLFW_DLL
-#include <GLFW/glfw3.h>
 #include <chrono>
-#include "Globals.hpp"
-#include "FileUtil.hpp"
-#include "Window.hpp"
+#include "shapegame"
 
 shapegame::GLHandler::GLHandler(Window *window) {
     this->window_handle = window->window_handle;
