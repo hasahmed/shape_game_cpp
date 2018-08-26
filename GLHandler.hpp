@@ -12,20 +12,19 @@ namespace shapegame {
     class GLHandler {
         private:
             GLFWwindow *window_handle;
-            GLuint vbo, vao, ebo;
+            GLuint vbo, vao;
 
         public:
             float color[4] = {1.0, 1.0, 0.0, 1.0};
-            float square_points[12] = {
+            float square_points[18] = {
+                //right side triangle
                 0.5f,  0.5f, 0.0f,  // top right
-                0.5f, -0.5f, 0.0f,  // bottom right
                 -0.5f, -0.5f, 0.0f,  // bottom left
-                -0.5f,  0.5f, 0.0f   // top left
-            };
-            //this is two triangls for square
-            unsigned int indices[6] = {
-                0, 1, 3,   // first triangle
-                1, 2, 3    // second triangle
+                0.5f, -0.5f, 0.0f  // bottom right
+
+                //0.5f,  0.5f, 0.0f,  // top right
+                //-0.5f, -0.5f, 0.0f,  // bottom left
+                //-0.5f,  0.5f, 0.0f   // top left
             };
 
             float line_points[6] = {
