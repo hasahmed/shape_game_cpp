@@ -6,7 +6,7 @@ OBJS = $(SRC:.cpp=.o)
 ifeq ($(UNAME),Linux)
 	CXX := c++
 	LDFLAGS := `pkg-config --libs glfw3` -ldl
-	INC_DIR := -Iinclude/glad/include
+	INC_DIR := -Iinclude/glad/include -Iinclude
 	CXXFLAGS += $(INC_DIR)
 	OBJS += glad.o
 endif
