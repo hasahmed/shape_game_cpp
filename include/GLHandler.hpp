@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "shapegame"
+#include "shapegl.hpp"
 
 namespace shapegame {
     class GLHandler {
