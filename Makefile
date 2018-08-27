@@ -6,7 +6,7 @@ OBJS = $(SRC:.cpp=.o)
 ifeq ($(UNAME),Linux)
 	CXX := c++
 	LDFLAGS := `pkg-config --libs glfw3` -ldl
-	INC_DIR := -Iglad/include
+	INC_DIR := -Iinclude/glad/include
 	CXXFLAGS += $(INC_DIR)
 	OBJS += glad.o
 endif
@@ -14,6 +14,8 @@ endif
 ifeq ($(UNAME),Darwin)
 	CXX := c++-7
 	LDFLAGS=-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo -g
+	INC_DIR := -Iinclude
+	CXXFLAGS += $(INC_DIR)
 endif
 
 EXE = main

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-glad --out-path glad --spec gl --omit-khrplatform --generator c --extensions ''
+glad --out-path include/glad --spec gl --omit-khrplatform --generator c --extensions ''

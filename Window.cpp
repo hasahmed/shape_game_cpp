@@ -1,7 +1,4 @@
-#include "Window.hpp"
-#include <stdexcept>
-#include <iostream>
-#include <cstring>
+#include "shapegame"
 shapegame::Window::Window(int width, int height, std::string window_title) {
 
     if (!glfwInit())

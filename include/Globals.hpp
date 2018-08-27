@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "shapegame"
+#include "shapegl.hpp"
 #define DEBUG 1
 #define GLCHECKERR() _gl_check_error(__FILE__,__LINE__)
 #if DEBUG

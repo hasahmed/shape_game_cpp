@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "FileUtil.hpp"
+#include "shapegame"
 
 //std::vector<std::string> shapegame::FileUtil::read_file(std::string path) {
     ////the file path is built here. note it doesn't support windows. Perhpas change later with boost or homeroll

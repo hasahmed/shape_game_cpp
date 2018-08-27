@@ -1,4 +1,3 @@
-#include "GLHandler.hpp"
 #include <iostream>
 #include <ctime>
 #include <chrono>

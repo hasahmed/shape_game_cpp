@@ -1,6 +1,5 @@
 #include <iostream>
 #include "shapegame"
-#include "Globals.hpp"
 
 void shapegame::_gl_check_error(const char *file, int line) {
     using namespace std;
