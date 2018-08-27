@@ -1,16 +1,4 @@
-#ifndef __MACH__
-#include <glad/glad.h>
-#endif
-#define GLFW_INCLUDE_GLCOREARB
-#include <GLFW/glfw3.h>
-#include <iostream>
-#include <chrono>
-#include "GLHandler.hpp"
-#include "Window.hpp"
-#include "ShaderHandler.hpp"
-
-typedef std::chrono::high_resolution_clock Clock;
-
+#include "shapegame"
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (key == GLFW_KEY_ESCAPE)
