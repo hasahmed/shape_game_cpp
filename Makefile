@@ -19,6 +19,7 @@ endif
 EXE = main
 MACOS_DIST_NAME = shapegame.dylib
 LINUX_DIST_NAME = shapegame.a
+WIN_DIST_NAME = shapegame.dll
 
 
 all: objs
@@ -43,7 +44,7 @@ shapegame.dylib: objs
 .PHONY: clean
 clean:
 	@echo "Cleaning..."
-	@rm -f $(OBJS) $(EXE)
+	@rm -f $(OBJS) $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME)
 	@rm -rf *.dSYM
 	@echo "Done cleaning"
 
