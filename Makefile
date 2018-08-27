@@ -17,7 +17,8 @@ ifeq ($(UNAME),Darwin)
 endif
 
 EXE = main
-DIST_NAME = shape-game.a
+MACOS_DIST_NAME = shapegame.dylib
+LINUX_DIST_NAME = shapegame.a
 
 
 all: objs
@@ -32,6 +33,10 @@ objs: $(OBJS)
 #linux specific
 glad.o:
 	$(CXX) $(CXXFLAGS) -c -o glad.o glad/src/glad.c
+
+
+shapegame.dylib: objs
+	$(CXX) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1 -undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
 
 
 
