@@ -95,7 +95,7 @@ void shapegame::GLHandler::run() {
         GLCALL(glBindVertexArray(vao));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
         GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL));
-        GLCALL(glDrawArrays(GL_TRIANGLES, 0, 3));
+        GLCALL(glDrawArrays(GL_TRIANGLES, 0, 6));
 
 
         //square_points[0] += 0.01;
