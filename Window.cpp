@@ -1,4 +1,7 @@
 #include "shapegame"
+shapegame::Window* shapegame::Window::getWindow(){
+
+}
 shapegame::Window::Window(int width, int height, std::string window_title) {
 
     if (!glfwInit())

@@ -1,5 +1,5 @@
 UNAME := $(shell uname -s)
-CXXFLAGS = -std=c++17 -g
+CXXFLAGS = -std=c++17 -g -Wall
 SRC = $(wildcard *.cpp)
 OBJS = $(SRC:.cpp=.o)
 
