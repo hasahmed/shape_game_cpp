@@ -6,6 +6,7 @@ namespace shapegame {
     class Window {
         private:
             Window(){}
+            static Window _instance;
 
         public:
             GLFWwindow* window_handle;
@@ -15,6 +16,7 @@ namespace shapegame {
             const GLubyte* gl_version;
             std::string info_string();
             Window(int width, int height, std::string window_title);
+            static Window* getWindow();
     };
 
 }

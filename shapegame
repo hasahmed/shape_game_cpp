@@ -6,3 +6,4 @@
 #include "Globals.hpp"
 #include "GLHandler.hpp"
 #include "ShaderHandler.hpp"
+#include "Game.hpp"
