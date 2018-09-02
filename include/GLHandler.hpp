@@ -1,13 +1,15 @@
 #pragma once
 #include <iostream>
 #include "shapegl.hpp"
+#include "Window.hpp"
+#include "Scene.hpp"
 
 namespace shapegame {
     class GLHandler {
         private:
             GLFWwindow *window_handle;
             GLuint vbo, vao;
-
+            Scene &_scene;
         public:
             float color[4] = {1.0, 1.0, 0.0, 1.0};
             float square_points[18] = {
@@ -26,7 +28,7 @@ namespace shapegame {
                 0.5, -0.5, 0.0
             };
             GLuint shader_prog;
-            GLHandler(Window *window);
+            GLHandler(Window *window, Scene &scene);
             double mouse_x, mouse_y;
 
 
