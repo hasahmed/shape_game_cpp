@@ -3,7 +3,7 @@
 #include <chrono>
 #include "shapegame"
 
-shapegame::GLHandler::GLHandler(Window *window) {
+shapegame::GLHandler::GLHandler(Window *window, Scene &scene) : _scene(scene) {
     this->window_handle = window->window_handle;
 
     //compile and link shaders
@@ -84,7 +84,7 @@ void shapegame::GLHandler::check_shader_err(int shader){
 void shapegame::GLHandler::run() {
     typedef std::chrono::high_resolution_clock Clock;
     auto t1 = Clock::now();
-    double second_count = 0;
+    //double second_count = 0;
     while (!glfwWindowShouldClose(this->window_handle)) {
         auto t2 = Clock::now();
         std::chrono::duration<float> elapsed_seconds = t2 - t1;
@@ -103,7 +103,7 @@ void shapegame::GLHandler::run() {
         //std::cout << this->shader_prog << std::endl;
         GLuint uniloc = glGetUniformLocation(this->shader_prog, "mouse");
         GLCALL(glUniform3f(uniloc, mouse_x, mouse_y, mouse_pressed));
-        auto u_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+        //auto u_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
         uniloc = glGetUniformLocation(this->shader_prog, "u_time");
         GLCALL(glUniform1f(uniloc, elapsed_seconds.count()));
 
@@ -119,6 +119,7 @@ void shapegame::GLHandler::run() {
         // put the stuff we've been drawing onto the display
         glfwSwapInterval(1);
         glfwSwapBuffers(this->window_handle);
+        _scene.drawAll();
         //std::cout << elapsed_seconds.count() << std::endl;
         //second_count += elapsed_seconds.count();
         //std::cout << second_count << std::endl;

@@ -1,4 +1,5 @@
 #include "shapegame"
+using namespace shapegame;
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (key == GLFW_KEY_ESCAPE)
@@ -16,8 +17,7 @@ int main() {
     // ...
     //shapegame::GameObject x;
     game.scene->addChild(shapegame::GameObject());
-
-
+    Color c(1.0, 2.0, 3.0);
     // ...
     game.run();
 }

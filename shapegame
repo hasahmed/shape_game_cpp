@@ -11,3 +11,6 @@
 #include "Scene.hpp"
 #include "Drawable.hpp"
 #include "Shape.hpp"
+#include "Square.hpp"
+#include "Color.hpp"
+#include "Triangle.hpp"

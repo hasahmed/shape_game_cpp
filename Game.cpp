@@ -6,8 +6,8 @@ shapegame::Game::Game(
                      std::string windowTitle){
 
     _window = std::make_unique<Window>(windowWidth, windowHeight, windowTitle);
-    _glHandler = std::make_unique<GLHandler>(_window.get());
     scene = std::make_unique<Scene>();
+    _glHandler = std::make_unique<GLHandler>(_window.get(), *scene);
 }
 
 shapegame::Game::Game() : Game(480, 480, "ShapeGame") {}
