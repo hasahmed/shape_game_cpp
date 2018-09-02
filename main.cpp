@@ -12,10 +12,12 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 int main() {
 
     shapegame::Game game;
+    //Your game logic here
+    // ...
+    //shapegame::GameObject x;
+    game.scene->addChild(shapegame::GameObject());
+
+
+    // ...
     game.run();
-    //shapegame::Window window(1140, 480, "Hello World!");
-    //std::cout << window.info_string() << std::endl;
-    //glfwSetKeyCallback(window.window_handle, key_callback);
-    //shapegame::GLHandler gl(&window);
-    //gl.run();
 }
