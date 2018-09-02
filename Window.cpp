@@ -1,6 +1,6 @@
 #include "shapegame"
 shapegame::Window* shapegame::Window::getWindow(){
-
+    return NULL;
 }
 shapegame::Window::Window(int width, int height, std::string window_title) {
 
