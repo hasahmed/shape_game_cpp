@@ -8,9 +8,11 @@
 namespace shapegame {
     class Scene {
         private:
-            std::unique_ptr<std::vector<Drawable>> _drawVect;
+            std::vector<Drawable> _drawVect;
+            std::vector<GameObject> _sceneChildren;
         public:
-            void draw_all();
-            void add_child(GameObject obj);
+            void drawAll();
+            void addChild(GameObject obj);
+            Scene();
     };
 }

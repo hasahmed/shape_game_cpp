@@ -13,5 +13,6 @@ shapegame::Game::Game(
 shapegame::Game::Game() : Game(480, 480, "ShapeGame") {}
 
 void shapegame::Game::run() {
+    std::cout << _window->info_string() << std::endl;
     _glHandler->run();
 }
