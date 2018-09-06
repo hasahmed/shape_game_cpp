@@ -14,3 +14,4 @@
 #include "Square.hpp"
 #include "Color.hpp"
 #include "Triangle.hpp"
+#include "Position.hpp"

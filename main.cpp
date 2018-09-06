@@ -16,8 +16,8 @@ int main() {
     //Your game logic here
     // ...
     //shapegame::GameObject x;
-    game.scene->addChild(shapegame::GameObject());
-    Color c(1.0, 2.0, 3.0);
+    //game.scene->addChild(shapegame::GameObject());
+    Color c(0.5, 0.5, 0.0);
     // ...
     game.run();
 }
