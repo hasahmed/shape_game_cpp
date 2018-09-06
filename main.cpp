@@ -16,8 +16,8 @@ int main() {
     //Your game logic here
     // ...
     //shapegame::GameObject x;
-    //game.scene->addChild(shapegame::GameObject());
-    Color c(0.5, 0.5, 0.0);
+    auto x = shapegame::Triangle(10, 10, 10, 10, Color(1.0, 1.0, 0.0, 1.0));
+    game.scene->addChild(x);
     // ...
     game.run();
 }

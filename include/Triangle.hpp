@@ -5,7 +5,7 @@
 #include "shapegl.hpp"
 
 namespace shapegame {
-    class Triangle : Shape {
+    class Triangle : public Shape {
         private:
             int _height;
             int _width;

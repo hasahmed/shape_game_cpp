@@ -3,7 +3,6 @@
 namespace shapegame {
     class Drawable {
         friend class Scene;
-        protected:
         private:
             int _vertexAttribIndex;
             GLuint _vao, _vbo;

@@ -12,16 +12,22 @@ namespace shapegame {
             Scene &_scene;
         public:
             float color[4] = {1.0, 1.0, 0.0, 1.0};
-            float square_points[18] = {
-                //right side triangle
-                0.5f,  0.5f, 0.0f,  // top right
-                -0.5f, -0.5f, 0.0f,  // bottom left
-                0.5f, -0.5f, 0.0f,  // bottom right
 
+            float square_points[9] = {
                 0.5f,  0.5f, 0.0f,  // top right
                 -0.5f, -0.5f, 0.0f,  // bottom left
-                -0.5f,  0.5f, 0.0f   // top left
+                0.5f, -0.5f, 0.0f  // bottom right
             };
+            //float square_points[18] = {
+                ////right side triangle
+                //0.5f,  0.5f, 0.0f,  // top right
+                //-0.5f, -0.5f, 0.0f,  // bottom left
+                //0.5f, -0.5f, 0.0f,  // bottom right
+
+                //0.5f,  0.5f, 0.0f,  // top right
+                //-0.5f, -0.5f, 0.0f,  // bottom left
+                //-0.5f,  0.5f, 0.0f   // top left
+            //};
 
             float line_points[6] = {
                 -0.9, 0.9, 0.0, //top left

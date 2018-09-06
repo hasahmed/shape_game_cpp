@@ -89,23 +89,24 @@ void shapegame::GLHandler::run() {
         auto t2 = Clock::now();
         std::chrono::duration<float> elapsed_seconds = t2 - t1;
         glfwGetCursorPos(this->window_handle, &mouse_x, &mouse_y);
-        int mouse_pressed = glfwGetMouseButton(this->window_handle, GLFW_MOUSE_BUTTON_LEFT);
+        //int mouse_pressed = glfwGetMouseButton(this->window_handle, GLFW_MOUSE_BUTTON_LEFT);
         GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
+
+        //std::cout << vao << std::endl;
 
         GLCALL(glBindVertexArray(vao));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
         GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL));
-        GLCALL(glDrawArrays(GL_TRIANGLES, 0, 6));
-
+        GLCALL(glDrawArrays(GL_TRIANGLES, 0, sizeof(square_points) / sizeof(square_points[0])));
 
         //square_points[0] += 0.01;
 
         //std::cout << this->shader_prog << std::endl;
-        GLuint uniloc = glGetUniformLocation(this->shader_prog, "mouse");
-        GLCALL(glUniform3f(uniloc, mouse_x, mouse_y, mouse_pressed));
+        //GLuint uniloc = glGetUniformLocation(this->shader_prog, "mouse");
+        //GLCALL(glUniform3f(uniloc, mouse_x, mouse_y, mouse_pressed));
         //auto u_time = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-        uniloc = glGetUniformLocation(this->shader_prog, "u_time");
-        GLCALL(glUniform1f(uniloc, elapsed_seconds.count()));
+        //uniloc = glGetUniformLocation(this->shader_prog, "u_time");
+        //GLCALL(glUniform1f(uniloc, elapsed_seconds.count()));
 
         //GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
         //GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float), square_points));
@@ -113,13 +114,13 @@ void shapegame::GLHandler::run() {
         //gl_check_error();
         GLCALL(glBindVertexArray(0));
 
+        _scene.drawAll();
 
         //update other events like input handling
         glfwPollEvents();
         // put the stuff we've been drawing onto the display
         glfwSwapInterval(1);
         glfwSwapBuffers(this->window_handle);
-        _scene.drawAll();
         //std::cout << elapsed_seconds.count() << std::endl;
         //second_count += elapsed_seconds.count();
         //std::cout << second_count << std::endl;
