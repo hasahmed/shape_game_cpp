@@ -1,4 +1,5 @@
 #pragma once
+#include "Position.hpp"
 namespace shapegame {
     class GameObject {
         private:

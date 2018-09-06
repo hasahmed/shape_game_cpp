@@ -12,6 +12,7 @@ namespace shapegame {
             // abstract and must be derived
             virtual void draw() = 0;
             Shape(Color color);
+            Shape(int numVerts) : Drawable(numVerts), _color(1.0, 1.0, 1.0, 1.0) {}
     };
 }
 
