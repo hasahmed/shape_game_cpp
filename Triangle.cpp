@@ -9,7 +9,6 @@ shapegame::Triangle::Triangle(
     _height(height), _width(width), _pos(x, y), color(color) {}
 
 
-
 shapegame::Triangle::Triangle(
         int height,
         int width,

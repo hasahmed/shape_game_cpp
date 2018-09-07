@@ -62,14 +62,15 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) : _scene(scene) {
 
     //input to shader program
     GLint uniloc = glGetUniformLocation(this->shader_prog, "incolor");
-    glUniform4fv(uniloc, 1, color);
+    GLCALL(glUniform4fv(uniloc, 1, color));
     uniloc = glGetUniformLocation(this->shader_prog, "screen_res");
-    glUniform2f(uniloc, window->width, window->height);
+    GLCALL(glUniform2f(uniloc, window->width, window->height));
     check_shader_err(vs);
 
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glClearColor(0.0f, 1.0f, 1.0f, 0.5f);
+    GLCALL(glEnable(GL_BLEND));
+    GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+    GLCALL(glClearColor(0.0f, 1.0f, 1.0f, 1.0f));
+
 
 }
 void shapegame::GLHandler::check_shader_err(int shader){
@@ -113,7 +114,7 @@ void shapegame::GLHandler::run() {
         //GLCALL(glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(float), square_points));
         //GLCALL(glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0));
         //gl_check_error();
-        GLCALL(glBindVertexArray(0));
+        //GLCALL(glBindVertexArray(0));
 
         _scene.drawAll();
 

@@ -14,9 +14,10 @@ namespace shapegame {
             Color color;
             float _verts[9] = {
                 // right side triangle
-                0.9f,  0.9f, 0.0f,  // top right
-                -0.9f, -0.9f, 0.0f,  // bottom left
-                0.9f, -0.9f, 0.0f  // bottom right
+                1.0, 1.0, 0.0f,
+                1.0,  -1.0, 0.0f,
+                -1.0, -1.0, 0.0f
+
             };
             int _numVerts = 9;
             GLuint _vao, _vbo;
