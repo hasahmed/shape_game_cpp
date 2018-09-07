@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.hpp"
+#include "shapegl.hpp"
 namespace shapegame {
     class Drawable {
         friend class Scene;

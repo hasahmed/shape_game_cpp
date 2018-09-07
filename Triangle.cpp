@@ -6,7 +6,7 @@ shapegame::Triangle::Triangle(
         double x,
         double y,
         Color color) :
-    _height(height), _width(width), _pos(x, y), Shape(9) {}
+    _height(height), _width(width), _pos(x, y), color(color) {}
 
 
 
@@ -15,4 +15,4 @@ shapegame::Triangle::Triangle(
         int width,
         Position pos,
         Color color) :
-    _height(height), _width(width), _pos(pos), Shape(9) {}
+    _height(height), _width(width), _pos(pos), color(color) {}
