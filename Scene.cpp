@@ -25,6 +25,9 @@ void shapegame::Scene::addChild(Triangle &triangle) {
     triangle._vertexAttribIndex = this->_assignableVertexAttribIndex++;
     //triangle._verts[0] -= 0.1;
 
+    GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
+    GLCALL(glUniform4fv(uniloc, 1, triangle.color._color));
+
     GLCALL(glUseProgram(this->_shaderProg));
     GLCALL(glGenVertexArrays(1, &(triangle._vao))); //generates vertex attribute array
     GLCALL(glGenBuffers(1, &(triangle._vbo))); //generates 1 gpu buffer object
@@ -41,12 +44,14 @@ void shapegame::Scene::addChild(Triangle &triangle) {
 }
 
 void shapegame::Scene::drawAll() {
-    for (auto &drawable : _drawVect) {
+    for (auto &triangle : _drawVect) {
 
-        GLCALL(glBindVertexArray(drawable._vao));
-        GLCALL(glBindBuffer(GL_ARRAY_BUFFER, drawable._vbo));
-        GLCALL(glVertexAttribPointer(drawable._vertexAttribIndex, 3, GL_FLOAT, GL_FALSE, 0, 0));
-        GLCALL(glDrawArrays(GL_TRIANGLES, 0, drawable._numVerts));
+        GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
+        GLCALL(glUniform4fv(uniloc, 1, triangle.color._color));
+        GLCALL(glBindVertexArray(triangle._vao));
+        GLCALL(glBindBuffer(GL_ARRAY_BUFFER, triangle._vbo));
+        GLCALL(glVertexAttribPointer(triangle._vertexAttribIndex, 3, GL_FLOAT, GL_FALSE, 0, 0));
+        GLCALL(glDrawArrays(GL_TRIANGLES, 0, triangle._numVerts));
         GLCALL(glBindVertexArray(0));
 
     }

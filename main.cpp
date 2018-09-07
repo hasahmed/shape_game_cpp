@@ -16,8 +16,9 @@ int main() {
     //Your game logic here
     // ...
     //shapegame::GameObject x;
-    auto x = shapegame::Triangle(10, 10, 10, 10, Color(1.0, 1.0, 0.0, 1.0));
-    auto y = shapegame::Triangle(10, 10, 10, 10, Color(1.0, 1.0, 0.0, 1.0));
+    auto x = shapegame::Triangle(10, 10, 10, 10, Color(1.0, 0.0, 0.0));
+    auto y = shapegame::Triangle(10, 10, 10, 10, Color(1.0, 1.0, 0.0));
+
     y._verts[0] = -1.0;
     y._verts[1] = 1.0;
     y._verts[2] = 0.0;
