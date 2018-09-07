@@ -23,6 +23,7 @@ shapegame::Scene::Scene() : _drawVect(), _sceneChildren() {}
 void shapegame::Scene::addChild(Triangle &triangle) {
     //assignes but also increments for future users
     triangle._vertexAttribIndex = this->_assignableVertexAttribIndex++;
+    //triangle._verts[0] -= 0.1;
 
     GLCALL(glUseProgram(this->_shaderProg));
     GLCALL(glGenVertexArrays(1, &(triangle._vao))); //generates vertex attribute array
