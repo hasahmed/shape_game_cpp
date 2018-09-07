@@ -29,18 +29,19 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) : _scene(scene) {
 
     //shader prog
     this->shader_prog = glCreateProgram();
-    glBindAttribLocation(this->shader_prog, 2, "mouse_vert");
+    scene.setShaderProg(this->shader_prog);
+    GLCALL(glBindAttribLocation(this->shader_prog, 2, "mouse_vert"));
     //std::cout << this->shader_prog << std::endl;
-    glAttachShader(this->shader_prog, fs);
-    glAttachShader(this->shader_prog, vs);
-    glLinkProgram(this->shader_prog);
+    GLCALL(glAttachShader(this->shader_prog, fs));
+    GLCALL(glAttachShader(this->shader_prog, vs));
+    GLCALL(glLinkProgram(this->shader_prog));
     check_shader_err(fs);
-    glUseProgram(this->shader_prog);
+    GLCALL(glUseProgram(this->shader_prog));
     //end shader prog
 
     //delete shader
-    glDeleteShader(fs);
-    glDeleteShader(vs);
+    GLCALL(glDeleteShader(fs));
+    GLCALL(glDeleteShader(vs));
     //end delete shader
 
 
@@ -94,10 +95,10 @@ void shapegame::GLHandler::run() {
 
         //std::cout << vao << std::endl;
 
-        GLCALL(glBindVertexArray(vao));
-        GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
-        GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL));
-        GLCALL(glDrawArrays(GL_TRIANGLES, 0, sizeof(square_points) / sizeof(square_points[0])));
+        //GLCALL(glBindVertexArray(vao));
+        //GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo));
+        //GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL));
+        //GLCALL(glDrawArrays(GL_TRIANGLES, 0, sizeof(square_points) / sizeof(square_points[0])));
 
         //square_points[0] += 0.01;
 
