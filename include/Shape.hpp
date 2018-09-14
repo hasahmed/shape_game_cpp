@@ -4,8 +4,8 @@
 #include "Color.hpp"
 
 namespace shapegame {
-    class Shape : GameObject, public Drawable {
-        private:
+    class Shape : public GameObject, public Drawable {
+        protected:
             Color _color;
         public:
             // = 0; is c++ syntax for 'true virtual' meaning the class is

@@ -17,7 +17,7 @@ int main() {
     // ...
     //shapegame::GameObject x;
     auto x = shapegame::Triangle(10, 10, 10, 10, Color::PURPLE);
-    auto y = shapegame::Triangle(10, 10, 10, 10, Color::BLACK);
+    auto y = shapegame::Triangle(10, 10, 10, 10, Color::YELLOW);
 
     y._verts[0] = -1.0;
     y._verts[1] = 1.0;
