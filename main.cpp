@@ -16,22 +16,22 @@ int main() {
     //Your game logic here
     // ...
     //shapegame::GameObject x;
-    auto x = shapegame::Triangle(10, 10, 10, 10, Color::PURPLE);
-    auto y = shapegame::Triangle(10, 10, 10, 10, Color::YELLOW);
+    //auto x = shapegame::Triangle(10, 10, 10, 10, Color::PURPLE);
+    //auto y = shapegame::Triangle(10, 10, 10, 10, Color::YELLOW);
 
-    y._verts[0] = -1.0;
-    y._verts[1] = 1.0;
-    y._verts[2] = 0.0;
+    //y._verts[0] = -1.0;
+    //y._verts[1] = 1.0;
+    //y._verts[2] = 0.0;
 
-    y._verts[3] = 0.9;
-    y._verts[4] = 1.0;
-    y._verts[5] = 0.0;
+    //y._verts[3] = 0.9;
+    //y._verts[4] = 1.0;
+    //y._verts[5] = 0.0;
 
-    y._verts[6] = -1.0;
-    y._verts[7] = -0.9;
-    y._verts[8] = 0.0;
-    game.scene->addChild(x);
-    game.scene->addChild(y);
+    //y._verts[6] = -1.0;
+    //y._verts[7] = -0.9;
+    //y._verts[8] = 0.0;
+    //game.scene->addChild(x);
+    //game.scene->addChild(y);
     // ...
     game.run();
 }

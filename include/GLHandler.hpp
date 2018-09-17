@@ -10,6 +10,7 @@ namespace shapegame {
             GLFWwindow *window_handle;
             GLuint vbo, vao;
             Scene &_scene;
+            static int _assignableVertexAttribIndex;
         public:
             float color[4] = {1.0, 1.0, 0.0, 1.0};
 
@@ -36,6 +37,7 @@ namespace shapegame {
             GLuint shader_prog;
             GLHandler(Window *window, Scene &scene);
             double mouse_x, mouse_y;
+            static int getAssignableVertexAttribIndex();
 
 
             //methods

@@ -15,4 +15,3 @@ shapegame::Color shapegame::Color::GREEN = Color(0.0, 1.0, 0.0);
 shapegame::Color shapegame::Color::BLUE = Color(0.0, 0.0, 1.0);
 shapegame::Color shapegame::Color::YELLOW = Color(1.0, 1.0, 0.0);
 shapegame::Color shapegame::Color::PURPLE = Color(1.0, 0.0, 1.0);
-

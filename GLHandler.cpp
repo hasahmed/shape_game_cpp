@@ -3,6 +3,13 @@
 #include <chrono>
 #include "shapegame"
 
+int shapegame::GLHandler::_assignableVertexAttribIndex = 0;
+
+int shapegame::GLHandler::getAssignableVertexAttribIndex() {
+    int nextValid = _assignableVertexAttribIndex++;
+    return nextValid;
+}
+
 shapegame::GLHandler::GLHandler(Window *window, Scene &scene) : _scene(scene) {
     this->window_handle = window->window_handle;
 
