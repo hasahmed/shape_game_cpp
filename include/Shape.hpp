@@ -1,19 +1,17 @@
 #pragma once
-#include "GameObject.hpp"
+#include "Object.hpp"
 #include "Drawable.hpp"
 #include "Color.hpp"
+#include "Scene.hpp"
 
 namespace shapegame {
-    class Shape : public GameObject, public Drawable {
+    class Shape : public Object {
+        friend class Scene;
         protected:
             Color _color;
+
         public:
-            // = 0; is c++ syntax for 'true virtual' meaning the class is
-            // abstract and must be derived
-            //virtual void draw() = 0;
             Shape(Color color);
-            Shape(int numVerts) : Drawable(numVerts), _color(1.0, 1.0, 1.0, 1.0) {}
+            Shape(Position pos, Color color);
     };
 }
-
-

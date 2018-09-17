@@ -2,10 +2,11 @@
 #include <memory>
 #include <vector>
 #include <unordered_map>
-#include "Drawable.hpp"
-#include "GameObject.hpp"
+#include "Shape.hpp"
+#include "Object.hpp"
 #include "Triangle.hpp"
 #include "GLHandler.hpp"
+#include "GLRenderObject.hpp"
 
 
 namespace shapegame {
@@ -17,13 +18,13 @@ namespace shapegame {
             // used to determine the next index to use for glEnableVertexArrayAttrib
             int _assignableVertexAttribIndex = 0;
             //std::vector<Triangle> _drawVect;
-            std::vector<Triangle> _drawVect;
-            std::vector<GameObject> _sceneChildren;
-            //std::unordered_map<unsigned int, Drawable> _
+            std::vector<Shape> _drawVect;
+            std::vector<Object> _sceneChildren;
+            std::unordered_map<int, Shape> _glRenderObjects;
         public:
             void drawAll();
             //void addChild(GameObject obj);
-            void addChild(Triangle &drawable);
+            void addChild(Shape &shape);
             //void draw(Triangle &drawable);
             Scene();
     };

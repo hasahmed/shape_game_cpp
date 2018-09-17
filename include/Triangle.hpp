@@ -5,24 +5,17 @@
 #include "shapegl.hpp"
 
 namespace shapegame {
-    class Triangle {
+    class Triangle : public Shape {
         private:
-            int _height;
-            int _width;
-            Position _pos;
+            float _height;
+            float _width;
+            float _angles[3];
         public:
-            Color color;
-            float _verts[9] = {
-                // right side triangle
-                1.0, 1.0, 0.0f,
-                1.0,  -1.0, 0.0f,
-                -1.0, -1.0, 0.0f
+            Triangle(float height, float width, float angle1, float angle2,
+                    Position pos, Color color);
 
-            };
-            int _numVerts = 9;
-            GLuint _vao, _vbo;
-            int _vertexAttribIndex;
-            Triangle(int height, int width, double x, double y, Color color);
-            Triangle(int height, int width, Position pos, Color color);
+            Triangle(float height, float width, float angle1, float angle2,
+                    double x, double y, Color color);
+
     };
 }

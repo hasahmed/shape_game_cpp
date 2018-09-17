@@ -1,2 +1,2 @@
-Currently attempting to implement the ability to draw aribrary shapes. I am trying to implement it in
- the triangle class unsing temporary non-dynamic vertexes
+Currently attempting to make the interfaces and classes the back the shape class
+work.
