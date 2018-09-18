@@ -13,6 +13,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 int main() {
 
     shapegame::Game game;
+    auto x = shapegame::Rectangle(10, 10, Position(10, 10), Color::PURPLE);
     //Your game logic here
     // ...
     //shapegame::GameObject x;
@@ -30,7 +31,7 @@ int main() {
     //y._verts[6] = -1.0;
     //y._verts[7] = -0.9;
     //y._verts[8] = 0.0;
-    //game.scene->addChild(x);
+    game.scene->addChild(x);
     //game.scene->addChild(y);
     // ...
     game.run();

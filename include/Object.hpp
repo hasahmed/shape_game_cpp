@@ -2,9 +2,8 @@
 #include "Position.hpp"
 namespace shapegame {
     class Object {
-        protected:
-            Position pos;
         public:
+            Position pos;
             Object(double x, double y);
             Object(Position pos);
     };

@@ -1,12 +1,13 @@
 #pragma once
+#include <vector>
 #include "shapegl.hpp"
 
 namespace shapegame {
     struct GLRenderObject {
         public:
-            int _vertexAttribIndex;
-            GLuint _vao, _vbo;
-            float *_verts;
-            int _numVerts;
+            int vertexAttribIndex;
+            GLuint vao;
+            GLuint vbo;
+            std::vector<float> verts;
     };
 }

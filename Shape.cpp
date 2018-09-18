@@ -1,9 +1,18 @@
 #include "shapegame"
-shapegame::Shape::Shape(Position pos, Color color) :
-    Object(pos),
-    _color(color) {}
+shapegame::Shape::Shape(
+        float height,
+        float width,
+        ShapeType type,
+        Position pos,
+        Color color) :
+                        Object(pos),
+                        _height(height),
+                        _width(width),
+                        _color(color),
+                        type(type) {}
 
+shapegame::Shape::Shape(float height, float width, ShapeType type, Color color) :
+    Shape(height, width, type, Position(0.0, 0.0), color) {}
 
-shapegame::Shape::Shape(Color color) :
-    Object(0.0, 0.0),
-    _color(color) {}
+float shapegame::Shape::height() {return _height;}
+float shapegame::Shape::width() {return _width;}

@@ -15,8 +15,8 @@ shapegame::Window::Window(int width, int height, std::string window_title) {
 
 
     /* Create a windowed mode window and its OpenGL context */
-    this->width = width;
-    this->height = height;
+    this->_width = width;
+    this->_height = height;
     this->window_handle = glfwCreateWindow(width, height, window_title.c_str(), NULL, NULL);
     if (!window_handle) {
         glfwTerminate();
@@ -33,4 +33,11 @@ std::string shapegame::Window::info_string() {
     std::string render_str((char*)(this->gl_renderer));
     std::string version_str((char*)(this->gl_version));
     return "Renderer: " + render_str + "\n" + "OpenGL version supported: " + version_str;
+}
+
+int shapegame::Window::height() {
+    return _height;
+}
+int shapegame::Window::width() {
+    return _width;
 }

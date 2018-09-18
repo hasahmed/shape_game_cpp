@@ -13,4 +13,11 @@
 #endif
 namespace shapegame {
     void _gl_check_error(const char *file, int line);
+    enum class ShapeType {
+        Triangle,
+        Rectangle,
+        Circle,
+    };
+    class Globals {
+    };
 }

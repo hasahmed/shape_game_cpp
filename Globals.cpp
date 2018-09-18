@@ -1,6 +1,7 @@
 #include <iostream>
 #include "shapegame"
 
+
 void shapegame::_gl_check_error(const char *file, int line) {
     using namespace std;
     GLenum err(glGetError());
