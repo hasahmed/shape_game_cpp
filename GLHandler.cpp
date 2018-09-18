@@ -71,7 +71,7 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) : _scene(scene) {
     GLint uniloc = glGetUniformLocation(this->shader_prog, "incolor");
     GLCALL(glUniform4fv(uniloc, 1, color));
     uniloc = glGetUniformLocation(this->shader_prog, "screen_res");
-    GLCALL(glUniform2f(uniloc, window->width, window->height));
+    GLCALL(glUniform2f(uniloc, window->width(), window->height()));
     check_shader_err(vs);
 
     GLCALL(glEnable(GL_BLEND));

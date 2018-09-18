@@ -7,6 +7,7 @@
 #include "Triangle.hpp"
 #include "GLHandler.hpp"
 #include "GLRenderObject.hpp"
+#include "RenderPackage.hpp"
 
 
 namespace shapegame {
@@ -16,11 +17,8 @@ namespace shapegame {
             GLuint _shaderProg;
             void setShaderProg(GLuint shaderprog);
             // used to determine the next index to use for glEnableVertexArrayAttrib
-            int _assignableVertexAttribIndex = 0;
-            //std::vector<Triangle> _drawVect;
-            std::vector<Shape> _drawVect;
+            std::vector<std::unique_ptr<RenderPackage>> _drawVect;
             std::vector<Object> _sceneChildren;
-            std::unordered_map<int, Shape> _glRenderObjects;
         public:
             void drawAll();
             //void addChild(GameObject obj);

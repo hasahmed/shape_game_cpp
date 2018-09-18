@@ -2,9 +2,11 @@
 namespace shapegame {
     class Position {
         private:
-            double _x;
-            double _y;
+            float _x;
+            float _y;
         public:
-            Position(double x, double y);
+            Position(float x, float y);
+            float x();
+            float y();
     };
 }

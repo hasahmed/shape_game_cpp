@@ -14,7 +14,7 @@ namespace shapegame {
         public:
             float color[4] = {1.0, 1.0, 0.0, 1.0};
 
-            float square_points[9] = {
+            float square_points[9] = { //this actually is a triangle
                 0.0f, 0.5, 0.0f,
                 0.5f,  -0.5f, 0.0f,
                 -0.5f, -0.5f, 0.0f
