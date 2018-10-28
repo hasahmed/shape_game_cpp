@@ -17,6 +17,6 @@ std::ostream& operator<<(
     std::cout << "Shape:" << std::endl;
     std::cout << '\t';
     std::cout << "_height: ";
-    std::cout << rp.shape->_height << std::endl;
+    std::cout << rp.shape->height() << std::endl;
     return os;
 }

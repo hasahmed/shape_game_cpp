@@ -9,7 +9,7 @@ std::vector<float> shapegame::VertexGenerator::generate(Shape &shape) {
         case ShapeType::Triangle:
             return triangleVerts(shape);
         case ShapeType::Rectangle:
-            return {};
+            return rectangleVerts(shape);
         case ShapeType::Circle:
             return {};
     }
@@ -18,9 +18,14 @@ std::vector<float> shapegame::VertexGenerator::generate(Shape &shape) {
 }
 
 std::vector<float> shapegame::VertexGenerator::triangleVerts(Shape &shape) {
-    return std::vector<float>{
-
-    };
+    throw std::runtime_error("Not Implemented");
+    // return std::vector<float>{
+    // };
+}
+std::vector<float> shapegame::VertexGenerator::circleVerts(Shape &shape) {
+    throw std::runtime_error("Not Implemented");
+    // return std::vector<float>{
+    // };
 }
 std::vector<float> shapegame::VertexGenerator::rectangleVerts(Shape &shape) {
 

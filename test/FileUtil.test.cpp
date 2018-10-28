@@ -31,9 +31,8 @@ const char *strings = {
 
 int main(){
   std::string str = shapegame::FileUtil::read("dummy-data/lines.txt");
-  // assert(str[0] == '0');
   for (int i = 0; i < str.size(); i++) {
       assert(std::string(1, str[i]).compare(std::string(1, strings[i])) == 0);
   }
-  std::cout << "FileUtil.cpp Tests Passed" << std::endl;
+  std::cout << "FileUtil.test.cpp Tests Passed" << std::endl;
 }

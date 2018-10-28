@@ -1,5 +1,7 @@
 #include "shapegame"
 
+
+// all values should be between 0-1
 shapegame::Color::Color(float r, float g, float b, float a) {
     _color[0] = r;
     _color[1] = g;
