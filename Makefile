@@ -24,12 +24,12 @@ LINUX_DIST_NAME = shapegame.a
 WIN_DIST_NAME = shapegame.dll
 
 
-all: objs
+all: main
 
 run: all
 	./$(EXE)
 
-objs: $(OBJS)
+main: $(OBJS)
 	$(CXX) -o $(EXE) $^ $(LDFLAGS)
 
 
@@ -49,4 +49,3 @@ clean:
 	@rm -f $(OBJS) $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME)
 	@rm -rf *.dSYM
 	@echo "Done cleaning"
-

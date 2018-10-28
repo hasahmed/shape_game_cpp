@@ -6,8 +6,8 @@
 #include "FileUtil.hpp"
 
 int main(){
-
-    shapegame::FileUtil::read("../shaders/default.frag");
+  shapegame::FileUtil::read("dummy-data/lines.txt");
+    // shapegame::FileUtil::read("../shaders/default.frag");
     //std::string str = shapegame::FileUtil::read("../shaders/default.frag");
     //std::cout << str;
 }
