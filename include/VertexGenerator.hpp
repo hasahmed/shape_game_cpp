@@ -16,6 +16,7 @@ namespace shapegame {
             Window *_window;
             std::vector<float> triangleVerts(Shape &shape);
             std::vector<float> rectangleVerts(Shape &shape);
+            std::vector<float> circleVerts(Shape &shape);
             float getHorizontalPixelStep();
             float getVerticalPixelStep();
     };

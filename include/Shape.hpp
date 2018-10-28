@@ -8,13 +8,13 @@
 namespace shapegame {
     class Shape : public Object {
         friend class Scene;
-        public:
+        private:
             float _height;
             float _width;
             Color _color;
+        public:
             Shape(float height, float width, ShapeType type, Color color);
             Shape(float height, float width, ShapeType type, Position pos, Color color);
-        public:
             ShapeType type;
             float height();
             float width();

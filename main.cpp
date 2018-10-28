@@ -14,6 +14,7 @@ int main() {
 
     shapegame::Game game;
     auto x = shapegame::Rectangle(10, 10, Position(10, 10), Color::PURPLE);
+    auto y = shapegame::Rectangle(10, 10, Position(30, 10), Color::RED);
     //Your game logic here
     // ...
     //shapegame::GameObject x;
@@ -32,6 +33,7 @@ int main() {
     //y._verts[7] = -0.9;
     //y._verts[8] = 0.0;
     game.scene->addChild(x);
+    game.scene->addChild(y);
     //game.scene->addChild(y);
     // ...
     game.run();
