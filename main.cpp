@@ -15,6 +15,11 @@ int main() {
     shapegame::Game game;
     auto x = shapegame::Rectangle(10, 10, Position(10, 10), Color::PURPLE);
     auto y = shapegame::Rectangle(10, 10, Position(30, 10), Color::RED);
+
+    for (int i = 0; i < 10; i++) {
+        auto z = shapegame::Rectangle(10, 10, Position(10 * i, 10 * i), Color::RED);
+        game.scene->addChild(z);
+    }
     //Your game logic here
     // ...
     //shapegame::GameObject x;
