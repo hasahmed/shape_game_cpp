@@ -44,7 +44,7 @@ void shapegame::Scene::drawAll() {
         GLCALL(
             glVertexAttribPointer(
                 renderPack->glRenderObject->vertexAttribIndex,
-                renderPack->glRenderObject->verts.size() / 3,
+                3,
                 GL_FLOAT,
                 GL_FALSE,
                 0,
