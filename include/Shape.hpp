@@ -8,7 +8,7 @@
 namespace shapegame {
     class Shape : public Object {
         friend class Scene;
-        protected:
+        public:
             float _height;
             float _width;
             Color _color;
