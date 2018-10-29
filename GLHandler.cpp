@@ -6,7 +6,15 @@
 int shapegame::GLHandler::_assignableVertexAttribIndex = 0;
 
 int shapegame::GLHandler::getAssignableVertexAttribIndex() {
-    int nextValid = _assignableVertexAttribIndex++;
+    // *Learning note* It looks like the vertexattribindex is
+    // related to variables in the fragment shader. Because
+    // all of our objects utilize the same fragment shader,
+    // there is no need to have any number other than 0.?
+    // So there previous implementation of consetenty incrementing
+    // the _assignableVertexAttribIndex has been removed
+    // in favor of just passing out 0. As far as I know that is correct.
+    // int nextValid = _assignableVertexAttribIndex++;
+    int nextValid = _assignableVertexAttribIndex;
     return nextValid;
 }
 

@@ -13,33 +13,16 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 int main() {
 
     shapegame::Game game;
-    auto x = shapegame::Rectangle(10, 10, Position(10, 10), Color::PURPLE);
-    auto y = shapegame::Rectangle(10, 10, Position(30, 10), Color::RED);
-
-    for (int i = 0; i < 10; i++) {
-        auto z = shapegame::Rectangle(10, 10, Position(10 * i, 10 * i), Color::RED);
-        game.scene->addChild(z);
-    }
     //Your game logic here
     // ...
-    //shapegame::GameObject x;
-    //auto x = shapegame::Triangle(10, 10, 10, 10, Color::PURPLE);
-    //auto y = shapegame::Triangle(10, 10, 10, 10, Color::YELLOW);
-
-    //y._verts[0] = -1.0;
-    //y._verts[1] = 1.0;
-    //y._verts[2] = 0.0;
-
-    //y._verts[3] = 0.9;
-    //y._verts[4] = 1.0;
-    //y._verts[5] = 0.0;
-
-    //y._verts[6] = -1.0;
-    //y._verts[7] = -0.9;
-    //y._verts[8] = 0.0;
-    game.scene->addChild(x);
-    game.scene->addChild(y);
-    //game.scene->addChild(y);
+    // for (int x = 0; x < 480; x++) {
+    //     for (int y = 0; y < 480; y++) {
+    //     }
+    //     if (x >= 240)
+    //         break;
+    // }
+    auto tmp = Rectangle(240, 240, Position(0, 0), Color::YELLOW);
+    game.scene->addChild(tmp);
     // ...
     game.run();
 }
