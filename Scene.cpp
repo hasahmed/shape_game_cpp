@@ -5,7 +5,7 @@
 
 shapegame::Scene::Scene() : _drawVect(), _sceneChildren() {}
 
-void shapegame::Scene::addChild(Shape &shape) {
+void shapegame::Scene::addChild(const Shape &shape) {
     auto renderObj = GLRenderObject();
     renderObj.vertexAttribIndex = GLHandler::getAssignableVertexAttribIndex();
     renderObj.verts = VertexGenerator::instance()->generate(shape);

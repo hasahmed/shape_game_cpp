@@ -22,7 +22,7 @@ namespace shapegame {
         public:
             void drawAll();
             //void addChild(GameObject obj);
-            void addChild(Shape &shape);
+            void addChild(const Shape &shape);
             //void draw(Triangle &drawable);
             Scene();
     };

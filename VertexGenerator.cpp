@@ -4,7 +4,7 @@
 
 shapegame::VertexGenerator* shapegame::VertexGenerator::_instance = NULL;
 
-std::vector<float> shapegame::VertexGenerator::generate(Shape &shape) {
+std::vector<float> shapegame::VertexGenerator::generate(const Shape &shape) {
     switch (shape.type) {
         case ShapeType::Triangle:
             return triangleVerts(shape);
@@ -17,17 +17,17 @@ std::vector<float> shapegame::VertexGenerator::generate(Shape &shape) {
             "The shape must of a type of Triangle, Square, or Circle");
 }
 
-std::vector<float> shapegame::VertexGenerator::triangleVerts(Shape &shape) {
+std::vector<float> shapegame::VertexGenerator::triangleVerts(const Shape &shape) {
     throw std::runtime_error("Not Implemented");
     // return std::vector<float>{
     // };
 }
-std::vector<float> shapegame::VertexGenerator::circleVerts(Shape &shape) {
+std::vector<float> shapegame::VertexGenerator::circleVerts(const Shape &shape) {
     throw std::runtime_error("Not Implemented");
     // return std::vector<float>{
     // };
 }
-std::vector<float> shapegame::VertexGenerator::rectangleVerts(Shape &shape) {
+std::vector<float> shapegame::VertexGenerator::rectangleVerts(const Shape &shape) {
 
 
 

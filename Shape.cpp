@@ -14,5 +14,5 @@ shapegame::Shape::Shape(
 shapegame::Shape::Shape(float height, float width, ShapeType type, Color color) :
     Shape(height, width, type, Position(0.0, 0.0), color) {}
 
-float shapegame::Shape::height() {return _height;}
-float shapegame::Shape::width() {return _width;}
+float shapegame::Shape::height() const {return this->_height;}
+float shapegame::Shape::width() const {return this->_width;}
