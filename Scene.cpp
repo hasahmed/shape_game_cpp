@@ -53,16 +53,18 @@ void shapegame::Scene::drawAll() {
         GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
         GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
-        renderPack->glRenderObject->verts[0] += 0.02;
-    GLCALL(
-        glBufferSubData(
-            GL_ARRAY_BUFFER,
-            0,
-             sizeof(float),
-            &(renderPack->glRenderObject->verts)[0]
-            // GL_DYNAMIC_DRAW
-        )
-    );
+        if (renderPack->updateDirty()){
+            GLCALL(
+                glBufferData(
+                    GL_ARRAY_BUFFER,
+                    renderPack->glRenderObject->verts.size() * sizeof(float),
+                    //  sizeof(float),
+                    &(renderPack->glRenderObject->verts)[0],
+                    GL_DYNAMIC_DRAW
+                )
+            );
+        }
+        // renderPack->glRenderObject->verts[0] += 0.02;
         GLCALL(
             glVertexAttribPointer(
                 renderPack->glRenderObject->vertexAttribIndex,

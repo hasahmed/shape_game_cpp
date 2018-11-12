@@ -8,5 +8,7 @@ namespace shapegame {
             Position(float x, float y);
             float x() const;
             float y() const;
+            void setX(const double x);
+            void setY(const double y);
     };
 }

@@ -16,3 +16,9 @@ shapegame::Shape::Shape(float height, float width, ShapeType type, Color color) 
 
 float shapegame::Shape::height() const {return this->_height;}
 float shapegame::Shape::width() const {return this->_width;}
+
+void shapegame::Shape::move(double x, double y){
+    this->pos.setX(this->pos.x() + x);
+    this->pos.setY(this->pos.y() + y);
+    this->_dirty = true;
+}
