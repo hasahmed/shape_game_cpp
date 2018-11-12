@@ -48,11 +48,17 @@ void shapegame::Scene::addChild(const Shape &shape) {
 
 void shapegame::Scene::drawAll() {
     for (auto &renderPack : _drawVect) {
-        std::cout << renderPack << std::endl;
         GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
         GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
         GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
+        // shapegame::Rectangle *triag = dynamic_cast<shapegame::Rectangle*>(renderPack->shape.get());
+        // std::cout << triag << std::endl;
+        // ((shapegame::Rectangle*)(renderPack->shape.get()))->update();
+        // std::cout << (shapegame::Rectangle*)(renderPack->shape.get()) << std::endl;
+        // triag->update();
+        // renderPack->shape->update();
+        // dynamic_cast<shapegame::Triangle*>(renderPack->shape.get())->update();
         if (renderPack->updateDirty()){
             GLCALL(
                 glBufferData(
