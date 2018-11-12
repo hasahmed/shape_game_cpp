@@ -18,10 +18,14 @@ void shapegame::Scene::addChild(const Shape &shape) {
     GLCALL(glGenBuffers(1, &(renderObj.vbo))); //generates 1 gpu buffer object
     GLCALL(glBindVertexArray(renderObj.vao)); //binds current buffers to current vao
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo)); //binds vbo to the array buffer portion of gpu memory?
-    GLCALL(glBufferData(GL_ARRAY_BUFFER,
-                renderObj.verts.size() * sizeof(float),
-                &(renderObj.verts)[0],
-                GL_DYNAMIC_DRAW)); //dynamic because it will be modified often and updated often
+    GLCALL(
+        glBufferData(
+            GL_ARRAY_BUFFER,
+            renderObj.verts.size() * sizeof(float),
+            &(renderObj.verts)[0],
+            GL_DYNAMIC_DRAW
+        )
+    ); //dynamic because it will be modified often and updated often
 
     GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL));
 
@@ -41,6 +45,15 @@ void shapegame::Scene::drawAll() {
         GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
         GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
+        renderPack->glRenderObject->verts[0] += 0.02;
+    GLCALL(
+        glBufferData(
+            GL_ARRAY_BUFFER,
+            renderPack->glRenderObject->verts.size() * sizeof(float),
+            &(renderPack->glRenderObject->verts)[0],
+            GL_DYNAMIC_DRAW
+        )
+    );
         GLCALL(
             glVertexAttribPointer(
                 renderPack->glRenderObject->vertexAttribIndex,
