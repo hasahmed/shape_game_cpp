@@ -47,11 +47,12 @@ void shapegame::Scene::drawAll() {
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
         renderPack->glRenderObject->verts[0] += 0.02;
     GLCALL(
-        glBufferData(
+        glBufferSubData(
             GL_ARRAY_BUFFER,
-            renderPack->glRenderObject->verts.size() * sizeof(float),
-            &(renderPack->glRenderObject->verts)[0],
-            GL_DYNAMIC_DRAW
+            0,
+             sizeof(float),
+            &(renderPack->glRenderObject->verts)[0]
+            // GL_DYNAMIC_DRAW
         )
     );
         GLCALL(
