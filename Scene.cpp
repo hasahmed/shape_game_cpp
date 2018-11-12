@@ -3,6 +3,14 @@
 #define OBJECT_START_SIZE 100
 
 
+std::ostream& operator<<( std::ostream& os, const std::unique_ptr<shapegame::RenderPackage>& rp){
+    os << "Shape:" << std::endl;
+    os << '\t';
+    os << "_height: ";
+    os << rp->shape->height() << std::endl;
+    return os;
+}
+
 shapegame::Scene::Scene() : _drawVect(), _sceneChildren() {}
 
 void shapegame::Scene::addChild(const Shape &shape) {
@@ -35,12 +43,12 @@ void shapegame::Scene::addChild(const Shape &shape) {
 
     //_drawVect.push_back(RenderPackage(&shape, &renderObj));
     auto x = std::make_unique<RenderPackage>(&shape, &renderObj);
-    // std::cout << *x << std::endl;
     _drawVect.push_back(std::move(x));
 }
 
 void shapegame::Scene::drawAll() {
     for (auto &renderPack : _drawVect) {
+        std::cout << renderPack << std::endl;
         GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
         GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
         GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
