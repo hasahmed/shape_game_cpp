@@ -16,7 +16,7 @@ namespace shapegame {
             Shape(float height, float width, ShapeType type, Color color);
             Shape(float height, float width, ShapeType type, Position pos, Color color);
             ShapeType type;
-            float height();
-            float width();
+            float height() const;
+            float width() const;
     };
 }

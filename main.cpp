@@ -22,6 +22,7 @@ int main() {
     //         break;
     // }
     auto tmp = Rectangle(240, 240, Position(0, 0), Color::YELLOW);
+    // const auto tmp = Rectangle(240, 240, Position(0, 0), Color::YELLOW);
     game.scene->addChild(tmp);
     // ...
     game.run();

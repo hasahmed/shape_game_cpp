@@ -8,7 +8,7 @@ namespace shapegame {
         public:
             std::unique_ptr<Shape> shape;
             std::unique_ptr<GLRenderObject> glRenderObject;
-            RenderPackage(Shape *shape, GLRenderObject *glRenderObject);
+            RenderPackage(const Shape *shape, GLRenderObject *glRenderObject);
             friend std::ostream& operator<<(
                 std::ostream& os,
                 const RenderPackage& rp
