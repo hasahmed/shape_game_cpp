@@ -1,2 +1,17 @@
 Currently trying to move objects. I've figured out the open gl stuff to make it
 happen, now I just need to integrate it with the rest of the code
+
+
+this is the code needed to make it happen
+
+GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
+renderPack->glRenderObject->verts[0] += 0.02;
+GLCALL(
+		glBufferSubData(
+				GL_ARRAY_BUFFER,
+				0,
+					sizeof(float),
+				&(renderPack->glRenderObject->verts)[0]
+				// GL_DYNAMIC_DRAW
+		)
+);
