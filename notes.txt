@@ -1,0 +1,2 @@
+Currently trying to move objects. I've figured out the open gl stuff to make it
+happen, now I just need to integrate it with the rest of the code
