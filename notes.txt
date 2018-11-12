@@ -15,3 +15,4 @@ GLCALL(
 				// GL_DYNAMIC_DRAW
 		)
 );
+quick and dirty implemented code it takes to move things. Now need an update update call

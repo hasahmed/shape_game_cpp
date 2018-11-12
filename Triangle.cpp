@@ -15,6 +15,10 @@ shapegame::Triangle::Triangle(
         if (((_angles[0] + _angles[1] + _angles[2]) - 360.0f) < EPSILON)
             throw std::invalid_argument("Angles must add up to 360");
     }
+void shapegame::Triangle::update(){
+    std::cout << "here" << std::endl;
+    this->move(10, 0);
+}
 
 //shapegame::Triangle::Triangle(
         //float height,

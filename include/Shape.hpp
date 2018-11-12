@@ -21,5 +21,6 @@ namespace shapegame {
             float height() const;
             float width() const;
             void move(double x, double y);
+            virtual void update();
     };
 }

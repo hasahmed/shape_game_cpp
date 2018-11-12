@@ -17,6 +17,7 @@ namespace shapegame {
             //Triangle(float height, float width, float angle1, float angle2,
                     //double x, double y, Color color);
             int getNumVerts();
+            void update();
 
     };
 }

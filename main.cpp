@@ -23,6 +23,7 @@ int main() {
     // }
     auto tmp = Rectangle(240, 240, Position(0, 0), Color::YELLOW);
     tmp.move(200, 0);
+    tmp.update();
     // const auto tmp = Rectangle(240, 240, Position(0, 0), Color::YELLOW);
     game.scene->addChild(tmp);
     // ...
