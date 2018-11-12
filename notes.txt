@@ -16,3 +16,4 @@ GLCALL(
 		)
 );
 quick and dirty implemented code it takes to move things. Now need an update update call
+running into problems with the runtime polymorphism. Dynamic cast returing null for some reason
