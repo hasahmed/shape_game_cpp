@@ -42,23 +42,8 @@ void shapegame::Scene::addChild(Shape &shape) {
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0)); //this is actually an unbinding
     GLCALL(glBindVertexArray(0)); //also an unbinding
 
-    //_drawVect.push_back(RenderPackage(&shape, &renderObj));
     auto x = std::make_unique<RenderPackage>(&shape, &renderObj);
     _drawVect.push_back(std::move(x));
-    // auto y =
-    // std::unique_ptr<Rectangle> &a_shape = dynamic_cast<std::unique_ptr<Rectangle>>(_drawVect.at(0)->shape);
-    Rectangle *r = ((Rectangle*)_drawVect.at(0)->shape.get());
-    r->update();
-    // dynamic_cast<std::unique_ptr<Rectangle>>((_drawVect.at(0)->shape));
-    // a_shape->update();
-
-    // auto &w = _drawVect.at(0);
-    // std::unique_ptr<Shape> a_shape = _drawVect.at(0)->shape;
-
-    // (std::unique_ptr<Shape>)_drawVect.at(0)->shape;
-    // std::unique_ptr<Shape*> y = _drawVect.at(0)->shape;
-        // dynamic_cast<std::unique_ptr<Rectangle>&>((_drawVect.at(0)->shape));
-    exit(0);
 }
 
 void shapegame::Scene::drawAll() {
