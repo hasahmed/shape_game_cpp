@@ -1,6 +1,11 @@
 #include "shapegame"
-shapegame::Window* shapegame::Window::getWindow(){
-    return NULL;
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    if (key == GLFW_KEY_ESCAPE)
+        glfwSetWindowShouldClose(window, true);
+    if (key == GLFW_KEY_1)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    if (key == GLFW_KEY_2)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 shapegame::Window::Window(int width, int height, std::string window_title) {
 
@@ -18,17 +23,21 @@ shapegame::Window::Window(int width, int height, std::string window_title) {
     this->_width = width;
     this->_height = height;
     this->window_handle = glfwCreateWindow(width, height, window_title.c_str(), NULL, NULL);
-    if (!window_handle) {
+    if (!this->window_handle) {
         glfwTerminate();
         throw std::runtime_error("glfw failed to create window");
     }
-    glfwMakeContextCurrent(window_handle);
+    glfwSetKeyCallback(this->window_handle, key_callback);
+    glfwMakeContextCurrent(this->window_handle);
 #ifndef __MACH__
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 #endif
     this->gl_renderer = glGetString(GL_RENDERER); // get renderer string
     this->gl_version = glGetString(GL_VERSION); // version as a string
 }
+
+
+
 std::string shapegame::Window::info_string() {
     std::string render_str((char*)(this->gl_renderer));
     std::string version_str((char*)(this->gl_version));
@@ -41,3 +50,6 @@ int shapegame::Window::height() {
 int shapegame::Window::width() {
     return _width;
 }
+// GLFWwindow* shapegame::Window::getWindowHandle() {
+//     return this->window_handle;
+// }
