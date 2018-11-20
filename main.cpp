@@ -7,7 +7,7 @@ void error_callback(int error, const char* description)
 void _key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (key == GLFW_KEY_ESCAPE)
         glfwSetWindowShouldClose(window, true);
-    if (key == GLFW_KEY_9)
+    if (key == GLFW_KEY_1)
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     if (key == GLFW_KEY_2)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -15,14 +15,12 @@ void _key_callback(GLFWwindow* window, int key, int scancode, int action, int mo
     // std::cout << key << std::endl;
 }
 
-// void keyHandler(std::string key) {
-//     if (key.compare("a") == 0);
-// }
 
 int main() {
     shapegame::Game game;
     glfwSetErrorCallback(error_callback);
-    std::cout << glfwSetKeyCallback(game.getWindow()->window_handle, _key_callback) << std::endl;
+    std::cout << game.getWindow()->window_handle << std::endl;
+    glfwSetKeyCallback(game.getWindow()->window_handle, _key_callback);
     Rectangle *const tmp = new Rectangle(240, 240, Position(0, 0), Color::YELLOW);
     Rectangle &tmp2 = *tmp;
 
