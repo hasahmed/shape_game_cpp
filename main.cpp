@@ -15,14 +15,32 @@ void _key_callback(GLFWwindow* window, int key, int scancode, int action, int mo
     // std::cout << key << std::endl;
 }
 
+class Player : public Rectangle {
+    public:
+    void handleInput(GLFWwindow *w) {
+        if (glfwGetKey(w, GLFW_KEY_RIGHT))
+            this->move(1, 0);
+        if (glfwGetKey(w, GLFW_KEY_LEFT))
+            this->move(-1, 0);
+        if (glfwGetKey(w, GLFW_KEY_UP))
+            this->move(0, -1);
+        if (glfwGetKey(w, GLFW_KEY_DOWN))
+            this->move(0, 1);
+    }
+    Player(float height, float width, Position pos, Color color):
+        Rectangle(height, width, pos, color) {}
+};
+
+
 
 int main() {
     shapegame::Game game;
     glfwSetErrorCallback(error_callback);
-    std::cout << game.getWindow()->window_handle << std::endl;
     glfwSetKeyCallback(game.getWindow()->window_handle, _key_callback);
-    Rectangle *const tmp = new Rectangle(240, 240, Position(0, 0), Color::YELLOW);
-    Rectangle &tmp2 = *tmp;
+    Player *const tmp = new Player(240, 240, Position(0, 0), Color::YELLOW);
+    Player &tmp2 = *tmp;
+    // Rectangle *const tmp = new Rectangle(240, 240, Position(0, 0), Color::YELLOW);
+    // Rectangle &tmp2 = *tmp;
 
     game.scene->addChild(tmp2);
     game.run();
