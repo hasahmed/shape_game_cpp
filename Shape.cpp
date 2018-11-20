@@ -25,3 +25,5 @@ void shapegame::Shape::move(double x, double y){
 void shapegame::Shape::update() {
     std::cout << "shape update" << std::endl;
 }
+void shapegame::Shape::handleInput(GLFWwindow *w) {
+}

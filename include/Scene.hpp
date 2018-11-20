@@ -20,7 +20,7 @@ namespace shapegame {
             std::vector<std::unique_ptr<RenderPackage>> _drawVect;
             std::vector<Object> _sceneChildren;
         public:
-            void drawAll();
+            void drawAll(GLFWwindow *w);
             //void addChild(GameObject obj);
             void addChild(Shape &shape);
             //void draw(Triangle &drawable);

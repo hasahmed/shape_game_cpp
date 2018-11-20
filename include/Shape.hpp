@@ -22,5 +22,6 @@ namespace shapegame {
             float width() const;
             void move(double x, double y);
             virtual void update();
+            virtual void handleInput(GLFWwindow *w);
     };
 }
