@@ -22,6 +22,6 @@ void shapegame::Shape::move(double x, double y){
     this->pos.setY(this->pos.y() + y);
     this->_dirty = true;
 }
-void shapegame::Shape::update(){
+void shapegame::Shape::update() {
     std::cout << "shape update" << std::endl;
 }

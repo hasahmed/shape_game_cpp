@@ -1,5 +1,6 @@
 #include <memory>
 #include "shapegame"
+#include "Rectangle.hpp"
 #define OBJECT_START_SIZE 100
 
 
@@ -13,8 +14,8 @@ std::ostream& operator<<( std::ostream& os, const std::unique_ptr<shapegame::Ren
 
 shapegame::Scene::Scene() : _drawVect(), _sceneChildren() {}
 
-void shapegame::Scene::addChild(const Shape &shape) {
-    auto renderObj = GLRenderObject();
+void shapegame::Scene::addChild(Shape &shape) {
+    GLRenderObject renderObj = GLRenderObject();
     renderObj.vertexAttribIndex = GLHandler::getAssignableVertexAttribIndex();
     renderObj.verts = VertexGenerator::instance()->generate(shape);
 
@@ -44,16 +45,32 @@ void shapegame::Scene::addChild(const Shape &shape) {
     //_drawVect.push_back(RenderPackage(&shape, &renderObj));
     auto x = std::make_unique<RenderPackage>(&shape, &renderObj);
     _drawVect.push_back(std::move(x));
+    // auto y =
+    // std::unique_ptr<Rectangle> &a_shape = dynamic_cast<std::unique_ptr<Rectangle>>(_drawVect.at(0)->shape);
+    Rectangle *r = ((Rectangle*)_drawVect.at(0)->shape.get());
+    r->update();
+    // dynamic_cast<std::unique_ptr<Rectangle>>((_drawVect.at(0)->shape));
+    // a_shape->update();
+
+    // auto &w = _drawVect.at(0);
+    // std::unique_ptr<Shape> a_shape = _drawVect.at(0)->shape;
+
+    // (std::unique_ptr<Shape>)_drawVect.at(0)->shape;
+    // std::unique_ptr<Shape*> y = _drawVect.at(0)->shape;
+        // dynamic_cast<std::unique_ptr<Rectangle>&>((_drawVect.at(0)->shape));
+    exit(0);
 }
 
 void shapegame::Scene::drawAll() {
-    for (auto &renderPack : _drawVect) {
+    // for (auto &renderPack : _drawVect) {
+    for (std::unique_ptr<RenderPackage> &renderPack : _drawVect) {
         GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
         GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
         GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
-        // shapegame::Rectangle *triag = dynamic_cast<shapegame::Rectangle*>(renderPack->shape.get());
-        // std::cout << triag << std::endl;
+        renderPack->shape->update();
+        // shapegame::Rectangle *rect = dynamic_cast<shapegame::Rectangle*>(renderPack->shape.get());
+        // std::cout << rect << std::endl;
         // ((shapegame::Rectangle*)(renderPack->shape.get()))->update();
         // std::cout << (shapegame::Rectangle*)(renderPack->shape.get()) << std::endl;
         // triag->update();
