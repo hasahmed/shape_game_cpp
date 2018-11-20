@@ -8,5 +8,5 @@ shapegame::Rectangle::Rectangle(
 
 void shapegame::Rectangle::update(){
     std::cout << "rectangle update" << std::endl;
-    this->move(0, 1.5);
+    this->move(0.3, 1.5);
 }
