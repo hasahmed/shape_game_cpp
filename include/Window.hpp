@@ -12,11 +12,12 @@ namespace shapegame {
 
         public:
             GLFWwindow* window_handle;
+            // GLFWwindow* getWindowHandle();
             const GLubyte* gl_renderer;
             const GLubyte* gl_version;
             std::string info_string();
             Window(int width, int height, std::string window_title);
-            static Window* getWindow();
+            // static Window* getWindow();
 
             int height();
             int width();

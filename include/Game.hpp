@@ -15,6 +15,7 @@ namespace shapegame {
 
         public:
             std::unique_ptr<Scene> scene;
+            Window const* getWindow();
             Game(
                 unsigned int windowWidth,
                 unsigned int windowHeight,
