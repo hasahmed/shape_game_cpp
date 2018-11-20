@@ -21,12 +21,15 @@ int main() {
     //     if (x >= 240)
     //         break;
     // }
-    Rectangle tmp = Rectangle(240, 240, Position(0, 0), Color::YELLOW);
+    Rectangle *const tmp = new Rectangle(240, 240, Position(0, 0), Color::YELLOW);
+    Rectangle &tmp2 = *tmp;
+
     // tmp.update();
     // tmp.move(200, 0);
     // tmp.update();
     // const auto tmp = Rectangle(240, 240, Position(0, 0), Color::YELLOW);
-    game.scene->addChild(tmp);
+    // Rectangle &tmp2 = tmp;
+    game.scene->addChild(tmp2);
     // ...
     game.run();
 }
