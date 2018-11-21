@@ -1,4 +1,5 @@
 #include <memory>
+#include <unistd.h>
 #include "shapegame"
 #include "Rectangle.hpp"
 #define OBJECT_START_SIZE 100
@@ -43,6 +44,7 @@ void shapegame::Scene::addChild(Shape &shape) {
     GLCALL(glBindVertexArray(0)); //also an unbinding
 
     auto x = std::make_unique<RenderPackage>(&shape, &renderObj);
+    x->shape->onAdd();
     _drawVect.push_back(std::move(x));
 }
 

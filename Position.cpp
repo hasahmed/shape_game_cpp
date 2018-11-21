@@ -6,6 +6,7 @@ float shapegame::Position::y() const {return this->_y;}
 void shapegame::Position::setX(const double x){
 	this->_x = x;
 }
+shapegame::Position::Position(): Position(0, 0) {}
 void shapegame::Position::setY(const double y){
 	this->_y = y;
 }

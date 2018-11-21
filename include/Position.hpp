@@ -5,6 +5,7 @@ namespace shapegame {
             float _x;
             float _y;
         public:
+            Position();
             Position(float x, float y);
             float x() const;
             float y() const;
