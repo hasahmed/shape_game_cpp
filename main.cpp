@@ -1,7 +1,7 @@
-#define NUM_NODES 100
-#define NODE_SIZE 9
-#define MOVE_AMOUNT NODE_SIZE + 1
-#define SPEED_MS 50
+#define NUM_NODES 30
+#define NODE_SIZE 10
+#define MOVE_AMOUNT NODE_SIZE
+#define SPEED_MS 100
 #include "shapegame"
 #include <thread>
 #include <chrono>
@@ -10,7 +10,7 @@ void error_callback(int error, const char* description)
 {
     puts(description);
 }
-void _key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (key == GLFW_KEY_ESCAPE)
         glfwSetWindowShouldClose(window, true);
     if (key == GLFW_KEY_1)
@@ -32,7 +32,7 @@ class BodyNode : public Rectangle {
     void onAdd() {
         this->putAt(
             this->prev->pos.x(),
-            this->prev->pos.y() + this->prev->height() + 1
+            this->prev->pos.y() + this->prev->height()
         );
     }
     Position prevPos;
@@ -128,7 +128,8 @@ void timer(int milliseconds, HeadNode *head, BodyNode *body[NUM_NODES], GLFWwind
 int main() {
     shapegame::Game game;
     glfwSetErrorCallback(error_callback);
-    glfwSetKeyCallback(game.getWindow()->window_handle, _key_callback);
+    glfwSetKeyCallback(game.getWindow()->window_handle, key_callback);
+    // glfwSetInputMode(game.getWindow()->window_handle, GLFW_STICKY_KEYS, 1);
 
     HeadNode *head = new HeadNode();
     game.scene->addChild(*head);
@@ -149,15 +150,6 @@ int main() {
 
     std::thread t1(timer, SPEED_MS, head, body, game.getWindow()->window_handle);
 
-    // for (BodyNode *bn : snake->body) {
-    //     game.scene->addChild(*bn);
-    // }
-    // Player *const tmp = new Player(240, 240, Position(0, 0), Color::YELLOW);
-    // Player &tmp2 = *tmp;
-    // Rectangle *const tmp = new Rectangle(240, 240, Position(0, 0), Color::YELLOW);
-    // Rectangle &tmp2 = *tmp;
-
-    // game.scene->addChild(tmp2);
     game.run();
     run = false;
     t1.join();

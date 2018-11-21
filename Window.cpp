@@ -1,12 +1,4 @@
 #include "shapegame"
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (key == GLFW_KEY_ESCAPE)
-        glfwSetWindowShouldClose(window, true);
-    if (key == GLFW_KEY_1)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    if (key == GLFW_KEY_2)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-}
 shapegame::Window::Window(int width, int height, std::string window_title) {
 
     if (!glfwInit())
@@ -27,7 +19,6 @@ shapegame::Window::Window(int width, int height, std::string window_title) {
         glfwTerminate();
         throw std::runtime_error("glfw failed to create window");
     }
-    glfwSetKeyCallback(this->window_handle, key_callback);
     glfwMakeContextCurrent(this->window_handle);
 #ifndef __MACH__
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
