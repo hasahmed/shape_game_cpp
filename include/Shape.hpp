@@ -3,6 +3,7 @@
 #include "Drawable.hpp"
 #include "Color.hpp"
 #include "Scene.hpp"
+#include "Position.hpp"
 #include "Globals.hpp"
 
 namespace shapegame {
@@ -21,7 +22,11 @@ namespace shapegame {
             float height() const;
             float width() const;
             void move(double x, double y);
+            void move(Position pos);
+            void putAt(Position pos);
+            void putAt(double x, double y);
             virtual void update();
             virtual void handleInput(GLFWwindow *w);
+            virtual void onAdd();
     };
 }
