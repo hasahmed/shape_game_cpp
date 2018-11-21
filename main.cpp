@@ -43,7 +43,7 @@ class BodyNode : public Rectangle {
     void tick() {
         setPrev();
         this->putAt(this->prev->prevPos);
-        this->move(0, 2);
+        // this->move(0, );
         // std::cout << this->prev->pos.y() << std::endl;
     }
     void update() {
