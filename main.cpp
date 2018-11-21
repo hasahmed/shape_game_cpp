@@ -1,7 +1,10 @@
-#define NUM_NODES 10
+#define NUM_NODES 100
 #define NODE_SIZE 9
 #define MOVE_AMOUNT NODE_SIZE + 1
+#define SPEED_MS 50
 #include "shapegame"
+#include <thread>
+#include <chrono>
 using namespace shapegame;
 void error_callback(int error, const char* description)
 {
@@ -37,21 +40,18 @@ class BodyNode : public Rectangle {
         prevPos.setX(this->pos.x());
         prevPos.setY(this->pos.y());
     }
-    void update() {
+    void tick() {
         setPrev();
         this->putAt(this->prev->prevPos);
         this->move(0, 2);
-        // this->prevY = prev->pos.y();
         // std::cout << this->prev->pos.y() << std::endl;
-        // HeadNode &head = dynamic_cast<HeadNode&>(this->prev);
-        // std::cout << head << std::endl;
-        // this->move(this->prev->pos.x(), this->prev->pos.y());
-        // this->move(0, -MOVE_AMOUNT);
-        std::cout << this->prev->pos.y() << std::endl;
-        // if (this->prevY != prev->pos.y()){
-        //     this->prevY = this->prev->pos.y();
-        // }
-        // std::cout << "boyd node update " << this->pos.y() << std::endl;
+    }
+    void update() {
+        // tick();
+        // setPrev();
+        // this->putAt(this->prev->prevPos);
+        // this->move(0, 2);
+        // std::cout << this->prev->pos.y() << std::endl;
     }
 };
 
@@ -62,9 +62,49 @@ class HeadNode: public BodyNode {
         this->pos.setX(240);
         this->pos.setY(240);
     }
-    void update() {
+
+    enum Dir {
+        LEFT, RIGHT, UP, DOWN
+    };
+
+    Dir moveDir = Dir::UP;
+
+    void tick(GLFWwindow *w) {
         this->setPrev();
-        this->move(0, -MOVE_AMOUNT);
+        this->handleKeys(w);
+        switch(this->moveDir) {
+            case Dir::UP:
+                this->move(0, -MOVE_AMOUNT);
+                break;
+            case Dir::DOWN:
+                this->move(0, MOVE_AMOUNT);
+                break;
+            case Dir::LEFT:
+                this->move(-MOVE_AMOUNT, 0);
+                break;
+            case Dir::RIGHT:
+                this->move(MOVE_AMOUNT, 0);
+                break;
+        }
+    }
+
+    void handleKeys(GLFWwindow *w) {
+        if (glfwGetKey(w, GLFW_KEY_UP)) {
+            this->moveDir = Dir::UP;
+        }
+        else if (glfwGetKey(w, GLFW_KEY_DOWN)) {
+            this->moveDir = Dir::DOWN;
+        }
+        else if (glfwGetKey(w, GLFW_KEY_LEFT)) {
+            this->moveDir = Dir::LEFT;
+        }
+        else if (glfwGetKey(w, GLFW_KEY_RIGHT)) {
+            this->moveDir = Dir::RIGHT;
+        }
+    }
+    void update() {
+        // this->setPrev();
+        // this->move(0, -MOVE_AMOUNT);
         // this->putAt(this->pos.x(), this->pos.y() - MOVE_AMOUNT);
     }
     void onAdd() {
@@ -73,6 +113,17 @@ class HeadNode: public BodyNode {
 
 };
 
+bool run = true;
+
+void timer(int milliseconds, HeadNode *head, BodyNode *body[NUM_NODES], GLFWwindow *w) {
+    while(run) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+        head->tick(w);
+        for (int i = 0; i < NUM_NODES; i++) {
+            body[i]->tick();
+        }
+    }
+}
 
 int main() {
     shapegame::Game game;
@@ -95,6 +146,9 @@ int main() {
     for (int i = 0; i < NUM_NODES; i++) {
         game.scene->addChild(*body[i]);
     }
+
+    std::thread t1(timer, SPEED_MS, head, body, game.getWindow()->window_handle);
+
     // for (BodyNode *bn : snake->body) {
     //     game.scene->addChild(*bn);
     // }
@@ -105,4 +159,6 @@ int main() {
 
     // game.scene->addChild(tmp2);
     game.run();
+    run = false;
+    t1.join();
 }
