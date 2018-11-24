@@ -15,7 +15,6 @@ namespace shapegame {
             static Game *_inst;
         public:
             std::unique_ptr<Scene> scene;
-            Window const* getWindow();
             Game(
                 unsigned int windowWidth,
                 unsigned int windowHeight,
@@ -24,5 +23,8 @@ namespace shapegame {
             Game();
             static Game& inst();
             void run();
+
+
+            Window const* getWindow();
     };
 }
