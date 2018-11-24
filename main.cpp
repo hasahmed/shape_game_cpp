@@ -151,6 +151,7 @@ int main() {
     std::thread t1(timer, SPEED_MS, head, body, game.getWindow()->window_handle);
 
     game.run();
+    // Game::inst().run();
     run = false;
     t1.join();
 }

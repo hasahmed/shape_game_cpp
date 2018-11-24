@@ -12,7 +12,7 @@ namespace shapegame {
             std::unique_ptr<Window> _window;
             std::unique_ptr<GLHandler> _glHandler;
             std::unique_ptr<VertexGenerator> _vertexGenerator;
-
+            static Game *_inst;
         public:
             std::unique_ptr<Scene> scene;
             Window const* getWindow();
@@ -22,6 +22,7 @@ namespace shapegame {
                 std::string windowTitle
                 );
             Game();
+            static Game& inst();
             void run();
     };
 }
