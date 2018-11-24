@@ -69,7 +69,8 @@ class HeadNode: public BodyNode {
 
     Dir moveDir = Dir::UP;
 
-    void tick(GLFWwindow *w) {
+    void tick() {
+        GLFWwindow *w = Game::inst().getWindow()->window_handle;
         this->setPrev();
         this->handleKeys(w);
         switch(this->moveDir) {
@@ -115,10 +116,10 @@ class HeadNode: public BodyNode {
 
 bool run = true;
 
-void timer(int milliseconds, HeadNode *head, BodyNode *body[NUM_NODES], GLFWwindow *w) {
+void timer(int milliseconds, HeadNode *head, BodyNode *body[NUM_NODES]) {
     while(run) {
         std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
-        head->tick(w);
+        head->tick();
         for (int i = 0; i < NUM_NODES; i++) {
             body[i]->tick();
         }
@@ -148,7 +149,7 @@ int main() {
         game.scene->addChild(*body[i]);
     }
 
-    std::thread t1(timer, SPEED_MS, head, body, game.getWindow()->window_handle);
+    std::thread t1(timer, SPEED_MS, head, body);
 
     game.run();
     // Game::inst().run();
