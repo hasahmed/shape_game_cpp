@@ -21,12 +21,11 @@ namespace shapegame {
             ShapeType type;
             float height() const;
             float width() const;
-            void move(double x, double y);
-            void move(Position pos);
+            void translate(double x, double y);
+            void translate(Position pos);
             void putAt(Position pos);
             void putAt(double x, double y);
-            virtual void update();
-            virtual void handleInput();
-            virtual void onAdd();
+            virtual void update() = 0;
+            virtual void onAdd() = 0;
     };
 }

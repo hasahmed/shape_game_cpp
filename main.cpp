@@ -66,16 +66,16 @@ class HeadNode: public BodyNode {
         tickChildren(this->next);
         switch(this->moveDir) {
             case Dir::UP:
-                this->move(0, -MOVE_AMOUNT);
+                this->translate(0, -MOVE_AMOUNT);
                 break;
             case Dir::DOWN:
-                this->move(0, MOVE_AMOUNT);
+                this->translate(0, MOVE_AMOUNT);
                 break;
             case Dir::LEFT:
-                this->move(-MOVE_AMOUNT, 0);
+                this->translate(-MOVE_AMOUNT, 0);
                 break;
             case Dir::RIGHT:
-                this->move(MOVE_AMOUNT, 0);
+                this->translate(MOVE_AMOUNT, 0);
                 break;
         }
     }

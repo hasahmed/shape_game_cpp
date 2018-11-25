@@ -6,6 +6,5 @@ namespace shapegame {
         public:
             Rectangle(float height, float width, Position pos, Color color);
             void update();
-            void handleInput(GLFWwindow *w);
     };
 }
