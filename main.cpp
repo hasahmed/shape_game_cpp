@@ -107,7 +107,8 @@ class HeadNode: public BodyNode {
     void onAdd() {
 
         // shapegame::Timer
-        // myTimer = new shapegame::Timer(1000, this->_shapegame_timerCallback);
+        auto myTimer = new shapegame::Timer(1000, true, true, &HeadNode::_shapegame_timerCallback, *this);
+        // Game::inst().scene->addChild(*myTimer);
         // std::cout << "the head has been added" << std::endl;
         // Shape *myTimer = new BodyNode();
         // Game::inst().scene->addChild(*myTimer);
@@ -122,12 +123,12 @@ class HeadNode: public BodyNode {
 
 bool run = true;
 
-void timer(int milliseconds, HeadNode *head, BodyNode *body[NUM_NODES]) {
-    while(run) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
-        head->tick();
-    }
-}
+// void timer(int milliseconds, HeadNode *head, BodyNode *body[NUM_NODES]) {
+//     while(run) {
+//         std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+//         head->tick();
+//     }
+// }
 
 int main() {
     shapegame::Game game;
@@ -164,7 +165,7 @@ int main() {
         game.scene->addChild(*body[i]);
     }
 
-    std::thread t1(timer, SPEED_MS, head, body);
+    // std::thread t1(timer, SPEED_MS, head, body);
 
     // Timer *t = new Timer();
     // game.scene->addChild(*t);
@@ -172,5 +173,5 @@ int main() {
     game.run();
     // Game::inst().run();
     run = false;
-    t1.join();
+    // t1.join();
 }
