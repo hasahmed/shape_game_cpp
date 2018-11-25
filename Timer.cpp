@@ -7,10 +7,11 @@ Timer::Timer(
 	bool repeates,
 	bool autoStart,
 	// void (HeadNode::*callBack)(void),
-	void (Object::*callBack)(void),
-	Object &callingInst
-	// std::function<void(void)> callBack
-) : Object(), milliseconds(milliseconds), repeates(repeates), autoStart(autoStart), callBack(callBack), callingInst(callingInst) {
+	// void (Object::*callBack)(void),
+	std::function<void(void)> callBack
+	// Object &callingInst
+) : Object(), milliseconds(milliseconds), repeates(repeates), autoStart(autoStart), callBack(callBack) {
+// ) : Object(), milliseconds(milliseconds), repeates(repeates), autoStart(autoStart), callBack(callBack), callingInst(callingInst) {
 	// this->callBack = std::bind(&callBack, this);
 	// std::function<void(void)> f = std::bind(&callBack, this);
 }
@@ -23,12 +24,12 @@ void Timer::update() {
 	if (this->_running) {
 		this->_timeElapsed += std::chrono::high_resolution_clock::now() - this->_timerStart;
 		if (this->_timeElapsed.count() >= milliseconds) {
-			((this->callingInst).*callBack)();
-			// (this->callingInst).*callBack();
-			// this.*callBack();
+			this->callBack();
 			if (!this->repeates) {
 				puts("Need to write code to remove objects");
-				// this->destroy();
+			} else {
+				this->_timeElapsed -= this->_timeElapsed;
+				this->_timerStart = std::chrono::high_resolution_clock::now();
 			}
 		}
 	}
