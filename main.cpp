@@ -1,4 +1,4 @@
-#define NUM_NODES 10
+#define NUM_NODES 3
 #define NODE_SIZE 10
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 100
@@ -153,8 +153,13 @@ int main() {
             body[i]->next = body[i + 1];
     }
 
-    for (int i = 0; i < NUM_NODES; i++)
+    // body[0]->_color = Color::BLACK;
+    // body[1]->_color = Color::BLUE;
+    // body[2]->_color = Color::GREEN;
+
+    for (int i = 0; i < NUM_NODES; i++) {
         game.scene->addChild(*body[i]);
+    }
 
     std::thread t1(timer, SPEED_MS, head, body);
 

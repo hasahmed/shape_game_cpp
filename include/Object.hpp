@@ -6,5 +6,7 @@ namespace shapegame {
             Position pos;
             Object(double x = 0, double y = 0);
             Object(Position pos);
+            virtual void update() = 0;
+            virtual void onAdd() = 0;
     };
 }

@@ -13,9 +13,9 @@ namespace shapegame {
         private:
             float _height;
             float _width;
-            Color _color;
             bool _dirty = false;
         public:
+            Color _color;
             Shape(float height, float width, ShapeType type, Color color);
             Shape(float height, float width, ShapeType type, Position pos, Color color);
             ShapeType type;
@@ -25,7 +25,5 @@ namespace shapegame {
             void translate(Position pos);
             void setPosition(Position pos);
             void setPosition(double x, double y);
-            virtual void update() = 0;
-            virtual void onAdd() = 0;
     };
 }
