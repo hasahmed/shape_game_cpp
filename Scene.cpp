@@ -50,10 +50,9 @@ void shapegame::Scene::addChild(Object &obj) {
             std::unique_ptr<Object>(&obj)
         )
     );
-
 }
 
-void shapegame::Scene::drawAll(GLFWwindow *w) {
+void shapegame::Scene::drawChildren(GLFWwindow *w) {
     // for (auto &renderPack : _drawVect) {
     for (std::unique_ptr<RenderPackage> &renderPack : _drawVect) {
         GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
@@ -61,7 +60,7 @@ void shapegame::Scene::drawAll(GLFWwindow *w) {
         GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
 
-       renderPack->shape->update();
+    //    renderPack->shape->update();
         if (renderPack->updateDirty()){
             GLCALL(
                 glBufferData(
@@ -88,6 +87,13 @@ void shapegame::Scene::drawAll(GLFWwindow *w) {
 
     }
 }
+
+void Scene::updateChildren() {
+    for (auto &child : this->_sceneChildren) {
+        child->update();
+    }
+}
+
 void shapegame::Scene::setShaderProg(GLuint shaderProg) {
     this->_shaderProg = shaderProg;
 }

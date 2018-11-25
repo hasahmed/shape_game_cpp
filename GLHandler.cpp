@@ -110,7 +110,8 @@ void shapegame::GLHandler::run() {
         //int mouse_pressed = glfwGetMouseButton(this->window_handle, GLFW_MOUSE_BUTTON_LEFT);
         GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-        _scene.drawAll(this->window_handle);
+        _scene.drawChildren(this->window_handle);
+        _scene.updateChildren();
 
         //update other events like input handling
         glfwPollEvents();

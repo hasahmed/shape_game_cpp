@@ -19,7 +19,8 @@ namespace shapegame {
             std::vector<std::unique_ptr<RenderPackage>> _drawVect;
             std::vector<std::unique_ptr<Object>> _sceneChildren;
         public:
-            void drawAll(GLFWwindow *w);
+            void updateChildren();
+            void drawChildren(GLFWwindow *w);
             void addChild(Object &shape);
             Scene();
     };
