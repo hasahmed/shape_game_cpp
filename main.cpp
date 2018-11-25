@@ -17,8 +17,6 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     if (key == GLFW_KEY_2)
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-    // std::cout << key << std::endl;
 }
 
 // class HeadNode;
@@ -43,15 +41,8 @@ class BodyNode : public Rectangle {
     void tick() {
         setPrev();
         this->putAt(this->prev->prevPos);
-        // this->move(0, );
-        // std::cout << this->prev->pos.y() << std::endl;
     }
     void update() {
-        // tick();
-        // setPrev();
-        // this->putAt(this->prev->prevPos);
-        // this->move(0, 2);
-        // std::cout << this->prev->pos.y() << std::endl;
     }
 };
 
@@ -70,9 +61,8 @@ class HeadNode: public BodyNode {
     Dir moveDir = Dir::UP;
 
     void tick() {
-        GLFWwindow *w = Game::inst().getWindow()->window_handle;
         this->setPrev();
-        this->handleKeys(w);
+        this->handleKeys();
         switch(this->moveDir) {
             case Dir::UP:
                 this->move(0, -MOVE_AMOUNT);
@@ -89,7 +79,8 @@ class HeadNode: public BodyNode {
         }
     }
 
-    void handleKeys(GLFWwindow *w) {
+    void handleKeys() {
+        GLFWwindow *w = Game::inst().getWindow()->window_handle;
         if (glfwGetKey(w, GLFW_KEY_UP)) {
             this->moveDir = Dir::UP;
         }
@@ -130,7 +121,6 @@ int main() {
     shapegame::Game game;
     glfwSetErrorCallback(error_callback);
     glfwSetKeyCallback(game.getWindow()->window_handle, key_callback);
-    // glfwSetInputMode(game.getWindow()->window_handle, GLFW_STICKY_KEYS, 1);
 
     HeadNode *head = new HeadNode();
     game.scene->addChild(*head);

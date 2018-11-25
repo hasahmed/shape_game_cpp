@@ -16,14 +16,11 @@ namespace shapegame {
         private:
             GLuint _shaderProg;
             void setShaderProg(GLuint shaderprog);
-            // used to determine the next index to use for glEnableVertexArrayAttrib
             std::vector<std::unique_ptr<RenderPackage>> _drawVect;
             std::vector<Object> _sceneChildren;
         public:
             void drawAll(GLFWwindow *w);
-            //void addChild(GameObject obj);
             void addChild(Shape &shape);
-            //void draw(Triangle &drawable);
             Scene();
     };
 }
