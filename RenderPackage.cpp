@@ -2,9 +2,8 @@
 #include <iostream>
 #include "shapegame"
 
-shapegame::RenderPackage::RenderPackage(const Shape *shape,
-        GLRenderObject *glRenderObject): shape(const_cast<Shape*>(shape)) {
-
+shapegame::RenderPackage::RenderPackage(Shape *shape,
+        GLRenderObject *glRenderObject): shape(shape) {
     // this->shape = std::unique_ptr<Shape>(const_cast<Shape*>(shape));
     this->glRenderObject = std::make_unique<GLRenderObject>(*glRenderObject);
 }
