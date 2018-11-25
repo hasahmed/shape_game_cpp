@@ -17,10 +17,10 @@ namespace shapegame {
             GLuint _shaderProg;
             void setShaderProg(GLuint shaderprog);
             std::vector<std::unique_ptr<RenderPackage>> _drawVect;
-            std::vector<Object> _sceneChildren;
+            std::vector<std::unique_ptr<Object>> _sceneChildren;
         public:
             void drawAll(GLFWwindow *w);
-            void addChild(Shape &shape);
+            void addChild(Object &shape);
             Scene();
     };
 }
