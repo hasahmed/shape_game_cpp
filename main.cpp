@@ -153,9 +153,9 @@ int main() {
             body[i]->next = body[i + 1];
     }
 
-    // body[0]->_color = Color::BLACK;
-    // body[1]->_color = Color::BLUE;
-    // body[2]->_color = Color::GREEN;
+    body[0]->_color = Color::BLACK;
+    body[1]->_color = Color::BLUE;
+    body[2]->_color = Color::GREEN;
 
     for (int i = 0; i < NUM_NODES; i++) {
         game.scene->addChild(*body[i]);
