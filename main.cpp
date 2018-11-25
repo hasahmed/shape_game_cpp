@@ -107,11 +107,14 @@ class HeadNode: public BodyNode {
     void onAdd() {
 
         // shapegame::Timer
-        auto myTimer = new shapegame::Timer(1000, true, true, &HeadNode::_shapegame_timerCallback, *this);
+        auto myTimer = new shapegame::Timer(1, true, true, [this]() {
+            this->tick();
+        });
+        // auto myTimer = new shapegame::Timer(1000, true, true, &HeadNode::_shapegame_timerCallback, *this);
         // Game::inst().scene->addChild(*myTimer);
         // std::cout << "the head has been added" << std::endl;
         // Shape *myTimer = new BodyNode();
-        // Game::inst().scene->addChild(*myTimer);
+        Game::inst().scene->addChild(*myTimer);
     }
 
 
@@ -121,7 +124,7 @@ class HeadNode: public BodyNode {
 
 };
 
-bool run = true;
+// bool run = trueu
 
 // void timer(int milliseconds, HeadNode *head, BodyNode *body[NUM_NODES]) {
 //     while(run) {
@@ -172,6 +175,6 @@ int main() {
 
     game.run();
     // Game::inst().run();
-    run = false;
+    // run = false;
     // t1.join();
 }

@@ -40,11 +40,11 @@ void shapegame::Scene::addChild(Object &obj) {
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0)); //this is actually an unbinding
         GLCALL(glBindVertexArray(0)); //also an unbinding
         auto rPack = std::make_unique<RenderPackage>(&s, &renderObj);
-        rPack->shape->onAdd();
         _drawVect.push_back(std::move(rPack));
     } catch(const std::bad_cast& e) {
         std::cout << "bad cast" << std::endl;
     }
+    obj.onAdd();
     this->_sceneChildren.push_back(
         std::move(
             std::unique_ptr<Object>(&obj)
