@@ -103,8 +103,7 @@ class HeadNode: public BodyNode {
             this->moveDir = Dir::RIGHT;
         }
     }
-    void update() {
-    }
+    void update() {}
     void onAdd() {
 
         // shapegame::Timer
