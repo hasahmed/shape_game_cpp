@@ -5,6 +5,8 @@ namespace shapegame {
     class Rectangle : public Shape {
         public:
             Rectangle(float height, float width, Position pos, Color color);
+            Rectangle();
             void update();
+            void onAdd();
     };
 }

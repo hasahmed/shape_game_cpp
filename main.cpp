@@ -1,7 +1,10 @@
-#define NUM_NODES 3
+#define NUM_NODES 10
 #define NODE_SIZE 10
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 100
+#define BODY_COLOR Color::KATIE_PINK
+
+
 #include "shapegame"
 #include <thread>
 #include <chrono>
@@ -25,7 +28,7 @@ class BodyNode : public Rectangle {
     BodyNode *prev = nullptr;
     BodyNode *next = nullptr;
     BodyNode():
-        Rectangle(NODE_SIZE, NODE_SIZE, Position(), Color::BLACK) {}
+        Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {}
 
 
     void onAdd() {
@@ -156,6 +159,7 @@ int main() {
     body[0]->_color = Color::BLACK;
     body[1]->_color = Color::BLUE;
     body[2]->_color = Color::GREEN;
+    body[NUM_NODES -1]->_color = Color::PINK;
 
     for (int i = 0; i < NUM_NODES; i++) {
         game.scene->addChild(*body[i]);
