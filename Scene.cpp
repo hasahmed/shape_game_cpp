@@ -58,8 +58,7 @@ void shapegame::Scene::drawAll(GLFWwindow *w) {
         GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
 
-        // renderPack->shape->handleInput();
-        renderPack->shape->update();
+       renderPack->shape->update();
         if (renderPack->updateDirty()){
             GLCALL(
                 glBufferData(
@@ -71,7 +70,6 @@ void shapegame::Scene::drawAll(GLFWwindow *w) {
                 )
             );
         }
-        // renderPack->glRenderObject->verts[0] += 0.02;
         GLCALL(
             glVertexAttribPointer(
                 renderPack->glRenderObject->vertexAttribIndex,
