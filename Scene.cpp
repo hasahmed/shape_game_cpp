@@ -4,6 +4,8 @@
 #include "Rectangle.hpp"
 #define OBJECT_START_SIZE 100
 
+using namespace shapegame;
+
 
 std::ostream& operator<<( std::ostream& os, const std::unique_ptr<shapegame::RenderPackage>& rp){
     os << "Shape:" << std::endl;
