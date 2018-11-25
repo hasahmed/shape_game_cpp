@@ -19,3 +19,4 @@
 #include "VertexGenerator.hpp"
 #include "GLRenderObject.hpp"
 #include "RenderPackage.hpp"
+#include "Timer.hpp"
