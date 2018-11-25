@@ -6,15 +6,6 @@
 
 using namespace shapegame;
 
-
-std::ostream& operator<<( std::ostream& os, const std::unique_ptr<shapegame::RenderPackage>& rp){
-    os << "Shape:" << std::endl;
-    os << '\t';
-    os << "_height: ";
-    os << rp->shape->height() << std::endl;
-    return os;
-}
-
 shapegame::Scene::Scene() : _drawVect(), _sceneChildren() {}
 
 void shapegame::Scene::addChild(Shape &shape) {
