@@ -21,7 +21,7 @@ namespace shapegame {
 			// std::chrono::time_point<std::chrono::high_resolution_clock> _timerLeft;
 
 		public:
-			Timer(int milliseconds, bool repeates, bool autoStart, std::function<void(void)> callBack);
+			Timer(double seconds, bool repeates, bool autoStart, std::function<void(void)> callBack);
 			void start();
 			void stop();
 			void onAdd() override;

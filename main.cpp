@@ -101,13 +101,13 @@ class HeadNode: public BodyNode {
         }
         else if (glfwGetKey(w, GLFW_KEY_RIGHT)) {
             this->moveDir = Dir::RIGHT;
-        }
+        } 
     }
     void update() {}
     void onAdd() {
 
         // shapegame::Timer
-        auto myTimer = new shapegame::Timer(1, true, true, [this]() {
+        auto myTimer = new shapegame::Timer(0.99999, true, true, [this]() {
             this->tick();
         });
         // auto myTimer = new shapegame::Timer(1000, true, true, &HeadNode::_shapegame_timerCallback, *this);
