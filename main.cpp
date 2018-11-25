@@ -1,4 +1,4 @@
-#define NUM_NODES 30
+#define NUM_NODES 10
 #define NODE_SIZE 10
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 100
@@ -23,6 +23,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 class BodyNode : public Rectangle {
     public:
     BodyNode *prev = nullptr;
+    BodyNode *next = nullptr;
     BodyNode():
         Rectangle(NODE_SIZE, NODE_SIZE, Position(), Color::BLACK) {}
 
@@ -57,12 +58,12 @@ class HeadNode: public BodyNode {
     enum Dir {
         LEFT, RIGHT, UP, DOWN
     };
-
     Dir moveDir = Dir::UP;
 
     void tick() {
         this->setPrev();
         this->handleKeys();
+        tickChildren(this->next);
         switch(this->moveDir) {
             case Dir::UP:
                 this->move(0, -MOVE_AMOUNT);
@@ -77,6 +78,11 @@ class HeadNode: public BodyNode {
                 this->move(MOVE_AMOUNT, 0);
                 break;
         }
+    }
+    void tickChildren(BodyNode *b) {
+        if (!b) return;
+        b->tick();
+        tickChildren(b->next);
     }
 
     void handleKeys() {
@@ -95,12 +101,19 @@ class HeadNode: public BodyNode {
         }
     }
     void update() {
-        // this->setPrev();
-        // this->move(0, -MOVE_AMOUNT);
-        // this->putAt(this->pos.x(), this->pos.y() - MOVE_AMOUNT);
     }
     void onAdd() {
-        std::cout << "the head has been added" << std::endl;
+
+        // shapegame::Timer
+        // myTimer = new shapegame::Timer(1000, this->_shapegame_timerCallback);
+        // std::cout << "the head has been added" << std::endl;
+        // Shape *myTimer = new BodyNode();
+        // Game::inst().scene->addChild(*myTimer);
+    }
+
+
+    void _shapegame_timerCallback() {
+        this->tick();
     }
 
 };
@@ -111,9 +124,6 @@ void timer(int milliseconds, HeadNode *head, BodyNode *body[NUM_NODES]) {
     while(run) {
         std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
         head->tick();
-        for (int i = 0; i < NUM_NODES; i++) {
-            body[i]->tick();
-        }
     }
 }
 
@@ -129,15 +139,22 @@ int main() {
 
     for (int i = 0; i < NUM_NODES; i++) {
         body[i] = new BodyNode();
-        if (i == 0)
-            body[i]->prev = head;
-        else
-            body[i]->prev = body[i -1];
     }
 
-    for (int i = 0; i < NUM_NODES; i++) {
-        game.scene->addChild(*body[i]);
+
+    head->next = body[0];
+    body[0]->prev = head;
+    body[0]->next = body[1];
+
+
+    for (int i = 1; i < NUM_NODES; i++) {
+        body[i]->prev = body[i - 1];
+        if (i < NUM_NODES - 1)
+            body[i]->next = body[i + 1];
     }
+
+    for (int i = 0; i < NUM_NODES; i++)
+        game.scene->addChild(*body[i]);
 
     std::thread t1(timer, SPEED_MS, head, body);
 
