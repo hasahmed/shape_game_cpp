@@ -166,7 +166,8 @@ int main() {
 
     std::thread t1(timer, SPEED_MS, head, body);
 
-    Timer t;
+    // Timer *t = new Timer();
+    // game.scene->addChild(*t);
 
     game.run();
     // Game::inst().run();
