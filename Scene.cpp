@@ -39,9 +39,9 @@ void shapegame::Scene::addChild(Object &obj) {
         GLCALL(glEnableVertexAttribArray(0));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0)); //this is actually an unbinding
         GLCALL(glBindVertexArray(0)); //also an unbinding
-        auto x = std::make_unique<RenderPackage>(&s, &renderObj);
-        x->shape->onAdd();
-        _drawVect.push_back(std::move(x));
+        auto rPack = std::make_unique<RenderPackage>(&s, &renderObj);
+        rPack->shape->onAdd();
+        _drawVect.push_back(std::move(rPack));
     } catch(const std::bad_cast& e) {
         std::cout << "bad cast" << std::endl;
     }
