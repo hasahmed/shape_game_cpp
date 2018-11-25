@@ -58,7 +58,7 @@ void shapegame::Scene::drawAll(GLFWwindow *w) {
         GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
 
-        renderPack->shape->handleInput(w);
+        // renderPack->shape->handleInput();
         renderPack->shape->update();
         if (renderPack->updateDirty()){
             GLCALL(

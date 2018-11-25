@@ -26,18 +26,11 @@ void shapegame::Shape::putAt(Position pos){
     this->putAt(pos.x(), pos.y());
 }
 
-void shapegame::Shape::move(double x, double y){
+void shapegame::Shape::translate(double x, double y){
     this->pos.setX(this->pos.x() + x);
     this->pos.setY(this->pos.y() + y);
     this->_dirty = true;
 }
-void shapegame::Shape::move(Position pos){
-    this->move(pos.x(), pos.y());
-}
-void shapegame::Shape::update() {
-    std::cout << "shape update" << std::endl;
-}
-void shapegame::Shape::handleInput() {
-}
-void shapegame::Shape::onAdd() {
+void shapegame::Shape::translate(Position pos){
+    this->translate(pos.x(), pos.y());
 }

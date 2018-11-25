@@ -16,8 +16,6 @@ shapegame::Triangle::Triangle(
             throw std::invalid_argument("Angles must add up to 360");
     }
 void shapegame::Triangle::update(){
-    std::cout << "here" << std::endl;
-    this->move(10, 0);
 }
 
 //shapegame::Triangle::Triangle(
