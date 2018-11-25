@@ -17,13 +17,13 @@ shapegame::Shape::Shape(float height, float width, ShapeType type, Color color) 
 float shapegame::Shape::height() const {return this->_height;}
 float shapegame::Shape::width() const {return this->_width;}
 
-void shapegame::Shape::putAt(double x, double y){
+void shapegame::Shape::setPosition(double x, double y){
     this->pos.setX(x);
     this->pos.setY(y);
     this->_dirty = true;
 }
-void shapegame::Shape::putAt(Position pos){
-    this->putAt(pos.x(), pos.y());
+void shapegame::Shape::setPosition(Position pos){
+    this->setPosition(pos.x(), pos.y());
 }
 
 void shapegame::Shape::translate(double x, double y){

@@ -23,8 +23,8 @@ namespace shapegame {
             float width() const;
             void translate(double x, double y);
             void translate(Position pos);
-            void putAt(Position pos);
-            void putAt(double x, double y);
+            void setPosition(Position pos);
+            void setPosition(double x, double y);
             virtual void update() = 0;
             virtual void onAdd() = 0;
     };

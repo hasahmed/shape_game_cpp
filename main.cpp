@@ -29,7 +29,7 @@ class BodyNode : public Rectangle {
 
 
     void onAdd() {
-        this->putAt(
+        this->setPosition(
             this->prev->pos.x(),
             this->prev->pos.y() + this->prev->height()
         );
@@ -41,7 +41,7 @@ class BodyNode : public Rectangle {
     }
     void tick() {
         setPrev();
-        this->putAt(this->prev->prevPos);
+        this->setPosition(this->prev->prevPos);
     }
     void update() {
     }
@@ -157,6 +157,8 @@ int main() {
         game.scene->addChild(*body[i]);
 
     std::thread t1(timer, SPEED_MS, head, body);
+
+    Timer t;
 
     game.run();
     // Game::inst().run();

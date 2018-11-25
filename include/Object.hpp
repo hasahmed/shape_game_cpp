@@ -4,7 +4,7 @@ namespace shapegame {
     class Object {
         public:
             Position pos;
-            Object(double x, double y);
+            Object(double x = 0, double y = 0);
             Object(Position pos);
     };
 }
