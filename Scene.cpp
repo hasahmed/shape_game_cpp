@@ -45,11 +45,11 @@ void shapegame::Scene::addChild(Object &obj) {
     } catch(const std::bad_cast& e) {
         std::cout << "bad cast" << std::endl;
     }
-    // this->_sceneChildren.push_back(
-    //     std::move(
-    //         std::unique_ptr<Object>(&obj)
-    //     )
-    // );
+    this->_sceneChildren.push_back(
+        std::move(
+            std::unique_ptr<Object>(&obj)
+        )
+    );
 
 }
 
