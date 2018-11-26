@@ -6,7 +6,8 @@ namespace shapegame {
         public:
             Rectangle(float height, float width, Position pos, Color color);
             Rectangle();
-            void update();
-            void onAdd();
+            void update() override;
+            void onAdd() override;
+            void onKeyPress(int key) override;
     };
 }

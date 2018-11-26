@@ -8,5 +8,6 @@ namespace shapegame {
             Object(Position pos);
             virtual void update() = 0;
             virtual void onAdd() = 0;
+            virtual void onKeyPress(int key) = 0;
     };
 }
