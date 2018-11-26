@@ -1,14 +1,13 @@
 #include <chrono>
 #include "shapegame"
 using namespace shapegame;
-using namespace std::chrono;
 
 Timer::Timer(
-	double seconds,
+	double milliseconds,
 	bool repeates,
 	bool autoStart,
 	std::function<void(void)> callBack
-) : Object(), milliseconds(seconds), repeates(repeates), autoStart(autoStart), callBack(callBack) {
+) : Object(), milliseconds(milliseconds), repeates(repeates), autoStart(autoStart), callBack(callBack) {
 }
 void Timer::onAdd() {
 	if (this->autoStart) {
@@ -17,15 +16,17 @@ void Timer::onAdd() {
 }
 void Timer::update() {
 	if (this->_running) {
-		this->_timeElapsed += std::chrono::high_resolution_clock::now() - this->_timerStart;
-		std::cout << this->_timeElapsed.count() << std::endl;
-		if (this->_timeElapsed.count() >= this->milliseconds) {
+		this->_msElapsed =
+			std::chrono::duration_cast<std::chrono::milliseconds>(
+				std::chrono::high_resolution_clock::now() - this->_timerStart
+			);
+		if (this->_msElapsed.count() >= this->milliseconds) {
 			this->callBack();
 			if (!this->repeates) {
+				this->_running = false;
 				puts("Need to write code to remove objects");
 			} else {
-				this->_timeElapsed -= this->_timeElapsed;
-				this->_timerStart = std::chrono::high_resolution_clock::now();
+				this->start();
 			}
 		}
 	}

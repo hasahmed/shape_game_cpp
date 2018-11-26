@@ -15,7 +15,7 @@ namespace shapegame {
 			std::chrono::milliseconds _msElapsed {0};
 
 		public:
-			Timer(double seconds, bool repeates, bool autoStart, std::function<void(void)> callBack);
+			Timer(double millisecs, bool repeates, bool autoStart, std::function<void(void)> callBack);
 			void start();
 			void stop();
 			void onAdd() override;
