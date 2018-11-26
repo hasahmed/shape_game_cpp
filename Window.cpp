@@ -25,6 +25,9 @@ shapegame::Window::Window(int width, int height, std::string window_title) {
 #endif
     this->gl_renderer = glGetString(GL_RENDERER); // get renderer string
     this->gl_version = glGetString(GL_VERSION); // version as a string
+
+
+    glfwSetKeyCallback(this->window_handle, Scene::keyCallback);
 }
 
 

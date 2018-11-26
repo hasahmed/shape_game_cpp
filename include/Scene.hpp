@@ -18,10 +18,13 @@ namespace shapegame {
             void setShaderProg(GLuint shaderprog);
             std::vector<std::unique_ptr<RenderPackage>> _drawVect;
             std::vector<std::unique_ptr<Object>> _sceneChildren;
+            static Scene *_inst;
         public:
             void updateChildren();
             void drawChildren(GLFWwindow *w);
             void addChild(Object &shape);
+            static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+            void keyDispatch(int key, int action);
             Scene();
     };
 }

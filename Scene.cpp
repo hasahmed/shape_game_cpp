@@ -6,7 +6,20 @@
 
 using namespace shapegame;
 
-shapegame::Scene::Scene() : _drawVect(), _sceneChildren() {}
+Scene* Scene::_inst= nullptr;
+
+void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    if (Scene::_inst && scancode) {
+        _inst->keyDispatch(key, action);
+    } else {
+        puts("Scene not initlized yet. Keys cannot be processed");
+    }
+}
+
+
+shapegame::Scene::Scene() : _drawVect(), _sceneChildren() {
+    Scene::_inst = this;
+}
 
 void shapegame::Scene::addChild(Object &obj) {
 
@@ -97,4 +110,10 @@ void Scene::updateChildren() {
 
 void shapegame::Scene::setShaderProg(GLuint shaderProg) {
     this->_shaderProg = shaderProg;
+}
+
+void Scene::keyDispatch(int key, int action) {
+    for (auto &child : this->_sceneChildren) {
+        child->onKeyPress(key, action);
+    }
 }
