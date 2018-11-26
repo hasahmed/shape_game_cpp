@@ -1,6 +1,7 @@
 #include <chrono>
 #include "shapegame"
 using namespace shapegame;
+using namespace std::chrono;
 
 Timer::Timer(
 	double seconds,

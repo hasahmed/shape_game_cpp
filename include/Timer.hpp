@@ -3,7 +3,7 @@
 namespace shapegame {
 	class Timer : public Object {
 		private:
-			int milliseconds;
+			double milliseconds;
 			bool repeates;
 			bool autoStart;
 			std::function<void(void)> callBack;
@@ -11,7 +11,8 @@ namespace shapegame {
 			// internal state	
 			bool _running = false;
 			std::chrono::time_point<std::chrono::high_resolution_clock> _timerStart;
-			std::chrono::duration<double> _timeElapsed;
+			std::chrono::duration<double> _timeElapsed {0};
+			std::chrono::milliseconds _msElapsed {0};
 
 		public:
 			Timer(double seconds, bool repeates, bool autoStart, std::function<void(void)> callBack);
