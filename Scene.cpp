@@ -43,7 +43,7 @@ void shapegame::Scene::addChild(Object &obj) {
         _drawVect.push_back(std::move(rPack));
     } catch(const std::bad_cast& e) {
         //don't do anything, because this just
-        // means that the object passed in is not a shape
+        // means that the object passed in is not a Shape
     }
     obj.onAdd();
     this->_sceneChildren.push_back(
