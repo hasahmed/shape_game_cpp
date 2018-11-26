@@ -42,7 +42,8 @@ void shapegame::Scene::addChild(Object &obj) {
         auto rPack = std::make_unique<RenderPackage>(&s, &renderObj);
         _drawVect.push_back(std::move(rPack));
     } catch(const std::bad_cast& e) {
-        std::cout << "bad cast" << std::endl;
+        //don't do anything, because this just
+        // means that the object passed in is not a shape
     }
     obj.onAdd();
     this->_sceneChildren.push_back(
