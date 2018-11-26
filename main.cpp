@@ -1,7 +1,7 @@
-#define NUM_NODES 100
+#define NUM_NODES 2304
 #define NODE_SIZE 10
 #define MOVE_AMOUNT NODE_SIZE
-#define SPEED_MS 75
+#define SPEED_MS 75 
 #define BODY_COLOR Color::KATIE_PINK
 
 
@@ -57,7 +57,6 @@ class HeadNode: public BodyNode {
 
     void tick() {
         this->setPrev();
-        this->handleKeys();
         tickChildren(this->next);
         switch(this->moveDir) {
             case Dir::UP:
@@ -80,21 +79,6 @@ class HeadNode: public BodyNode {
         tickChildren(b->next);
     }
 
-    void handleKeys() {
-        GLFWwindow *w = Game::inst().getWindow()->window_handle;
-        if (glfwGetKey(w, GLFW_KEY_UP)) {
-            this->moveDir = Dir::UP;
-        }
-        else if (glfwGetKey(w, GLFW_KEY_DOWN)) {
-            this->moveDir = Dir::DOWN;
-        }
-        else if (glfwGetKey(w, GLFW_KEY_LEFT)) {
-            this->moveDir = Dir::LEFT;
-        }
-        else if (glfwGetKey(w, GLFW_KEY_RIGHT)) {
-            this->moveDir = Dir::RIGHT;
-        } 
-    }
     void update() {}
     void onAdd() {
         auto myTimer = new shapegame::Timer(SPEED_MS, true, true, [this]() {
@@ -103,7 +87,8 @@ class HeadNode: public BodyNode {
         Game::inst().scene->addChild(*myTimer);
     }
 
-    void keyCallback(int key) {
+    void onKeyPress(int key, int action) override {
+        if (action != GLFW_PRESS) return;
         if (key == GLFW_KEY_ESCAPE)
             glfwSetWindowShouldClose(Game::inst().getWindow()->window_handle, true);
         if (key == GLFW_KEY_1)
@@ -125,28 +110,23 @@ class HeadNode: public BodyNode {
         } 
     }
 
-    void _shapegame_timerCallback() {
-        this->tick();
-    }
-
 };
-HeadNode *head;
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (key == GLFW_KEY_ESCAPE)
-        glfwSetWindowShouldClose(window, true);
-    if (key == GLFW_KEY_1)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    if (key == GLFW_KEY_2)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+// HeadNode *head;
+// void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+//     if (key == GLFW_KEY_ESCAPE)
+//         glfwSetWindowShouldClose(window, true);
+//     if (key == GLFW_KEY_1)
+//         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+//     if (key == GLFW_KEY_2)
+//         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    head->keyCallback(key);
-}
+//     head->keyCallback(key);
+// }
 
 int main() {
     shapegame::Game game;
-    head = new HeadNode();
+    HeadNode *head = new HeadNode();
     glfwSetErrorCallback(error_callback);
-    glfwSetKeyCallback(game.getWindow()->window_handle, key_callback);
 
     game.scene->addChild(*head);
 

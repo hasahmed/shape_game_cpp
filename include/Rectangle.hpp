@@ -8,6 +8,6 @@ namespace shapegame {
             Rectangle();
             void update() override;
             void onAdd() override;
-            void onKeyPress(int key) override;
+            void onKeyPress(int key, int action) override;
     };
 }

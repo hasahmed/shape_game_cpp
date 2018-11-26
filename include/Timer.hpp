@@ -20,6 +20,6 @@ namespace shapegame {
 			void stop();
 			void onAdd() override;
 			void update() override;
-			void onKeyPress(int key) override;
+			void onKeyPress(int key, int action) override;
 	};
 }
