@@ -11,3 +11,4 @@ Rectangle::Rectangle(): Rectangle(1, 1, Position(), Color()) {}
 
 void shapegame::Rectangle::update(){}
 void Rectangle::onAdd(){}
+void Rectangle::onKeyPress(int key){}
