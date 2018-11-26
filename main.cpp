@@ -1,7 +1,7 @@
-#define NUM_NODES 10
+#define NUM_NODES 100
 #define NODE_SIZE 10
 #define MOVE_AMOUNT NODE_SIZE
-#define SPEED_MS 100
+#define SPEED_MS 75
 #define BODY_COLOR Color::KATIE_PINK
 
 
@@ -9,17 +9,9 @@
 #include <thread>
 #include <chrono>
 using namespace shapegame;
-void error_callback(int error, const char* description)
-{
+
+void error_callback(int error, const char* description) {
     puts(description);
-}
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (key == GLFW_KEY_ESCAPE)
-        glfwSetWindowShouldClose(window, true);
-    if (key == GLFW_KEY_1)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    if (key == GLFW_KEY_2)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 // class HeadNode;
@@ -105,25 +97,57 @@ class HeadNode: public BodyNode {
     }
     void update() {}
     void onAdd() {
-        auto myTimer = new shapegame::Timer(175, true, true, [this]() {
-            // this->tick();
+        auto myTimer = new shapegame::Timer(SPEED_MS, true, true, [this]() {
+            this->tick();
         });
         Game::inst().scene->addChild(*myTimer);
     }
 
+    void keyCallback(int key) {
+        if (key == GLFW_KEY_ESCAPE)
+            glfwSetWindowShouldClose(Game::inst().getWindow()->window_handle, true);
+        if (key == GLFW_KEY_1)
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        if (key == GLFW_KEY_2)
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+        if (key == GLFW_KEY_UP) {
+            this->moveDir = Dir::UP;
+        }
+        else if (key == GLFW_KEY_DOWN) {
+            this->moveDir = Dir::DOWN;
+        }
+        else if (key == GLFW_KEY_LEFT) {
+            this->moveDir = Dir::LEFT;
+        }
+        else if (key == GLFW_KEY_RIGHT) {
+            this->moveDir = Dir::RIGHT;
+        } 
+    }
 
     void _shapegame_timerCallback() {
         this->tick();
     }
 
 };
+HeadNode *head;
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
+    if (key == GLFW_KEY_ESCAPE)
+        glfwSetWindowShouldClose(window, true);
+    if (key == GLFW_KEY_1)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    if (key == GLFW_KEY_2)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+    head->keyCallback(key);
+}
 
 int main() {
     shapegame::Game game;
+    head = new HeadNode();
     glfwSetErrorCallback(error_callback);
     glfwSetKeyCallback(game.getWindow()->window_handle, key_callback);
 
-    HeadNode *head = new HeadNode();
     game.scene->addChild(*head);
 
     BodyNode *body[NUM_NODES];
@@ -144,22 +168,13 @@ int main() {
             body[i]->next = body[i + 1];
     }
 
-    body[0]->_color = Color::BLACK;
-    body[1]->_color = Color::BLUE;
-    body[2]->_color = Color::GREEN;
-    body[NUM_NODES -1]->_color = Color::PINK;
+    // body[0]->_color = Color::BLACK;
+    // body[1]->_color = Color::BLUE;
+    // body[2]->_color = Color::GREEN;
+    // body[NUM_NODES -1]->_color = Color::PINK;
 
     for (int i = 0; i < NUM_NODES; i++) {
         game.scene->addChild(*body[i]);
     }
-
-    // std::thread t1(timer, SPEED_MS, head, body);
-
-    // Timer *t = new Timer();
-    // game.scene->addChild(*t);
-
     game.run();
-    // Game::inst().run();
-    // run = false;
-    // t1.join();
 }
