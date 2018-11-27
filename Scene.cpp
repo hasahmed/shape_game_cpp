@@ -17,7 +17,7 @@ void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, i
 }
 
 
-shapegame::Scene::Scene() : _drawVect(), _sceneChildren() {
+shapegame::Scene::Scene() : _drawVect(), _sceneChildren(), drawVect() {
     Scene::_inst = this;
 }
 
@@ -53,7 +53,8 @@ void shapegame::Scene::addChild(Object &obj) {
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0)); //this is actually an unbinding
         GLCALL(glBindVertexArray(0)); //also an unbinding
         auto rPack = std::make_unique<RenderPackage>(&s, &renderObj);
-        _drawVect.push_back(std::move(rPack));
+        // _drawVect.push_back(std::move(rPack));
+        this->drawVect.insert({1, std::move(rPack)});
     } catch(const std::bad_cast& e) {
         //don't do anything, because this just
         // means that the object passed in is not a Shape
@@ -67,8 +68,13 @@ void shapegame::Scene::addChild(Object &obj) {
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
-    // for (auto &renderPack : _drawVect) {
-    for (std::unique_ptr<RenderPackage> &renderPack : _drawVect) {
+    // for (auto &renderPack: _drawVect) {
+    for (auto &r: drawVect) {
+        // r.first
+        // std::get(1, r);
+        auto &renderPack = r.second;
+        // std::cout << renderPack->shape->height() << std::endl;
+        // exit(0);
         GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
         GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
         GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));

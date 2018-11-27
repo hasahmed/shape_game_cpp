@@ -18,6 +18,7 @@ namespace shapegame {
             void setShaderProg(GLuint shaderprog);
             std::vector<std::unique_ptr<RenderPackage>> _drawVect;
             std::vector<std::unique_ptr<Object>> _sceneChildren;
+            std::unordered_map<unsigned int, std::unique_ptr<RenderPackage>> drawVect;
             static Scene *_inst;
         public:
             void updateChildren();
