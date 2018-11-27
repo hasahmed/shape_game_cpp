@@ -5,6 +5,7 @@
 #define OBJECT_START_SIZE 100
 
 using namespace shapegame;
+unsigned int nextInsert = 0;
 
 Scene* Scene::_inst= nullptr;
 
@@ -54,7 +55,7 @@ void shapegame::Scene::addChild(Object &obj) {
         GLCALL(glBindVertexArray(0)); //also an unbinding
         auto rPack = std::make_unique<RenderPackage>(&s, &renderObj);
         // _drawVect.push_back(std::move(rPack));
-        this->drawVect.insert({1, std::move(rPack)});
+        this->drawVect.insert({nextInsert++, std::move(rPack)});
     } catch(const std::bad_cast& e) {
         //don't do anything, because this just
         // means that the object passed in is not a Shape

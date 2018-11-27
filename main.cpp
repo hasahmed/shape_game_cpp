@@ -1,4 +1,5 @@
-#define NUM_NODES 2304
+// #define NUM_NODES 2304
+#define NUM_NODES 23
 #define NODE_SIZE 10
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 75 
