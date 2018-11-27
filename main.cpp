@@ -10,6 +10,7 @@
 #include <chrono>
 using namespace shapegame;
 
+
 void error_callback(int error, const char* description) {
     puts(description);
 }
