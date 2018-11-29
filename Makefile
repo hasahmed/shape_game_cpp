@@ -6,7 +6,7 @@ OBJS = $(SRC:.cpp=.o)
 ifeq ($(UNAME),Linux)
 	CXX := c++
 	LDFLAGS := `pkg-config --libs glfw3` -ldl
-	INC_DIR := -Iinclude/glad/include -Iinclude
+	INC_DIR := -Ideps -Iinclude
 	CXXFLAGS += $(INC_DIR)
 	OBJS += glad.o
 endif
@@ -35,7 +35,7 @@ main: $(OBJS)
 
 #linux specific
 glad.o:
-	$(CXX) $(CXXFLAGS) -c -o glad.o glad/src/glad.c
+	$(CXX) $(CXXFLAGS) -c -o glad.o deps/glad.c
 
 
 shapegame.dylib: objs
