@@ -106,7 +106,12 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
 }
 void Scene::updateChildren() {
     for (auto &child : this->sceneChildren) {
-        child.second->update();
+        if (child.second->canKill) {
+            child.second.reset();
+            this->sceneChildren.erase(child.first);
+        } else {
+            child.second->update();
+        }
     }
 }
 
