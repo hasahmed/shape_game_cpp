@@ -23,8 +23,6 @@ class BodyNode : public Rectangle {
     BodyNode *next = nullptr;
     BodyNode():
         Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {}
-
-
     void onAdd() {
         this->setPosition(
             this->prev->pos.x(),

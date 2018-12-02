@@ -5,22 +5,6 @@
 
 
 using namespace shapegame;
-class Blank : public Object {
-    public:
-    Blank() {
-    }
-    ~Blank() {
-        std::cout << "I have been killed!" << std::endl;
-    }
-    void update() override {
-        std::cout << "I have been updated: " << this << std::endl;
-    }
-    void onAdd() override {
-        std::cout << "I was added!" << std::endl;
-    }
-    void onKeyPress(int key, int action) override {
-    }
-};
 unsigned int nextInsert = 0;
 unsigned int nextInsert2 = 0;
 
@@ -35,7 +19,7 @@ void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, i
 }
 
 
-shapegame::Scene::Scene() : _drawVect(), _sceneChildren(), sceneChildren(), drawVect() {
+shapegame::Scene::Scene() : sceneChildren(), drawVect() {
     Scene::_inst = this;
 }
 
@@ -72,36 +56,22 @@ void shapegame::Scene::addChild(Object &obj) {
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0)); //this is actually an unbinding
         GLCALL(glBindVertexArray(0)); //also an unbinding
         auto rPack = std::make_unique<RenderPackage>(&s, &renderObj);
-        // _drawVect.push_back(std::move(rPack));
-        this->drawVect.insert({nextInsert++, std::move(rPack)});
+        this->drawVect.insert({nextInsert, std::move(rPack)});
     } catch(const std::bad_cast& e) {
         //don't do anything, because this just
         // means that the object passed in is not a Shape
     }
     obj.onAdd();
-    // this->_sceneChildren.push_back(
-    //     std::move(
-    //         std::unique_ptr<Object>(&obj)
-    //     )
-    // );
-    // Object *newObj = new Blank();
-        // this->drawVect.insert({nextInsert++, std::move(rPack)});
-    // this->sceneChildren.insert({
-    //     nextInsert,
-    //     std::move(
-    //         std::unique_ptr<Object>(newObj)
-    //     )
-    // });
     this->sceneChildren.insert({
-        nextInsert2++,
+        nextInsert,
         std::move(
             std::unique_ptr<Object>(&obj)
         )
     });
+    nextInsert++;
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
-    // for (auto &renderPack: _drawVect) {
     for (auto &r: drawVect) {
         auto &renderPack = r.second;
         GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
@@ -134,16 +104,7 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
 
     }
 }
-
-// void Scene::updateChildren() {
-//     for (auto &child : this->sceneChildren) {
-//         child.second->update();
-//     }
-// }
 void Scene::updateChildren() {
-    // for (auto &child : this->_sceneChildren) {
-    //     child->update();
-    // }
     for (auto &child : this->sceneChildren) {
         child.second->update();
     }
@@ -154,9 +115,6 @@ void shapegame::Scene::setShaderProg(GLuint shaderProg) {
 }
 
 void Scene::keyDispatch(int key, int action) {
-    // for (auto &child : this->_sceneChildren) {
-    //     child->onKeyPress(key, action);
-    // }
     for (auto &child : this->sceneChildren) {
         child.second->onKeyPress(key, action);
     }
