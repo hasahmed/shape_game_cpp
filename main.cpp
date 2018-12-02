@@ -23,6 +23,10 @@ class BodyNode : public Rectangle {
     BodyNode *next = nullptr;
     BodyNode():
         Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {}
+    ~BodyNode(){
+        std::cout << "BodyNode: destroyed" << std::endl;
+    }
+
     void onAdd() {
         this->setPosition(
             this->prev->pos.x(),
@@ -84,6 +88,11 @@ class HeadNode: public BodyNode {
         auto myTimer = new shapegame::Timer(SPEED_MS, true, true, [this]() {
             this->tick();
         });
+        Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
+            myTimer->kill();
+            this->kill();
+        });
+        Game::inst().scene->addChild(*killTimer);
         Game::inst().scene->addChild(*myTimer);
     }
 
@@ -151,10 +160,16 @@ int main() {
     // body[0]->_color = Color::BLACK;
     // body[1]->_color = Color::BLUE;
     // body[2]->_color = Color::GREEN;
-    // body[NUM_NODES -1]->_color = Color::PINK;
+    body[NUM_NODES -1]->_color = Color::GREEN;
 
     for (int i = 0; i < NUM_NODES; i++) {
         game.scene->addChild(*body[i]);
     }
+    // Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
+    //     body[NUM_NODES -1]->prev->next = nullptr;
+    //     body[NUM_NODES -1]->kill();
+    // });
+    // Game::inst().scene->addChild(*killTimer);
+
     game.run();
 }
