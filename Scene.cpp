@@ -2,10 +2,27 @@
 #include <unistd.h>
 #include "shapegame"
 #include "Rectangle.hpp"
-#define OBJECT_START_SIZE 100
+
 
 using namespace shapegame;
+class Blank : public Object {
+    public:
+    Blank() {
+    }
+    ~Blank() {
+        std::cout << "I have been killed!" << std::endl;
+    }
+    void update() override {
+        std::cout << "I have been updated: " << this << std::endl;
+    }
+    void onAdd() override {
+        std::cout << "I was added!" << std::endl;
+    }
+    void onKeyPress(int key, int action) override {
+    }
+};
 unsigned int nextInsert = 0;
+unsigned int nextInsert2 = 0;
 
 Scene* Scene::_inst= nullptr;
 
@@ -22,9 +39,10 @@ shapegame::Scene::Scene() : _drawVect(), _sceneChildren(), sceneChildren(), draw
     Scene::_inst = this;
 }
 
+//note instead of being passed a refrence I should really be passed a ponter.
+// Then we wouldn't need a try block because the dynamic cast would return
+// null instead of throwing
 void shapegame::Scene::addChild(Object &obj) {
-
-
     try {
         Shape& s = dynamic_cast<Shape&>(obj);
         GLRenderObject renderObj = GLRenderObject();
@@ -61,18 +79,25 @@ void shapegame::Scene::addChild(Object &obj) {
         // means that the object passed in is not a Shape
     }
     obj.onAdd();
-    this->_sceneChildren.push_back(
-        std::move(
-            std::unique_ptr<Object>(&obj)
-        )
-    );
+    // this->_sceneChildren.push_back(
+    //     std::move(
+    //         std::unique_ptr<Object>(&obj)
+    //     )
+    // );
+    // Object *newObj = new Blank();
         // this->drawVect.insert({nextInsert++, std::move(rPack)});
     // this->sceneChildren.insert({
     //     nextInsert,
     //     std::move(
-    //         std::unique_ptr<Object>(&obj)
+    //         std::unique_ptr<Object>(newObj)
     //     )
     // });
+    this->sceneChildren.insert({
+        nextInsert2++,
+        std::move(
+            std::unique_ptr<Object>(&obj)
+        )
+    });
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
@@ -116,8 +141,11 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
 //     }
 // }
 void Scene::updateChildren() {
-    for (auto &child : this->_sceneChildren) {
-        child->update();
+    // for (auto &child : this->_sceneChildren) {
+    //     child->update();
+    // }
+    for (auto &child : this->sceneChildren) {
+        child.second->update();
     }
 }
 
@@ -126,7 +154,10 @@ void shapegame::Scene::setShaderProg(GLuint shaderProg) {
 }
 
 void Scene::keyDispatch(int key, int action) {
-    for (auto &child : this->_sceneChildren) {
-        child->onKeyPress(key, action);
+    // for (auto &child : this->_sceneChildren) {
+    //     child->onKeyPress(key, action);
+    // }
+    for (auto &child : this->sceneChildren) {
+        child.second->onKeyPress(key, action);
     }
 }
