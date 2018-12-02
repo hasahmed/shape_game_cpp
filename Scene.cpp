@@ -18,7 +18,7 @@ void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, i
 }
 
 
-shapegame::Scene::Scene() : _drawVect(), _sceneChildren(), drawVect() {
+shapegame::Scene::Scene() : _drawVect(), _sceneChildren(), sceneChildren(), drawVect() {
     Scene::_inst = this;
 }
 
@@ -66,28 +66,29 @@ void shapegame::Scene::addChild(Object &obj) {
             std::unique_ptr<Object>(&obj)
         )
     );
+        // this->drawVect.insert({nextInsert++, std::move(rPack)});
+    // this->sceneChildren.insert({
+    //     nextInsert,
+    //     std::move(
+    //         std::unique_ptr<Object>(&obj)
+    //     )
+    // });
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
     // for (auto &renderPack: _drawVect) {
     for (auto &r: drawVect) {
-        // r.first
-        // std::get(1, r);
         auto &renderPack = r.second;
-        // std::cout << renderPack->shape->height() << std::endl;
-        // exit(0);
         GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
         GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
         GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
 
-    //    renderPack->shape->update();
         if (renderPack->updateDirty()){
             GLCALL(
                 glBufferData(
                     GL_ARRAY_BUFFER,
                     renderPack->glRenderObject->verts.size() * sizeof(float),
-                    //  sizeof(float),
                     &(renderPack->glRenderObject->verts)[0],
                     GL_DYNAMIC_DRAW
                 )
@@ -109,6 +110,11 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
     }
 }
 
+// void Scene::updateChildren() {
+//     for (auto &child : this->sceneChildren) {
+//         child.second->update();
+//     }
+// }
 void Scene::updateChildren() {
     for (auto &child : this->_sceneChildren) {
         child->update();
