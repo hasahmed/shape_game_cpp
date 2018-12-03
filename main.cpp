@@ -43,6 +43,10 @@ class BodyNode : public Rectangle {
     }
     void update() {
     }
+    void onRemove() override {
+        this->next->prev->next = nullptr;
+        std::cout << "BodyNode: Removed from scene" << std::endl;
+    }
 };
 
 class HeadNode: public BodyNode {
@@ -87,15 +91,15 @@ class HeadNode: public BodyNode {
         auto myTimer = new shapegame::Timer(SPEED_MS, true, true, [this]() {
             this->tick();
         });
-        Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
-            // myTimer->kill();
-            // this->kill();
-            // std::cout << this->next->prev << std::endl;
-            // std::cout << this->next->prev << std::endl;
-            // std::cout << this << std::endl;
-            // this->next->next->prev = nullptr;
-        }, false);
-        Game::inst().scene->addChild(*killTimer);
+        // Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
+        //     // myTimer->kill();
+        //     // this->kill();
+        //     // std::cout << this->next->prev << std::endl;
+        //     // std::cout << this->next->prev << std::endl;
+        //     // std::cout << this << std::endl;
+        //     // this->next->next->prev = nullptr;
+        // }, false);
+        // Game::inst().scene->addChild(*killTimer);
         Game::inst().scene->addChild(*myTimer);
     }
 
@@ -153,10 +157,12 @@ int main() {
     for (int i = 0; i < NUM_NODES; i++) {
         game.scene->addChild(*body[i]);
     }
-    game.scene->addChild(*head);
+
+    Rectangle *rect = new Rectangle(10, 10, Position(10, 10), Color::BLACK);
+    game.scene->addChild(*rect);
 
     // Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
-    //     body[NUM_NODES -1]->kill();
+    //     // rect->kill();
     // });
     // Game::inst().scene->addChild(*killTimer);
 
