@@ -21,7 +21,7 @@ endif
 EXE = main
 MACOS_DIST_NAME = shapegame.dylib
 LINUX_DIST_NAME = shapegame.a
-WIN_DIST_NAME = shapegame.dll
+WIN_DIST_NAME = shapegame.lib
 
 
 all: main

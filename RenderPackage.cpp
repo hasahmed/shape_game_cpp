@@ -4,7 +4,6 @@
 
 shapegame::RenderPackage::RenderPackage(Shape *shape,
         GLRenderObject *glRenderObject): shape(shape) {
-    // this->shape = std::unique_ptr<Shape>(const_cast<Shape*>(shape));
     this->glRenderObject = std::make_unique<GLRenderObject>(*glRenderObject);
 }
 bool shapegame::RenderPackage::updateDirty(){
