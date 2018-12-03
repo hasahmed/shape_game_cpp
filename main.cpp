@@ -1,4 +1,3 @@
-// #define NUM_NODES 2304
 #define NUM_NODES 23
 #define NODE_SIZE 10
 #define MOVE_AMOUNT NODE_SIZE
@@ -95,7 +94,7 @@ class HeadNode: public BodyNode {
             // std::cout << this->next->prev << std::endl;
             // std::cout << this << std::endl;
             // this->next->next->prev = nullptr;
-        });
+        }, false);
         Game::inst().scene->addChild(*killTimer);
         Game::inst().scene->addChild(*myTimer);
     }
@@ -127,7 +126,6 @@ class HeadNode: public BodyNode {
 
 int main() {
     shapegame::Game game;
-    HeadNode *head = new HeadNode();
     glfwSetErrorCallback(error_callback);
 
 
@@ -138,6 +136,7 @@ int main() {
     }
 
 
+    HeadNode *head = new HeadNode();
     head->next = body[0];
     body[0]->prev = head;
     body[0]->next = body[1];
@@ -154,11 +153,12 @@ int main() {
     for (int i = 0; i < NUM_NODES; i++) {
         game.scene->addChild(*body[i]);
     }
+    game.scene->addChild(*head);
 
-    Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
-        body[NUM_NODES -1]->kill();
-    });
-    Game::inst().scene->addChild(*killTimer);
+    // Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
+    //     body[NUM_NODES -1]->kill();
+    // });
+    // Game::inst().scene->addChild(*killTimer);
 
     game.run();
 }

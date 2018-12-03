@@ -7,6 +7,7 @@ namespace shapegame {
 			bool repeates;
 			bool autoStart;
 			std::function<void(void)> callBack;
+			bool killOnComplete;
 
 			// internal state	
 			bool _running = false;
@@ -15,7 +16,7 @@ namespace shapegame {
 			std::chrono::milliseconds _msElapsed {0};
 
 		public:
-			Timer(double millisecs, bool repeates, bool autoStart, std::function<void(void)> callBack);
+			Timer(double millisecs, bool repeates, bool autoStart, std::function<void(void)> callBack, bool killOnComplete=true);
 			void start();
 			void stop();
 			void onAdd() override;

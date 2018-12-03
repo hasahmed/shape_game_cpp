@@ -6,8 +6,14 @@ Timer::Timer(
 	double milliseconds,
 	bool repeates,
 	bool autoStart,
-	std::function<void(void)> callBack
-) : Object(), milliseconds(milliseconds), repeates(repeates), autoStart(autoStart), callBack(callBack) {
+	std::function<void(void)> callBack,
+	bool killOnComplete
+) : Object(),
+		milliseconds(milliseconds),
+		repeates(repeates),
+		autoStart(autoStart),
+		callBack(callBack),
+		killOnComplete(killOnComplete) {
 }
 void Timer::onAdd() {
 	if (this->autoStart) {
@@ -24,7 +30,8 @@ void Timer::update() {
 			this->callBack();
 			if (!this->repeates) {
 				this->_running = false;
-				puts("Need to write code to remove objects");
+				if (this->killOnComplete)
+					this->kill();
 			} else {
 				this->start();
 			}

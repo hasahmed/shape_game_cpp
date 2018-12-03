@@ -10,5 +10,8 @@ namespace shapegame {
             std::unique_ptr<GLRenderObject> glRenderObject;
             RenderPackage(Shape *shape, GLRenderObject *glRenderObject);
             bool updateDirty();
+            ~RenderPackage(){
+                std::cout << "deleted: RenderPackage" << std::endl;
+            }
     };
 }

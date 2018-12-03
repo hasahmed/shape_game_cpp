@@ -9,5 +9,8 @@ namespace shapegame {
             GLuint vao;
             GLuint vbo;
             std::vector<float> verts;
+            ~GLRenderObject(){
+                std::cout << "deleted: GlRenderObject" << std::endl;
+            }
     };
 }

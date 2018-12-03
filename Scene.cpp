@@ -108,14 +108,7 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
 void Scene::updateChildren() {
     for (auto &child : this->sceneChildren) {
         if (child.second->canKill) {
-            // std::cout << "killing here" << std::endl;
-            // auto &renderObj = this->drawVect[child.first];
-            // renderObj->glRenderObject.reset();
-            // this->drawVect.erase(child.first);
-
-            // child.second.reset();
-            // this->sceneChildren.erase(child.first);
-            std::cout << child.first << std::endl;
+            this->sceneChildren.erase(child.first);
         } else {
             child.second->update();
         }
