@@ -89,8 +89,12 @@ class HeadNode: public BodyNode {
             this->tick();
         });
         Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
-            myTimer->kill();
-            this->kill();
+            // myTimer->kill();
+            // this->kill();
+            // std::cout << this->next->prev << std::endl;
+            // std::cout << this->next->prev << std::endl;
+            // std::cout << this << std::endl;
+            // this->next->next->prev = nullptr;
         });
         Game::inst().scene->addChild(*killTimer);
         Game::inst().scene->addChild(*myTimer);
@@ -126,7 +130,6 @@ int main() {
     HeadNode *head = new HeadNode();
     glfwSetErrorCallback(error_callback);
 
-    game.scene->addChild(*head);
 
     BodyNode *body[NUM_NODES];
 
@@ -147,8 +150,15 @@ int main() {
     }
     body[NUM_NODES -1]->_color = Color::GREEN;
 
+    game.scene->addChild(*head);
     for (int i = 0; i < NUM_NODES; i++) {
         game.scene->addChild(*body[i]);
     }
+
+    Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
+        body[NUM_NODES -1]->kill();
+    });
+    Game::inst().scene->addChild(*killTimer);
+
     game.run();
 }

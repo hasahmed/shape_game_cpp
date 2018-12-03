@@ -23,7 +23,7 @@ shapegame::Scene::Scene() : sceneChildren(), drawVect() {
     Scene::_inst = this;
 }
 
-//note instead of being passed a refrence I should really be passed a ponter.
+// note instead of being passed a refrence I should really be passed a ponter.
 // Then we wouldn't need a try block because the dynamic cast would return
 // null instead of throwing
 void shapegame::Scene::addChild(Object &obj) {
@@ -64,51 +64,58 @@ void shapegame::Scene::addChild(Object &obj) {
     obj.onAdd();
     this->sceneChildren.insert({
         nextInsert,
-        std::move(
-            std::unique_ptr<Object>(&obj)
-        )
+        std::move(std::unique_ptr<Object>(&obj))
     });
     nextInsert++;
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
     for (auto &r: drawVect) {
-        auto &renderPack = r.second;
-        GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
-        GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
-        GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
-        GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
+        if (r.second->shape->canKill) {
+            this->drawVect.erase(r.first);
+        } else {
+            auto &renderPack = r.second;
+            GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
+            GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
+            GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
+            GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
 
-        if (renderPack->updateDirty()){
+            if (renderPack->updateDirty()){
+                GLCALL(
+                    glBufferData(
+                        GL_ARRAY_BUFFER,
+                        renderPack->glRenderObject->verts.size() * sizeof(float),
+                        &(renderPack->glRenderObject->verts)[0],
+                        GL_DYNAMIC_DRAW
+                    )
+                );
+            }
             GLCALL(
-                glBufferData(
-                    GL_ARRAY_BUFFER,
-                    renderPack->glRenderObject->verts.size() * sizeof(float),
-                    &(renderPack->glRenderObject->verts)[0],
-                    GL_DYNAMIC_DRAW
+                glVertexAttribPointer(
+                    renderPack->glRenderObject->vertexAttribIndex,
+                    3,
+                    GL_FLOAT,
+                    GL_FALSE,
+                    0,
+                    0
                 )
             );
+            GLCALL(glDrawArrays(GL_TRIANGLES, 0, renderPack->glRenderObject->verts.size()));
+            GLCALL(glBindVertexArray(0));
         }
-        GLCALL(
-            glVertexAttribPointer(
-                renderPack->glRenderObject->vertexAttribIndex,
-                3,
-                GL_FLOAT,
-                GL_FALSE,
-                0,
-                0
-            )
-        );
-        GLCALL(glDrawArrays(GL_TRIANGLES, 0, renderPack->glRenderObject->verts.size()));
-        GLCALL(glBindVertexArray(0));
-
     }
 }
 void Scene::updateChildren() {
     for (auto &child : this->sceneChildren) {
         if (child.second->canKill) {
-            child.second.reset();
-            this->sceneChildren.erase(child.first);
+            // std::cout << "killing here" << std::endl;
+            // auto &renderObj = this->drawVect[child.first];
+            // renderObj->glRenderObject.reset();
+            // this->drawVect.erase(child.first);
+
+            // child.second.reset();
+            // this->sceneChildren.erase(child.first);
+            std::cout << child.first << std::endl;
         } else {
             child.second->update();
         }
