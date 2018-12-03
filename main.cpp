@@ -120,17 +120,6 @@ class HeadNode: public BodyNode {
     }
 
 };
-// HeadNode *head;
-// void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-//     if (key == GLFW_KEY_ESCAPE)
-//         glfwSetWindowShouldClose(window, true);
-//     if (key == GLFW_KEY_1)
-//         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-//     if (key == GLFW_KEY_2)
-//         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-//     head->keyCallback(key);
-// }
 
 int main() {
     shapegame::Game game;
@@ -156,20 +145,10 @@ int main() {
         if (i < NUM_NODES - 1)
             body[i]->next = body[i + 1];
     }
-
-    // body[0]->_color = Color::BLACK;
-    // body[1]->_color = Color::BLUE;
-    // body[2]->_color = Color::GREEN;
     body[NUM_NODES -1]->_color = Color::GREEN;
 
     for (int i = 0; i < NUM_NODES; i++) {
         game.scene->addChild(*body[i]);
     }
-    // Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
-    //     body[NUM_NODES -1]->prev->next = nullptr;
-    //     body[NUM_NODES -1]->kill();
-    // });
-    // Game::inst().scene->addChild(*killTimer);
-
     game.run();
 }
