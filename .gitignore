@@ -12,3 +12,4 @@ cmake_install.cmake
 dist/
 *.test
 cmake-build-debug/
+.idea/
