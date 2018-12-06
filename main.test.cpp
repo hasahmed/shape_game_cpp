@@ -154,7 +154,7 @@ int main() {
 
     Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
         // std::cout << "here" << std::endl;
-        body[NUM_NODES -1]->kill();
+        // body[NUM_NODES -1]->kill();
         // std::cout << "here" << std::endl;
     }, false);
     Game::inst().scene->addChild(*killTimer);

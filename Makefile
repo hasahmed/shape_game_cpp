@@ -1,6 +1,7 @@
 UNAME := $(shell uname -s)
 CXXFLAGS = -std=c++17 -g -Wall
 SRC = $(wildcard *.cpp)
+SRC := $(filter-out %.test.cpp, $(SRC))
 OBJS = $(SRC:.cpp=.o)
 
 ifeq ($(UNAME),Linux)
@@ -29,11 +30,11 @@ all: main
 run: all
 	./$(EXE)
 
-main: $(OBJS)
+main: $(OBJS) main.test.o
 	$(CXX) -o $(EXE) $^ $(LDFLAGS)
 
-deletion_test: $(OBJS)
-	$(CXX) -o $(EXE) $^ $(LDFLAGS)
+deletion_test: $(OBJS) deletion.test.o
+	$(CXX) -o $@ $^ $(LDFLAGS)
 
 
 #linux specific
