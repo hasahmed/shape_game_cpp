@@ -32,6 +32,9 @@ run: all
 main: $(OBJS)
 	$(CXX) -o $(EXE) $^ $(LDFLAGS)
 
+deletion_test: $(OBJS)
+	$(CXX) -o $(EXE) $^ $(LDFLAGS)
+
 
 #linux specific
 glad.o:
@@ -39,13 +42,14 @@ glad.o:
 
 
 shapegame.dylib: objs
-	$(CXX) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1 -undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
+	$(CXX) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
+	-undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
 
 
 
 .PHONY: clean
 clean:
 	@echo "Cleaning..."
-	@rm -f $(OBJS) $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME)
+	@rm -f $(OBJS) $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME) *.o
 	@rm -rf *.dSYM
 	@echo "Done cleaning"
