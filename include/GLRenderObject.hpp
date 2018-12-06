@@ -10,7 +10,7 @@ namespace shapegame {
             GLuint vbo;
             std::vector<float> verts;
             ~GLRenderObject(){
-                std::cout << "deleted: GlRenderObject" << std::endl;
+                // std::cout << "deleted: GlRenderObject" << std::endl;
             }
     };
 }
