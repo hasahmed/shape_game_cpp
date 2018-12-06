@@ -13,3 +13,4 @@ dist/
 *.test
 !*.test.cpp
 .idea/
+*.dSYM
