@@ -13,7 +13,7 @@ endif
 
 ifeq ($(UNAME),Darwin)
 	CXX := c++-7
-	LDFLAGS=-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo -g
+	LDFLAGS=-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 	INC_DIR := -Iinclude
 	CXXFLAGS += $(INC_DIR)
 endif

@@ -23,7 +23,7 @@ class BodyNode : public Rectangle {
     BodyNode():
         Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {}
     ~BodyNode(){
-        std::cout << "BodyNode: destroyed" << std::endl;
+        // std::cout << "BodyNode: destroyed" << std::endl;
     }
 
     void onAdd() {
@@ -45,7 +45,7 @@ class BodyNode : public Rectangle {
     }
     void onRemove() override {
         this->next->prev->next = nullptr;
-        std::cout << "BodyNode: Removed from scene" << std::endl;
+        // std::cout << "BodyNode: Removed from scene" << std::endl;
     }
 };
 
@@ -88,19 +88,10 @@ class HeadNode: public BodyNode {
 
     void update() {}
     void onAdd() {
-        auto myTimer = new shapegame::Timer(SPEED_MS, true, true, [this]() {
-            this->tick();
-        });
-        // Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
-        //     // myTimer->kill();
-        //     // this->kill();
-        //     // std::cout << this->next->prev << std::endl;
-        //     // std::cout << this->next->prev << std::endl;
-        //     // std::cout << this << std::endl;
-        //     // this->next->next->prev = nullptr;
-        // }, false);
-        // Game::inst().scene->addChild(*killTimer);
-        Game::inst().scene->addChild(*myTimer);
+        // auto myTimer = new shapegame::Timer(SPEED_MS, true, true, [this]() {
+        //     this->tick();
+        // });
+        // Game::inst().scene->addChild(*myTimer);
     }
 
     void onKeyPress(int key, int action) override {
@@ -161,10 +152,12 @@ int main() {
     Rectangle *rect = new Rectangle(10, 10, Position(10, 10), Color::BLACK);
     game.scene->addChild(*rect);
 
-    // Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
-    //     // rect->kill();
-    // });
-    // Game::inst().scene->addChild(*killTimer);
+    Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
+        // std::cout << "here" << std::endl;
+        body[NUM_NODES -1]->kill();
+        // std::cout << "here" << std::endl;
+    }, false);
+    Game::inst().scene->addChild(*killTimer);
 
     game.run();
 }

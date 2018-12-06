@@ -10,7 +10,7 @@ namespace shapegame {
             void onAdd() override;
             void onKeyPress(int key, int action) override;
             ~Rectangle(){
-                std::cout << "deleted: Rectangle" << std::endl;
+                // std::cout << "deleted: Rectangle" << std::endl;
             }
     };
 }

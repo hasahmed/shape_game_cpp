@@ -11,7 +11,7 @@ namespace shapegame {
             RenderPackage(Shape *shape, GLRenderObject *glRenderObject);
             bool updateDirty();
             ~RenderPackage(){
-                std::cout << "deleted: RenderPackage" << std::endl;
+                // std::cout << "deleted: RenderPackage" << std::endl;
             }
     };
 }
