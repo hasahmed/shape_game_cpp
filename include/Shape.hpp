@@ -16,7 +16,7 @@ namespace shapegame {
             bool _dirty = false;
         public:
             ~Shape(){
-                std::cout << "deleted: Shape" << std::endl;
+                // std::cout << "deleted: Shape" << std::endl;
             }
             Color _color;
             Shape(float height, float width, ShapeType type, Color color);

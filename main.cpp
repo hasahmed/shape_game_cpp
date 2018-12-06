@@ -149,8 +149,8 @@ int main() {
         game.scene->addChild(*body[i]);
     }
 
-    Rectangle *rect = new Rectangle(10, 10, Position(10, 10), Color::BLACK);
-    game.scene->addChild(*rect);
+    // Rectangle *rect = new Rectangle(10, 10, Position(10, 10), Color::BLACK);
+    // game.scene->addChild(*rect);
 
     Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
         // std::cout << "here" << std::endl;
