@@ -28,7 +28,6 @@ void Timer::update() {
 			);
 		if (this->_msElapsed.count() >= this->milliseconds) {
 			this->callBack();
-			std::cout << "callback called" << std::endl;
 			if (!this->repeates) {
 				this->_running = false;
 				if (this->killOnComplete)
