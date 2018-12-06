@@ -11,4 +11,5 @@ CMakeFiles/
 cmake_install.cmake
 dist/
 *.test
+!*.test.cpp
 .idea/
