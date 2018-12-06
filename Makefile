@@ -2,6 +2,7 @@ UNAME := $(shell uname -s)
 CXXFLAGS = -std=c++17 -g -Wall
 SRC = $(wildcard *.cpp)
 SRC := $(filter-out %.test.cpp, $(SRC))
+TESTS = $(wildcard *.test.cpp)
 OBJS = $(SRC:.cpp=.o)
 
 ifeq ($(UNAME),Linux)
@@ -33,7 +34,7 @@ run: all
 main: $(OBJS) main.test.o
 	$(CXX) -o $(EXE) $^ $(LDFLAGS)
 
-deletion_test: $(OBJS) deletion.test.o
+deletion.test: $(OBJS) deletion.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 
@@ -51,6 +52,6 @@ shapegame.dylib: objs
 .PHONY: clean
 clean:
 	@echo "Cleaning..."
-	@rm -f $(OBJS) $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME) *.o
+	@rm -f $(OBJS) $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME) *.o *.test
 	@rm -rf *.dSYM
 	@echo "Done cleaning"
