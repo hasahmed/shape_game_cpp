@@ -26,15 +26,15 @@ shapegame::Scene::Scene() : sceneChildren(), drawVect() {
 // note instead of being passed a refrence I should really be passed a ponter.
 // Then we wouldn't need a try block because the dynamic cast would return
 // null instead of throwing
-void shapegame::Scene::addChild(Object &obj) {
-    try {
-        Shape& s = dynamic_cast<Shape&>(obj);
+Object* shapegame::Scene::addChild(Object *obj) {
+    Shape *s = dynamic_cast<Shape*>(obj);
+    if (s) {
         GLRenderObject renderObj = GLRenderObject();
         renderObj.vertexAttribIndex = GLHandler::getAssignableVertexAttribIndex();
-        renderObj.verts = VertexGenerator::instance()->generate(s);
+        renderObj.verts = VertexGenerator::instance()->generate(*s);
 
         GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
-        GLCALL(glUniform4fv(uniloc, 1, s._color._color));
+        GLCALL(glUniform4fv(uniloc, 1, s->_color._color));
 
         GLCALL(glUseProgram(this->_shaderProg));
         GLCALL(glGenVertexArrays(1, &(renderObj.vao))); //generates vertex attribute array
@@ -55,18 +55,16 @@ void shapegame::Scene::addChild(Object &obj) {
         GLCALL(glEnableVertexAttribArray(0));
         GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0)); //this is actually an unbinding
         GLCALL(glBindVertexArray(0)); //also an unbinding
-        auto rPack = std::make_unique<RenderPackage>(&s, &renderObj);
+        auto rPack = std::make_unique<RenderPackage>(s, &renderObj);
         this->drawVect.insert({nextInsert, std::move(rPack)});
-    } catch(const std::bad_cast& e) {
-        //don't do anything, because this just
-        // means that the object passed in is not a Shape
     }
-    obj.onAdd();
+    obj->onAdd();
     this->sceneChildren.insert({
         nextInsert,
-        std::move(std::unique_ptr<Object>(&obj))
+        std::move(std::unique_ptr<Object>(obj))
     });
     nextInsert++;
+    return obj;
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {

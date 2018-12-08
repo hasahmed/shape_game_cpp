@@ -22,7 +22,7 @@ namespace shapegame {
         public:
             void updateChildren();
             void drawChildren(GLFWwindow *w);
-            void addChild(Object &shape);
+            Object* addChild(Object *shape);
             static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
             void keyDispatch(int key, int action);
             Scene();
