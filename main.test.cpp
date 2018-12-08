@@ -1,4 +1,4 @@
-#define NUM_NODES 23
+#define NUM_BODY_NODES 10
 #define NODE_SIZE 10
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 75 
@@ -6,8 +6,6 @@
 
 
 #include "shapegame"
-#include <thread>
-#include <chrono>
 using namespace shapegame;
 
 
@@ -44,8 +42,8 @@ class BodyNode : public Rectangle {
     void update() {
     }
     void onRemove() override {
-        this->next->prev->next = nullptr;
-        // std::cout << "BodyNode: Removed from scene" << std::endl;
+        std::cout << "removed" << std::endl;
+        this->prev->next = nullptr;
     }
 };
 
@@ -86,12 +84,12 @@ class HeadNode: public BodyNode {
         tickChildren(b->next);
     }
 
-    void update() {}
-    void onAdd() {
-        // auto myTimer = new shapegame::Timer(SPEED_MS, true, true, [this]() {
-        //     this->tick();
-        // });
-        // Game::inst().scene->addChild(*myTimer);
+    // void update() override {}
+    void onAdd() override {
+        auto myTimer = new shapegame::Timer(SPEED_MS, true, true, [this]() {
+            this->tick();
+        });
+        Game::inst().scene->addChild(*myTimer);
     }
 
     void onKeyPress(int key, int action) override {
@@ -124,38 +122,42 @@ int main() {
     glfwSetErrorCallback(error_callback);
 
 
-    BodyNode *body[NUM_NODES];
+    HeadNode *head = new HeadNode();
+    BodyNode *body[NUM_BODY_NODES];
 
-    for (int i = 0; i < NUM_NODES; i++) {
+    // create the nodes
+    for (int i = 0; i < NUM_BODY_NODES; i++) {
         body[i] = new BodyNode();
     }
 
-
-    HeadNode *head = new HeadNode();
-    head->next = body[0];
-    body[0]->prev = head;
-    body[0]->next = body[1];
-
-
-    for (int i = 1; i < NUM_NODES; i++) {
-        body[i]->prev = body[i - 1];
-        if (i < NUM_NODES - 1)
-            body[i]->next = body[i + 1];
+    // set up node pointers
+    for (int i = 0; i < NUM_BODY_NODES; i++) {
+        if (i == 0) { //head node
+            head->next = body[i];
+            body[i]->prev = head;
+            if (NUM_BODY_NODES > 1)
+                body[i]->next = body[i + 1];
+            continue;
+        }
+        if (i == (NUM_BODY_NODES -1)) { // tail node
+            body[i]->prev = body[i - 1];
+            continue;
+        }
+        body[i]->next = body[i + 1]; //next node
+        body[i]->prev = body[i - 1]; //previous node
     }
-    body[NUM_NODES -1]->_color = Color::GREEN;
-
     game.scene->addChild(*head);
-    for (int i = 0; i < NUM_NODES; i++) {
+    for (int i = 0; i < NUM_BODY_NODES; i++) {
         game.scene->addChild(*body[i]);
     }
 
-    // Rectangle *rect = new Rectangle(10, 10, Position(10, 10), Color::BLACK);
-    // game.scene->addChild(*rect);
-
-    Timer *killTimer = new shapegame::Timer(1000, false, true, [=]() {
-        // std::cout << "here" << std::endl;
-        // body[NUM_NODES -1]->kill();
-        // std::cout << "here" << std::endl;
+    int i = -1;
+    Timer *killTimer = new shapegame::Timer(1000, true, true, [=]() mutable {
+        if (NUM_BODY_NODES + i > -1){
+            BodyNode *node = body[NUM_BODY_NODES + i];
+            node->kill();
+            i--;
+        }
     }, false);
     Game::inst().scene->addChild(*killTimer);
 
