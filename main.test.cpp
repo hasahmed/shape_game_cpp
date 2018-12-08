@@ -39,11 +39,18 @@ class BodyNode : public Rectangle {
         setPrev();
         this->setPosition(this->prev->prevPos);
     }
-    void update() {
+    void update() override {
     }
-    void onRemove() override {
-        std::cout << "removed" << std::endl;
-        this->prev->next = nullptr;
+    void onKill() override {
+        std:: cout << "kill called" << std::endl;
+        if (this->prev){
+            std::cout << "prev defined" << std::endl;
+            this->prev->next = this->next;
+        }
+        if (this->next){
+            std::cout << "next defined" << std::endl;
+            this->next->prev = this->prev;
+        }
     }
 };
 

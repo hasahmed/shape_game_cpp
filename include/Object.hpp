@@ -14,7 +14,10 @@ namespace shapegame {
             virtual ~Object();
             virtual void update() = 0;
             virtual void onAdd() = 0;
+            // when the object is actually removed from the scene
             virtual void onRemove();
+            // as soon as kill is called
+            virtual void onKill();
             virtual void onKeyPress(int key, int action) = 0;
     };
 }
