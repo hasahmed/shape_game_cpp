@@ -26,13 +26,13 @@ LINUX_DIST_NAME = shapegame.a
 WIN_DIST_NAME = shapegame.lib
 
 
-all: main
+all: main.test
 
 run: all
 	./$(EXE)
 
-main: $(OBJS) main.test.o
-	$(CXX) -o $(EXE) $^ $(LDFLAGS)
+main.test: $(OBJS) main.test.o
+	$(CXX) -o $@ $^ $(LDFLAGS)
 
 deletion.test: $(OBJS) deletion.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
