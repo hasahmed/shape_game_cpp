@@ -96,7 +96,7 @@ class HeadNode: public BodyNode {
         auto myTimer = new shapegame::Timer(SPEED_MS, true, true, [this]() {
             this->tick();
         });
-        Game::inst().scene->addChild(*myTimer);
+        Game::inst().scene->addChild(myTimer);
     }
 
     void onKeyPress(int key, int action) override {
@@ -153,9 +153,9 @@ int main() {
         body[i]->next = body[i + 1]; //next node
         body[i]->prev = body[i - 1]; //previous node
     }
-    game.scene->addChild(*head);
+    game.scene->addChild(head);
     for (int i = 0; i < NUM_BODY_NODES; i++) {
-        game.scene->addChild(*body[i]);
+        game.scene->addChild(body[i]);
     }
 
     int i = -1;
@@ -166,7 +166,7 @@ int main() {
             i--;
         }
     }, false);
-    Game::inst().scene->addChild(*killTimer);
+    Game::inst().scene->addChild(killTimer);
 
     game.run();
 }
