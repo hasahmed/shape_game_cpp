@@ -1,5 +1,6 @@
 #include <memory>
 #include <unistd.h>
+#include <iterator>
 #include "shapegame"
 #include "Rectangle.hpp"
 
@@ -69,12 +70,12 @@ Object* shapegame::Scene::addChild(Object *obj) {
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
-    // std::cout << this->drawVect.size() << std::endl;
-    for (auto &r: this->drawVect) {
-        if (r.second->shape->canKill) {
-            this->drawVect.erase(r.first);
+    // for (auto &r: this->drawVect) {
+    for (auto it = this->drawVect.begin(); it != this->drawVect.end();) {
+        if (it->second->shape->canKill) {
+            it = this->drawVect.erase(it);
         } else {
-            auto &renderPack = r.second;
+            auto &renderPack = it->second;
             GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
             GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
             GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
@@ -102,16 +103,18 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
             );
             GLCALL(glDrawArrays(GL_TRIANGLES, 0, renderPack->glRenderObject->verts.size()));
             GLCALL(glBindVertexArray(0));
+            it++;
         }
     }
 }
 void Scene::updateChildren() {
-    for (auto &child : this->sceneChildren) {
-        if (child.second->canKill) {
-            child.second->onRemove();
-            this->sceneChildren.erase(child.first);
+    for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
+        if (it->second->canKill) {
+            it->second->onRemove();
+            it = (this->sceneChildren.erase(it));
         } else {
-            child.second->update();
+            it->second->update();
+            it++;
         }
     }
 }
