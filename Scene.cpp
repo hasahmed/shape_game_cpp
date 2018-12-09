@@ -27,6 +27,7 @@ shapegame::Scene::Scene() : sceneChildren(), drawVect() {
 // Then we wouldn't need a try block because the dynamic cast would return
 // null instead of throwing
 Object* shapegame::Scene::addChild(Object *obj) {
+    std::cout << "Child added" << std::endl;
     Shape *s = dynamic_cast<Shape*>(obj);
     if (s) {
         GLRenderObject renderObj = GLRenderObject();
@@ -68,7 +69,8 @@ Object* shapegame::Scene::addChild(Object *obj) {
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
-    for (auto &r: drawVect) {
+    std::cout << this->drawVect.size() << std::endl;
+    for (auto &r: this->drawVect) {
         if (r.second->shape->canKill) {
             this->drawVect.erase(r.first);
         } else {

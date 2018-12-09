@@ -14,7 +14,8 @@ std::vector<float> shapegame::VertexGenerator::generate(const Shape &shape) {
             return {};
     }
     throw std::invalid_argument(
-            "The shape must of a type of Triangle, Square, or Circle");
+        std::string("The shape must of a type of Triangle, Square, or Circle but was ") + std::to_string((int)shape.type)
+        );
 }
 
 std::vector<float> shapegame::VertexGenerator::triangleVerts(const Shape &shape) {
