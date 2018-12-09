@@ -26,7 +26,7 @@ void Shape::setPosition(Position pos){
     this->setPosition(pos.x(), pos.y());
 }
 
-void Shape::translate(double x, double y){
+void Shape::translate(double x, double y) {
     this->pos.setX(this->pos.x() + x);
     this->pos.setY(this->pos.y() + y);
     this->_dirty = true;
