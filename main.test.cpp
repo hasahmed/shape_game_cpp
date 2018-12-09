@@ -157,6 +157,9 @@ int main() {
     for (int i = 0; i < NUM_BODY_NODES; i++) {
         game.scene->addChild(body[i]);
     }
+    Timer *t = game.scene->addChildAs<Timer>(new Timer(1000, true, true, [](){
+        std::cout << "timer callback" << std::endl;
+    }));
 
     int i = -1;
     Timer *killTimer = new shapegame::Timer(1000, true, true, [=]() mutable {
@@ -164,8 +167,11 @@ int main() {
             BodyNode *node = body[NUM_BODY_NODES + i];
             node->kill();
             i--;
+        } else {
+            t->kill();
         }
     }, false);
+
     Game::inst().scene->addChild(killTimer);
 
     game.run();

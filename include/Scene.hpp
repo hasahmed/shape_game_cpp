@@ -25,6 +25,7 @@ namespace shapegame {
             Object* addChild(Object *shape);
             template <class T>
             T* addChildAs(T *shape){
+                static_assert(std::is_base_of<Object, T>::value, "T must extend Object");
                 this->addChild(shape);
                 return shape;
             }
