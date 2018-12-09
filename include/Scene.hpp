@@ -23,6 +23,11 @@ namespace shapegame {
             void updateChildren();
             void drawChildren(GLFWwindow *w);
             Object* addChild(Object *shape);
+            template <class T>
+            T* addChildAs(T *shape){
+                this->addChild(shape);
+                return shape;
+            }
             static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
             void keyDispatch(int key, int action);
             Scene();
