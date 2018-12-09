@@ -111,6 +111,7 @@ void Scene::updateChildren() {
     for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
         if (it->second->canKill) {
             it->second->onRemove();
+            this->drawVect.erase(it->first);
             it = (this->sceneChildren.erase(it));
         } else {
             it->second->update();
