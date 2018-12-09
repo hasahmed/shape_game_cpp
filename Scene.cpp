@@ -69,7 +69,7 @@ Object* shapegame::Scene::addChild(Object *obj) {
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
-    std::cout << this->drawVect.size() << std::endl;
+    // std::cout << this->drawVect.size() << std::endl;
     for (auto &r: this->drawVect) {
         if (r.second->shape->canKill) {
             this->drawVect.erase(r.first);

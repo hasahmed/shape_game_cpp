@@ -1,5 +1,5 @@
 UNAME := $(shell uname -s)
-CXXFLAGS = -std=c++17 -g -Wall
+CXXFLAGS = -std=c++17 -g -O0 -Wall
 SRC = $(wildcard *.cpp)
 SRC := $(filter-out %.test.cpp, $(SRC))
 TESTS = $(wildcard *.test.cpp)
