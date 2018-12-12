@@ -9,7 +9,7 @@ shapegame::Shape::Shape(
                         Object(pos),
                         _height(height),
                         _width(width),
-                        _color(color),
+                        color(color),
                         type(type) {}
 
 Shape::Shape(float height, float width, ShapeType type, Color color) :

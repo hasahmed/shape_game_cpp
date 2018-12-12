@@ -36,7 +36,7 @@ Object* shapegame::Scene::addChild(Object *obj) {
         renderObj.verts = VertexGenerator::instance()->generate(*s);
 
         GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
-        GLCALL(glUniform4fv(uniloc, 1, s->_color._color));
+        GLCALL(glUniform4fv(uniloc, 1, s->color.getRawColor()));
 
         GLCALL(glUseProgram(this->_shaderProg));
         GLCALL(glGenVertexArrays(1, &(renderObj.vao))); //generates vertex attribute array
@@ -77,7 +77,7 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
         } else {
             auto &renderPack = it->second;
             GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
-            GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->_color._color));
+            GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->color.getRawColor()));
             GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
             GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
 
