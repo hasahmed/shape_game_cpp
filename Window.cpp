@@ -38,10 +38,10 @@ std::string shapegame::Window::info_string() {
     return "Renderer: " + render_str + "\n" + "OpenGL version supported: " + version_str;
 }
 
-int shapegame::Window::height() {
+int shapegame::Window::getHeight() {
     return _height;
 }
-int shapegame::Window::width() {
+int shapegame::Window::getWidth() {
     return _width;
 }
 // GLFWwindow* shapegame::Window::getWindowHandle() {

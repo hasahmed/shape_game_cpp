@@ -19,8 +19,8 @@ namespace shapegame {
             Window(int width, int height, std::string window_title);
             // static Window* getWindow();
 
-            int height();
-            int width();
+            int getHeight();
+            int getWidth();
     };
 
 }

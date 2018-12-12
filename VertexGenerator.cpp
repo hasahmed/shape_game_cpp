@@ -32,10 +32,10 @@ std::vector<float> shapegame::VertexGenerator::rectangleVerts(const Shape &shape
 
 
 
-    float x = -1.0f + shape.pos.x() * getHorizontalPixelStep();
-    float y = 1.0f - shape.pos.y() * getVerticalPixelStep();
-    float xsize = shape.width() * getHorizontalPixelStep();
-    float ysize = shape.height() * getVerticalPixelStep();
+    float x = -1.0f + shape.pos.getX() * getHorizontalPixelStep();
+    float y = 1.0f - shape.pos.getY() * getVerticalPixelStep();
+    float xsize = shape.getWidth() * getHorizontalPixelStep();
+    float ysize = shape.getHeight() * getVerticalPixelStep();
 
     return std::vector<float>{
         x,              y - ysize,   0.0f, //lower left,
@@ -54,10 +54,10 @@ shapegame::VertexGenerator::VertexGenerator(Window *window) : _window(window) {
     shapegame::VertexGenerator::_instance = this;
 }
 float shapegame::VertexGenerator::getHorizontalPixelStep() {
-    return 2.0f / (float)this->_window->height();
+    return 2.0f / (float)this->_window->getHeight();
 }
 float shapegame::VertexGenerator::getVerticalPixelStep() {
-    return 2.0f / (float)this->_window->width();
+    return 2.0f / (float)this->_window->getWidth();
 }
 
 shapegame::VertexGenerator* shapegame::VertexGenerator::instance() {
