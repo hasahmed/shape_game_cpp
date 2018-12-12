@@ -167,8 +167,6 @@ int main() {
             BodyNode *node = body[NUM_BODY_NODES + i];
             node->kill();
             i--;
-        } else {
-            t->kill();
         }
     }, false);
 
