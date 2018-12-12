@@ -21,7 +21,6 @@ class BodyNode : public Rectangle {
     BodyNode():
         Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {}
     ~BodyNode(){
-        // std::cout << "BodyNode: destroyed" << std::endl;
     }
 
     void onAdd() {
@@ -161,8 +160,6 @@ int main() {
             head->color.b,
             head->color.a - 0.01
         );
-
-        std::cout << head->color.a << std::endl;
     }));
 
     int i = -1;
