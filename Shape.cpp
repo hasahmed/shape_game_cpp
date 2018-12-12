@@ -15,8 +15,8 @@ shapegame::Shape::Shape(
 
 Shape::Shape(float height, float width, ShapeType type, Color color) :
     Shape(height, width, type, Position(0.0, 0.0), color) {}
-float Shape::height() const {return this->_height;}
-float Shape::width() const {return this->_width;}
+float Shape::getHeight() const {return this->_height;}
+float Shape::getWidth() const {return this->_width;}
 
 void Shape::setPosition(double x, double y){
     this->pos.setX(x);
@@ -24,14 +24,14 @@ void Shape::setPosition(double x, double y){
     this->_dirty = true;
 }
 void Shape::setPosition(Position pos){
-    this->setPosition(pos.x(), pos.y());
+    this->setPosition(pos.getX(), pos.getY());
 }
 
 void Shape::translate(double x, double y) {
-    this->pos.setX(this->pos.x() + x);
-    this->pos.setY(this->pos.y() + y);
+    this->pos.setX(this->pos.getX() + x);
+    this->pos.setY(this->pos.getY() + y);
     this->_dirty = true;
 }
 void Shape::translate(Position pos){
-    this->translate(pos.x(), pos.y());
+    this->translate(pos.getX(), pos.getY());
 }

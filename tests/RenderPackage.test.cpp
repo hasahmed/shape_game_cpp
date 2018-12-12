@@ -26,10 +26,10 @@ int main(){
   assert(r.glRenderObject->verts[0] == 1);
   assert(r.glRenderObject->verts[1] == 2);
   assert(r.glRenderObject->verts[2] == 3);
-  assert(r.shape->height() == 100);
-  assert(r.shape->width() == 12);
-  assert(r.shape->pos.x() == 0);
-  assert(r.shape->pos.y() == 0);
+  assert(r.shape->getHeight() == 100);
+  assert(r.shape->getWidth() == 12);
+  assert(r.shape->pos.getX() == 0);
+  assert(r.shape->pos.getY() == 0);
   assert(r.shape->type == ShapeType::Triangle);
   std::cout << "RenderPackage.test.cpp Tests Passed" << std::endl;
 }

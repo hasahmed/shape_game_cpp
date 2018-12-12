@@ -25,14 +25,14 @@ class BodyNode : public Rectangle {
 
     void onAdd() {
         this->setPosition(
-            this->prev->pos.x(),
-            this->prev->pos.y() + this->prev->height()
+            this->prev->pos.getX(),
+            this->prev->pos.getY() + this->prev->getHeight()
         );
     }
     Position prevPos;
     void setPrev() {
-        prevPos.setX(this->pos.x());
-        prevPos.setY(this->pos.y());
+        prevPos.setX(this->pos.getX());
+        prevPos.setY(this->pos.getY());
     }
     void tick() {
         setPrev();

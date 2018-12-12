@@ -24,8 +24,8 @@ namespace shapegame {
             }
             Shape(float height, float width, ShapeType type, Color color);
             Shape(float height, float width, ShapeType type, Position pos, Color color);
-            float height() const;
-            float width() const;
+            float getHeight() const;
+            float getWidth() const;
             void translate(double x, double y);
             void translate(Position pos);
             void setPosition(Position pos);
