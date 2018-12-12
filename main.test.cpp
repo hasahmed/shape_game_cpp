@@ -42,13 +42,10 @@ class BodyNode : public Rectangle {
     void update() override {
     }
     void onKill() override {
-        std:: cout << "kill called" << std::endl;
         if (this->prev){
-            std::cout << "prev defined" << std::endl;
             this->prev->next = this->next;
         }
         if (this->next){
-            std::cout << "next defined" << std::endl;
             this->next->prev = this->prev;
         }
     }
@@ -157,8 +154,15 @@ int main() {
     for (int i = 0; i < NUM_BODY_NODES; i++) {
         game.scene->addChild(body[i]);
     }
-    Timer *t = game.scene->addChildAs<Timer>(new Timer(1000, true, true, [](){
-        std::cout << "timer callback" << std::endl;
+    game.scene->addChildAs<Timer>(new Timer(100, true, true, [=](){
+        head->color.set(
+            head->color.r,
+            head->color.g,
+            head->color.b,
+            head->color.a - 0.01
+        );
+
+        std::cout << head->color.a << std::endl;
     }));
 
     int i = -1;

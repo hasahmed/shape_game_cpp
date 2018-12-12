@@ -2,13 +2,20 @@
 #include "Scene.hpp"
 namespace shapegame {
     class Color {
-        friend class Scene;
         private:
             float _color[4];
         public:
-            Color(float r, float g, float b, float a);
-            Color(float r, float g, float b);
+            Color(float red, float green, float blue, float alpha);
+            Color(float red, float green, float blue);
             Color();
+            float* getRawColor();
+            void set(float red, float green, float blue);
+            void set(float red, float green, float blue, float alpha);
+            void set(Color& c);
+            float r;
+            float g;
+            float b;
+            float a;
 
             static Color BLACK;
             static Color WHITE;
