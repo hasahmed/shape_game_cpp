@@ -15,13 +15,15 @@ namespace shapegame {
             float _width;
             bool _dirty = false;
         public:
+            bool collidable = false;
+            Color color;
+            ShapeType type;
+
             ~Shape(){
                 // std::cout << "deleted: Shape" << std::endl;
             }
-            Color color;
             Shape(float height, float width, ShapeType type, Color color);
             Shape(float height, float width, ShapeType type, Position pos, Color color);
-            ShapeType type;
             float height() const;
             float width() const;
             void translate(double x, double y);

@@ -28,7 +28,6 @@ shapegame::Scene::Scene() : sceneChildren(), drawVect() {
 // Then we wouldn't need a try block because the dynamic cast would return
 // null instead of throwing
 Object* shapegame::Scene::addChild(Object *obj) {
-    std::cout << "Child added" << std::endl;
     Shape *s = dynamic_cast<Shape*>(obj);
     if (s) {
         GLRenderObject renderObj = GLRenderObject();

@@ -5,12 +5,13 @@ shapegame::Shape::Shape(
         float width,
         ShapeType type,
         Position pos,
-        Color color) :
-                        Object(pos),
-                        _height(height),
-                        _width(width),
-                        color(color),
-                        type(type) {}
+        Color color
+        ) :
+            Object(pos),
+            _height(height),
+            _width(width),
+            color(color),
+            type(type) {}
 
 Shape::Shape(float height, float width, ShapeType type, Color color) :
     Shape(height, width, type, Position(0.0, 0.0), color) {}
