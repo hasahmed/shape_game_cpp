@@ -13,7 +13,6 @@ void error_callback(int error, const char* description) {
     puts(description);
 }
 
-// class HeadNode;
 class BodyNode : public Rectangle {
     public:
     BodyNode *prev = nullptr;
@@ -54,8 +53,15 @@ class HeadNode: public BodyNode {
     public:
 
     HeadNode(): BodyNode() {
+        this->collidable = true;
         this->pos.setX(240);
         this->pos.setY(240);
+    }
+
+    // int i = 0;
+
+    void onCollisionStart(Shape &other) override {
+        // std::cout << i++ << std::endl;
     }
 
     enum Dir {
@@ -162,16 +168,21 @@ int main() {
         );
     }));
 
-    int i = -1;
-    Timer *killTimer = new shapegame::Timer(1000, true, true, [=]() mutable {
-        if (NUM_BODY_NODES + i > -1){
-            BodyNode *node = body[NUM_BODY_NODES + i];
-            node->kill();
-            i--;
-        }
-    }, false);
+    // int i = -1;
+    // Timer *killTimer = new shapegame::Timer(1000, true, true, [=]() mutable {
+    //     if (NUM_BODY_NODES + i > -1){
+    //         BodyNode *node = body[NUM_BODY_NODES + i];
+    //         node->kill();
+    //         i--;
+    //     }
+    // }, false);
 
-    Game::inst().scene->addChild(killTimer);
+    auto rect = new Rectangle(10, 10, Position(210, 240), Color::BLACK);
+    rect->collidable = true;
+
+    Game::inst().scene->addChild(rect);
+
+    // Game::inst().scene->addChild(killTimer);
 
     game.run();
 }

@@ -26,6 +26,8 @@ namespace shapegame {
             Shape(float height, float width, ShapeType type, Position pos, Color color);
             float getHeight() const;
             float getWidth() const;
+            virtual void onCollisionStart(Shape &other);
+            bool isColliding(Shape &other);
             void translate(double x, double y);
             void translate(Position pos);
             void setPosition(Position pos);
