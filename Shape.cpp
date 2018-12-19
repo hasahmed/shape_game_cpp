@@ -32,7 +32,6 @@ bool Shape::isColliding(Shape &other) {
         other.pos.getX() + other.getWidth() > this->pos.getX() &&
         this->pos.getY() + this->getHeight() > other.pos.getY() &&
         other.pos.getY() + other.getHeight() > this->pos.getY()
-
     ) {
         return true;
     }
