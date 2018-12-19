@@ -39,7 +39,6 @@ bool Shape::isColliding(Shape &other) {
 }
 
 void Shape::onCollisionStart(Shape &other) {
-    puts("Collision has occured");
 }
 
 void Shape::translate(double x, double y) {
