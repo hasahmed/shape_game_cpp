@@ -27,6 +27,22 @@ void Shape::setPosition(Position pos){
     this->setPosition(pos.getX(), pos.getY());
 }
 
+bool Shape::isColliding(Shape &other) {
+    if (this->pos.getX() + this->getWidth() > other.pos.getX() && // right with left
+        other.pos.getX() + other.getWidth() > this->pos.getX() &&
+        this->pos.getY() + this->getHeight() > other.pos.getY() &&
+        other.pos.getY() + other.getHeight() > this->pos.getY()
+
+    ) {
+        return true;
+    }
+    return false;
+}
+
+void Shape::onCollisionStart(Shape &other) {
+    puts("Collision has occured");
+}
+
 void Shape::translate(double x, double y) {
     this->pos.setX(this->pos.getX() + x);
     this->pos.setY(this->pos.getY() + y);

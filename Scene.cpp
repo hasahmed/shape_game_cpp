@@ -20,8 +20,12 @@ void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, i
 }
 
 
-shapegame::Scene::Scene() : sceneChildren(), drawVect() {
-    Scene::_inst = this;
+shapegame::Scene::Scene() :
+    sceneChildren(),
+    drawVect(),
+    collisionList(new SimpleCollision())
+    {
+        Scene::_inst = this;
 }
 
 // note instead of being passed a refrence I should really be passed a ponter.
@@ -74,6 +78,8 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
         if (it->second->shape->canKill) {
             it = this->drawVect.erase(it);
         } else {
+            if (it->second->shape->collidable)
+                this->collisionList->add(it->second->shape);
             auto &renderPack = it->second;
             GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
             GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->color.getRawColor()));
@@ -105,6 +111,8 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
             it++;
         }
     }
+    this->collisionList->check();
+    this->collisionList->clear();
 }
 void Scene::updateChildren() {
     for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
