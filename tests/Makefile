@@ -111,19 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Position.test
-
-# Build rule for target.
-Position.test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Position.test
-.PHONY : Position.test
-
-# fast build rule for target.
-Position.test/fast:
-	$(MAKE) -f CMakeFiles/Position.test.dir/build.make CMakeFiles/Position.test.dir/build
-.PHONY : Position.test/fast
-
-#=============================================================================
 # Target rules for targets named Color.test
 
 # Build rule for target.
@@ -137,6 +124,32 @@ Color.test/fast:
 .PHONY : Color.test/fast
 
 #=============================================================================
+# Target rules for targets named CollisionTree.test
+
+# Build rule for target.
+CollisionTree.test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 CollisionTree.test
+.PHONY : CollisionTree.test
+
+# fast build rule for target.
+CollisionTree.test/fast:
+	$(MAKE) -f CMakeFiles/CollisionTree.test.dir/build.make CMakeFiles/CollisionTree.test.dir/build
+.PHONY : CollisionTree.test/fast
+
+#=============================================================================
+# Target rules for targets named Position.test
+
+# Build rule for target.
+Position.test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Position.test
+.PHONY : Position.test
+
+# fast build rule for target.
+Position.test/fast:
+	$(MAKE) -f CMakeFiles/Position.test.dir/build.make CMakeFiles/Position.test.dir/build
+.PHONY : Position.test/fast
+
+#=============================================================================
 # Target rules for targets named FileUtil.test
 
 # Build rule for target.
@@ -148,6 +161,33 @@ FileUtil.test: cmake_check_build_system
 FileUtil.test/fast:
 	$(MAKE) -f CMakeFiles/FileUtil.test.dir/build.make CMakeFiles/FileUtil.test.dir/build
 .PHONY : FileUtil.test/fast
+
+CollisionTree.test.o: CollisionTree.test.cpp.o
+
+.PHONY : CollisionTree.test.o
+
+# target to build an object file
+CollisionTree.test.cpp.o:
+	$(MAKE) -f CMakeFiles/CollisionTree.test.dir/build.make CMakeFiles/CollisionTree.test.dir/CollisionTree.test.cpp.o
+.PHONY : CollisionTree.test.cpp.o
+
+CollisionTree.test.i: CollisionTree.test.cpp.i
+
+.PHONY : CollisionTree.test.i
+
+# target to preprocess a source file
+CollisionTree.test.cpp.i:
+	$(MAKE) -f CMakeFiles/CollisionTree.test.dir/build.make CMakeFiles/CollisionTree.test.dir/CollisionTree.test.cpp.i
+.PHONY : CollisionTree.test.cpp.i
+
+CollisionTree.test.s: CollisionTree.test.cpp.s
+
+.PHONY : CollisionTree.test.s
+
+# target to generate assembly for a file
+CollisionTree.test.cpp.s:
+	$(MAKE) -f CMakeFiles/CollisionTree.test.dir/build.make CMakeFiles/CollisionTree.test.dir/CollisionTree.test.cpp.s
+.PHONY : CollisionTree.test.cpp.s
 
 Color.test.o: Color.test.cpp.o
 
@@ -229,6 +269,33 @@ Position.test.s: Position.test.cpp.s
 Position.test.cpp.s:
 	$(MAKE) -f CMakeFiles/Position.test.dir/build.make CMakeFiles/Position.test.dir/Position.test.cpp.s
 .PHONY : Position.test.cpp.s
+
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.o: Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.o
+
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.o
+
+# target to build an object file
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.o:
+	$(MAKE) -f CMakeFiles/CollisionTree.test.dir/build.make CMakeFiles/CollisionTree.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.o
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.o
+
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.i: Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.i
+
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.i
+
+# target to preprocess a source file
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.i:
+	$(MAKE) -f CMakeFiles/CollisionTree.test.dir/build.make CMakeFiles/CollisionTree.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.i
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.i
+
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.s: Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.s
+
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.s
+
+# target to generate assembly for a file
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.s:
+	$(MAKE) -f CMakeFiles/CollisionTree.test.dir/build.make CMakeFiles/CollisionTree.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.s
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.cpp.s
 
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.o: Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.o
 
@@ -318,10 +385,14 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... Position.test"
 	@echo "... Color.test"
+	@echo "... edit_cache"
+	@echo "... CollisionTree.test"
+	@echo "... Position.test"
 	@echo "... FileUtil.test"
+	@echo "... CollisionTree.test.o"
+	@echo "... CollisionTree.test.i"
+	@echo "... CollisionTree.test.s"
 	@echo "... Color.test.o"
 	@echo "... Color.test.i"
 	@echo "... Color.test.s"
@@ -331,6 +402,9 @@ help:
 	@echo "... Position.test.o"
 	@echo "... Position.test.i"
 	@echo "... Position.test.s"
+	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.o"
+	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.i"
+	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/CollisionTree.s"
 	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.o"
 	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.i"
 	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.s"
