@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <deque>
 #include <unordered_map>
 #include "Shape.hpp"
 #include "Object.hpp"
@@ -8,44 +9,11 @@
 #include "GLHandler.hpp"
 #include "GLRenderObject.hpp"
 #include "RenderPackage.hpp"
+#include "ShapePair.hpp"
+#include "CollisionList.hpp"
 
 
 namespace shapegame {
-
-    class CollisionList {
-        public:
-            virtual void add(Shape*) = 0;
-            virtual void clear() = 0;
-            virtual void check() = 0;
-            virtual ~CollisionList(){
-            }
-    };
-
-    class SimpleCollision : public CollisionList {
-        public:
-            std::vector<Shape*> shapeStore_;
-            SimpleCollision() : shapeStore_(){
-                this->shapeStore_.reserve(100);
-            }
-            void add(Shape* shape) override {
-                shapeStore_.push_back(shape);
-            }
-            void clear() override {
-                this->shapeStore_.clear();
-            }
-            void check() override {
-                for (unsigned int i = 0; i < this->shapeStore_.size(); i++) {
-                    for (unsigned int j = 0; j < this->shapeStore_.size(); j++) {
-                        if (this->shapeStore_[j] != this->shapeStore_[i]) {
-                            if (this->shapeStore_[j]->isColliding(*(this->shapeStore_[i]))) {
-                                this->shapeStore_[j]->onCollisionStart(*(this->shapeStore_[i]));
-                                this->shapeStore_[i]->onCollisionStart(*(this->shapeStore_[j]));
-                            }
-                        }
-                    }
-                }
-            }
-    };
 
     class Scene {
         friend class GLHandler;

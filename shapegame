@@ -22,3 +22,6 @@
 #include "Timer.hpp"
 #include "Input.hpp"
 #include "CollisionTree.hpp"
+#include "ShapePair.hpp"
+#include "CollisionList.hpp"
+#include "SimpleCollision.hpp"
