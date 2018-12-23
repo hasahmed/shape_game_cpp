@@ -38,9 +38,9 @@ bool Shape::isColliding(Shape &other) {
     return false;
 }
 
-void Shape::onCollisionStart(Shape &other) {
-    std::cout << "Collision Has Started" << std::endl;
-}
+void Shape::onCollisionStart(Shape &other) {}
+void Shape::onCollisionStop(Shape &other) {}
+void Shape::onColliding(Shape &other) {}
 
 void Shape::translate(double x, double y) {
     this->pos.setX(this->pos.getX() + x);

@@ -7,7 +7,4 @@ bool ShapePair::operator==(const ShapePair &other) const {
 	return
 		(this->first == other.first && this->second == other.second) ||
 		(this->first == other.second && this->second == other.first);
-
-		// first == second
-		// second == first
 }

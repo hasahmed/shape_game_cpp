@@ -19,22 +19,26 @@ void SimpleCollision::check() {
 					this->shapeStore_[j] != this->shapeStore_[i] &&
 					this->shapeStore_[j]->isColliding(*(this->shapeStore_[i]))
 				) {
-					std::pair<Shape*, Shape*> collides(this->shapeStore_[i], this->shapeStore_[j]);
 					ShapePair colliding(this->shapeStore_[i], this->shapeStore_[j]);
-					collides.first->onCollisionStart(*collides.second);
-					this->currentlyColliding_.insert(colliding);
+					// colliding.first->onCollisionStart(*colliding.second);
+					auto inserted = this->currentlyColliding_.insert(colliding);
+					if (inserted.second) {
+						colliding.first->onCollisionStart(*colliding.second);
+						colliding.second->onCollisionStart(*colliding.first);
+					} else {
+						colliding.first->onColliding(*colliding.second);
+						colliding.second->onColliding(*colliding.first);
+					}
 				}
 			}
 		}
 	}
 	std::unordered_set<ShapePair> notRemoved;
-	// cout << "Sizeof currentlyColliding_: " << currentlyColliding_.size() << endl;
+	// note that need to handle when shapes get deleted after collide
 	for (auto &sPair : this->currentlyColliding_) {
-		// cout << "Pair: " << &sPair << endl;
-		// cout << '\t' << "first : " << sPair.first << endl;
-		// cout << '\t' << "second: " << sPair.second << endl << endl;
 		if (!sPair.first->isColliding(*sPair.second)) {
-			puts("No longer colliding");
+			sPair.first->onCollisionStop(*sPair.second);
+			sPair.second->onCollisionStop(*sPair.first);
 		} else {
 			notRemoved.insert(sPair);
 		}
