@@ -8,7 +8,6 @@ namespace shapegame {
 	private:
 		std::vector<ShapePair> findContaining(Shape *shape);
 	public:
-		std::vector<Shape*> shapeStore_;
 		std::unordered_set<Shape*> shapeStore;
 		std::unordered_set<ShapePair> currentlyColliding_;
 		SimpleCollision();

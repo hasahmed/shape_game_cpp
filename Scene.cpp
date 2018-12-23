@@ -73,10 +73,9 @@ Object* shapegame::Scene::addChild(Object *obj) {
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
-    // for (auto &r: this->drawVect) {
     for (auto it = this->drawVect.begin(); it != this->drawVect.end();) {
         if (it->second->shape->canKill) {
-            // this->collisionList->remove(it->second->shape)
+            this->collisionList->remove(it->second->shape);
             it = this->drawVect.erase(it);
         } else {
             if (it->second->shape->collidable)
@@ -118,6 +117,10 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
 void Scene::updateChildren() {
     for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
         if (it->second->canKill) {
+            Shape *s = dynamic_cast<Shape*>(it->second.get());
+            if (s) {
+                this->collisionList->remove(s);
+            }
             it->second->onRemove();
             this->drawVect.erase(it->first);
             it = (this->sceneChildren.erase(it));
