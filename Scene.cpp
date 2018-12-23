@@ -76,6 +76,7 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
     // for (auto &r: this->drawVect) {
     for (auto it = this->drawVect.begin(); it != this->drawVect.end();) {
         if (it->second->shape->canKill) {
+            // this->collisionList->remove()
             it = this->drawVect.erase(it);
         } else {
             if (it->second->shape->collidable)
