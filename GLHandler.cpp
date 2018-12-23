@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <ctime>
 #include <chrono>
 #include "shapegame"
@@ -102,8 +103,23 @@ void shapegame::GLHandler::check_shader_err(int shader){
 void shapegame::GLHandler::run() {
     typedef std::chrono::high_resolution_clock Clock;
     auto t1 = Clock::now();
+    int frames = 0;
+    // length of one frame 0.5 seconds
+    // how many fragments of a second is that
+    // fps = number of frame lengths that fit into 1 second
+    // fps -> lengthOfFrame(x) = 1;
+    // lengthOfFrame(x)/lengthOfFrame = 1/lengthOfFrame
+    // x = 2;
+    // 1 - lengthOfFrame;
+    // x = 
+    // 0.5 * 2 = 1 // 2fps
+    // 0.33 * 3 = 1 // 3fps
+        //    ^ how to get this number?
+    // one second 
+    // auto frames = Clock::now();
     //double second_count = 0;
     while (!glfwWindowShouldClose(this->window_handle)) {
+        frames++;
         auto t2 = Clock::now();
         std::chrono::duration<float> elapsed_seconds = t2 - t1;
         glfwGetCursorPos(this->window_handle, &mouse_x, &mouse_y);
@@ -122,7 +138,13 @@ void shapegame::GLHandler::run() {
         //second_count += elapsed_seconds.count();
         //std::cout << second_count << std::endl;
         //fps++;
-        //std::cout << "delta: " << elapsed_seconds.count() << std::endl;
+        std::chrono::duration<float> frameLength = Clock::now() - t2;
+        float fps = 1.0f / frameLength.count();
+        
+        // std::cout << "Running Time: " << elapsed_seconds.count() << std::endl;
+        if (frames % 10 == 0)
+            std::cout << "\r" << "FPS: " << fps << std::flush;
+        // std::cout << "Delta: " << frameLength.count() << std::endl;
     }
 
     glfwTerminate();
