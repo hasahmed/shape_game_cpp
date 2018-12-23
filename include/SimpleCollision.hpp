@@ -1,0 +1,16 @@
+#pragma once
+#include <unordered_set>
+#include "CollisionList.hpp"
+#include "ShapePair.hpp"
+#include "Shape.hpp"
+namespace shapegame {
+	class SimpleCollision : public CollisionList {
+	public:
+		std::vector<Shape*> shapeStore_;
+		std::unordered_set<ShapePair> currentlyColliding_;
+		SimpleCollision();
+		void add(Shape* shape) override;
+		void clear() override;
+		void check() override;
+	};
+}

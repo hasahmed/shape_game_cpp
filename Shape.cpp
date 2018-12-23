@@ -39,6 +39,7 @@ bool Shape::isColliding(Shape &other) {
 }
 
 void Shape::onCollisionStart(Shape &other) {
+    std::cout << "Collision Has Started" << std::endl;
 }
 
 void Shape::translate(double x, double y) {

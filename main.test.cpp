@@ -58,10 +58,12 @@ class HeadNode: public BodyNode {
         this->pos.setY(240);
     }
 
-    // int i = 0;
-
     void onCollisionStart(Shape &other) override {
-        // std::cout << i++ << std::endl;
+        static bool called = false;
+        if (!called) {
+            puts("Head Collision");
+            called = true;
+        }
     }
 
     enum Dir {
@@ -159,14 +161,14 @@ int main() {
     for (int i = 0; i < NUM_BODY_NODES; i++) {
         game.scene->addChild(body[i]);
     }
-    game.scene->addChildAs<Timer>(new Timer(100, true, true, [=](){
-        head->color.set(
-            head->color.r,
-            head->color.g,
-            head->color.b,
-            head->color.a - 0.01
-        );
-    }));
+    // game.scene->addChildAs<Timer>(new Timer(100, true, true, [=](){
+    //     head->color.set(
+    //         head->color.r,
+    //         head->color.g,
+    //         head->color.b,
+    //         head->color.a - 0.01
+    //     );
+    // }));
 
     // int i = -1;
     // Timer *killTimer = new shapegame::Timer(1000, true, true, [=]() mutable {
