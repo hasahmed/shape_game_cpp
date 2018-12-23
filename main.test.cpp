@@ -58,12 +58,12 @@ class HeadNode: public BodyNode {
         this->pos.setY(240);
     }
 
+    void onCollisionStop(Shape &other) override {
+        puts("Head Collision Ended");
+    }
+
     void onCollisionStart(Shape &other) override {
-        static bool called = false;
-        if (!called) {
-            puts("Head Collision");
-            called = true;
-        }
+        puts("Head Collision");
     }
 
     enum Dir {
@@ -128,6 +128,22 @@ class HeadNode: public BodyNode {
 
 };
 
+class Food : public Rectangle {
+    public: 
+        Food(): Rectangle(10, 10, Position(210, 240), Color::BLACK) {
+            this->collidable = true;
+        }
+        void onCollisionStart(Shape& other) override {
+            puts("Food collided");
+        }
+        void onCollisionStop(Shape& other) override {
+            puts("Food stopped colliding");
+        }
+        void onColliding(Shape &other) override {
+            puts("On colliding");
+        }
+};
+
 int main() {
     shapegame::Game game;
     glfwSetErrorCallback(error_callback);
@@ -179,10 +195,8 @@ int main() {
     //     }
     // }, false);
 
-    auto rect = new Rectangle(10, 10, Position(210, 240), Color::BLACK);
-    rect->collidable = true;
 
-    Game::inst().scene->addChild(rect);
+    Game::inst().scene->addChild(new Food());
 
     // Game::inst().scene->addChild(killTimer);
 
