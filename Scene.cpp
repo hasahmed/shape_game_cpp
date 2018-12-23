@@ -75,8 +75,7 @@ Object* shapegame::Scene::addChild(Object *obj) {
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
     for (auto it = this->drawVect.begin(); it != this->drawVect.end();) {
         if (it->second->shape->canKill) {
-            this->collisionList->remove(it->second->shape);
-            it = this->drawVect.erase(it);
+            throw std::runtime_error("No killed shapes should make it to the draw call");
         } else {
             if (it->second->shape->collidable)
                 this->collisionList->add(it->second->shape);
@@ -118,7 +117,7 @@ void Scene::updateChildren() {
     for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
         if (it->second->canKill) {
             Shape *s = dynamic_cast<Shape*>(it->second.get());
-            if (s) {
+            if (s) { // then it is a shape
                 this->collisionList->remove(s);
             }
             it->second->onRemove();
