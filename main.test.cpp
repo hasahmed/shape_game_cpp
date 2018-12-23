@@ -76,7 +76,6 @@ class HeadNode: public BodyNode {
         this->setPrev();
         tickChildren(this->next);
         Dir nextMove = this->moveDir;
-        std::cout << this->moves.size() << std::endl;
         if (!this->moves.empty()){
             nextMove = this->moves.front();
             this->moves.pop();
@@ -145,13 +144,17 @@ class Food : public Rectangle {
             this->collidable = true;
         }
         void onCollisionStart(Shape& other) override {
+            try {
+                HeadNode *h = dynamic_cast<HeadNode*>(&other);
+            } catch (std::bad_cast exp) {
+
+            }
             // puts("Food collided");
         }
         void onCollisionStop(Shape& other) override {
             // puts("Food stopped colliding");
         }
         void onColliding(Shape &other) override {
-            // puts("On colliding");
         }
 };
 
