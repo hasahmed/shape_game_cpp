@@ -5,6 +5,7 @@
 #define BODY_COLOR Color::KATIE_PINK
 
 
+#include <queue>
 #include "shapegame"
 using namespace shapegame;
 
@@ -51,6 +52,11 @@ class BodyNode : public Rectangle {
 
 class HeadNode: public BodyNode {
     public:
+    enum Dir {
+        LEFT, RIGHT, UP, DOWN
+    };
+    Dir moveDir = Dir::UP;
+    std::queue<Dir> moves;
 
     HeadNode(): BodyNode() {
         this->collidable = true;
@@ -59,22 +65,23 @@ class HeadNode: public BodyNode {
     }
 
     void onCollisionStop(Shape &other) override {
-        puts("Head Collision Ended");
+        // puts("Head Collision Ended");
     }
 
     void onCollisionStart(Shape &other) override {
-        puts("Head Collision");
+        // puts("Head Collision");
     }
-
-    enum Dir {
-        LEFT, RIGHT, UP, DOWN
-    };
-    Dir moveDir = Dir::UP;
 
     void tick() {
         this->setPrev();
         tickChildren(this->next);
-        switch(this->moveDir) {
+        Dir nextMove = this->moveDir;
+        std::cout << this->moves.size() << std::endl;
+        if (!this->moves.empty()){
+            nextMove = this->moves.front();
+            this->moves.pop();
+        }
+        switch(nextMove) {
             case Dir::UP:
                 this->translate(0, -MOVE_AMOUNT);
                 break;
@@ -114,15 +121,19 @@ class HeadNode: public BodyNode {
 
         if (key == GLFW_KEY_UP) {
             this->moveDir = Dir::UP;
+            this->moves.push(Dir::UP);
         }
         else if (key == GLFW_KEY_DOWN) {
             this->moveDir = Dir::DOWN;
+            this->moves.push(Dir::DOWN);
         }
         else if (key == GLFW_KEY_LEFT) {
             this->moveDir = Dir::LEFT;
+            this->moves.push(Dir::LEFT);
         }
         else if (key == GLFW_KEY_RIGHT) {
             this->moveDir = Dir::RIGHT;
+            this->moves.push(Dir::RIGHT);
         } 
     }
 
@@ -134,13 +145,13 @@ class Food : public Rectangle {
             this->collidable = true;
         }
         void onCollisionStart(Shape& other) override {
-            puts("Food collided");
+            // puts("Food collided");
         }
         void onCollisionStop(Shape& other) override {
-            puts("Food stopped colliding");
+            // puts("Food stopped colliding");
         }
         void onColliding(Shape &other) override {
-            puts("On colliding");
+            // puts("On colliding");
         }
 };
 
