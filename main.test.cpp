@@ -1,4 +1,4 @@
-#define NUM_BODY_NODES 10
+#define NUM_BODY_NODES 1000
 #define NODE_SIZE 10 
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 75 
@@ -19,7 +19,9 @@ class BodyNode : public Rectangle {
     BodyNode *prev = nullptr;
     BodyNode *next = nullptr;
     BodyNode():
-        Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {}
+        Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {
+            this->collidable = true;
+        }
     ~BodyNode(){
     }
 
