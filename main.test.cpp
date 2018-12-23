@@ -1,5 +1,5 @@
 #define NUM_BODY_NODES 10
-#define NODE_SIZE 10
+#define NODE_SIZE 10 
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 75 
 #define BODY_COLOR Color::KATIE_PINK
@@ -140,7 +140,7 @@ class HeadNode: public BodyNode {
 
 class Food : public Rectangle {
     public: 
-        Food(): Rectangle(10, 10, Position(210, 240), Color::BLACK) {
+        Food(): Rectangle(NODE_SIZE, NODE_SIZE, Position(210, 240), Color::YELLOW) {
             this->collidable = true;
         }
         void onCollisionStart(Shape& other) override {
@@ -160,7 +160,7 @@ class Food : public Rectangle {
 };
 
 int main() {
-    shapegame::Game game;
+    shapegame::Game game(720, 720, "Snake");
     glfwSetErrorCallback(error_callback);
 
 
