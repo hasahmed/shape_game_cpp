@@ -1,4 +1,4 @@
-#define NUM_BODY_NODES 100
+#define NUM_BODY_NODES 0
 #define NODE_SIZE 10 
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 75 
