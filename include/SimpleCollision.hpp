@@ -5,11 +5,15 @@
 #include "Shape.hpp"
 namespace shapegame {
 	class SimpleCollision : public CollisionList {
+	private:
+		std::vector<ShapePair> findContaining(Shape *shape);
 	public:
 		std::vector<Shape*> shapeStore_;
+		std::unordered_set<Shape*> shapeStore;
 		std::unordered_set<ShapePair> currentlyColliding_;
 		SimpleCollision();
 		void add(Shape* shape) override;
+		void remove(Shape* shape) override;
 		void clear() override;
 		void check() override;
 	};
