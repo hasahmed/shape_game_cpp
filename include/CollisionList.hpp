@@ -15,6 +15,12 @@ namespace shapegame {
 			 * Clears the internal store
 			 */
 			virtual void clear() = 0;
+
+			/**
+			 * Should remove ALL refrences to given shape
+			 */
+			virtual void remove(Shape*) = 0;
+
 			virtual ~CollisionList(){
 			}
 	};

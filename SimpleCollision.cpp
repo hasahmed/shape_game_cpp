@@ -4,11 +4,30 @@ using namespace shapegame;
 SimpleCollision::SimpleCollision() : shapeStore_(), currentlyColliding_() {
 	this->shapeStore_.reserve(100);
 }
+
+std::vector<ShapePair> SimpleCollision::findContaining(Shape *shape) {
+	std::vector<ShapePair> ret;
+	for (auto sp : this->currentlyColliding_) {
+		if (sp.first == shape || sp.second == shape) {
+			ret.push_back(sp);
+		}
+	}
+	return ret;
+}
 void SimpleCollision::add(Shape* shape) {
 		this->shapeStore_.push_back(shape);
+		this->shapeStore.insert(shape);
 }
 void SimpleCollision::clear() {
 	this->shapeStore_.clear();
+	this->shapeStore.clear();
+}
+void SimpleCollision::remove(Shape *shape) {
+	std::vector<ShapePair> collisions = this->findContaining(shape);
+	for (auto sp : collisions) {
+		this->currentlyColliding_.erase(sp);
+	}
+	this->shapeStore.erase(shape);
 }
 void SimpleCollision::check() {
 	using namespace std;
