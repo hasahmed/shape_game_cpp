@@ -10,7 +10,5 @@ void Object::kill() {
 	this->onKill();
 	this->canKill = true;
 }
-void Object::onKill() {
-	std::cout << "kill called" << std::endl;
-}
+void Object::onKill() {}
 void Object::onRemove(){}

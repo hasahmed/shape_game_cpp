@@ -146,13 +146,14 @@ class Food : public Rectangle {
         void onCollisionStart(Shape& other) override {
             try {
                 HeadNode *h = dynamic_cast<HeadNode*>(&other);
+                this->kill();
             } catch (std::bad_cast exp) {
-
+                puts("Not colliding with head");
             }
-            // puts("Food collided");
+            puts("Food collided");
         }
         void onCollisionStop(Shape& other) override {
-            // puts("Food stopped colliding");
+            puts("Food stopped colliding");
         }
         void onColliding(Shape &other) override {
         }

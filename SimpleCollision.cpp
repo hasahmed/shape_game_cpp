@@ -1,8 +1,7 @@
 #include "shapegame"
 #include <unordered_set>
 using namespace shapegame;
-SimpleCollision::SimpleCollision() : shapeStore_(), currentlyColliding_() {
-	this->shapeStore_.reserve(100);
+SimpleCollision::SimpleCollision() : shapeStore(), currentlyColliding_() {
 }
 
 std::vector<ShapePair> SimpleCollision::findContaining(Shape *shape) {
@@ -15,11 +14,9 @@ std::vector<ShapePair> SimpleCollision::findContaining(Shape *shape) {
 	return ret;
 }
 void SimpleCollision::add(Shape* shape) {
-		this->shapeStore_.push_back(shape);
 		this->shapeStore.insert(shape);
 }
 void SimpleCollision::clear() {
-	this->shapeStore_.clear();
 	this->shapeStore.clear();
 }
 void SimpleCollision::remove(Shape *shape) {
@@ -31,15 +28,14 @@ void SimpleCollision::remove(Shape *shape) {
 }
 void SimpleCollision::check() {
 	using namespace std;
-	for (unsigned int i = 0; i < this->shapeStore_.size(); i++) {
-		for (unsigned int j = 0; j < this->shapeStore_.size(); j++) {
-			if (this->shapeStore_[j] != this->shapeStore_[i]) {
+	for (auto shapei : this->shapeStore) {
+		for (auto shapej : this->shapeStore) {
+			if (shapej != shapei) {
 				if (
-					this->shapeStore_[j] != this->shapeStore_[i] &&
-					this->shapeStore_[j]->isColliding(*(this->shapeStore_[i]))
+					shapej != shapei &&
+					shapej->isColliding(*(shapei))
 				) {
-					ShapePair colliding(this->shapeStore_[i], this->shapeStore_[j]);
-					// colliding.first->onCollisionStart(*colliding.second);
+					ShapePair colliding(shapei, shapej);
 					auto inserted = this->currentlyColliding_.insert(colliding);
 					if (inserted.second) {
 						colliding.first->onCollisionStart(*colliding.second);
@@ -53,7 +49,6 @@ void SimpleCollision::check() {
 		}
 	}
 	std::unordered_set<ShapePair> notRemoved;
-	// note that need to handle when shapes get deleted after collide
 	for (auto &sPair : this->currentlyColliding_) {
 		if (!sPair.first->isColliding(*sPair.second)) {
 			sPair.first->onCollisionStop(*sPair.second);
