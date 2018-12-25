@@ -1,4 +1,4 @@
-#define NUM_BODY_NODES 0
+#define NUM_BODY_NODES 10
 #define NODE_SIZE 10 
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 75 
@@ -54,6 +54,7 @@ class BodyNode : public Rectangle {
 
 class HeadNode: public BodyNode {
     public:
+    bool colliding = false;
     enum Dir {
         LEFT, RIGHT, UP, DOWN
     };
@@ -67,14 +68,21 @@ class HeadNode: public BodyNode {
     }
 
     void onCollisionStop(Shape &other) override {
-        // puts("Head Collision Ended");
+        this->colliding = false;
+        puts("Colliding stopped");
     }
 
     void onCollisionStart(Shape &other) override {
+        puts("Colliding");
+        this->colliding = false;
         // puts("Head Collision");
+    }
+    void onColliding(Shape &other) override {
     }
 
     void tick() {
+        if (this->colliding)
+            return;
         this->setPrev();
         tickChildren(this->next);
         Dir nextMove = this->moveDir;
