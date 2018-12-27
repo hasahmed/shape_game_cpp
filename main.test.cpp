@@ -170,7 +170,7 @@ class Food : public Rectangle {
 };
 
 int main() {
-    shapegame::Game game(100, 720, "Snake");
+    shapegame::Game game(260, 720, "Snake");
     glfwSetErrorCallback(error_callback);
 
 
