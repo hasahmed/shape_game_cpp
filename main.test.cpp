@@ -170,7 +170,7 @@ class Food : public Rectangle {
 };
 
 int main() {
-    shapegame::Game game(260, 720, "Snake");
+    shapegame::Game game(720, 720, "Snake");
     glfwSetErrorCallback(error_callback);
 
 
@@ -202,6 +202,8 @@ int main() {
     for (int i = 0; i < NUM_BODY_NODES; i++) {
         game.scene->addChild(body[i]);
     }
+    game.scene->addChild(new Triangle(Position(10, 10), Point(60, 600), Point(100, 10), Color::BLUE));
+    // auto *t = new Triangle(Position(10, 10), Point(20, 0), Point(30, 10));
     // game.scene->addChildAs<Timer>(new Timer(100, true, true, [=](){
     //     head->color.set(
     //         head->color.r,
