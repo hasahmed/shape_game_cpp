@@ -20,19 +20,28 @@ std::vector<float> shapegame::VertexGenerator::generate(const Shape &shape) {
         );
 }
 
-std::vector<float> shapegame::VertexGenerator::triangleVerts(const Shape &shape) {
-    // throw std::runtime_error("Not Implemented");
-    // return std::vector<float>{
-    // };
+std::vector<float> shapegame::VertexGenerator::triangleVerts(const Shape& shape) {
+    try {
+        Shape *nonConstShape = const_cast<Shape*>(&shape);
+        Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
+        float x1 = this->xPxToGl(t->pos.getX());
+        float y1 = this->yPxToGl(t->pos.getY());
+        float x2 = this->xPxToGl(t->second.getX());
+        float y2 = this->yPxToGl(t->second.getY());
+        float x3 = this->xPxToGl(t->third.getX());
+        float y3 = this->yPxToGl(t->third.getY());
+
+        return std::vector<float>{
+            x1, y1, 0.0f, //lower left,
+            x2, y2, 0.0f, //lower right
+            x3, y3, 0.0f, // top left
+        };
+    } catch (std::bad_cast e) {
+        throw std::runtime_error("Shape should be a triangle");
+    }
 }
 std::vector<float> shapegame::VertexGenerator::circleVerts(const Shape &shape) {
-    float x = this->xPxToGl(shape.pos.getX());
-    float y = this->yPxToGl(shape.pos.getY());
-    return std::vector<float>{
-        x, y, 0.0f, //lower left,
-        x, 0.0f, 0.0f, //lower right
-        x, y, 0.0f, // top left
-    };
+    throw std::runtime_error("Not Implemented");
 }
 std::vector<float> shapegame::VertexGenerator::rectangleVerts(const Shape &shape) {
 

@@ -8,10 +8,9 @@
 
 namespace shapegame {
     class Triangle : public Shape {
-        private:
+        public:
             Point second; // second point of the triangle
             Point third; // third
-        public:
             Triangle(Position first, Point second, Point third);
             Triangle(Position first, Point second, Point third, Color color);
             int getNumVerts();
