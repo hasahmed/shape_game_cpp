@@ -18,9 +18,11 @@ namespace shapegame {
             std::vector<float> triangleVerts(const Shape &shape);
             std::vector<float> rectangleVerts(const Shape &shape);
             std::vector<float> circleVerts(const Shape &shape);
-            float getHorizontalPixelStep();
-            float getVerticalPixelStep();
-            float pxToGl(float coord);
+            float horPxStep();
+            float vertPxStep();
+            float yPxToGl(float coord);
+            float xPxToGl(float coord);
+            Point pxToGl(float x, float y);
             Point pxToGl(Point coords);
     };
 }

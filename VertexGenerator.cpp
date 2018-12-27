@@ -26,9 +26,8 @@ std::vector<float> shapegame::VertexGenerator::triangleVerts(const Shape &shape)
     // };
 }
 std::vector<float> shapegame::VertexGenerator::circleVerts(const Shape &shape) {
-    float x = -1.0f + shape.pos.getX() * getHorizontalPixelStep();
-    float y = 1.0f - shape.pos.getY() * getVerticalPixelStep();
-    throw std::runtime_error("Not Implemented");
+    float x = this->xPxToGl(shape.pos.getX());
+    float y = this->yPxToGl(shape.pos.getY());
     return std::vector<float>{
         x, y, 0.0f, //lower left,
         x, 0.0f, 0.0f, //lower right
@@ -37,10 +36,10 @@ std::vector<float> shapegame::VertexGenerator::circleVerts(const Shape &shape) {
 }
 std::vector<float> shapegame::VertexGenerator::rectangleVerts(const Shape &shape) {
 
-    float x = -1.0f + shape.pos.getX() * getHorizontalPixelStep();
-    float y = 1.0f - shape.pos.getY() * getVerticalPixelStep();
-    float xsize = shape.getWidth() * getHorizontalPixelStep();
-    float ysize = shape.getHeight() * getVerticalPixelStep();
+    float x = this->xPxToGl(shape.pos.getX());
+    float y = this->yPxToGl(shape.pos.getY());
+    float xsize = shape.getWidth() * horPxStep();
+    float ysize = shape.getHeight() * vertPxStep();
 
     return std::vector<float>{
         x,              y - ysize,   0.0f, //lower left,
@@ -58,10 +57,10 @@ std::vector<float> shapegame::VertexGenerator::rectangleVerts(const Shape &shape
 shapegame::VertexGenerator::VertexGenerator(Window *window) : _window(window) {
     shapegame::VertexGenerator::_instance = this;
 }
-float shapegame::VertexGenerator::getHorizontalPixelStep() {
+float shapegame::VertexGenerator::horPxStep() {
     return 2.0f / (float)this->_window->getWidth();
 }
-float shapegame::VertexGenerator::getVerticalPixelStep() {
+float shapegame::VertexGenerator::vertPxStep() {
     return 2.0f / (float)this->_window->getHeight();
 }
 
@@ -71,8 +70,14 @@ shapegame::VertexGenerator* shapegame::VertexGenerator::instance() {
     return VertexGenerator::_instance;
 }
 
-float VertexGenerator::pxToGl(float coord) {
-    return 1.0f;
+float VertexGenerator::yPxToGl(float coord) {
+    return 1.0f - (coord * this->vertPxStep());
+}
+float VertexGenerator::xPxToGl(float coord) {
+    return -1.0f + (coord * this->horPxStep());
+}
+Point VertexGenerator::pxToGl(float x, float y) {
+    return Point(x, y);
 }
 Point VertexGenerator::pxToGl(Point coords) {
     return coords;
