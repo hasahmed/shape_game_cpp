@@ -25,3 +25,4 @@
 #include "ShapePair.hpp"
 #include "CollisionList.hpp"
 #include "SimpleCollision.hpp"
+#include "Point.hpp"

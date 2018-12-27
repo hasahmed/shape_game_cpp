@@ -4,20 +4,19 @@
 #include "Position.hpp"
 #include "shapegl.hpp"
 #include "Globals.hpp"
+#include "Point.hpp"
 
 namespace shapegame {
     class Triangle : public Shape {
         private:
-            float _angles[3];
+            Point second; // second point of the triangle
+            Point third; // third
         public:
-            Triangle(float height, float width, float angle1, float angle2,
-                    Position pos, Color color);
-
-            //unneeded constructor overloading
-            //Triangle(float height, float width, float angle1, float angle2,
-                    //double x, double y, Color color);
+            Triangle(Position first, Point second, Point third);
+            Triangle(Position first, Point second, Point third, Color color);
             int getNumVerts();
-            void update();
-
+            void update() override;
+            void onAdd() override;
+            void onKeyPress(int key, int action) override;
     };
 }
