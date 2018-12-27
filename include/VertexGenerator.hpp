@@ -2,6 +2,7 @@
 #include "Shape.hpp"
 #include "Game.hpp"
 #include "Window.hpp"
+#include "Point.hpp"
 #include <memory>
 
 namespace shapegame {
@@ -19,5 +20,7 @@ namespace shapegame {
             std::vector<float> circleVerts(const Shape &shape);
             float getHorizontalPixelStep();
             float getVerticalPixelStep();
+            float pxToGl(float coord);
+            Point pxToGl(Point coords);
     };
 }

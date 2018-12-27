@@ -2,6 +2,8 @@
 #include <stdexcept>
 #include "shapegame"
 
+using namespace shapegame;
+
 shapegame::VertexGenerator* shapegame::VertexGenerator::_instance = NULL;
 
 std::vector<float> shapegame::VertexGenerator::generate(const Shape &shape) {
@@ -19,18 +21,21 @@ std::vector<float> shapegame::VertexGenerator::generate(const Shape &shape) {
 }
 
 std::vector<float> shapegame::VertexGenerator::triangleVerts(const Shape &shape) {
-    throw std::runtime_error("Not Implemented");
+    // throw std::runtime_error("Not Implemented");
     // return std::vector<float>{
     // };
 }
 std::vector<float> shapegame::VertexGenerator::circleVerts(const Shape &shape) {
+    float x = -1.0f + shape.pos.getX() * getHorizontalPixelStep();
+    float y = 1.0f - shape.pos.getY() * getVerticalPixelStep();
     throw std::runtime_error("Not Implemented");
-    // return std::vector<float>{
-    // };
+    return std::vector<float>{
+        x, y, 0.0f, //lower left,
+        x, 0.0f, 0.0f, //lower right
+        x, y, 0.0f, // top left
+    };
 }
 std::vector<float> shapegame::VertexGenerator::rectangleVerts(const Shape &shape) {
-
-
 
     float x = -1.0f + shape.pos.getX() * getHorizontalPixelStep();
     float y = 1.0f - shape.pos.getY() * getVerticalPixelStep();
@@ -54,14 +59,21 @@ shapegame::VertexGenerator::VertexGenerator(Window *window) : _window(window) {
     shapegame::VertexGenerator::_instance = this;
 }
 float shapegame::VertexGenerator::getHorizontalPixelStep() {
-    return 2.0f / (float)this->_window->getHeight();
+    return 2.0f / (float)this->_window->getWidth();
 }
 float shapegame::VertexGenerator::getVerticalPixelStep() {
-    return 2.0f / (float)this->_window->getWidth();
+    return 2.0f / (float)this->_window->getHeight();
 }
 
 shapegame::VertexGenerator* shapegame::VertexGenerator::instance() {
     if (!VertexGenerator::_instance)
         throw std::runtime_error("Error: No instance has yet been created");
     return VertexGenerator::_instance;
+}
+
+float VertexGenerator::pxToGl(float coord) {
+    return 1.0f;
+}
+Point VertexGenerator::pxToGl(Point coords) {
+    return coords;
 }
