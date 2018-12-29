@@ -65,8 +65,9 @@ class HeadNode: public BodyNode {
 
     HeadNode(): BodyNode() {
         this->collidable = true;
-        this->pos.setX(240);
-        this->pos.setY(240);
+        this->setPosition(240, 240);
+        // this->pos.setX(240);
+        // this->pos.setY(240);
     }
 
     void onCollisionStop(Shape &other) override {
