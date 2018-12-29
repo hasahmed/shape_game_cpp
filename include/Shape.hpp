@@ -10,7 +10,7 @@ namespace shapegame {
     class Shape : public Object {
         friend class Scene;
         friend class RenderPackage;
-        private:
+        protected:
             float _height;
             float _width;
             bool _dirty = false;
@@ -30,9 +30,9 @@ namespace shapegame {
             virtual void onCollisionStop(Shape &other);
             virtual void onColliding(Shape &other);
             bool isColliding(Shape &other);
-            void translate(double x, double y);
-            void translate(Position pos);
-            void setPosition(Position pos);
-            void setPosition(double x, double y);
+            virtual void translate(double x, double y);
+            virtual void translate(Position pos);
+            virtual void setPosition(Position pos);
+            virtual void setPosition(double x, double y);
     };
 }

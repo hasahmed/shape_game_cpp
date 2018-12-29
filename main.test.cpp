@@ -1,7 +1,7 @@
-#define NUM_BODY_NODES 10
-#define NODE_SIZE 10 
+#define NUM_BODY_NODES 100
+#define NODE_SIZE 10
 #define MOVE_AMOUNT NODE_SIZE
-#define SPEED_MS 75 
+#define SPEED_MS 75
 #define BODY_COLOR Color::KATIE_PINK
 
 
@@ -14,12 +14,14 @@ void error_callback(int error, const char* description) {
     puts(description);
 }
 
-class BodyNode : public Rectangle {
+class BodyNode : public Triangle {
+// class BodyNode : public Rectangle {
     public:
     BodyNode *prev = nullptr;
     BodyNode *next = nullptr;
     BodyNode():
-        Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {
+        // Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {
+        Triangle(Position(0, 0), Point(NODE_SIZE / 2.0f, NODE_SIZE), Point(NODE_SIZE, 0), BODY_COLOR) {
             // this->collidable = true;
         }
     ~BodyNode(){
@@ -202,7 +204,14 @@ int main() {
     for (int i = 0; i < NUM_BODY_NODES; i++) {
         game.scene->addChild(body[i]);
     }
-    game.scene->addChild(new Triangle(Position(10, 10), Point(60, 600), Point(100, 10), Color::BLUE));
+    auto *t = game.scene->addChildAs<Triangle>(new Triangle(Position(10, 10), Point(60, 600), Point(100, 10), Color::BLUE));
+    t->setPosition(110, 10);
+    t->setPosition(10, 10);
+    t->setPosition(101, 101);
+    t->setPosition(-1, 10);
+    t->setPosition(Position(-1, 10));
+    t->translate(10, 100);
+    // t->setPosition(Position(10, 110));
     // auto *t = new Triangle(Position(10, 10), Point(20, 0), Point(30, 10));
     // game.scene->addChildAs<Timer>(new Timer(100, true, true, [=](){
     //     head->color.set(
