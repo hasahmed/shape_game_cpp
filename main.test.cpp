@@ -1,5 +1,5 @@
 #define NUM_BODY_NODES 100
-#define NODE_SIZE 10
+#define NODE_SIZE 20
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 75
 #define BODY_COLOR Color::KATIE_PINK
@@ -22,7 +22,7 @@ class BodyNode : public Triangle {
     BodyNode():
         // Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {
         Triangle(Position(0, 0), Point(NODE_SIZE / 2.0f, NODE_SIZE), Point(NODE_SIZE, 0), BODY_COLOR) {
-            // this->collidable = true;
+            this->collidable = true;
         }
     ~BodyNode(){
     }
