@@ -23,6 +23,8 @@ class BodyNode : public Triangle {
         // Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {
         Triangle(Position(0, 0), Point(NODE_SIZE / 2.0f, NODE_SIZE), Point(NODE_SIZE, 0), BODY_COLOR) {
             this->collidable = true;
+            // this->color.set((float)rand() / RAND_MAX, 1, 1);
+            this->color.set(1, 0, 1);
         }
     ~BodyNode(){
     }
