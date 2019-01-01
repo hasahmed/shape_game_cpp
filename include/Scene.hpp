@@ -11,6 +11,7 @@
 #include "RenderPackage.hpp"
 #include "ShapePair.hpp"
 #include "CollisionList.hpp"
+#include "Color.hpp"
 
 
 namespace shapegame {
@@ -18,6 +19,7 @@ namespace shapegame {
     class Scene {
         friend class GLHandler;
         private:
+            Color _bgColor;
             GLuint _shaderProg;
             void setShaderProg(GLuint shaderprog);
             std::unordered_map<unsigned int, std::unique_ptr<Object>> sceneChildren;
@@ -36,6 +38,7 @@ namespace shapegame {
             }
             static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
             void keyDispatch(int key, int action);
+            void setBackgroundColor(Color& color);
             Scene();
     };
 }

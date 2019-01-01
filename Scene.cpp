@@ -9,7 +9,7 @@ using namespace shapegame;
 unsigned int nextInsert = 0;
 unsigned int nextInsert2 = 0;
 
-Scene* Scene::_inst= nullptr;
+Scene* Scene::_inst = nullptr;
 
 void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (Scene::_inst && scancode) {
@@ -19,8 +19,12 @@ void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, i
     }
 }
 
+void Scene::setBackgroundColor(Color& color) {
+    this->_bgColor = color;
+}
 
 shapegame::Scene::Scene() :
+    _bgColor(Color::BLUE),
     sceneChildren(),
     drawVect(),
     collisionList(new SimpleCollision())

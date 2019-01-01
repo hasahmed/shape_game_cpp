@@ -4,7 +4,22 @@
 #include <chrono>
 #include "shapegame"
 
+
+using namespace shapegame;
+
 int shapegame::GLHandler::_assignableVertexAttribIndex = 0;
+
+
+
+void GLHandler::setClearColor(Color& color) {
+    this->_clearColor = color;
+    GLCALL(glClearColor(
+        this->_clearColor.r,
+        this->_clearColor.g,
+        this->_clearColor.b,
+        this->_clearColor.a
+    ));
+}
 
 int shapegame::GLHandler::getAssignableVertexAttribIndex() {
     // *Learning note* It looks like the vertexattribindex is
@@ -19,7 +34,10 @@ int shapegame::GLHandler::getAssignableVertexAttribIndex() {
     return nextValid;
 }
 
-shapegame::GLHandler::GLHandler(Window *window, Scene &scene) : _scene(scene) {
+shapegame::GLHandler::GLHandler(Window *window, Scene &scene) :
+    _scene(scene),
+    _clearColor(Color::BLACK)
+{
     this->window_handle = window->window_handle;
 
     //compile and link shaders
@@ -67,7 +85,7 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) : _scene(scene) {
     GLCALL(glGenBuffers(1, &vbo)); //generates 1 gpu buffer object
     GLCALL(glBindVertexArray(vao)); //binds current buffers to current vao
     GLCALL(glBindBuffer(GL_ARRAY_BUFFER, vbo)); //binds vbo to the array buffer portion of gpu memory?
-    GLCALL(glBufferData(GL_ARRAY_BUFFER, sizeof(square_points), square_points, GL_DYNAMIC_DRAW));
+    // GLCALL(glBufferData(GL_ARRAY_BUFFER, sizeof(square_points), square_points, GL_DYNAMIC_DRAW));
     //dynamic because it will be modified often and updated often
 
 
@@ -86,7 +104,12 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) : _scene(scene) {
 
     GLCALL(glEnable(GL_BLEND));
     GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-    GLCALL(glClearColor(0.0f, 1.0f, 1.0f, 1.0f));
+    GLCALL(glClearColor(
+        this->_clearColor.r,
+        this->_clearColor.g,
+        this->_clearColor.b,
+        this->_clearColor.a
+    ));
 
 
 }
@@ -123,6 +146,7 @@ void shapegame::GLHandler::run() {
         auto t2 = Clock::now();
         std::chrono::duration<float> elapsed_seconds = t2 - t1;
         glfwGetCursorPos(this->window_handle, &mouse_x, &mouse_y);
+        this->setClearColor(this->_scene._bgColor);
         //int mouse_pressed = glfwGetMouseButton(this->window_handle, GLFW_MOUSE_BUTTON_LEFT);
         GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
