@@ -236,6 +236,7 @@ int main() {
 
 
     Game::inst().scene->addChild(new Food());
+    Game::inst().scene->setBackgroundColor(Color::GREEN);
 
     // Game::inst().scene->addChild(killTimer);
 
