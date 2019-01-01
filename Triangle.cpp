@@ -1,10 +1,41 @@
 #include <stdexcept>
+#include <vector>
+#include <algorithm>
 #include "shapegame"
 
 using namespace shapegame;
 
 Triangle::Triangle(Position first, Point second, Point third, Color color):
-	Shape(0, 0, ShapeType::Triangle, first, color), second(second), third(third){}
+	Shape(0, 0, ShapeType::Triangle, first, color), second(second), third(third) {
+		std::vector<Point*> verts {
+			&this->pos,
+			&this->second,
+			&this->third
+		};
+		float maxX = this->pos.getX();
+		float minX = this->pos.getX();
+		float maxY = this->pos.getY();
+		float minY = this->pos.getY();
+		for_each(verts.begin(), verts.end(), [
+			&maxX,
+			&minX,
+			&maxY,
+			&minY
+			](Point *p){
+			maxX = std::max<float>(maxX, p->getX());
+			minX = std::min<float>(minX, p->getX());
+			maxY = std::max<float>(maxY, p->getY());
+			minY = std::min<float>(minY, p->getY());
+		});
+
+		// for_each(verts.begin(), verts.end(), [&verts](Point *p){
+		// 	std::cout << "X:" << p->getX() <<  " Y:" << p->getY() << std::endl << std::endl;
+		// });
+		// 	return maxX;
+		// }();
+		this->_height = 10;
+		this->_width = 10;
+	}
 
 Triangle::Triangle( Position first, Point second, Point third):
 	Triangle(first, second, third, Color::BLACK) {}
