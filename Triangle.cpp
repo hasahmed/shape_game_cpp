@@ -7,34 +7,41 @@ using namespace shapegame;
 
 Triangle::Triangle(Position first, Point second, Point third, Color color):
 	Shape(0, 0, ShapeType::Triangle, first, color), second(second), third(third) {
+		// find point mp with min x
+		// collisionPosition = (minX, mp.y + maxY)
+		// width = maxX - minX;
+		// height = maxY - minY;
+
+		//this->collisionRect = new Rectangle(collisionPosition, width, height);
+
 		std::vector<Point*> verts {
 			&this->pos,
 			&this->second,
 			&this->third
 		};
+		Point &minXPoint = this->pos;
 		float maxX = this->pos.getX();
 		float minX = this->pos.getX();
 		float maxY = this->pos.getY();
 		float minY = this->pos.getY();
 		for_each(verts.begin(), verts.end(), [
+			&minXPoint,
 			&maxX,
 			&minX,
 			&maxY,
 			&minY
 			](Point *p){
-			maxX = std::max<float>(maxX, p->getX());
-			minX = std::min<float>(minX, p->getX());
-			maxY = std::max<float>(maxY, p->getY());
-			minY = std::min<float>(minY, p->getY());
+				if (p->getX() < minXPoint.getX()) {
+					minXPoint = *p;
+				}
+				maxX = std::max<float>(maxX, p->getX());
+				minX = std::min<float>(minX, p->getX());
+				maxY = std::max<float>(maxY, p->getY());
+				minY = std::min<float>(minY, p->getY());
 		});
-
-		// for_each(verts.begin(), verts.end(), [&verts](Point *p){
-		// 	std::cout << "X:" << p->getX() <<  " Y:" << p->getY() << std::endl << std::endl;
-		// });
-		// 	return maxX;
-		// }();
-		this->_height = 10;
-		this->_width = 10;
+		this->_height = maxX - minX;
+		this->_width = maxY - minY;
+		this->collisionPosition = Position(minX, minXPoint.getY() + maxY);
 	}
 
 Triangle::Triangle( Position first, Point second, Point third):

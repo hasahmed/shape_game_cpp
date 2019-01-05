@@ -235,6 +235,7 @@ int main() {
     // }, false);
 
 
+    Game::inst().scene->addChild(new Rectangle(20, 20, Position(15, 15), Color::BLACK));
     Game::inst().scene->addChild(new Food());
     Game::inst().scene->setBackgroundColor(Color::GREEN);
 
