@@ -10,5 +10,7 @@ void Object::kill() {
 	this->onKill();
 	this->canKill = true;
 }
-void Object::onKill() {}
+void Object::onAdd(){}
+void Object::update(){}
+void Object::onKill(){}
 void Object::onRemove(){}

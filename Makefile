@@ -1,5 +1,5 @@
 UNAME := $(shell uname -s)
-CXXFLAGS = -std=c++17 -g -Og -Wall
+CXXFLAGS = -std=c++17 -g -Og -Wall -Wno-unused-variable
 SRC = $(wildcard *.cpp)
 SRC := $(filter-out %.test.cpp, $(SRC))
 TESTS = $(wildcard *.test.cpp)
@@ -35,6 +35,8 @@ main.test: $(OBJS) main.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 deletion.test: $(OBJS) deletion.test.o
+	$(CXX) -o $@ $^ $(LDFLAGS)
+triangle.test: $(OBJS) triangle.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 

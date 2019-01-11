@@ -12,8 +12,8 @@ namespace shapegame {
             Object(Position pos);
             void kill();
             virtual ~Object();
-            virtual void update() = 0;
-            virtual void onAdd() = 0;
+            virtual void update();
+            virtual void onAdd();
             // when the object is actually removed from the scene
             virtual void onRemove();
             // as soon as kill is called

@@ -46,8 +46,8 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) :
     std::string _vert_shader = FileUtil::read("shaders/default.vert");
     const char *vertex_shader = _vert_shader.c_str();
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vs, 1, &vertex_shader, NULL);
-    glCompileShader(vs);
+    GLCALL(glShaderSource(vs, 1, &vertex_shader, NULL));
+    GLCALL(glCompileShader(vs));
     check_shader_err(vs);
     //end vert
 
@@ -55,8 +55,8 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) :
     std::string _frag_shader = FileUtil::read("shaders/default.frag");
     const char *fragment_shader = _frag_shader.c_str();
     GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fs, 1, &fragment_shader, NULL);
-    glCompileShader(fs);
+    GLCALL(glShaderSource(fs, 1, &fragment_shader, NULL));
+    GLCALL(glCompileShader(fs));
     check_shader_err(fs);
     //end frag
 
@@ -102,6 +102,9 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) :
     GLCALL(glUniform2f(uniloc, window->getWidth(), window->getHeight()));
     check_shader_err(vs);
 
+
+    // other gl settings
+
     GLCALL(glEnable(GL_BLEND));
     GLCALL(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
     GLCALL(glClearColor(
@@ -110,6 +113,11 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) :
         this->_clearColor.b,
         this->_clearColor.a
     ));
+
+
+// uncomment if back culling is desired
+    // GLCALL(glCullFace(GL_BACK));
+    // GLCALL(glEnable(GL_CULL_FACE));
 
 
 }
@@ -126,7 +134,6 @@ void shapegame::GLHandler::check_shader_err(int shader){
 void shapegame::GLHandler::run() {
     typedef std::chrono::high_resolution_clock Clock;
     auto t1 = Clock::now();
-    int frames = 0;
     // length of one frame 0.5 seconds
     // how many fragments of a second is that
     // fps = number of frame lengths that fit into 1 second
@@ -142,7 +149,6 @@ void shapegame::GLHandler::run() {
     // auto frames = Clock::now();
     //double second_count = 0;
     while (!glfwWindowShouldClose(this->window_handle)) {
-        frames++;
         auto t2 = Clock::now();
         std::chrono::duration<float> elapsed_seconds = t2 - t1;
         glfwGetCursorPos(this->window_handle, &mouse_x, &mouse_y);
@@ -163,11 +169,11 @@ void shapegame::GLHandler::run() {
         //std::cout << second_count << std::endl;
         //fps++;
         std::chrono::duration<float> frameLength = Clock::now() - t2;
-        float fps = 1.0f / frameLength.count();
+        this->fps = 1.0f / frameLength.count();
         
         // std::cout << "Running Time: " << elapsed_seconds.count() << std::endl;
-        if (frames % 10 == 0)
-            std::cout << "\r" << "FPS: " << fps << std::flush;
+        // if (frames % 10 == 0)
+        //     std::cout << "\r" << "FPS: " << fps << std::flush;
         // std::cout << "Delta: " << frameLength.count() << std::endl;
     }
 
