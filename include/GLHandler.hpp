@@ -40,6 +40,7 @@ namespace shapegame {
             GLHandler(Window *window, Scene &scene);
             double mouse_x, mouse_y;
             static int getAssignableVertexAttribIndex();
+            float fps = 0;
 
 
             //methods
