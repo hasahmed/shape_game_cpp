@@ -23,14 +23,14 @@ int main() {
         );
     auto *t = game.scene->addChildAs<Triangle>(
         new Triangle(Position(10, 0), Point(600, 650), Point(9, 700), Color::PURPLE));
-    // auto *timer = game.scene->addChildAs<Timer>(new Timer(1000, false, false, [=](){
-        // using namespace std;
-        // cout << t->third.getX() << endl;
-        // t->translate(0.1, 0);
-        // t->setThird(Point(t->third.getX() - 1, t->third.getY()));
-        // cout << t->third.getX() << endl;
-    // }));
-    // t->translate(50, 0);
-    // timer->start();
+    auto *timer = game.scene->addChildAs<Timer>(new Timer(0, true, true, [=](){
+        using namespace std;
+        cout << t->third.getX() << endl;
+        t->translate(0.1, 0);
+        t->setThird(Point(t->third.getX() - 1, t->third.getY()));
+        cout << t->third.getX() << endl;
+    }));
+    t->translate(50, 0);
+    timer->start();
     game.run();
 }
