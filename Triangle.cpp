@@ -7,6 +7,7 @@ using namespace shapegame;
 
 Triangle::Triangle(Position first, Point second, Point third, Color color):
 	Shape(0, 0, ShapeType::Triangle, first, color), second(second), third(third) {
+
 		// find point mp with min x
 		// collisionPosition = (minX, mp.y + maxY)
 		// width = maxX - minX;
@@ -19,7 +20,7 @@ Triangle::Triangle(Position first, Point second, Point third, Color color):
 			&this->second,
 			&this->third
 		};
-		Point &minXPoint = this->pos;
+		Point minXPoint = this->pos;
 		float maxX = this->pos.getX();
 		float minX = this->pos.getX();
 		float maxY = this->pos.getY();
