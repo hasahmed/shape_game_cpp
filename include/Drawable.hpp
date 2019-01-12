@@ -11,4 +11,3 @@ namespace shapegame {
             int _numVerts;
     };
 }
-
