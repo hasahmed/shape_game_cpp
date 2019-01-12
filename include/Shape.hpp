@@ -19,9 +19,7 @@ namespace shapegame {
             Color color;
             ShapeType type;
 
-            ~Shape(){
-                // std::cout << "deleted: Shape" << std::endl;
-            }
+            ~Shape(){}
             Shape(float height, float width, ShapeType type, Color color);
             Shape(float height, float width, ShapeType type, Position pos, Color color);
             float getHeight() const;
