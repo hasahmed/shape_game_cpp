@@ -58,34 +58,7 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
         } else {
             if (it->second->shape.collidable)
                 this->collisionList->add(&(it->second->shape));
-            auto &renderPack = it->second;
-            GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
-            GLCALL(glUniform4fv(uniloc, 1, renderPack->shape.color.getRawColor()));
-            GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
-            GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
-
-            if (renderPack->updateDirty()){
-                GLCALL(
-                    glBufferData(
-                        GL_ARRAY_BUFFER,
-                        renderPack->glRenderObject->verts.size() * sizeof(float),
-                        &(renderPack->glRenderObject->verts)[0],
-                        GL_DYNAMIC_DRAW
-                    )
-                );
-            }
-            GLCALL(
-                glVertexAttribPointer(
-                    renderPack->glRenderObject->vertexAttribIndex,
-                    3,
-                    GL_FLOAT,
-                    GL_FALSE,
-                    0,
-                    0
-                )
-            );
-            GLCALL(glDrawArrays(GL_TRIANGLES, 0, renderPack->glRenderObject->verts.size()));
-            GLCALL(glBindVertexArray(0));
+								it->second->draw(w);
             it++;
         }
     }
