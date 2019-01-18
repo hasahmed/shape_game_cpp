@@ -3,8 +3,8 @@
 #include "shapegame"
 
 shapegame::RenderPackage::RenderPackage(Shape &shape,
-        GLRenderObject *glRenderObject): shape(shape) {
-    this->glRenderObject = std::make_unique<GLRenderObject>(*glRenderObject);
+        GLRenderObject &glRenderObject): shape(shape) {
+    this->glRenderObject = std::make_unique<GLRenderObject>(glRenderObject);
 }
 bool shapegame::RenderPackage::updateDirty() {
     if (this->shape._dirty){
