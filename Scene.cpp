@@ -39,7 +39,7 @@ Object* shapegame::Scene::addChild(Object *obj) {
     Shape *s = dynamic_cast<Shape*>(obj);
     if (s) {
         GLRenderObject renderObj = GLRenderObject();
-        renderObj.vertexAttribIndex = GLHandler::getAssignableVertexAttribIndex();
+        renderObj.vertexAttribIndex = 0;
         renderObj.verts = VertexGenerator::instance()->generate(*s);
 
         GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");

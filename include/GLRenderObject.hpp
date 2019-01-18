@@ -3,7 +3,7 @@
 #include "shapegl.hpp"
 
 namespace shapegame {
-    struct GLRenderObject {
+    class GLRenderObject {
         public:
             int vertexAttribIndex;
             GLuint vao;
