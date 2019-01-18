@@ -6,9 +6,9 @@
 namespace shapegame {
     class RenderPackage {
         public:
-            Shape* shape; // Scene owns this Shape object
+            Shape& shape; // Scene owns this Shape object
             std::unique_ptr<GLRenderObject> glRenderObject;
-            RenderPackage(Shape *shape, GLRenderObject *glRenderObject);
+            RenderPackage(Shape &shape, GLRenderObject *glRenderObject);
             bool updateDirty();
     };
 }

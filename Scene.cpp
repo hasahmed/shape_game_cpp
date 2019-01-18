@@ -39,7 +39,7 @@ Object* shapegame::Scene::addChild(Object *obj) {
     Shape *s = dynamic_cast<Shape*>(obj);
     if (s) {
         GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
-        auto rPack = std::make_unique<RenderPackage>(s, &renderObj);
+        auto rPack = std::make_unique<RenderPackage>(*s, &renderObj);
         this->drawVect.insert({nextInsert, std::move(rPack)});
     }
     obj->onAdd();
@@ -53,14 +53,14 @@ Object* shapegame::Scene::addChild(Object *obj) {
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
     for (auto it = this->drawVect.begin(); it != this->drawVect.end();) {
-        if (it->second->shape->canKill) {
+        if (it->second->shape.canKill) {
             throw std::runtime_error("No killed shapes should make it to the draw call");
         } else {
-            if (it->second->shape->collidable)
-                this->collisionList->add(it->second->shape);
+            if (it->second->shape.collidable)
+                this->collisionList->add(&(it->second->shape));
             auto &renderPack = it->second;
             GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
-            GLCALL(glUniform4fv(uniloc, 1, renderPack->shape->color.getRawColor()));
+            GLCALL(glUniform4fv(uniloc, 1, renderPack->shape.color.getRawColor()));
             GLCALL(glBindVertexArray(renderPack->glRenderObject->vao));
             GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderPack->glRenderObject->vbo));
 
