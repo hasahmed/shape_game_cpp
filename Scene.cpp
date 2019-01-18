@@ -38,32 +38,7 @@ shapegame::Scene::Scene() :
 Object* shapegame::Scene::addChild(Object *obj) {
     Shape *s = dynamic_cast<Shape*>(obj);
     if (s) {
-        GLRenderObject renderObj = GLRenderObject();
-        renderObj.vertexAttribIndex = 0;
-        renderObj.verts = VertexGenerator::instance()->generate(*s);
-
-        GLint uniloc = glGetUniformLocation(this->_shaderProg, "incolor");
-        GLCALL(glUniform4fv(uniloc, 1, s->color.getRawColor()));
-
-        GLCALL(glUseProgram(this->_shaderProg));
-        GLCALL(glGenVertexArrays(1, &(renderObj.vao))); //generates vertex attribute array
-        GLCALL(glGenBuffers(1, &(renderObj.vbo))); //generates 1 gpu buffer object
-        GLCALL(glBindVertexArray(renderObj.vao)); //binds current buffers to current vao
-        GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo)); //binds vbo to the array buffer portion of gpu memory?
-        GLCALL(
-            glBufferData(
-                GL_ARRAY_BUFFER,
-                renderObj.verts.size() * sizeof(float),
-                &(renderObj.verts)[0],
-                GL_DYNAMIC_DRAW
-            )
-        ); //dynamic because it will be modified often and updated often
-
-        GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL));
-
-        GLCALL(glEnableVertexAttribArray(0));
-        GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0)); //this is actually an unbinding
-        GLCALL(glBindVertexArray(0)); //also an unbinding
+        GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
         auto rPack = std::make_unique<RenderPackage>(s, &renderObj);
         this->drawVect.insert({nextInsert, std::move(rPack)});
     }

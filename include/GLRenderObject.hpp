@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "shapegl.hpp"
+#include "Shape.hpp"
 
 namespace shapegame {
     class GLRenderObject {
@@ -9,8 +10,7 @@ namespace shapegame {
             GLuint vao;
             GLuint vbo;
             std::vector<float> verts;
-            ~GLRenderObject(){
-                // std::cout << "deleted: GlRenderObject" << std::endl;
-            }
+            GLRenderObject(Shape &s, GLuint shaderProg);
+            GLRenderObject() = default;
     };
 }
