@@ -16,30 +16,9 @@ namespace shapegame {
         public:
             float color[4] = {1.0, 1.0, 0.0, 1.0}; // what is this color for?
 
-            // float square_points[9] = { //this actually is a triangle
-            //     0.0f, 0.5, 0.0f,
-            //     0.5f,  -0.5f, 0.0f,
-            //     -0.5f, -0.5f, 0.0f
-            // };
-            //float square_points[18] = {
-                ////right side triangle
-                //0.5f,  0.5f, 0.0f,  // top right
-                //-0.5f, -0.5f, 0.0f,  // bottom left
-                //0.5f, -0.5f, 0.0f,  // bottom right
-
-                //0.5f,  0.5f, 0.0f,  // top right
-                //-0.5f, -0.5f, 0.0f,  // bottom left
-                //-0.5f,  0.5f, 0.0f   // top left
-            //};
-
-            // float line_points[6] = {
-            //     -0.9, 0.9, 0.0, //top left
-            //     0.5, -0.5, 0.0
-            // };
             GLuint shader_prog;
             GLHandler(Window *window, Scene &scene);
             double mouse_x, mouse_y;
-            static int getAssignableVertexAttribIndex();
             float fps = 0;
 
 
