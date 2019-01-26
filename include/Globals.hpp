@@ -19,5 +19,10 @@ namespace shapegame {
         Circle,
     };
     class Globals {
+			public:
+				static double dt;
+				static double fps;
+				// static GLFWwindow *w;
     };
+	typedef Globals G; //alias
 }

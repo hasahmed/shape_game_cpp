@@ -1,6 +1,8 @@
 #include <iostream>
 #include "shapegame"
 
+using namespace shapegame;
+
 
 void shapegame::_gl_check_error(const char *file, int line) {
     using namespace std;
@@ -29,3 +31,6 @@ void shapegame::_gl_check_error(const char *file, int line) {
         err = glGetError();
     }
 }
+
+double G::dt = 0;
+double G::fps = 0;
