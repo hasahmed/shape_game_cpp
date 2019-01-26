@@ -64,7 +64,7 @@ void Triangle::setPosition(double x, double y){
 
 	int numPoints = 2;
 
-	Point *points[numPoints] = {
+	Point *points[] = {
 		&this->second,
 		&this->third
 	};

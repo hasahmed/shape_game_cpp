@@ -1,5 +1,5 @@
 UNAME := $(shell uname -s)
-CXXFLAGS = -std=c++17 -g -Og -Wall -Wno-unused-variable
+CXXFLAGS = -std=c++17 -g -Og -Wall -Wno-unused-variable -Wno-unused-private-field
 SRC = $(wildcard *.cpp)
 SRC := $(filter-out %.test.cpp, $(SRC))
 TESTS = $(wildcard *.test.cpp)
@@ -14,7 +14,7 @@ ifeq ($(UNAME),Linux)
 endif
 
 ifeq ($(UNAME),Darwin)
-	CXX := c++-7
+	CXX := c++
 	LDFLAGS=-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 	INC_DIR := -Iinclude
 	CXXFLAGS += $(INC_DIR)

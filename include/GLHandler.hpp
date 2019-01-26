@@ -19,9 +19,6 @@ namespace shapegame {
             GLuint shader_prog;
             GLHandler(Window *window, Scene &scene);
             double mouse_x, mouse_y;
-            float fps = 0;
-
-
             //methods
             void check_shader_err(int shader);
             void setClearColor(Color& color);
