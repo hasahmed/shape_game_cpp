@@ -33,29 +33,33 @@ class Player : public Triangle {
 		// }
 		void update() override {
 			// Input.Key.down()
+			// std::cout << Input::Key::down(GLFW_KEY_UP) << std::endl;
 			GLFWwindow *w = Game::inst().getWindow()->window_handle;
-			if (glfwGetKey(w, GLFW_KEY_UP) && glfwGetKey(w, GLFW_KEY_RIGHT)) {
+			// if (Input::Key::down( GLFW_KEY_UP) && Input::Key::down( GLFW_KEY_RIGHT)) {
+			// 	this->translate(speed * G::dt, speed * G::dt * -1);
+			// } 
+			if (Input::Key::down(GLFW_KEY_UP) && Input::Key::down(GLFW_KEY_RIGHT)) {
 				this->translate(speed * G::dt, speed * G::dt * -1);
 			} 
-			else if (glfwGetKey(w, GLFW_KEY_UP) && glfwGetKey(w, GLFW_KEY_LEFT)) {
+			else if (Input::Key::down(GLFW_KEY_UP) && Input::Key::down(GLFW_KEY_LEFT)) {
 				this->translate(speed * G::dt * -1, speed * G::dt * -1);
 			} 
-			else if (glfwGetKey(w, GLFW_KEY_DOWN) && glfwGetKey(w, GLFW_KEY_RIGHT)) {
+			else if (Input::Key::down(GLFW_KEY_DOWN) && Input::Key::down(GLFW_KEY_RIGHT)) {
 				this->translate(speed * G::dt, speed * G::dt);
 			} 
-			else if (glfwGetKey(w, GLFW_KEY_DOWN) && glfwGetKey(w, GLFW_KEY_LEFT)) {
+			else if (Input::Key::down( GLFW_KEY_DOWN) && Input::Key::down( GLFW_KEY_LEFT)) {
 				this->translate(speed * G::dt * -1, speed * G::dt);
 			} 
-			else if (glfwGetKey(w, GLFW_KEY_RIGHT)) {
+			else if (Input::Key::down( GLFW_KEY_RIGHT)) {
 				this->translate(speed * G::dt, 0);
 			} 
-			else if (glfwGetKey(w, GLFW_KEY_LEFT)) {
+			else if (Input::Key::down( GLFW_KEY_LEFT)) {
 				this->translate(-(speed * G::dt), 0);
 			}
-			else if (glfwGetKey(w, GLFW_KEY_UP)) {
+			else if (Input::Key::down( GLFW_KEY_UP)) {
 				this->translate(0, -(speed * G::dt));
 			}
-			else if (glfwGetKey(w, GLFW_KEY_DOWN)) {
+			else if (Input::Key::down( GLFW_KEY_DOWN)) {
 				this->translate(0, (speed * G::dt));
 			}
 		}
@@ -63,7 +67,7 @@ class Player : public Triangle {
 
 
 int main() {
-	Game game(1200, 700, "SHMUP");
+	Game game(1200, 700, "8 Way Movement");
 	game.scene->addChild(new KeyHandler());
 	game.scene->addChild(new Player());
 	// game.scene->addChild(new Triangle(Position(10, 100), Point(50, 0), Point(90, 100), Color::BLACK));
