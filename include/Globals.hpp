@@ -22,7 +22,6 @@ namespace shapegame {
 			public:
 				static double dt;
 				static double fps;
-				// static GLFWwindow *w;
     };
 	typedef Globals G; //alias
 }
