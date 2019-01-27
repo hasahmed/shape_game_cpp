@@ -32,6 +32,7 @@ class Player : public Triangle {
 		// 		this->translate(speed * G::dt, 0);
 		// }
 		void update() override {
+			// Input.Key.down()
 			GLFWwindow *w = Game::inst().getWindow()->window_handle;
 			if (glfwGetKey(w, GLFW_KEY_UP) && glfwGetKey(w, GLFW_KEY_RIGHT)) {
 				this->translate(speed * G::dt, speed * G::dt * -1);
