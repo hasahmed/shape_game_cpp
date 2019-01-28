@@ -32,12 +32,6 @@ class Player : public Triangle {
 		// 		this->translate(speed * G::dt, 0);
 		// }
 		void update() override {
-			// Input.Key.down()
-			// std::cout << Input::Key::down(GLFW_KEY_UP) << std::endl;
-			GLFWwindow *w = Game::inst().getWindow()->window_handle;
-			// if (Input::Key::down( GLFW_KEY_UP) && Input::Key::down( GLFW_KEY_RIGHT)) {
-			// 	this->translate(speed * G::dt, speed * G::dt * -1);
-			// } 
 			if (Input::Key::down(GLFW_KEY_UP) && Input::Key::down(GLFW_KEY_RIGHT)) {
 				this->translate(speed * G::dt, speed * G::dt * -1);
 			} 
@@ -47,19 +41,19 @@ class Player : public Triangle {
 			else if (Input::Key::down(GLFW_KEY_DOWN) && Input::Key::down(GLFW_KEY_RIGHT)) {
 				this->translate(speed * G::dt, speed * G::dt);
 			} 
-			else if (Input::Key::down( GLFW_KEY_DOWN) && Input::Key::down( GLFW_KEY_LEFT)) {
+			else if (Input::Key::down(GLFW_KEY_DOWN) && Input::Key::down(GLFW_KEY_LEFT)) {
 				this->translate(speed * G::dt * -1, speed * G::dt);
 			} 
-			else if (Input::Key::down( GLFW_KEY_RIGHT)) {
+			else if (Input::Key::down(GLFW_KEY_RIGHT)) {
 				this->translate(speed * G::dt, 0);
 			} 
-			else if (Input::Key::down( GLFW_KEY_LEFT)) {
+			else if (Input::Key::down(GLFW_KEY_LEFT)) {
 				this->translate(-(speed * G::dt), 0);
 			}
-			else if (Input::Key::down( GLFW_KEY_UP)) {
+			else if (Input::Key::down(GLFW_KEY_UP)) {
 				this->translate(0, -(speed * G::dt));
 			}
-			else if (Input::Key::down( GLFW_KEY_DOWN)) {
+			else if (Input::Key::down(GLFW_KEY_DOWN)) {
 				this->translate(0, (speed * G::dt));
 			}
 		}
