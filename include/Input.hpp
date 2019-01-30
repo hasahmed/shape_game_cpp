@@ -1,11 +1,7 @@
 #include "shapegl.hpp"
 namespace shapegame {
 	namespace Input {
-		class Key {
-			public:
-				static bool down(int key);
-		};
-		enum Keys {
+		enum class Key {
 			SPACE = GLFW_KEY_SPACE,
 			APOSTROPHE = GLFW_KEY_APOSTROPHE,
 			COMMA = GLFW_KEY_COMMA,
@@ -126,6 +122,10 @@ namespace shapegame {
 			RIGHT_ALT = GLFW_KEY_RIGHT_ALT,
 			RIGHT_SUPER = GLFW_KEY_RIGHT_SUPER,
 			MENU = GLFW_KEY_MENU
+		};
+		class KeyCheck {
+			public:
+				static bool down(Key key);
 		};
 	} // namespace Input
 } // namespace shapegame
