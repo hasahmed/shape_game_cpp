@@ -4,3 +4,6 @@ bool KeyCheck::down(Key key) {
 	GLFWwindow *w = Game::inst().getWindow()->window_handle;
 	return glfwGetKey(w, (int)key) == GLFW_PRESS;
 }
+bool KeyCheck::up(Key key) {
+	return !KeyCheck::down(key);
+}

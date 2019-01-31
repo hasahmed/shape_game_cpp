@@ -33,28 +33,28 @@ class Player : public Triangle {
 		// 		this->translate(speed * G::dt, 0);
 		// }
 		void update() override {
-			if (Input::KeyCheck::down(Input::Key::UP) && Input::KeyCheck::down(Input::Key::RIGHT)) {
+			if (KeyCheck::down(Input::Key::UP) && KeyCheck::down(Input::Key::RIGHT)) {
 				this->translate(speed * G::dt, speed * G::dt * -1);
 			} 
-			else if (Input::KeyCheck::down(Key::UP) && Input::KeyCheck::down(Key::LEFT)) {
+			else if (KeyCheck::down(Key::UP) && KeyCheck::down(Key::LEFT)) {
 				this->translate(speed * G::dt * -1, speed * G::dt * -1);
 			} 
-			else if (Input::KeyCheck::down(Key::DOWN) && Input::KeyCheck::down(Key::RIGHT)) {
+			else if (KeyCheck::down(Key::DOWN) && KeyCheck::down(Key::RIGHT)) {
 				this->translate(speed * G::dt, speed * G::dt);
 			} 
-			else if (Input::KeyCheck::down(Key::DOWN) && Input::KeyCheck::down(Key::LEFT)) {
+			else if (KeyCheck::down(Key::DOWN) && KeyCheck::down(Key::LEFT)) {
 				this->translate(speed * G::dt * -1, speed * G::dt);
 			} 
-			else if (Input::KeyCheck::down(Key::RIGHT)) {
+			else if (KeyCheck::down(Key::RIGHT)) {
 				this->translate(speed * G::dt, 0);
 			} 
-			else if (Input::KeyCheck::down(Key::LEFT)) {
+			else if (KeyCheck::down(Key::LEFT)) {
 				this->translate(-(speed * G::dt), 0);
 			}
-			else if (Input::KeyCheck::down(Key::UP)) {
+			else if (KeyCheck::down(Key::UP)) {
 				this->translate(0, -(speed * G::dt));
 			}
-			else if (Input::KeyCheck::down(Key::DOWN)) {
+			else if (KeyCheck::down(Key::DOWN)) {
 				this->translate(0, (speed * G::dt));
 			}
 		}
