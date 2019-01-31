@@ -126,6 +126,7 @@ namespace shapegame {
 		class KeyCheck {
 			public:
 				static bool down(Key key);
+				static bool up(Key key);
 		};
 	} // namespace Input
 } // namespace shapegame
