@@ -88,6 +88,6 @@ void shapegame::Scene::setShaderProg(GLuint shaderProg) {
 
 void Scene::keyDispatch(int key, int action) {
     for (auto &child : this->sceneChildren) {
-        child.second->onKeyPress((Input::Key)key, action);
+        child.second->onKeyPress((Input::Kb::Key)key, action);
     }
 }

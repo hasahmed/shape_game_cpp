@@ -7,13 +7,13 @@ using namespace shapegame;
 using namespace shapegame::Input;
 
 class KeyHandler : public Object {
-    void onKeyPress(Key key, int action) override {
+    void onKeyPress(Kb::Key key, int action) override {
         if (action != GLFW_PRESS) return;
-        if (key == Key::ESCAPE)
+        if (key == Kb::Key::ESCAPE)
             glfwSetWindowShouldClose(Game::inst().getWindow()->window_handle, true);
-        if (key == Key::N1)
+        if (key == Kb::Key::N1)
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        if (key == Key::N2)
+        if (key == Kb::Key::N2)
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
 };
@@ -33,28 +33,28 @@ class Player : public Triangle {
 		// 		this->translate(speed * G::dt, 0);
 		// }
 		void update() override {
-			if (KeyCheck::down(Input::Key::UP) && KeyCheck::down(Input::Key::RIGHT)) {
+			if (Kb::down(Kb::Key::UP) && Kb::down(Input::Kb::Key::RIGHT)) {
 				this->translate(speed * G::dt, speed * G::dt * -1);
 			} 
-			else if (KeyCheck::down(Key::UP) && KeyCheck::down(Key::LEFT)) {
+			else if (Kb::down(Kb::Key::UP) && Kb::down(Kb::Key::LEFT)) {
 				this->translate(speed * G::dt * -1, speed * G::dt * -1);
 			} 
-			else if (KeyCheck::down(Key::DOWN) && KeyCheck::down(Key::RIGHT)) {
+			else if (Kb::down(Kb::Key::DOWN) && Kb::down(Kb::Key::RIGHT)) {
 				this->translate(speed * G::dt, speed * G::dt);
 			} 
-			else if (KeyCheck::down(Key::DOWN) && KeyCheck::down(Key::LEFT)) {
+			else if (Kb::down(Kb::Key::DOWN) && Kb::down(Kb::Key::LEFT)) {
 				this->translate(speed * G::dt * -1, speed * G::dt);
 			} 
-			else if (KeyCheck::down(Key::RIGHT)) {
+			else if (Kb::down(Kb::Key::RIGHT)) {
 				this->translate(speed * G::dt, 0);
 			} 
-			else if (KeyCheck::down(Key::LEFT)) {
+			else if (Kb::down(Kb::Key::LEFT)) {
 				this->translate(-(speed * G::dt), 0);
 			}
-			else if (KeyCheck::down(Key::UP)) {
+			else if (Kb::down(Kb::Key::UP)) {
 				this->translate(0, -(speed * G::dt));
 			}
-			else if (KeyCheck::down(Key::DOWN)) {
+			else if (Kb::down(Kb::Key::DOWN)) {
 				this->translate(0, (speed * G::dt));
 			}
 		}
