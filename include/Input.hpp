@@ -1,3 +1,4 @@
+#pragma once
 #include "shapegl.hpp"
 namespace shapegame {
 	namespace Input {

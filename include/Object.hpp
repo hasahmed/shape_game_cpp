@@ -1,7 +1,9 @@
 #pragma once
 #include "Scene.hpp"
 #include "Position.hpp"
+#include "Input.hpp"
 namespace shapegame {
+	using namespace Input;
     class Object {
         friend class Scene;
         private:
@@ -18,6 +20,7 @@ namespace shapegame {
             virtual void onRemove();
             // as soon as kill is called
             virtual void onKill();
-            virtual void onKeyPress(int key, int action) = 0;
+            virtual void onKeyPress(Key key, int action);
+            // virtual void onKeyPress(int key, int action) = 0;
     };
 }

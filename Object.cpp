@@ -14,3 +14,4 @@ void Object::onAdd(){}
 void Object::update(){}
 void Object::onKill(){}
 void Object::onRemove(){}
+void Object::onKeyPress(Key key, int action){}
