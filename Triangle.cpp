@@ -48,10 +48,6 @@ Triangle::Triangle(Position first, Point second, Point third, Color color):
 Triangle::Triangle( Position first, Point second, Point third):
 	Triangle(first, second, third, Color::BLACK) {}
 
-void Triangle::update(){}
-void Triangle::onAdd(){}
-void Triangle::onKeyPress(int key, int action){}
-
 void Triangle::translate(double x, double y) {
 	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
 }

@@ -7,13 +7,13 @@ using namespace shapegame;
 using namespace shapegame::Input;
 
 class KeyHandler : public Object {
-    void onKeyPress(int key, int action) override {
+    void onKeyPress(Key key, int action) override {
         if (action != GLFW_PRESS) return;
-        if (key == GLFW_KEY_ESCAPE)
+        if (key == Key::ESCAPE)
             glfwSetWindowShouldClose(Game::inst().getWindow()->window_handle, true);
-        if (key == GLFW_KEY_1)
+        if (key == Key::N1)
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        if (key == GLFW_KEY_2)
+        if (key == Key::N2)
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
 };

@@ -47,4 +47,3 @@ void Timer::start() {
 void Timer::stop() {
 	this->_running = false;
 }
-void Timer::onKeyPress(int key, int action){}
