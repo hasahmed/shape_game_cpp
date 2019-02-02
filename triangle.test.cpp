@@ -1,7 +1,7 @@
 #include "shapegame"
 using namespace shapegame;
 class KeyHandler : public Object {
-    void onKeyPress(int key, int action) override {
+    void onKeyPress(int key, Input::Action action) override {
         if (action != GLFW_PRESS) return;
         if (key == GLFW_KEY_ESCAPE)
             glfwSetWindowShouldClose(Game::inst().getWindow()->window_handle, true);

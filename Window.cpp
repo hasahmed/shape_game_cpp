@@ -28,6 +28,7 @@ shapegame::Window::Window(int width, int height, std::string window_title) {
 
 
     glfwSetKeyCallback(this->window_handle, Scene::keyCallback);
+		glfwSetMouseButtonCallback(this->window_handle, Scene::mouseBtnCallback);
 }
 
 

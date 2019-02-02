@@ -3,12 +3,13 @@
  * 
  */
 #include "shapegame"
+#include <cstdlib>
 using namespace shapegame;
 using namespace shapegame::Input;
 
 class KeyHandler : public Object {
-    void onKeyPress(Kb::Key key, int action) override {
-        if (action != GLFW_PRESS) return;
+    void onKeyPress(Kb::Key key, Input::Action action) override {
+        if (action != Action::DOWN) return; // skip up actions
         if (key == Kb::Key::ESCAPE)
             glfwSetWindowShouldClose(Game::inst().getWindow()->window_handle, true);
         if (key == Kb::Key::N1)
@@ -16,6 +17,17 @@ class KeyHandler : public Object {
         if (key == Kb::Key::N2)
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     }
+};
+
+class Projectile : public Rectangle {
+	public:
+	const int SPEED = rand() % 100;
+	Projectile(Position pos, Point size = Point(10, 50)):
+		Rectangle(size.getY(), size.getX(), pos, Color::WHITE) {
+	}
+	void update() override {
+		this->translate(0, - SPEED * G::dt);
+	}
 };
 
 class Player : public Triangle {
@@ -28,7 +40,14 @@ class Player : public Triangle {
 			this->setPosition(pos);
 		}
 
-		// void onKeyPress(int key, int action) override {
+		void onMouseClick(Mouse::Btn btn, Action action) override {
+			if (action != Action::DOWN) return; // skip up actions
+			if (btn == Mouse::Btn::LEFT) {
+				Game::inst().scene->addChild(new Projectile(this->pos));
+				std::cout << "pew" << std::endl;
+			}
+		}
+		// void onKeyPress(int key, Input::Action action) override {
 		// 	if (key == GLFW_KEY_RIGHT) {
 		// 		this->translate(speed * G::dt, 0);
 		// }

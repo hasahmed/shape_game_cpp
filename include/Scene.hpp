@@ -37,7 +37,9 @@ namespace shapegame {
                 return shape;
             }
             static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+						static void mouseBtnCallback(GLFWwindow* window, int btn, int action, int mods);
             void keyDispatch(int key, int action);
+						void mouseBtnDispatch(int btn, int action);
             void setBackgroundColor(Color& color);
             Scene();
     };
