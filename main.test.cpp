@@ -33,30 +33,35 @@ class Player : public Triangle {
 		// 		this->translate(speed * G::dt, 0);
 		// }
 		void update() override {
-			if (Kb::down(Kb::Key::UP) && Kb::down(Input::Kb::Key::RIGHT)) {
-				this->translate(speed * G::dt, speed * G::dt * -1);
-			} 
-			else if (Kb::down(Kb::Key::UP) && Kb::down(Kb::Key::LEFT)) {
-				this->translate(speed * G::dt * -1, speed * G::dt * -1);
-			} 
-			else if (Kb::down(Kb::Key::DOWN) && Kb::down(Kb::Key::RIGHT)) {
-				this->translate(speed * G::dt, speed * G::dt);
-			} 
-			else if (Kb::down(Kb::Key::DOWN) && Kb::down(Kb::Key::LEFT)) {
-				this->translate(speed * G::dt * -1, speed * G::dt);
-			} 
-			else if (Kb::down(Kb::Key::RIGHT)) {
-				this->translate(speed * G::dt, 0);
-			} 
-			else if (Kb::down(Kb::Key::LEFT)) {
-				this->translate(-(speed * G::dt), 0);
-			}
-			else if (Kb::down(Kb::Key::UP)) {
-				this->translate(0, -(speed * G::dt));
-			}
-			else if (Kb::down(Kb::Key::DOWN)) {
-				this->translate(0, (speed * G::dt));
-			}
+			// std::cout << Mouse::pos().getX() << std::endl;
+			this->setPosition(
+				Mouse::pos().getX() - this->getWidth() / 2,
+				Mouse::pos().getY() + this->getHeight() / 2 - 10);
+
+		// 	if (Kb::down(Kb::Key::UP) && Kb::down(Kb::Key::RIGHT)) {
+		// 		this->translate(speed * G::dt, speed * G::dt * -1);
+		// 	} 
+		// 	else if (Kb::down(Kb::Key::UP) && Kb::down(Kb::Key::LEFT)) {
+		// 		this->translate(speed * G::dt * -1, speed * G::dt * -1);
+		// 	} 
+		// 	else if (Kb::down(Kb::Key::DOWN) && Kb::down(Kb::Key::RIGHT)) {
+		// 		this->translate(speed * G::dt, speed * G::dt);
+		// 	} 
+		// 	else if (Kb::down(Kb::Key::DOWN) && Kb::down(Kb::Key::LEFT)) {
+		// 		this->translate(speed * G::dt * -1, speed * G::dt);
+		// 	} 
+		// 	else if (Kb::down(Kb::Key::RIGHT)) {
+		// 		this->translate(speed * G::dt, 0);
+		// 	} 
+		// 	else if (Kb::down(Kb::Key::LEFT)) {
+		// 		this->translate(-(speed * G::dt), 0);
+		// 	}
+		// 	else if (Kb::down(Kb::Key::UP)) {
+		// 		this->translate(0, -(speed * G::dt));
+		// 	}
+		// 	else if (Kb::down(Kb::Key::DOWN)) {
+		// 		this->translate(0, (speed * G::dt));
+		// 	}
 		}
 };
 

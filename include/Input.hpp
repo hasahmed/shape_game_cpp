@@ -1,8 +1,11 @@
 #pragma once
 #include "shapegl.hpp"
+#include "Position.hpp"
 namespace shapegame {
 	namespace Input {
 		class Mouse {
+			public:
+			static Position pos();
 		};
 		class Kb {
 			public:

@@ -11,9 +11,9 @@ namespace shapegame {
         friend class Scene;
         friend class RenderPackage;
         protected:
+            bool _dirty = false;
             float _height;
             float _width;
-            bool _dirty = false;
         public:
             bool collidable = false;
             Color color;
