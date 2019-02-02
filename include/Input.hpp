@@ -3,8 +3,26 @@
 #include "Position.hpp"
 namespace shapegame {
 	namespace Input {
+		enum class Action {
+			DOWN = GLFW_PRESS,
+			UP = GLFW_RELEASE,
+			REPEATE = GLFW_REPEAT
+		};
 		class Mouse {
 			public:
+			enum class Btn {
+				LEFT = GLFW_MOUSE_BUTTON_LEFT,
+				RIGHT = GLFW_MOUSE_BUTTON_RIGHT,
+				MIDDLE = GLFW_MOUSE_BUTTON_MIDDLE,
+				N1 = GLFW_MOUSE_BUTTON_1,
+				N2 = GLFW_MOUSE_BUTTON_2,
+				N3 = GLFW_MOUSE_BUTTON_3,
+				N4 = GLFW_MOUSE_BUTTON_4,
+				N5 = GLFW_MOUSE_BUTTON_5,
+				N6 = GLFW_MOUSE_BUTTON_6,
+				N7 = GLFW_MOUSE_BUTTON_7,
+				N8 = GLFW_MOUSE_BUTTON_8
+			};
 			static Position pos();
 		};
 		class Kb {

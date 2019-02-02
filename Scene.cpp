@@ -12,10 +12,17 @@ unsigned int nextInsert2 = 0;
 Scene* Scene::_inst = nullptr;
 
 void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
-    if (Scene::_inst && scancode) {
+    if (Scene::_inst) {
         _inst->keyDispatch(key, action);
     } else {
         puts("Scene not initlized yet. Keys cannot be processed");
+    }
+}
+void Scene::mouseBtnCallback(GLFWwindow* window, int btn, int action, int mods) {
+    if (Scene::_inst) {
+        _inst->mouseBtnDispatch(btn, action);
+    } else {
+        puts("Scene not initlized yet. Mouse Clicks Cannot Be Processed");
     }
 }
 
@@ -88,6 +95,11 @@ void shapegame::Scene::setShaderProg(GLuint shaderProg) {
 
 void Scene::keyDispatch(int key, int action) {
     for (auto &child : this->sceneChildren) {
-        child.second->onKeyPress((Input::Kb::Key)key, action);
+        child.second->onKeyPress((Input::Kb::Key)key, (Input::Action)action);
+    }
+}
+void Scene::mouseBtnDispatch(int btn, int action) {
+    for (auto &child : this->sceneChildren) {
+        child.second->onMouseClick((Input::Mouse::Btn)btn,  (Input::Action)action);
     }
 }

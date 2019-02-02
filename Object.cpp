@@ -15,4 +15,5 @@ void Object::onAdd(){}
 void Object::update(){}
 void Object::onKill(){}
 void Object::onRemove(){}
-void Object::onKeyPress(Kb::Key key, int action){}
+void Object::onKeyPress(Kb::Key key, Input::Action action){}
+void Object::onMouseClick(Mouse::Btn btn, Input::Action action){}
