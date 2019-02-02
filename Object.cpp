@@ -1,6 +1,7 @@
 #include "shapegame"
 
 using namespace shapegame;
+using namespace shapegame::Input;
 Object::Object(double x, double y) : pos(x, y) {}
 Object::Object(Position pos) : pos(pos) {}
 Object::~Object(){
@@ -14,4 +15,4 @@ void Object::onAdd(){}
 void Object::update(){}
 void Object::onKill(){}
 void Object::onRemove(){}
-void Object::onKeyPress(Key key, int action){}
+void Object::onKeyPress(Kb::Key key, int action){}

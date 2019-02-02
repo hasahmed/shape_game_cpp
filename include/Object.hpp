@@ -20,7 +20,7 @@ namespace shapegame {
             virtual void onRemove();
             // as soon as kill is called
             virtual void onKill();
-            virtual void onKeyPress(Key key, int action);
+            virtual void onKeyPress(Kb::Key key, int action);
             // virtual void onKeyPress(int key, int action) = 0;
     };
 }
