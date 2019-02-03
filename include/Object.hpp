@@ -16,8 +16,8 @@ namespace shapegame {
             virtual ~Object();
             virtual void update();
             virtual void onAdd();
-            virtual void onRemove();
-            virtual void onKill();
+            virtual void onRemove(); //called on removal
+            virtual void onKill(); //called as soon as kill is called
             virtual void onKeyPress(Kb::Key key, Input::Action action);
             virtual void onMouseClick(Mouse::Btn btn, Input::Action action);
     };
