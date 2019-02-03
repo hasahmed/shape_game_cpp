@@ -1,6 +1,6 @@
 #include "shapegame"
 using namespace shapegame;
-shapegame::Shape::Shape(
+Shape::Shape(
         float height,
         float width,
         ShapeType type,
@@ -21,7 +21,7 @@ float Shape::getWidth() const {return this->_width;}
 void Shape::setPosition(double x, double y){
     this->pos.setX(x);
     this->pos.setY(y);
-    this->_dirty = true;
+		this->setDirty(true);
 }
 void Shape::setPosition(Position pos){
     this->setPosition(pos.getX(), pos.getY());

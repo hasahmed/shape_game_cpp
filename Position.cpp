@@ -8,10 +8,14 @@ Position::Position(Point pos): Position(pos.getX(), pos.getY(), nullptr) {}
 Position::Position(Dirtyable *owner): Position(0, 0, owner) {}
 Position::Position(): Position(0, 0, nullptr) {}
 void Position::setX(const float x){
-	//dirty
+	if (this->owner) {
+		this->owner->setDirty(true);
+	}
 	Point::setX(x);
 }
 void Position::setY(const float y){
-	//dirty
+	if (this->owner) {
+		this->owner->setDirty(true);
+	}
 	Point::setY(y);
 }
