@@ -43,9 +43,7 @@ void Shape::onCollisionStop(Shape &other) {}
 void Shape::onColliding(Shape &other) {}
 
 void Shape::translate(double x, double y) {
-    this->pos.setX(this->pos.getX() + x);
-    this->pos.setY(this->pos.getY() + y);
-    this->_dirty = true;
+	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
 }
 void Shape::translate(Position pos){
     this->translate(pos.getX(), pos.getY());
