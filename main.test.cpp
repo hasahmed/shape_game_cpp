@@ -25,7 +25,7 @@ class Projectile : public Triangle {
 	const int SPEED = rand() % 100;
 	Projectile(Position pos, Point size = Point(10, 50)):
 		// Rectangle(size.getY(), size.getX(), pos, Color::WHITE) {
-		Triangle(Position(0, 0), Point(5, -20), Point(10, 0), Color::WHITE) {
+		Triangle(Position(0.0, 0.0), Point(5, -20), Point(10, 0), Color::WHITE) {
 			this->setPosition(pos);
 	}
 	void update() override {

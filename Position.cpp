@@ -1,12 +1,17 @@
 #include "shapegame"
+using namespace shapegame;
 
-shapegame::Position::Position(float x, float y) : _x(x), _y(y) {}
-float shapegame::Position::getX() const {return this->_x;}
-float shapegame::Position::getY() const {return this->_y;}
-void shapegame::Position::setX(const double x){
-	this->_x = x;
+Position::Position(float x, float y, Dirtyable *onwer) : Point(x, y), owner(owner) {}
+Position::Position(float x, float y) : Point(x, y), owner(nullptr) {}
+Position::Position(Point pos, Dirtyable *owner): Position(pos.getX(), pos.getY(), owner) {}
+Position::Position(Point pos): Position(pos.getX(), pos.getY(), nullptr) {}
+Position::Position(Dirtyable *owner): Position(0, 0, owner) {}
+Position::Position(): Position(0, 0, nullptr) {}
+void Position::setX(const float x){
+	//dirty
+	Point::setX(x);
 }
-shapegame::Position::Position(): Position(0, 0) {}
-void shapegame::Position::setY(const double y){
-	this->_y = y;
+void Position::setY(const float y){
+	//dirty
+	Point::setY(y);
 }

@@ -1,15 +1,21 @@
 #pragma once
+
+#include "Point.hpp"
+#include "Dirtyable.hpp"
+
+
 namespace shapegame {
-    class Position {
+    class Position : public Point {
         private:
-            float _x;
-            float _y;
-        public:
-            Position();
-            Position(float x, float y);
-            float getX() const;
-            float getY() const;
-            void setX(const double x);
-            void setY(const double y);
+					Dirtyable *owner;
+				public:
+					Position(float x, float y, Dirtyable *owner);
+					Position(float x, float y);
+					Position(Point pos, Dirtyable *owner);
+					Position(Point pos);
+					Position(Dirtyable *owner);
+					Position();
+					virtual void setX(const float x) override;
+					virtual void setY(const float y) override;
     };
 }
