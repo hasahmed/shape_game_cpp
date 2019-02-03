@@ -2,10 +2,11 @@
 #include <string>
 #include <iostream>
 #include "../shapegame"
-#include "Object.hpp"
 
+using namespace shapegame;
 int main(){
-  // shapegame::Object o(10.2, 0.5);
+	Object o(10.2, 0.5);
+	o.pos.setX(100);
   // assert(o.pos.getX() == 10.2f);
   // assert(o.pos.getY() == 0.5f);
   // shapegame::Object o2(shapegame::Position(99.99, 5.123));

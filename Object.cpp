@@ -2,11 +2,12 @@
 
 using namespace shapegame;
 using namespace shapegame::Input;
-Object::Object(double x, double y) : pos(x, y) {}
-Object::Object(Position pos) : pos(pos) {}
-Object::~Object(){
-	// std::cout <<"deleted: Object" <<std::endl;
+Object::Object(double x, double y) {
+	this->pos = Position(x, y, this);
 }
+Object::Object() {}
+Object::Object(Point pos) : Object(pos.getX(), pos.getY()) {}
+Object::~Object(){}
 void Object::kill() {
 	this->onKill();
 	this->canKill = true;

@@ -3,6 +3,7 @@
 #include "Position.hpp"
 #include "Input.hpp"
 #include "Dirtyable.hpp"
+#include "Point.hpp"
 namespace shapegame {
 	using namespace Input;
     class Object : public Dirtyable {
@@ -12,8 +13,9 @@ namespace shapegame {
 						bool _dirty = false;
         public:
             Position pos;
-            Object(double x = 0, double y = 0);
-            Object(Position pos);
+            Object();
+            Object(double x, double y);
+            Object(Point pos);
             void kill();
             virtual ~Object();
             virtual void update();

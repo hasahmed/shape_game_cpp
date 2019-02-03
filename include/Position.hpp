@@ -6,9 +6,9 @@
 
 namespace shapegame {
     class Position : public Point {
-			friend class Shape;
+			friend class Object;
 			private:
-				Dirtyable *owner;
+				Dirtyable *owner_;
 				Position(float x, float y, Dirtyable *owner);
 				Position(Point pos, Dirtyable *owner);
 				Position(Dirtyable *owner);
