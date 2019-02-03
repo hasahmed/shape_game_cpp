@@ -26,3 +26,4 @@
 #include "CollisionList.hpp"
 #include "SimpleCollision.hpp"
 #include "Point.hpp"
+#include "MultiShape.hpp"

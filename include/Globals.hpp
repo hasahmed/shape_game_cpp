@@ -17,6 +17,7 @@ namespace shapegame {
         Triangle,
         Rectangle,
         Circle,
+				Multi
     };
     class Globals {
 			public:
