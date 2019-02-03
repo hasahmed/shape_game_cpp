@@ -8,6 +8,7 @@
 #include <queue>
 #include "shapegame"
 using namespace shapegame;
+using namespace shapegame::Input;
 
 
 void error_callback(int error, const char* description) {
@@ -124,28 +125,28 @@ class HeadNode: public BodyNode {
         Game::inst().scene->addChild(myTimer);
     }
 
-    void onKeyPress(int key, Input::Action action) override {
-        if (action != GLFW_PRESS) return;
-        if (key == GLFW_KEY_ESCAPE)
+    void onKeyPress(Input::Kb::Key key, Input::Action action) override {
+        if (action != Input::Action::DOWN) return;
+        if (key == Kb::Key::ESCAPE)
             glfwSetWindowShouldClose(Game::inst().getWindow()->window_handle, true);
-        if (key == GLFW_KEY_1)
+        if (key == Kb::Key::N1)
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        if (key == GLFW_KEY_2)
+        if (key == Kb::Key::N2)
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-        if (key == GLFW_KEY_UP) {
+        if (key == Kb::Key::UP) {
             this->moveDir = Dir::UP;
             this->moves.push(Dir::UP);
         }
-        else if (key == GLFW_KEY_DOWN) {
+        else if (key == Kb::Key::DOWN) {
             this->moveDir = Dir::DOWN;
             this->moves.push(Dir::DOWN);
         }
-        else if (key == GLFW_KEY_LEFT) {
+        else if (key == Kb::Key::LEFT) {
             this->moveDir = Dir::LEFT;
             this->moves.push(Dir::LEFT);
         }
-        else if (key == GLFW_KEY_RIGHT) {
+        else if (key == Kb::Key::RIGHT) {
             this->moveDir = Dir::RIGHT;
             this->moves.push(Dir::RIGHT);
         } 
