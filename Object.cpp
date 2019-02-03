@@ -17,3 +17,9 @@ void Object::onKill(){}
 void Object::onRemove(){}
 void Object::onKeyPress(Kb::Key key, Input::Action action){}
 void Object::onMouseClick(Mouse::Btn btn, Input::Action action){}
+void Object::setDirty(bool dirty) {
+	this->_dirty = dirty;
+}
+bool Object::isDirty() {
+	return this->_dirty;
+}

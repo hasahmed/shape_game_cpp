@@ -19,7 +19,7 @@ namespace shapegame {
             void setSecond(Point second);
             void setThird(Point third) {
                 this->third = third;
-                this->_dirty = true;
+								setDirty(true);
             }
             void translate(double x, double y) override;
             void translate(Position pos) override;

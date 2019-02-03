@@ -71,7 +71,7 @@ void Triangle::setPosition(double x, double y){
 		newP.setX(newP.getX() + xDiff);
 		newP.setY(newP.getY() + yDiff);
 	}
-	this->_dirty = true;
+	this->setDirty(true);
 }
 void Triangle::setPosition(Position pos){
     this->setPosition(pos.getX(), pos.getY());

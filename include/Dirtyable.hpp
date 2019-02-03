@@ -3,6 +3,7 @@
 namespace shapegame {
 	class Dirtyable {
 		public:
-			virtual void dirty() = 0;
+			virtual void setDirty(bool dirty) = 0;
+			virtual bool isDirty() = 0;
 	};
 }
