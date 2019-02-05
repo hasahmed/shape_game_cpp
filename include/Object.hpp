@@ -8,6 +8,7 @@ namespace shapegame {
 	using namespace Input;
     class Object : public Dirtyable {
         friend class Scene;
+				friend class Position;
         private:
             bool canKill = false;
 						bool _dirty = false;
