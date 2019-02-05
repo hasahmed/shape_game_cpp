@@ -21,7 +21,6 @@ float Shape::getWidth() const {return this->_width;}
 void Shape::setPosition(double x, double y){
     this->pos.setX(x);
     this->pos.setY(y);
-		// this->setDirty(true);
 }
 void Shape::setPosition(Position pos){
     this->setPosition(pos.getX(), pos.getY());
