@@ -15,12 +15,6 @@ namespace shapegame {
             Triangle(Position first, Point second, Point third);
             Triangle(Position first, Point second, Point third, Color color);
             int getNumVerts();
-            void setFirst(Position first);
-            void setSecond(Point second);
-            void setThird(Point third) {
-                this->third = third;
-								setDirty(true);
-            }
             void translate(double x, double y) override;
             void translate(Position pos) override;
             void setPosition(Position pos) override;
