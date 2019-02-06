@@ -6,11 +6,13 @@ MultiShape::MultiShape(Shape* mainShape, std::vector<Shape*>& shapes): Triangle(
 	for (Shape *s : shapes) {
 		this->shapes.push_back(s);
 	}
-	cout << *this << endl;
+	std::cout << "shapes.size(): " << shapes.size() << std::endl;
+	// cout << *this << endl;
 }
 void MultiShape::onAdd(){
-	std::cout << "added\n";
+	// std::cout << "shapes.size(): " << this->shapes.size() << std::endl;
 	for (Shape *s : this->shapes) {
+		std::cout << "a" << std::endl;
 		Game::inst().scene->addChild(s);
 	}
 }
