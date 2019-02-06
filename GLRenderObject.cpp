@@ -28,5 +28,22 @@ GLRenderObject::GLRenderObject(Shape &s, GLuint shaderProg): shaderProg(shaderPr
 	GLCALL(glEnableVertexAttribArray(0));
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0)); //this is actually an unbinding
 	GLCALL(glBindVertexArray(0)); //also an unbinding
-
+}
+std::ostream& operator<< (std::ostream& stream, const shapegame::GLRenderObject& rObj) {
+	using namespace std;
+	cout << "Vertex Attrib Index: " << rObj.vertexAttribIndex << endl;
+	cout << "VAO: " << rObj.vao << endl;
+	cout << "VBO: " << rObj.vbo << endl;
+	cout << "Shader Program: " << rObj.shaderProg << endl;
+	cout << "Verts: " << endl;
+	for (int i = 0; i < rObj.verts.size(); i++) {
+		if (i == 0) {
+			cout << "[" << rObj.verts[i];
+		} else if (i % 3 == 0) {
+			cout << rObj.verts[i] << "]" << endl << "[";
+		} else {
+			cout << rObj.verts[i] << ", ";
+		}
+	}
+	return stream;
 }

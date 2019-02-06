@@ -15,3 +15,4 @@ namespace shapegame {
             GLRenderObject() = default;
     };
 }
+std::ostream& operator<< (std::ostream& stream, const shapegame::GLRenderObject& rObj);
