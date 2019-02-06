@@ -42,3 +42,4 @@ Color Color::YELLOW = Color(1.0, 1.0, 0.0);
 Color Color::PURPLE = Color(1.0, 0.0, 1.0);
 Color Color::PINK = Color(1, 0.5, 0.9);
 Color Color::KATIE_PINK = Color(1, 0.41, 0.70);
+Color Color::NIL = Color(0, 0, 0, 0);

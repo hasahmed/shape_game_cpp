@@ -26,6 +26,7 @@ namespace shapegame {
             static Color BLUE;
             static Color YELLOW;
             static Color PURPLE;
+            static Color NIL;
     };
 }
 
