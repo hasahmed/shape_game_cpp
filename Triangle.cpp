@@ -47,6 +47,7 @@ Triangle::Triangle(Position first, Point second, Point third, Color color):
 
 Triangle::Triangle( Position first, Point second, Point third):
 	Triangle(first, second, third, Color::BLACK) {}
+Triangle::Triangle(): Triangle(Point(), Point(), Point(), Color::NIL) {}
 
 void Triangle::translate(double x, double y) {
 	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);

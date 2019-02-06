@@ -1,7 +1,7 @@
 #include "shapegame"
 using namespace shapegame;
 
-MultiShape::MultiShape(Shape* mainShape, std::vector<Shape*>& shapes): Shape(*mainShape) {
+MultiShape::MultiShape(Shape* mainShape, std::vector<Shape*>& shapes): Triangle() {
 	using namespace std;
 	for (Shape *s : shapes) {
 		this->shapes.push_back(s);
@@ -9,6 +9,7 @@ MultiShape::MultiShape(Shape* mainShape, std::vector<Shape*>& shapes): Shape(*ma
 	cout << *this << endl;
 }
 void MultiShape::onAdd(){
+	std::cout << "added\n";
 	for (Shape *s : this->shapes) {
 		Game::inst().scene->addChild(s);
 	}
