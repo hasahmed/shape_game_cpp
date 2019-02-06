@@ -1,12 +1,12 @@
 #pragma once
 #include <vector>
-#include "Shape.hpp"
+#include "Triangle.hpp"
 
 namespace shapegame {
-	class MultiShape : public Shape {
-		std::vector<Shape> shapes;
+	class MultiShape : public Triangle {
+		std::vector<Shape*> shapes;
 		public:
-		MultiShape(Shape& mainShape, std::vector<Shape*>& shapes);
+		MultiShape(Shape* mainShape, std::vector<Shape*>& shapes);
 		void onAdd() override;
 		void onKill() override;
 		void onRemove() override; //Object
