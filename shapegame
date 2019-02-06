@@ -28,3 +28,4 @@
 #include "Point.hpp"
 #include "MultiShape.hpp"
 #include "Dirtyable.hpp"
+#include "DebugKeyHandler.hpp"

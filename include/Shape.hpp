@@ -34,3 +34,4 @@ namespace shapegame {
 					virtual void setPosition(double x, double y);
     };
 }
+std::ostream& operator<< (std::ostream& stream, const shapegame::Shape& shape);

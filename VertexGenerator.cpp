@@ -24,30 +24,32 @@ std::vector<float> shapegame::VertexGenerator::generate(const Shape &shape) {
 }
 
 std::vector<float> shapegame::VertexGenerator::triangleVerts(const Shape& shape) {
-    try {
-        Shape *nonConstShape = const_cast<Shape*>(&shape);
-        Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
-        float x1 = this->xPxToGl(t->pos.getX());
-        float y1 = this->yPxToGl(t->pos.getY());
-        float x2 = this->xPxToGl(t->second.getX());
-        float y2 = this->yPxToGl(t->second.getY());
-        float x3 = this->xPxToGl(t->third.getX());
-        float y3 = this->yPxToGl(t->third.getY());
+		Shape *nonConstShape = const_cast<Shape*>(&shape);
+		Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
+		if (t) {
+			// std::cout << *t << std::endl;
+			// exit(0);
+			float x1 = this->xPxToGl(t->pos.getX());
+			float y1 = this->yPxToGl(t->pos.getY());
+			float x2 = this->xPxToGl(t->second.getX());
+			float y2 = this->yPxToGl(t->second.getY());
+			float x3 = this->xPxToGl(t->third.getX());
+			float y3 = this->yPxToGl(t->third.getY());
 
-        // using namespace std;
-        // cout << "x1: " << x1 << endl;
-        // cout << "x3: " << x3 << endl;
-        // cout << (x1 == x3) << endl;
-        // cout << t->pos.getX() << endl;
-        // cout << t->third.getX() << endl;
+			// using namespace std;
+			// cout << "x1: " << x1 << endl;
+			// cout << "x3: " << x3 << endl;
+			// cout << (x1 == x3) << endl;
+			// cout << t->pos.getX() << endl;
+			// cout << t->third.getX() << endl;
 
-        return std::vector<float>{
-            x1, y1, 0.0f, //lower left,
-            x2, y2, 0.0f, //lower right
-            x3, y3, 0.0f, // top left
-        };
-    } catch (std::bad_cast e) {
-        throw std::runtime_error("Shape should be a triangle");
+			return std::vector<float>{
+				x1, y1, 0.0f, //lower left,
+				x2, y2, 0.0f, //lower right
+				x3, y3, 0.0f, // top left
+			};
+    } else {
+			throw std::runtime_error("Shape should be a triangle");
     }
 }
 std::vector<float> shapegame::VertexGenerator::circleVerts(const Shape &shape) {
