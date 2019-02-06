@@ -25,6 +25,7 @@ int main() {
 	// auto y = new TriangleEqualateral(10, 10, Position(100, 200), Color::BLACK);
 	// auto shapes = std::vector<Shape*> { x, y, z };
 	auto shapes = std::vector<Shape*> { y, z, x };
+	std::cout << shapes.size() << std::endl;
 	// g.scene->addChild(new TriangleEqualateral(100, 100, Position(100, 200), Color::BLACK));
 	// g.scene->addChild(new TriangleEqualateral(10, 100, Position(300, 200), Color::GREEN));
 	// auto m = new MultiShape(x, shapes);
