@@ -44,13 +44,9 @@ shapegame::Scene::Scene() :
 Object* shapegame::Scene::addChild(Object *obj) {
     Shape *s = dynamic_cast<Shape*>(obj);
     if (s) {
-				std::cout << nextInsert << std::endl;
-				// std::cout << *s << std::endl;
         GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
-				// std::cout << renderObj << std::endl;
         auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
         this->drawVect.insert({nextInsert, std::move(rPack)});
-				// std::cout << this->drawVect.size() << std::endl;
     }
     this->sceneChildren.insert({
         nextInsert,

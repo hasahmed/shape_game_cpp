@@ -25,6 +25,7 @@ namespace shapegame {
             virtual void onKill(); //called as soon as kill is called
             virtual void onKeyPress(Kb::Key key, Input::Action action);
             virtual void onMouseClick(Mouse::Btn btn, Input::Action action);
+						virtual void setPosition(double x, double y);
 						void setDirty(bool dirty) override;
 						bool isDirty() override;
     };
