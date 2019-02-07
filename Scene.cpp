@@ -7,7 +7,6 @@
 
 using namespace shapegame;
 unsigned int nextInsert = 0;
-unsigned int nextInsert2 = 0;
 
 Scene* Scene::_inst = nullptr;
 
@@ -45,18 +44,20 @@ shapegame::Scene::Scene() :
 Object* shapegame::Scene::addChild(Object *obj) {
     Shape *s = dynamic_cast<Shape*>(obj);
     if (s) {
-				std::cout << *s << std::endl;
+				std::cout << nextInsert << std::endl;
+				// std::cout << *s << std::endl;
         GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
-				std::cout << renderObj << std::endl;
+				// std::cout << renderObj << std::endl;
         auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
         this->drawVect.insert({nextInsert, std::move(rPack)});
+				// std::cout << this->drawVect.size() << std::endl;
     }
-    obj->onAdd();
     this->sceneChildren.insert({
         nextInsert,
         std::move(std::unique_ptr<Object>(obj))
     });
-    nextInsert++;
+		nextInsert++;
+    obj->onAdd();
     return obj;
 }
 

@@ -24,12 +24,9 @@ std::vector<float> shapegame::VertexGenerator::generate(const Shape &shape) {
 }
 
 std::vector<float> shapegame::VertexGenerator::triangleVerts(const Shape& shape) {
-	std::cout << "here" << std::endl;
 		Shape *nonConstShape = const_cast<Shape*>(&shape);
 		Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
 		if (t) {
-			// std::cout << *t << std::endl;
-			// exit(0);
 			float x1 = this->xPxToGl(t->pos.getX());
 			float y1 = this->yPxToGl(t->pos.getY());
 			float x2 = this->xPxToGl(t->second.getX());
