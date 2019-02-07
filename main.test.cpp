@@ -35,6 +35,13 @@ int main() {
 	// std::cout << "M" << std::endl;
 	// std::cout << *m;
 	g.scene->addChild(m);
+	m->setPosition(100, 100);
+	g.scene->addChild(new Timer(0, true, true, [=]{
+		// std::cout << "here" << std::endl;
+		m->setPosition(m->pos.getX() + 1, m->pos.getY());
+		// m->pos.setX(m->pos.getX() + 1);
+
+	}));
 	// g.scene->addChild(x);
 	// g.scene->addChild(y);
 	// g.scene->addChild(z);

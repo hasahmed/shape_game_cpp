@@ -18,6 +18,10 @@ void Object::onKill(){}
 void Object::onRemove(){}
 void Object::onKeyPress(Kb::Key key, Input::Action action){}
 void Object::onMouseClick(Mouse::Btn btn, Input::Action action){}
+void Object::setPosition(double x, double y){
+	this->pos.setX(x);
+	this->pos.setY(y);
+}
 void Object::setDirty(bool dirty) {
 	this->_dirty = dirty;
 }
