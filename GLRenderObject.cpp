@@ -36,13 +36,14 @@ std::ostream& operator<< (std::ostream& stream, const shapegame::GLRenderObject&
 	cout << "VBO: " << rObj.vbo << endl;
 	cout << "Shader Program: " << rObj.shaderProg << endl;
 	cout << "Verts: " << endl;
+
+	cout << "[";
 	for (int i = 0; i < rObj.verts.size(); i++) {
-		if (i == 0) {
-			cout << "[" << rObj.verts[i];
-		} else if (i % 3 == 0) {
-			cout << rObj.verts[i] << "]" << endl << "[";
+		cout << rObj.verts[i];
+		if ((i + 1) % 3 == 0 && i != 0) {
+			cout << "]" << endl << "[";
 		} else {
-			cout << rObj.verts[i] << ", ";
+			cout << ", ";
 		}
 	}
 	return stream;

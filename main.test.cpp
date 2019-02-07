@@ -17,7 +17,7 @@ class TriangleEqualateral : public Triangle {
 
 int main() {
 
-	Game g;
+	Game g(1200, 700, "Multi Test");
 	g.scene->addChild(new DebugKeyHandler());
 	auto x = new TriangleEqualateral(100, 100, Position(0, 200), Color::BLACK);
 	auto y = new TriangleEqualateral(100, 100, Position(100, 200), Color::RED);
@@ -25,8 +25,8 @@ int main() {
 	auto a = new TriangleEqualateral(100, 100, Position(300, 200), Color::PINK);
 	// auto y = new TriangleEqualateral(10, 10, Position(100, 200), Color::BLACK);
 	// auto shapes = std::vector<Shape*> { x, y, z };
-	// auto shapes = std::vector<Shape*> { x, y, z, a };
-	auto shapes = std::vector<Shape*> { x };
+	auto shapes = std::vector<Shape*> { x, y, z, a };
+	// auto shapes = std::vector<Shape*> { x };
 	// auto shapes = std::vector<Shape*> { y };
 	// g.scene->addChild(new TriangleEqualateral(100, 100, Position(100, 200), Color::BLACK));
 	// g.scene->addChild(new TriangleEqualateral(10, 100, Position(300, 200), Color::GREEN));
