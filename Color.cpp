@@ -35,6 +35,9 @@ void Color::set(Color& c){
 
 Color Color::BLACK = Color(0.0, 0.0, 0.0);
 Color Color::WHITE = Color(1.0, 1.0, 1.0);
+Color Color::LIGHT_GRAY = Color(0.8, 0.8, 0.8);
+Color Color::GRAY = Color(0.5, 0.5, 0.5);
+Color Color::DARK_GRAY = Color(0.3, 0.3, 0.3);
 Color Color::RED = Color(1.0, 0.0, 0.0);
 Color Color::GREEN = Color(0.0, 1.0, 0.0);
 Color Color::BLUE = Color(0.0, 0.0, 1.0);

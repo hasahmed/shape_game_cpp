@@ -19,6 +19,9 @@ namespace shapegame {
 
             static Color BLACK;
             static Color WHITE;
+            static Color LIGHT_GRAY;
+            static Color GRAY;
+						static Color DARK_GRAY;
             static Color RED;
             static Color PINK;
             static Color KATIE_PINK;
