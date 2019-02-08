@@ -2,19 +2,56 @@
 #include <vector>
 using namespace shapegame;
 
+
+#define LINE_WIDTH 3
+#define LINE_HEIGHT 40
+#define SCREEN_WIDTH 1200
+#define SCREEN_HEIGHT 700
+
 class TriangleIsosceles : public Triangle {
 	public:
 	TriangleIsosceles(float width, float height, Position pos, Color color) :
 		Triangle(Point(0, 0), Point(width / 2, -height), Point(width, 0), color) {
 			this->setPosition(pos);
 		}
-	void onAdd() override {
-		// std::cout << "ADDDDEDDDDD\n";
-		// std::cout << *this << std::endl;
+};
+
+class RoadLine : public Rectangle {
+	public:
+	RoadLine(Position pos, Point size = Point(LINE_WIDTH, LINE_HEIGHT), Color color = Color::WHITE):
+		Rectangle(size.getX(), size.getY(), pos, color) {}
+};
+
+class MidLine : public MultiShape {
+	public:
+	MidLine(Position pos): MultiShape(pos) {
+		this->shapes.push_back(
+			(Shape*)
+			new RoadLine(pos, Point(LINE_WIDTH, SCREEN_HEIGHT), Color::YELLOW)
+		);
+		this->shapes.push_back(
+			(Shape*)
+			new RoadLine(Position(pos.getX() + (LINE_WIDTH * 2), pos.getY()), Point(3, 1000), Color::YELLOW)
+		);
+	}
+};
+
+class RoadLines : public MultiShape {
+	public:
+	RoadLines(Position pos, Point freq, Point amount): MultiShape(pos) {
+		for (int x = 0; x < amount.getX(); x++) {
+			for (int y = 0; y < amount.getY(); y++) {
+				this->shapes.push_back(
+					(Shape*)
+					new RoadLine(Position(pos.getX() + x * freq.getX(), pos.getY() + y * freq.getY()))
+				);
+			}
+		}
 	}
 };
 
 int main() {
+
 
 	Game g(1200, 700, "Road Way");
 	g.scene->setBackgroundColor(Color::GRAY);
@@ -25,8 +62,13 @@ int main() {
 	// auto a = new TriangleIsosceles(100, 100, Position(300, 200), Color::PINK);
 	// auto shapes = std::vector<Shape*> { x, y, z, a };
 	// auto m = new MultiShape(x, shapes);
-	Rectangle *r = new Rectangle(100, 300, Position(10, 10), Color::GREEN);
-	g.scene->addChild(r);
+	// Rectangle *r = new Rectangle(100, 300, Position(10, 10), Color::GREEN);
+	// g.scene->addChild(r);
+	// g.scene->addChild(new RoadLine(Point(10, 10)));
+	g.scene->addChild(new RoadLines(Point(15, - LINE_HEIGHT / 2), Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2), Point(6, 10)));
+	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
+	g.scene->addChild(new RoadLines(Point(695, - LINE_HEIGHT / 2) , Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2), Point(6, 10)));
+	// g.scene->addChild(new RoadLines(Point(, 10), Point(100, 10), Point(6, 10)));
 
 	// g.scene
 
