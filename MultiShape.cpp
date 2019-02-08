@@ -27,3 +27,6 @@ void MultiShape::setPosition(double x, double y) {
 		s->translate(changeInX, changeInY);
 	}
 }
+void MultiShape::translate(float x, float y) {
+	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
+}
