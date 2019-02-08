@@ -48,6 +48,10 @@ class RoadLines : public MultiShape {
 			}
 		}
 	}
+	void update() override {
+		// this->setPosition(this->pos.getX(), this->pos.getY() + 1);
+		// this->translate(0, 1);
+	}
 };
 
 int main() {
