@@ -1,6 +1,8 @@
 #include "shapegame"
 using namespace shapegame;
 
+MultiShape::MultiShape(Position pos): Object(pos) {}
+
 MultiShape::MultiShape(Object* controller, std::vector<Shape*>& shapes): Object(*controller) {
 	using namespace std;
 	for (Shape *s : shapes) {

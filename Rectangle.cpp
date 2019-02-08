@@ -1,10 +1,27 @@
 #include "shapegame"
 
 using namespace shapegame;
-shapegame::Rectangle::Rectangle(
-        float height,
-        float width,
-        Position pos,
-        Color color) : Shape(height, width, ShapeType::Rectangle, pos, color) {}
 
-Rectangle::Rectangle(): Rectangle(1, 1, Position(), Color()) {}
+Rectangle::Rectangle(
+	float width,
+	float height,
+	Position pos,
+	Color color
+) : MultiShape(pos) {
+	Triangle *firstTriangle = new Triangle(
+		Position(pos.getX(), pos.getY() + height),
+		Point(pos),
+		Point(pos.getX() + width, pos.getY() + height),
+		color
+	);
+	Triangle *secondTriangle = new Triangle(
+		Position(pos),
+		Point(pos.getX() + width, pos.getY()),
+		Point(pos.getX() + width, pos.getY() + height),
+		color
+	);
+	this->shapes.push_back(firstTriangle);
+	this->shapes.push_back(secondTriangle);
+}
+
+// Rectangle(): Rectangle(0, 0, Position(), Color()) {}
