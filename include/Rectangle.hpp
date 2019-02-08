@@ -1,10 +1,12 @@
 #pragma once
-#include "Shape.hpp"
-#include "shapegl.hpp"
+
+#include "Triangle.hpp"
+#include "MultiShape.hpp"
+
 namespace shapegame {
-    class Rectangle : public Shape {
-        public:
-            Rectangle(float height, float width, Position pos, Color color);
-            Rectangle();
-    };
+	class Rectangle : public MultiShape{
+		public:
+			Rectangle(float width, float height, Position pos, Color color);
+			// Rectangle();
+	};
 }
