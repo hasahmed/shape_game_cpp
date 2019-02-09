@@ -131,6 +131,7 @@ void shapegame::GLHandler::run() {
 
         _scene.updateChildren();
         _scene.drawChildren(this->window_handle);
+				_scene.killQueued();
 
         glfwPollEvents();
         // put the stuff we've been drawing onto the display

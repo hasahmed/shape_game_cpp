@@ -26,6 +26,7 @@ namespace shapegame {
             std::unordered_map<unsigned int, std::unique_ptr<Object>> sceneChildren;
             std::unordered_map<unsigned int, std::unique_ptr<RenderPackage>> drawVect;
             static Scene *_inst;
+						void killQueued();
         public:
             std::unique_ptr<CollisionList> collisionList;
             void updateChildren();
