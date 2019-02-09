@@ -60,30 +60,34 @@ Object* shapegame::Scene::addChild(Object *obj) {
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
     for (auto it = this->drawVect.begin(); it != this->drawVect.end();) {
         if (it->second->shape.canKill) {
-            throw std::runtime_error("No killed shapes should make it to the draw call");
+					throw std::runtime_error("No killed shapes should make it to the draw call");
         } else {
-            if (it->second->shape.collidable)
-                this->collisionList->add(&(it->second->shape));
-								it->second->draw(w);
-            it++;
+					if (it->second->shape.collidable)
+						this->collisionList->add(&(it->second->shape));
+					it->second->draw(w);
+					it++;
         }
     }
     this->collisionList->check();
     this->collisionList->clear();
 }
+
+std::vector<std::unique_ptr<Object>> killList;
+
+
 void Scene::updateChildren() {
     for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
         if (it->second->canKill) {
-            Shape *s = dynamic_cast<Shape*>(it->second.get());
-            if (s) { // then it is a shape
-                this->collisionList->remove(s);
-            }
-            it->second->onRemove();
-            this->drawVect.erase(it->first);
-            it = (this->sceneChildren.erase(it));
+					Shape *s = dynamic_cast<Shape*>(it->second.get());
+					if (s) { // then it is a shape
+						this->collisionList->remove(s);
+					}
+					it->second->onRemove();
+					this->drawVect.erase(it->first);
+					it = (this->sceneChildren.erase(it));
         } else {
-            it->second->update();
-            it++;
+					it->second->update();
+					it++;
         }
     }
 }
