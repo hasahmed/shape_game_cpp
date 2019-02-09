@@ -82,6 +82,7 @@ void Scene::updateChildren() {
 	}
 }
 
+// room for improvement
 void Scene::killQueued(){
 	for (auto killKey : this->killList) {
 		this->drawVect.erase(killKey);
