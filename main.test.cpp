@@ -23,12 +23,11 @@ class Car : public MultiShape {
 	private:
 	int speed = 0;
 	public:
-	Car(Position pos, int speed = (rand() % 500) + 100): MultiShape(pos), speed(speed) {
+	Car(Position pos, int speed = 200): MultiShape(pos), speed(speed) {
 		this->shapes.push_back(new Rectangle(50, 100, pos, Color::WHITE));
 	}
 	void update() override {
 		this->setPosition(this->pos.getX(), (this->pos.getY() - speed * G::dt));
-		// this->setPosition(this->pos.getX(), (this->pos.getY() - (rand() % 500) * G::dt));
 		if (this->pos.getY() < KILL_Y || this->pos.getY() > KILL_Z) this->kill();
 	}
 	void onKill() override {
@@ -36,7 +35,17 @@ class Car : public MultiShape {
 };
 
 class CarSpawner : public Object {
-	// public:
+	public:
+	int intervalMs = 0;
+	Timer *t = nullptr;
+	CarSpawner(Position pos, int intervalMs = 500): 
+		Object(pos),
+		intervalMs(intervalMs) {
+			t = new Timer(intervalMs, true, true, [](){
+			std::cout << "here" << std::endl;
+			});
+			Game::inst().scene->addChild(this->t);
+		}
 };
 
 class RoadLine : public Rectangle {
@@ -113,6 +122,7 @@ int main() {
 		auto c = new Car(Position(lane + 25, 600));
 		g.scene->addChild(c);
 	}
+	g.scene->addChild(new CarSpawner(Position(0, 0)));
 	// auto c = new Car(Position(40, 600));
 	// g.scene->addChild(c);
 	// bool killed = false;
