@@ -30,7 +30,7 @@ class Car : public MultiShape {
 	float speed = 0;
 	Direction dir = Direction::UP;
 	public:
-	Car(Position pos, Direction dir = Direction::UP, Point minMaxSpeed = Point(200, 400)):
+	Car(Position pos, Direction dir = Direction::UP, Point minMaxSpeed = Point(100, 200)):
 		MultiShape(pos),
 		minMaxSpeed(minMaxSpeed),
 		dir(dir)
@@ -51,11 +51,15 @@ class CarSpawner : public Object {
 	public:
 	int intervalMs = 0;
 	Timer *t = nullptr;
-	CarSpawner(Position pos, int intervalMs = 1000): 
+	private:
+	Direction dir = Direction::UP;
+	public:
+	CarSpawner(Position pos, Direction dir = Direction::UP, int intervalMs = 1000): 
 		Object(pos),
-		intervalMs(intervalMs) {
+		intervalMs(intervalMs),
+		dir(dir) {
 			t = new Timer(intervalMs, true, true, [=](){
-				Game::inst().scene->addChild(new Car(this->pos));
+				Game::inst().scene->addChild(new Car(this->pos, this->dir));
 			});
 			Game::inst().scene->addChild(this->t);
 		}
@@ -117,7 +121,7 @@ void printVect(std::vector<T> *vect) {
 int main() {
 
 
-	Game g(1200, 700, "Road Way");
+	Game g(1200, 700, "Busy Highway");
 	g.scene->setBackgroundColor(Color::GRAY);
 	g.scene->addChild(new DebugKeyHandler());
 	auto leftRoadLines = new RoadLines(
@@ -125,29 +129,21 @@ int main() {
 		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
 		Point(6, 10)
 	);
+	auto rightRoadLines = new RoadLines(
+		Point(695, - LINE_HEIGHT / 2),
+		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
+		Point(6, 10)
+	);
 	g.scene->addChild(leftRoadLines);
+	g.scene->addChild(rightRoadLines);
 	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
-	// printVect<float>(&leftRoadLanesX);
-	// g.scene->addChild(new RoadLines(Point(15, -1000), Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2), Point(6, 100)));
+	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
 	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	g.scene->addChild(new RoadLines(Point(695, - LINE_HEIGHT / 2) , Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2), Point(6, 10)));
 	for (auto lane : leftRoadLanesX) {
-		// auto c = new Car(Position(lane + 25, 600));
-		g.scene->addChild(new CarSpawner(Position(lane + 25, 800)));
-		// g.scene->addChild(c);
+		g.scene->addChild(new CarSpawner(Position(lane + 25, -300), Direction::DOWN));
 	}
-	// auto c = new Car(Position(40, 600));
-	// g.scene->addChild(c);
-	// bool killed = false;
-	// g.scene->addChild(new Timer(0, true, true, [=]() mutable {
-	// 	if (!killed) {
-	// 		if (c->pos.getY() < 100){
-	// 			c->kill();
-	// 			killed = true;
-	// 		}
-	// 	}
-	// }));
-	
-
+	for (auto lane : rightRoadLanesX) {
+		g.scene->addChild(new CarSpawner(Position(lane - 70, 800)));
+	}
 	g.run();
 }
