@@ -24,9 +24,11 @@ void MultiShape::setPosition(double x, double y) {
 	auto changeInY = y - this->pos.getY();
 	Object::setPosition(x, y);
 	for (Shape *s : this->shapes) {
+		// std::cout << "HERE" << std::endl;
+		// exit(0);
 		s->translate(changeInX, changeInY);
 	}
 }
-void MultiShape::translate(float x, float y) {
-	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
-}
+// void MultiShape::translate(float x, float y) {
+// 	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
+// }
