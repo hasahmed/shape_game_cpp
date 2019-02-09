@@ -1,5 +1,6 @@
 #include "shapegame"
 #include <vector>
+#include <random>
 using namespace shapegame;
 
 
@@ -22,11 +23,12 @@ class Car : public MultiShape {
 	private:
 	int speed = 0;
 	public:
-	Car(Position pos, int speed = 200): MultiShape(pos), speed(speed) {
+	Car(Position pos, int speed = (rand() % 500) + 100): MultiShape(pos), speed(speed) {
 		this->shapes.push_back(new Rectangle(50, 100, pos, Color::WHITE));
 	}
 	void update() override {
 		this->setPosition(this->pos.getX(), (this->pos.getY() - speed * G::dt));
+		// this->setPosition(this->pos.getX(), (this->pos.getY() - (rand() % 500) * G::dt));
 		if (this->pos.getY() < KILL_Y || this->pos.getY() > KILL_Z) this->kill();
 	}
 	void onKill() override {
@@ -34,6 +36,7 @@ class Car : public MultiShape {
 };
 
 class CarSpawner : public Object {
+	// public:
 };
 
 class RoadLine : public Rectangle {
@@ -55,8 +58,11 @@ class MidLine : public MultiShape {
 };
 
 class RoadLines : public MultiShape {
+	private:
+	Point freq;
+	Point amount;
 	public:
-	RoadLines(Position pos, Point freq, Point amount): MultiShape(pos) {
+	RoadLines(Position pos, Point freq, Point amount): MultiShape(pos), freq(freq), amount(amount)  {
 		for (int x = 0; x < amount.getX(); x++) {
 			for (int y = 0; y < amount.getY(); y++) {
 				this->shapes.push_back(
@@ -65,10 +71,26 @@ class RoadLines : public MultiShape {
 			}
 		}
 	}
+	std::vector<float> getLanesX(){
+		std::vector<float> ret;
+		for (int x = 0; x < this->amount.getX(); x++) {
+			ret.push_back(this->pos.getX() + x * freq.getX());
+		}
+		return ret;
+	}
 	void update() override {
 		// this->setPosition(this->pos.getX(), this->pos.getY() + 30 * G::dt);
 	}
 };
+
+template <typename T>
+void printVect(std::vector<T> *vect) {
+	std::cout << "[";
+	for (auto ele : *vect) {
+		std::cout << ele << ", ";
+	}
+	std::cout << "]" << std::endl;
+}
 
 int main() {
 
@@ -76,12 +98,23 @@ int main() {
 	Game g(1200, 700, "Road Way");
 	g.scene->setBackgroundColor(Color::GRAY);
 	g.scene->addChild(new DebugKeyHandler());
-	g.scene->addChild(new RoadLines(Point(15, - LINE_HEIGHT / 2), Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2), Point(6, 10)));
+	auto leftRoadLines = new RoadLines(
+		Point(15, - LINE_HEIGHT / 2),
+		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
+		Point(6, 10)
+	);
+	g.scene->addChild(leftRoadLines);
+	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
+	printVect<float>(&leftRoadLanesX);
 	// g.scene->addChild(new RoadLines(Point(15, -1000), Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2), Point(6, 100)));
 	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
 	g.scene->addChild(new RoadLines(Point(695, - LINE_HEIGHT / 2) , Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2), Point(6, 10)));
-	auto c = new Car(Position(40, 600));
-	g.scene->addChild(c);
+	for (auto lane : leftRoadLanesX) {
+		auto c = new Car(Position(lane + 25, 600));
+		g.scene->addChild(c);
+	}
+	// auto c = new Car(Position(40, 600));
+	// g.scene->addChild(c);
 	// bool killed = false;
 	// g.scene->addChild(new Timer(0, true, true, [=]() mutable {
 	// 	if (!killed) {
