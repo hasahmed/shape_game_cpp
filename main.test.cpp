@@ -7,6 +7,8 @@ using namespace shapegame;
 #define LINE_HEIGHT 40
 #define SCREEN_WIDTH 1200
 #define SCREEN_HEIGHT 700
+#define KILL_Y -1000
+#define KILL_Z 2000
 
 class TriangleIsosceles : public Triangle {
 	public:
@@ -17,14 +19,21 @@ class TriangleIsosceles : public Triangle {
 };
 
 class Car : public MultiShape {
+	private:
+	int speed = 0;
 	public:
-	Car(Position pos): MultiShape(pos) {
+	Car(Position pos, int speed = 200): MultiShape(pos), speed(speed) {
 		this->shapes.push_back(new Rectangle(50, 100, pos, Color::WHITE));
 	}
 	void update() override {
-		this->setPosition(this->pos.getX(), (this->pos.getY() - 200 * G::dt));
-		if (this->pos.getY() < 100) this->kill();
+		this->setPosition(this->pos.getX(), (this->pos.getY() - speed * G::dt));
+		if (this->pos.getY() < KILL_Y || this->pos.getY() > KILL_Z) this->kill();
 	}
+	void onKill() override {
+	}
+};
+
+class CarSpawner : public Object {
 };
 
 class RoadLine : public Rectangle {
