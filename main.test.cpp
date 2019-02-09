@@ -49,7 +49,8 @@ class RoadLines : public MultiShape {
 		}
 	}
 	void update() override {
-		// this->setPosition(this->pos.getX(), this->pos.getY() + 1);
+		// std::cout << (Shape&) *(this->pos.owner_) << std::endl;
+		// this->setPosition(0, 0);
 		// this->translate(0, 1);
 	}
 };

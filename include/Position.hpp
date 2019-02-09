@@ -8,11 +8,14 @@ namespace shapegame {
     class Position : public Point {
 			friend class Object;
 			private:
+			public:
 				Dirtyable *owner_;
 				Position(float x, float y, Dirtyable *owner);
 				Position(Point pos, Dirtyable *owner);
 				Position(Dirtyable *owner);
-			public:
+
+
+
 				Position(float x, float y);
 				Position(Point pos);
 				Position();
