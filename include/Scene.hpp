@@ -22,6 +22,7 @@ namespace shapegame {
             Color _bgColor;
             GLuint _shaderProg;
             void setShaderProg(GLuint shaderprog);
+						std::vector<unsigned int> killList;
             std::unordered_map<unsigned int, std::unique_ptr<Object>> sceneChildren;
             std::unordered_map<unsigned int, std::unique_ptr<RenderPackage>> drawVect;
             static Scene *_inst;

@@ -23,7 +23,7 @@ class Car : public MultiShape {
 	}
 	void update() override {
 		this->setPosition(this->pos.getX(), (this->pos.getY() - 200 * G::dt));
-		// if (this->pos.getY() < 100) this->kill();
+		if (this->pos.getY() < 100) this->kill();
 	}
 };
 
@@ -73,15 +73,15 @@ int main() {
 	g.scene->addChild(new RoadLines(Point(695, - LINE_HEIGHT / 2) , Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2), Point(6, 10)));
 	auto c = new Car(Position(40, 600));
 	g.scene->addChild(c);
-	bool killed = false;
-	g.scene->addChild(new Timer(0, true, true, [=]() mutable {
-		if (!killed) {
-			if (c->pos.getY() < 100){
-				c->kill();
-				killed = true;
-			}
-		}
-	}));
+	// bool killed = false;
+	// g.scene->addChild(new Timer(0, true, true, [=]() mutable {
+	// 	if (!killed) {
+	// 		if (c->pos.getY() < 100){
+	// 			c->kill();
+	// 			killed = true;
+	// 		}
+	// 	}
+	// }));
 	
 
 	g.run();
