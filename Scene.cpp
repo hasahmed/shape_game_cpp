@@ -33,8 +33,8 @@ shapegame::Scene::Scene() :
     _bgColor(Color::BLUE),
     sceneChildren(),
     drawVect(),
-    collisionList(new SimpleCollision())
-    {
+    collisionList(new SimpleCollision()
+		){
         Scene::_inst = this;
 }
 
@@ -72,24 +72,23 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
     this->collisionList->clear();
 }
 
-std::vector<std::unique_ptr<Object>> killList;
-
-
 void Scene::updateChildren() {
-    for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
-        if (it->second->canKill) {
-					Shape *s = dynamic_cast<Shape*>(it->second.get());
-					if (s) { // then it is a shape
-						this->collisionList->remove(s);
-					}
-					it->second->onRemove();
-					this->drawVect.erase(it->first);
-					it = (this->sceneChildren.erase(it));
-        } else {
-					it->second->update();
-					it++;
-        }
-    }
+	for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
+		it->second->update();
+		if (it->second->canKill) {
+			this->killList.push_back(it->first);
+		}
+		it++;
+	}
+	for (auto killKey : this->killList) {
+		std::cout << "Before size: " << this->drawVect.size() << std::endl;
+		std::cout << "Erased: " << this->drawVect.erase(killKey) << std::endl;
+		std::cout << "After Size: " << this->drawVect.size() << std::endl;
+		this->sceneChildren.erase(killKey);
+		exit(0);
+		// this->collisionList->remove();
+	}
+	this->killList.clear();
 }
 
 void shapegame::Scene::setShaderProg(GLuint shaderProg) {
