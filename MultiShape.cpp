@@ -17,7 +17,6 @@ void MultiShape::onAdd(){
 		Game::inst().scene->addChild(s);
 	}
 }
-void MultiShape::onKill() {}
 void MultiShape::onRemove() {}
 void MultiShape::setPosition(double x, double y) {
 	auto changeInX = x - this->pos.getX();
@@ -28,6 +27,11 @@ void MultiShape::setPosition(double x, double y) {
 		// exit(0);
 		s->setPosition(s->pos.getX() + changeInX, s->pos.getY() + changeInY);
 		// s->translate(changeInX, changeInY);
+	}
+}
+void MultiShape::onKill() {
+	for (Object *s : this->shapes) {
+		s->kill();
 	}
 }
 // void MultiShape::translate(float x, float y) {
