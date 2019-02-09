@@ -59,14 +59,14 @@ Object* shapegame::Scene::addChild(Object *obj) {
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
     for (auto it = this->drawVect.begin(); it != this->drawVect.end();) {
-        if (it->second->shape.canKill) {
-					throw std::runtime_error("No killed shapes should make it to the draw call");
-        } else {
+        // if (it->second->shape.canKill) {
+				// 	throw std::runtime_error("No killed shapes should make it to the draw call");
+        // } else {
 					if (it->second->shape.collidable)
 						this->collisionList->add(&(it->second->shape));
 					it->second->draw(w);
 					it++;
-        }
+        // }
     }
     this->collisionList->check();
     this->collisionList->clear();
@@ -80,13 +80,14 @@ void Scene::updateChildren() {
 		}
 		it++;
 	}
+}
+
+void Scene::killQueued(){
 	for (auto killKey : this->killList) {
-		std::cout << "Before size: " << this->drawVect.size() << std::endl;
-		std::cout << "Erased: " << this->drawVect.erase(killKey) << std::endl;
-		std::cout << "After Size: " << this->drawVect.size() << std::endl;
+		this->drawVect.erase(killKey);
+	}
+	for (auto killKey : this->killList) {
 		this->sceneChildren.erase(killKey);
-		exit(0);
-		// this->collisionList->remove();
 	}
 	this->killList.clear();
 }
