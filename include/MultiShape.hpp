@@ -6,9 +6,9 @@
 namespace shapegame {
 	class MultiShape : public Object {
 		protected:
-		std::vector<Shape*> shapes;
+		std::vector<Object*> shapes;
 		public:
-		MultiShape(Object* controller, std::vector<Shape*>& shapes);
+		MultiShape(Object* controller, std::vector<Object*>& shapes);
 		MultiShape(Position pos);
 		virtual void onAdd() override;
 		virtual void onKill() override;
