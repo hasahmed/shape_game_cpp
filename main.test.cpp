@@ -43,18 +43,20 @@ class Car : public MultiShape {
 	}
 };
 
-class WindShield : public Quad {
+class WindShield : public MultiShape {
 	public:
-	WindShield(Position pos): 
-	Quad(
-		Position(0, 0),
-		Point(),
-		Point(),
-		Point(),
-		Color::BLUE
-	) {
-		this->setPosition(pos);
+	WindShield(Position pos): WindShield(20, 10, pos, 3) {}
+	WindShield(float width, float height, Position pos, float flair): MultiShape(pos) {
 		this->setZOrder(1);
+		auto q = new Quad(
+			Position(0, 0),
+			Point(-flair, -height),
+			Point(width + flair, -height),
+			Point(width, 0),
+			Color::BLUE
+		);
+		q->setPosition(pos);
+		this->addShape(q);
 		// this->zOrder = 1;
 
 		// auto mid = new Rectangle(20, 10, pos, color);
@@ -71,6 +73,42 @@ class WindShield : public Quad {
 		// this->addShape(mid);
 		// this->addShape(left);
 		// this->addShape(right);
+	}
+};
+
+class CarBase : public MultiShape {
+	public:
+	CarBase(float width, float length, Point flair, Point flairHeight, Position pos, Color color): MultiShape(pos) {
+		auto bodyLength = length - flairHeight.getX() - flairHeight.getX();
+		std::cout << bodyLength << std::endl;
+		auto body = new Rectangle(width, bodyLength, pos, color);
+
+
+		auto front = new Quad(
+			Position(0, 0),
+			Point(flair.getX(), -flairHeight.getX()),
+			Point(width - flair.getX(), -flairHeight.getX()),
+			Point(width, 0),
+			color
+		);
+		auto back = new Quad(
+			Position(0, 0),
+			Point(flair.getY(), flairHeight.getY()),
+			Point(width - flair.getY(), flairHeight.getY()),
+			Point(width, 0),
+			color
+		);
+
+
+		body->setPosition(pos);
+		front->setPosition(pos);
+		back->setPosition(pos);
+		back->translate(0, bodyLength);
+
+
+		this->addShape(body);
+		this->addShape(front);
+		this->addShape(back);
 	}
 };
 
@@ -92,7 +130,7 @@ class TaxyBase: public MultiShape {
 		hoodRight->translate(30, 0);
 
 		auto windShield = new WindShield(pos);
-		windShield->translate(0, 25);
+		windShield->translate(10, 20);
 
 		auto topThing = new Rectangle(25, 6, pos, Color::WHITE);
 		topThing->translate(7, 35);
@@ -212,24 +250,8 @@ int main() {
 	 */
 	// g.scene->addChild(new TaxyBase(Position(100, 100)));
 	// g.scene->addChild(new WindShield(Position(100, 100)));
-
-	auto q = g.scene->addChildAs<Quad>(new Quad(
-		Position(0, 0),
-		Point(50, -100),
-		Point(100, -100),
-		Point(150, 0),
-		Color::BLACK
-	));
-	q->setPosition(100, 200);
-
-	auto kQ = g.scene->addChildAs<Quad>(new Quad(
-		Position(0, 0),
-		Point(-100, -20),
-		Point(10, -20),
-		Point(10, 0),
-		Color::KATIE_PINK
-	));
-	kQ->setPosition(500, 500);
+	// g.scene->addChild(new CarBase(200, 100, Point(-10, 3), Point(50, 50), Position(100, 100), Color::BLACK));
+	g.scene->addChild(new CarBase(40, 100, Point(10, 3), Point(10, 5), Position(100, 100), Color::BLACK));
 
 
 	/**
