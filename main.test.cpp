@@ -19,6 +19,18 @@ class TriangleIsosceles : public Triangle {
 		}
 };
 
+class Quad : public MultiShape {
+	public:
+	Quad(Position p1, Point p2, Point p3, Point p4, Color color) : MultiShape(p1) {
+		auto t1 = new Triangle(p1, p2, p3);
+		auto t2 = new Triangle(p1, p3, p4);
+
+
+		this->addShape(t1);
+		this->addShape(t2);
+	}
+};
+
 enum Direction {
 	UP = -1,
 	DOWN = 1
@@ -211,8 +223,18 @@ int main() {
 
 	/**
 	 */
-	g.scene->addChild(new TaxyBase(Position(100, 100)));
+	// g.scene->addChild(new TaxyBase(Position(100, 100)));
 	// g.scene->addChild(new WindShield(Position(100, 100)));
+
+	auto q = g.scene->addChildAs<Quad>(new Quad(
+		Position(0, 0),
+		Point(50, -100),
+		Point(100, -100),
+		Point(150, 0),
+		Color::BLACK
+	));
+	q->setPosition(100, 200);
+
 
 	/**
 	 * 
