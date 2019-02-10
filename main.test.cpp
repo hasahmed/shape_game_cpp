@@ -57,22 +57,6 @@ class WindShield : public MultiShape {
 		);
 		q->setPosition(pos);
 		this->addShape(q);
-		// this->zOrder = 1;
-
-		// auto mid = new Rectangle(20, 10, pos, color);
-		// mid->setPosition(mid->pos.getX() + 10, mid->pos.getY() -10);
-
-		// auto left = new Triangle(Position(0, 0), Point(5, 0), Point(5, 10), color);
-		// left->setPosition(pos);
-		// left->translate(5, -10);
-
-		// auto right = new Triangle(Position(0, 0), Point(5, 0), Point(0, 10), color);
-		// right->setPosition(pos);
-		// right->translate(30, -10);
-
-		// this->addShape(mid);
-		// this->addShape(left);
-		// this->addShape(right);
 	}
 };
 
