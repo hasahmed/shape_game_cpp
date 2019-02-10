@@ -9,16 +9,17 @@
 namespace shapegame {
     class Triangle : public Shape {
         public:
-            Point second; // second point of the triangle
-            Point third; // third
-            Position collisionPosition;
-            Triangle();
-            Triangle(Position first, Point second, Point third);
-            Triangle(Position first, Point second, Point third, Color color);
-            int getNumVerts();
-            // void translate(float x, float y) override;
-            // void translate(Position pos) override;
-            void setPosition(Position pos);
-            void setPosition(float x, float y) override;
+				using Shape::setPosition;
+				Point second; // second point of the triangle
+				Point third; // third
+				Position collisionPosition;
+				Triangle();
+				Triangle(Position first, Point second, Point third);
+				Triangle(Position first, Point second, Point third, Color color);
+				int getNumVerts();
+				// void translate(float x, float y) override;
+				// void translate(Position pos) override;
+				// void setPosition(Position pos);
+				virtual void setPosition(float x, float y) override;
     };
 }
