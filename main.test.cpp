@@ -134,7 +134,7 @@ class TaxyBase: public MultiShape {
 class Taxy : public Car {
 	public:
 	Taxy(Position pos, Direction dir = Direction::UP, Point minMaxSpeed = Point(100, 200), Color color = Color::YELLOW):
-		Car(pos, dir, minMaxSpeed, color) {
+		Car(pos, dir, minMaxSpeed, color, new TaxyBase(pos)) {
 		}
 };
 
@@ -218,7 +218,7 @@ int main() {
 
 	/**
 	 */
-	g.scene->addChild(new TaxyBase(Position(100, 100)));
+	// g.scene->addChild(new TaxyBase(Position(100, 100)));
 	// g.scene->addChild(new WindShield(Position(100, 100)));
 	// g.scene->addChild(new CarBase(200, 100, Point(-10, 3), Point(50, 50), Position(100, 100), Color::BLACK));
 	// g.scene->addChild(new CarBase(40, 100, Point(10, 3), Point(8, 5), Position(100, 100), Color::YELLOW));
@@ -230,26 +230,26 @@ int main() {
 
 
 
-	// auto leftRoadLines = new RoadLines(
-	// 	Point(15, - LINE_HEIGHT / 2),
-	// 	Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
-	// 	Point(6, 10)
-	// );
-	// auto rightRoadLines = new RoadLines(
-	// 	Point(695, - LINE_HEIGHT / 2),
-	// 	Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
-	// 	Point(6, 10)
-	// );
-	// g.scene->addChild(leftRoadLines);
-	// g.scene->addChild(rightRoadLines);
-	// std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
-	// std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
-	// g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	// for (auto lane : leftRoadLanesX) {
-	// 	g.scene->addChild(new CarSpawner(Position(lane + 25, -300), Direction::DOWN));
-	// }
-	// for (auto lane : rightRoadLanesX) {
-	// 	g.scene->addChild(new CarSpawner(Position(lane - 70, 800)));
-	// }
+	auto leftRoadLines = new RoadLines(
+		Point(15, - LINE_HEIGHT / 2),
+		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
+		Point(6, 10)
+	);
+	auto rightRoadLines = new RoadLines(
+		Point(695, - LINE_HEIGHT / 2),
+		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
+		Point(6, 10)
+	);
+	g.scene->addChild(leftRoadLines);
+	g.scene->addChild(rightRoadLines);
+	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
+	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
+	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
+	for (auto lane : leftRoadLanesX) {
+		g.scene->addChild(new CarSpawner(Position(lane + 25, -300), Direction::DOWN));
+	}
+	for (auto lane : rightRoadLanesX) {
+		g.scene->addChild(new CarSpawner(Position(lane - 70, 800)));
+	}
 	g.run();
 }
