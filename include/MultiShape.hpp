@@ -15,6 +15,7 @@ namespace shapegame {
 		virtual void onKill() override;
 		virtual void onRemove() override; //Object
 		virtual void setPosition(double x, double y) override;
+		virtual void setZOrder(int zOrder) override;
 		// virtual void translate(float x, float y);
 	};
 }

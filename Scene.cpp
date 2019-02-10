@@ -67,7 +67,7 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
 		rps.push_back(it.second.get());
 	}
 	std::sort(rps.begin(), rps.end(), [=](RenderPackage* a, RenderPackage* b){
-		return a->shape.zOrder < b->shape.zOrder;
+		return a->shape.getZOrder() < b->shape.getZOrder();
 	});
 	for (auto rp : rps) {
 		rp->draw(w);
