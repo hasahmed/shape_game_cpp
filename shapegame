@@ -29,3 +29,5 @@
 #include "MultiShape.hpp"
 #include "Dirtyable.hpp"
 #include "DebugKeyHandler.hpp"
+#include "Quad.hpp"
+#include "TriangleIsosceles.hpp"

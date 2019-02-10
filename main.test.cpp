@@ -11,25 +11,18 @@ using namespace shapegame;
 #define KILL_Y -1000
 #define KILL_Z 2000
 
-class TriangleIsosceles : public Triangle {
-	public:
-	TriangleIsosceles(float width, float height, Position pos, Color color) :
-		Triangle(Point(0, 0), Point(width / 2, -height), Point(width, 0), color) {
-			this->setPosition(pos);
-		}
-};
 
-class Quad : public MultiShape {
-	public:
-	Quad(Position p1, Point p2, Point p3, Point p4, Color color) : MultiShape(p1) {
-		auto t1 = new Triangle(p1, p2, p3);
-		auto t2 = new Triangle(p1, p3, p4);
+// class Quad : public MultiShape {
+// 	public:
+// 	Quad(Position p1, Point p2, Point p3, Point p4, Color color) : MultiShape(p1) {
+// 		auto t1 = new Triangle(p1, p2, p3, color);
+// 		auto t2 = new Triangle(p1, p3, p4, color);
 
 
-		this->addShape(t1);
-		this->addShape(t2);
-	}
-};
+// 		this->addShape(t1);
+// 		this->addShape(t2);
+// 	}
+// };
 
 enum Direction {
 	UP = -1,
@@ -234,6 +227,15 @@ int main() {
 		Color::BLACK
 	));
 	q->setPosition(100, 200);
+
+	auto kQ = g.scene->addChildAs<Quad>(new Quad(
+		Position(0, 0),
+		Point(-100, -20),
+		Point(10, -20),
+		Point(10, 0),
+		Color::KATIE_PINK
+	));
+	kQ->setPosition(500, 500);
 
 
 	/**
