@@ -45,7 +45,7 @@ class Car : public MultiShape {
 
 class WindShield : public MultiShape {
 	public:
-	WindShield(Position pos): WindShield(20, 10, pos, 3) {}
+	WindShield(Position pos): WindShield(30, 10, pos, 3) {}
 	WindShield(float width, float height, Position pos, float flair): MultiShape(pos) {
 		this->setZOrder(1);
 		auto q = new Quad(
@@ -53,7 +53,7 @@ class WindShield : public MultiShape {
 			Point(-flair, -height),
 			Point(width + flair, -height),
 			Point(width, 0),
-			Color::BLUE
+			Color::BLUE_LIGHT
 		);
 		q->setPosition(pos);
 		this->addShape(q);
@@ -100,20 +100,10 @@ class TaxyBase: public MultiShape {
 	TaxyBase(Position pos): MultiShape(pos) {
 		int carWidth = 40;
 		int carLength = 90;
-		auto body = new Rectangle(carWidth , carLength, pos, Color::YELLOW);
-		auto hood = new Rectangle(20, 10, pos, Color::YELLOW);
-		hood->setPosition(hood->pos.getX() + 10, hood->pos.getY() -10);
-
-		auto hoodLeft = new Triangle(Position(0, 0), Point(10, -10), Point(10, 0), Color::YELLOW);
-		hoodLeft->setPosition(pos);
-		// hoodLeft->translate(0, 0);
-
-		auto hoodRight = new Triangle(Position(0, 0), Point(0, -10), Point(10, 0), Color::YELLOW);
-		hoodRight->setPosition(pos);
-		hoodRight->translate(30, 0);
+		auto body = new CarBase(carWidth, carLength, Point(10, 3), Point(8, 5), Position(100, 100), Color::YELLOW);
 
 		auto windShield = new WindShield(pos);
-		windShield->translate(10, 20);
+		windShield->translate(5, 25);
 
 		auto topThing = new Rectangle(25, 6, pos, Color::WHITE);
 		topThing->translate(7, 35);
@@ -123,13 +113,13 @@ class TaxyBase: public MultiShape {
 		leftWheel->translate(-2, 5);
 
 		auto leftBackWheel = new Rectangle(2, 15, pos, Color::BLACK);
-		leftBackWheel->translate(-2, 65);
+		leftBackWheel->translate(-2, 55);
 
 		auto rightWheel = new Rectangle(2, 15, pos, Color::BLACK);
 		rightWheel->translate(carWidth, 5);
 
 		auto rightBackWheel = new Rectangle(2, 15, pos, Color::BLACK);
-		rightBackWheel->translate(carWidth, 65);
+		rightBackWheel->translate(carWidth, 55);
 
 		this->shapes.push_back(leftBackWheel);
 		this->shapes.push_back(rightBackWheel);
@@ -137,9 +127,6 @@ class TaxyBase: public MultiShape {
 		this->shapes.push_back(leftWheel);
 		this->shapes.push_back(windShield);
 		this->shapes.push_back(body);
-		this->shapes.push_back(hood);
-		this->shapes.push_back(hoodRight);
-		this->shapes.push_back(hoodLeft);
 		this->shapes.push_back(topThing);
 	}
 };
@@ -231,10 +218,10 @@ int main() {
 
 	/**
 	 */
-	// g.scene->addChild(new TaxyBase(Position(100, 100)));
+	g.scene->addChild(new TaxyBase(Position(100, 100)));
 	// g.scene->addChild(new WindShield(Position(100, 100)));
 	// g.scene->addChild(new CarBase(200, 100, Point(-10, 3), Point(50, 50), Position(100, 100), Color::BLACK));
-	g.scene->addChild(new CarBase(40, 100, Point(10, 3), Point(8, 5), Position(100, 100), Color::YELLOW));
+	// g.scene->addChild(new CarBase(40, 100, Point(10, 3), Point(8, 5), Position(100, 100), Color::YELLOW));
 
 
 	/**

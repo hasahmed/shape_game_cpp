@@ -41,6 +41,7 @@ Color Color::DARK_GRAY = Color(0.3, 0.3, 0.3);
 Color Color::RED = Color(1.0, 0.0, 0.0);
 Color Color::GREEN = Color(0.0, 1.0, 0.0);
 Color Color::BLUE = Color(0.0, 0.0, 1.0);
+Color Color::BLUE_LIGHT = Color(0.5, 0.7, 1.0);
 Color Color::YELLOW = Color(1.0, 1.0, 0.0);
 Color Color::PURPLE = Color(1.0, 0.0, 1.0);
 Color Color::PINK = Color(1, 0.5, 0.9);
