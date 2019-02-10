@@ -41,7 +41,7 @@ void Shape::onCollisionStart(Shape &other) {}
 void Shape::onCollisionStop(Shape &other) {}
 void Shape::onColliding(Shape &other) {}
 
-void Shape::translate(double x, double y) {
+void Shape::translate(float x, float y) {
 	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
 }
 void Shape::translate(Position pos){
