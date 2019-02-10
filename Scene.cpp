@@ -58,15 +58,10 @@ Object* shapegame::Scene::addChild(Object *obj) {
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
-    for (auto it = this->drawVect.begin(); it != this->drawVect.end();) {
-        // if (it->second->shape.canKill) {
-				// 	throw std::runtime_error("No killed shapes should make it to the draw call");
-        // } else {
-					if (it->second->shape.collidable)
-						this->collisionList->add(&(it->second->shape));
-					it->second->draw(w);
-					it++;
-        // }
+    for (auto &it : this->drawVect) {
+					if (it.second->shape.collidable)
+						this->collisionList->add(&(it.second->shape));
+					it.second->draw(w);
     }
     this->collisionList->check();
     this->collisionList->clear();
