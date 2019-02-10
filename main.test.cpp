@@ -30,21 +30,64 @@ class Car : public MultiShape {
 	float speed = 0;
 	Direction dir = Direction::UP;
 	public:
-	Car(Position pos, Direction dir = Direction::UP, Point minMaxSpeed = Point(100, 200)):
-		MultiShape(pos),
-		minMaxSpeed(minMaxSpeed),
-		dir(dir)
-		{
+	Car(
+		Position pos,
+		Direction dir = Direction::UP,
+		Point minMaxSpeed = Point(100, 200),
+		Color color = Color::WHITE,
+		Object *base = nullptr
+	): MultiShape(pos), minMaxSpeed(minMaxSpeed), dir(dir) {
 		int minSpeed = floor(this->minMaxSpeed.getY());
 		this->speed = (rand() % minSpeed) + this->minMaxSpeed.getX();
-		this->shapes.push_back(new Rectangle(50, 100, pos, Color::WHITE));
+		if (base) {
+			this->shapes.push_back(base);
+		} else {
+			this->shapes.push_back(new Rectangle(50, 100, pos, color));
+		}
 	}
 	void update() override {
 		this->setPosition(this->pos.getX(), (this->pos.getY() + speed * this->dir * G::dt));
 		if (this->pos.getY() < KILL_Y || this->pos.getY() > KILL_Z) this->kill();
 	}
-	void onKill() override {
+};
+
+class WindShield : public MultiShape {
+	public:
+	WindShield(Position pos): MultiShape(pos) {
 	}
+};
+
+class TaxyBase: public MultiShape {
+	public:
+	TaxyBase(Position pos): MultiShape(pos) {
+		auto body = new Rectangle(40, 90, pos, Color::YELLOW);
+		auto hood = new Rectangle(20, 10, pos, Color::YELLOW);
+		hood->setPosition(hood->pos.getX() + 10, hood->pos.getY() -10);
+
+		auto hoodLeft = new Triangle(Position(0, 0), Point(10, -10), Point(10, 0), Color::YELLOW);
+		hoodLeft->setPosition(pos);
+		// hoodLeft->translate(0, 0);
+
+		auto hoodRight = new Triangle(Position(0, 0), Point(0, -10), Point(10, 0), Color::YELLOW);
+		hoodRight->setPosition(pos);
+		hoodRight->translate(30, 0);
+
+		auto windSheild = new Rectangle(30, 15, pos, Color::BLUE);
+		windSheild->translate(5, 0);
+
+		this->shapes.push_back(windSheild);
+		this->shapes.push_back(body);
+		this->shapes.push_back(hood);
+		this->shapes.push_back(hoodRight);
+		this->shapes.push_back(hoodLeft);
+	}
+};
+
+class Taxy : public Car {
+	public:
+	Taxy(Position pos, Direction dir = Direction::UP, Point minMaxSpeed = Point(100, 200), Color color = Color::YELLOW):
+		Car(pos, dir, minMaxSpeed, color) {
+		}
 };
 
 class CarSpawner : public Object {
@@ -59,7 +102,7 @@ class CarSpawner : public Object {
 		intervalMs(intervalMs),
 		dir(dir) {
 			t = new Timer(intervalMs, true, true, [=](){
-				Game::inst().scene->addChild(new Car(this->pos, this->dir));
+				Game::inst().scene->addChild(new Taxy(this->pos, this->dir));
 			});
 			Game::inst().scene->addChild(this->t);
 		}
@@ -124,26 +167,37 @@ int main() {
 	Game g(1200, 700, "Busy Highway");
 	g.scene->setBackgroundColor(Color::GRAY);
 	g.scene->addChild(new DebugKeyHandler());
-	auto leftRoadLines = new RoadLines(
-		Point(15, - LINE_HEIGHT / 2),
-		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
-		Point(6, 10)
-	);
-	auto rightRoadLines = new RoadLines(
-		Point(695, - LINE_HEIGHT / 2),
-		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
-		Point(6, 10)
-	);
-	g.scene->addChild(leftRoadLines);
-	g.scene->addChild(rightRoadLines);
-	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
-	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
-	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	for (auto lane : leftRoadLanesX) {
-		g.scene->addChild(new CarSpawner(Position(lane + 25, -300), Direction::DOWN));
-	}
-	for (auto lane : rightRoadLanesX) {
-		g.scene->addChild(new CarSpawner(Position(lane - 70, 800)));
-	}
+
+	/**
+	 */
+	g.scene->addChild(new TaxyBase(Position(100, 100)));
+
+	/**
+	 * 
+	 */
+
+
+
+	// auto leftRoadLines = new RoadLines(
+	// 	Point(15, - LINE_HEIGHT / 2),
+	// 	Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
+	// 	Point(6, 10)
+	// );
+	// auto rightRoadLines = new RoadLines(
+	// 	Point(695, - LINE_HEIGHT / 2),
+	// 	Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
+	// 	Point(6, 10)
+	// );
+	// g.scene->addChild(leftRoadLines);
+	// g.scene->addChild(rightRoadLines);
+	// std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
+	// std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
+	// g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
+	// for (auto lane : leftRoadLanesX) {
+	// 	g.scene->addChild(new CarSpawner(Position(lane + 25, -300), Direction::DOWN));
+	// }
+	// for (auto lane : rightRoadLanesX) {
+	// 	g.scene->addChild(new CarSpawner(Position(lane - 70, 800)));
+	// }
 	g.run();
 }

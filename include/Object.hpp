@@ -26,6 +26,7 @@ namespace shapegame {
             virtual void onKeyPress(Kb::Key key, Input::Action action);
             virtual void onMouseClick(Mouse::Btn btn, Input::Action action);
 						virtual void setPosition(double x, double y);
+						virtual void translate(float x, float y);
 						void setDirty(bool dirty) override;
 						bool isDirty() override;
     };

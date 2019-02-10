@@ -28,7 +28,7 @@ namespace shapegame {
 					virtual void onCollisionStop(Shape &other);
 					virtual void onColliding(Shape &other);
 					bool isColliding(Shape &other);
-					virtual void translate(double x, double y);
+					virtual void translate(float x, float y);
 					virtual void translate(Position pos);
 					virtual void setPosition(Position pos);
 					virtual void setPosition(double x, double y);
