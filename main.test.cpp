@@ -54,6 +54,26 @@ class Car : public MultiShape {
 class WindShield : public MultiShape {
 	public:
 	WindShield(Position pos): MultiShape(pos) {
+		Color color = Color::BLUE;
+
+		auto mid = new Rectangle(20, 10, pos, color);
+		mid->setPosition(mid->pos.getX() + 10, mid->pos.getY() -10);
+
+		auto left = new Triangle(Position(0, 0), Point(10, -10), Point(10, 0), color);
+		left->setPosition(pos);
+		// hoodLeft->translate(0, 0);
+
+		auto right = new Triangle(Position(0, 0), Point(0, -10), Point(10, 0), color);
+		right->setPosition(pos);
+		right->translate(30, 0);
+
+
+		this->shapes.push_back(mid);
+		this->shapes.push_back(left);
+		this->shapes.push_back(right);
+	}
+	void update() override {
+		// this->translate(-0.1, 0);
 	}
 };
 
@@ -72,10 +92,12 @@ class TaxyBase: public MultiShape {
 		hoodRight->setPosition(pos);
 		hoodRight->translate(30, 0);
 
-		auto windSheild = new Rectangle(30, 15, pos, Color::BLUE);
-		windSheild->translate(5, 0);
+		auto windShield = new WindShield(pos);
+		// windShield->translate(50, 20);
+		// auto windSheild = new Rectangle(30, 15, pos, Color::BLUE);
+		// windSheild->translate(5, 0);
 
-		this->shapes.push_back(windSheild);
+		this->shapes.push_back(windShield);
 		this->shapes.push_back(body);
 		this->shapes.push_back(hood);
 		this->shapes.push_back(hoodRight);

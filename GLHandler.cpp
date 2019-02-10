@@ -105,6 +105,7 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) :
 // uncomment if back culling is desired
     // GLCALL(glCullFace(GL_BACK));
     // GLCALL(glEnable(GL_CULL_FACE));
+		GLCALL(glDepthFunc(GL_NEVER));
 
 
 }
