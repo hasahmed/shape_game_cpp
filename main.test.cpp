@@ -55,6 +55,7 @@ class WindShield : public MultiShape {
 	public:
 	WindShield(Position pos): MultiShape(pos) {
 		Color color = Color::BLUE;
+		this->zOrder = 10;
 
 		auto mid = new Rectangle(20, 10, pos, color);
 		mid->setPosition(mid->pos.getX() + 10, mid->pos.getY() -10);
@@ -68,9 +69,12 @@ class WindShield : public MultiShape {
 		right->translate(30, 0);
 
 
-		this->shapes.push_back(mid);
-		this->shapes.push_back(left);
-		this->shapes.push_back(right);
+		this->addShape(mid);
+		this->addShape(left);
+		this->addShape(right);
+		// this->shapes.push_back(mid);
+		// this->shapes.push_back(left);
+		// this->shapes.push_back(right);
 	}
 	void update() override {
 		// this->translate(-0.1, 0);
@@ -193,6 +197,7 @@ int main() {
 	/**
 	 */
 	g.scene->addChild(new TaxyBase(Position(100, 100)));
+	// g.scene->addChild(new WindShield(Position(100, 100)));
 
 	/**
 	 * 

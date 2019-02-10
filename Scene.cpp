@@ -1,6 +1,7 @@
 #include <memory>
 #include <unistd.h>
 #include <iterator>
+#include <algorithm>
 #include "shapegame"
 #include "Rectangle.hpp"
 
@@ -58,13 +59,21 @@ Object* shapegame::Scene::addChild(Object *obj) {
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
-    for (auto &it : this->drawVect) {
-					if (it.second->shape.collidable)
-						this->collisionList->add(&(it.second->shape));
-					it.second->draw(w);
-    }
-    this->collisionList->check();
-    this->collisionList->clear();
+	std::vector<RenderPackage*> rps;
+	for (auto &it : this->drawVect) {
+		if (it.second->shape.collidable)
+			this->collisionList->add(&(it.second->shape));
+		// it.second->draw(w);
+		rps.push_back(it.second.get());
+	}
+	std::sort(rps.begin(), rps.end(), [=](RenderPackage* a, RenderPackage* b){
+		return a->shape.zOrder < b->shape.zOrder;
+	});
+	for (auto rp : rps) {
+		rp->draw(w);
+	}
+	this->collisionList->check();
+	this->collisionList->clear();
 }
 
 void Scene::updateChildren() {

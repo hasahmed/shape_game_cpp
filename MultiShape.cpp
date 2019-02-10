@@ -15,8 +15,14 @@ void MultiShape::onAdd(){
 	// std::cout << "shapes.size(): " << this->shapes.size() << std::endl;
 	for (Object *s : this->shapes) {
 		s->zOrder = this->zOrder;
+		if (s->zOrder > 0) 
+			std::cout << s->zOrder << std::endl;
 		Game::inst().scene->addChild(s);
 	}
+}
+void MultiShape::addShape(Object* shape) {
+	shape->zOrder = this->zOrder;
+	this->shapes.push_back(shape);
 }
 void MultiShape::onRemove() {}
 void MultiShape::setPosition(double x, double y) {
