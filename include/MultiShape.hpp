@@ -13,8 +13,8 @@ namespace shapegame {
 		virtual void addShape(Object* shape);
 		virtual void onAdd() override;
 		virtual void onKill() override;
-		virtual void onRemove() override; //Object
-		virtual void setPosition(double x, double y) override;
+		virtual void setPosition(float x, float y) override;
+		virtual void setPosition(Point pos) override;
 		virtual void setZOrder(int zOrder) override;
 		// virtual void translate(float x, float y);
 	};

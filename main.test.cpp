@@ -11,19 +11,6 @@ using namespace shapegame;
 #define KILL_Y -1000
 #define KILL_Z 2000
 
-
-// class Quad : public MultiShape {
-// 	public:
-// 	Quad(Position p1, Point p2, Point p3, Point p4, Color color) : MultiShape(p1) {
-// 		auto t1 = new Triangle(p1, p2, p3, color);
-// 		auto t2 = new Triangle(p1, p3, p4, color);
-
-
-// 		this->addShape(t1);
-// 		this->addShape(t2);
-// 	}
-// };
-
 enum Direction {
 	UP = -1,
 	DOWN = 1
@@ -56,27 +43,34 @@ class Car : public MultiShape {
 	}
 };
 
-class WindShield : public MultiShape {
+class WindShield : public Quad {
 	public:
-	WindShield(Position pos): MultiShape(pos) {
-		Color color = Color::BLUE;
+	WindShield(Position pos): 
+	Quad(
+		Position(0, 0),
+		Point(),
+		Point(),
+		Point(),
+		Color::BLUE
+	) {
+		this->setPosition(pos);
 		this->setZOrder(1);
 		// this->zOrder = 1;
 
-		auto mid = new Rectangle(20, 10, pos, color);
-		mid->setPosition(mid->pos.getX() + 10, mid->pos.getY() -10);
+		// auto mid = new Rectangle(20, 10, pos, color);
+		// mid->setPosition(mid->pos.getX() + 10, mid->pos.getY() -10);
 
-		auto left = new Triangle(Position(0, 0), Point(5, 0), Point(5, 10), color);
-		left->setPosition(pos);
-		left->translate(5, -10);
+		// auto left = new Triangle(Position(0, 0), Point(5, 0), Point(5, 10), color);
+		// left->setPosition(pos);
+		// left->translate(5, -10);
 
-		auto right = new Triangle(Position(0, 0), Point(5, 0), Point(0, 10), color);
-		right->setPosition(pos);
-		right->translate(30, -10);
+		// auto right = new Triangle(Position(0, 0), Point(5, 0), Point(0, 10), color);
+		// right->setPosition(pos);
+		// right->translate(30, -10);
 
-		this->addShape(mid);
-		this->addShape(left);
-		this->addShape(right);
+		// this->addShape(mid);
+		// this->addShape(left);
+		// this->addShape(right);
 	}
 };
 

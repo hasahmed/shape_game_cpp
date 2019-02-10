@@ -27,8 +27,10 @@ void MultiShape::setZOrder(int zOrder) {
 		s->setZOrder(zOrder);
 	}
 }
-void MultiShape::onRemove() {}
-void MultiShape::setPosition(double x, double y) {
+void MultiShape::setPosition(Point pos) {
+	this->setPosition(pos.getX(), pos.getY());
+}
+void MultiShape::setPosition(float x, float y) {
 	auto changeInX = x - this->pos.getX();
 	auto changeInY = y - this->pos.getY();
 	Object::setPosition(x, y);

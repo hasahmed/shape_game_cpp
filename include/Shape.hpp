@@ -30,8 +30,6 @@ namespace shapegame {
 					bool isColliding(Shape &other);
 					virtual void translate(float x, float y);
 					virtual void translate(Position pos);
-					virtual void setPosition(Position pos);
-					virtual void setPosition(double x, double y);
     };
 }
 std::ostream& operator<< (std::ostream& stream, const shapegame::Shape& shape);
