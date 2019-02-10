@@ -55,29 +55,23 @@ class WindShield : public MultiShape {
 	public:
 	WindShield(Position pos): MultiShape(pos) {
 		Color color = Color::BLUE;
-		this->zOrder = 10;
+		this->setZOrder(1);
+		// this->zOrder = 1;
 
 		auto mid = new Rectangle(20, 10, pos, color);
 		mid->setPosition(mid->pos.getX() + 10, mid->pos.getY() -10);
 
-		auto left = new Triangle(Position(0, 0), Point(10, -10), Point(10, 0), color);
+		auto left = new Triangle(Position(0, 0), Point(5, 0), Point(5, 10), color);
 		left->setPosition(pos);
-		// hoodLeft->translate(0, 0);
+		left->translate(5, -10);
 
-		auto right = new Triangle(Position(0, 0), Point(0, -10), Point(10, 0), color);
+		auto right = new Triangle(Position(0, 0), Point(5, 0), Point(0, 10), color);
 		right->setPosition(pos);
-		right->translate(30, 0);
-
+		right->translate(30, -10);
 
 		this->addShape(mid);
 		this->addShape(left);
 		this->addShape(right);
-		// this->shapes.push_back(mid);
-		// this->shapes.push_back(left);
-		// this->shapes.push_back(right);
-	}
-	void update() override {
-		// this->translate(-0.1, 0);
 	}
 };
 
@@ -97,15 +91,17 @@ class TaxyBase: public MultiShape {
 		hoodRight->translate(30, 0);
 
 		auto windShield = new WindShield(pos);
-		// windShield->translate(50, 20);
-		// auto windSheild = new Rectangle(30, 15, pos, Color::BLUE);
-		// windSheild->translate(5, 0);
+		windShield->translate(0, 20);
+
+		auto topThing = new Rectangle(20, 30, pos, Color::BLACK);
+		topThing->setZOrder(1);
 
 		this->shapes.push_back(windShield);
 		this->shapes.push_back(body);
 		this->shapes.push_back(hood);
 		this->shapes.push_back(hoodRight);
 		this->shapes.push_back(hoodLeft);
+		this->shapes.push_back(topThing);
 	}
 };
 

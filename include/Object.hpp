@@ -12,10 +12,8 @@ namespace shapegame {
 			private:
 				bool canKill = false;
 				bool _dirty = false;
-			protected:
-				// int zOrder = 0;
-			public:
 				int zOrder = 0;
+			public:
 				Position pos;
 				Object();
 				Object(double x, double y);
@@ -30,6 +28,8 @@ namespace shapegame {
 				virtual void onMouseClick(Mouse::Btn btn, Input::Action action);
 				virtual void setPosition(double x, double y);
 				virtual void translate(float x, float y);
+				virtual void setZOrder(int zOrder);
+				virtual int getZOrder();
 				void setDirty(bool dirty) override;
 				bool isDirty() override;
     };

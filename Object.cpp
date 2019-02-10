@@ -25,6 +25,12 @@ void Object::setPosition(double x, double y){
 void Object::translate(float x, float y) {
 	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
 }
+void Object::setZOrder(int zOrder) {
+	this->zOrder = zOrder;
+}
+int Object::getZOrder() {
+	return this->zOrder;
+}
 void Object::setDirty(bool dirty) {
 	this->_dirty = dirty;
 }
