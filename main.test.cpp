@@ -91,9 +91,10 @@ class TaxyBase: public MultiShape {
 		hoodRight->translate(30, 0);
 
 		auto windShield = new WindShield(pos);
-		windShield->translate(0, 20);
+		windShield->translate(0, 25);
 
-		auto topThing = new Rectangle(20, 30, pos, Color::BLACK);
+		auto topThing = new Rectangle(25, 6, pos, Color::WHITE);
+		topThing->translate(7, 35);
 		topThing->setZOrder(1);
 
 		this->shapes.push_back(windShield);
