@@ -14,6 +14,7 @@ MultiShape::MultiShape(Object* controller, std::vector<Object*>& shapes): Object
 void MultiShape::onAdd(){
 	// std::cout << "shapes.size(): " << this->shapes.size() << std::endl;
 	for (Object *s : this->shapes) {
+		s->zOrder = this->zOrder;
 		Game::inst().scene->addChild(s);
 	}
 }
