@@ -78,7 +78,9 @@ class WindShield : public MultiShape {
 class TaxyBase: public MultiShape {
 	public:
 	TaxyBase(Position pos): MultiShape(pos) {
-		auto body = new Rectangle(40, 90, pos, Color::YELLOW);
+		int carWidth = 40;
+		int carLength = 90;
+		auto body = new Rectangle(carWidth , carLength, pos, Color::YELLOW);
 		auto hood = new Rectangle(20, 10, pos, Color::YELLOW);
 		hood->setPosition(hood->pos.getX() + 10, hood->pos.getY() -10);
 
@@ -97,6 +99,22 @@ class TaxyBase: public MultiShape {
 		topThing->translate(7, 35);
 		topThing->setZOrder(1);
 
+		auto leftWheel = new Rectangle(2, 15, pos, Color::BLACK);
+		leftWheel->translate(-2, 5);
+
+		auto leftBackWheel = new Rectangle(2, 15, pos, Color::BLACK);
+		leftBackWheel->translate(-2, 65);
+
+		auto rightWheel = new Rectangle(2, 15, pos, Color::BLACK);
+		rightWheel->translate(carWidth, 5);
+
+		auto rightBackWheel = new Rectangle(2, 15, pos, Color::BLACK);
+		rightBackWheel->translate(carWidth, 65);
+
+		this->shapes.push_back(leftBackWheel);
+		this->shapes.push_back(rightBackWheel);
+		this->shapes.push_back(rightWheel);
+		this->shapes.push_back(leftWheel);
 		this->shapes.push_back(windShield);
 		this->shapes.push_back(body);
 		this->shapes.push_back(hood);
