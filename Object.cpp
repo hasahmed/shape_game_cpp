@@ -18,9 +18,12 @@ void Object::onKill(){}
 void Object::onRemove(){}
 void Object::onKeyPress(Kb::Key key, Input::Action action){}
 void Object::onMouseClick(Mouse::Btn btn, Input::Action action){}
-void Object::setPosition(double x, double y){
+void Object::setPosition(float x, float y){
 	this->pos.setX(x);
 	this->pos.setY(y);
+}
+void Object::setPosition(Point pos) {
+	this->setPosition(pos.getX(), pos.getY());
 }
 void Object::translate(float x, float y) {
 	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);

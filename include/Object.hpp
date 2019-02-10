@@ -26,7 +26,8 @@ namespace shapegame {
 				virtual void onKill(); //called as soon as kill is called
 				virtual void onKeyPress(Kb::Key key, Input::Action action);
 				virtual void onMouseClick(Mouse::Btn btn, Input::Action action);
-				virtual void setPosition(double x, double y);
+				virtual void setPosition(float x, float y);
+				virtual void setPosition(Point pos);
 				virtual void translate(float x, float y);
 				virtual void setZOrder(int zOrder);
 				virtual int getZOrder();

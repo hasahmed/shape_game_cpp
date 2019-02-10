@@ -18,13 +18,6 @@ Shape::Shape(float height, float width, ShapeType type, Color color) :
 float Shape::getHeight() const {return this->_height;}
 float Shape::getWidth() const {return this->_width;}
 
-void Shape::setPosition(double x, double y){
-    this->pos.setX(x);
-    this->pos.setY(y);
-}
-void Shape::setPosition(Position pos){
-    this->setPosition(pos.getX(), pos.getY());
-}
 
 bool Shape::isColliding(Shape &other) {
     if (this->pos.getX() + this->getWidth() > other.pos.getX() && // right with left
