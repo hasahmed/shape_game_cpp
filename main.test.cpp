@@ -80,7 +80,6 @@ class CarBase : public MultiShape {
 	public:
 	CarBase(float width, float length, Point flair, Point flairHeight, Position pos, Color color): MultiShape(pos) {
 		auto bodyLength = length - flairHeight.getX() - flairHeight.getX();
-		std::cout << bodyLength << std::endl;
 		auto body = new Rectangle(width, bodyLength, pos, color);
 
 
@@ -251,7 +250,7 @@ int main() {
 	// g.scene->addChild(new TaxyBase(Position(100, 100)));
 	// g.scene->addChild(new WindShield(Position(100, 100)));
 	// g.scene->addChild(new CarBase(200, 100, Point(-10, 3), Point(50, 50), Position(100, 100), Color::BLACK));
-	g.scene->addChild(new CarBase(40, 100, Point(10, 3), Point(10, 5), Position(100, 100), Color::BLACK));
+	g.scene->addChild(new CarBase(40, 100, Point(10, 3), Point(8, 5), Position(100, 100), Color::YELLOW));
 
 
 	/**
