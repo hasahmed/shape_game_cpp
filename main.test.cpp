@@ -16,6 +16,27 @@ enum Direction {
 	DOWN = 1
 };
 
+class Component {
+	protected:
+	Object *entity = nullptr;
+	public:
+	Component(Object *entity): entity(entity) {}
+	virtual ~Component(){}
+	virtual void update() {}
+	virtual void translate(float x, float y) {
+		this->entity->translate(x, y);
+	}
+};
+
+class CarComponent : public Component {
+	public:
+	void update() override {
+		this->translate(0, 100 * G::dt);
+		if (this->entity->pos.getY() < KILL_Y || this->entity->pos.getY() > KILL_Z) this->entity->kill();
+	}
+};
+
+
 class Car : public Object {
 	private:
 	Point minMaxSpeed;
