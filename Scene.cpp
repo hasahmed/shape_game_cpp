@@ -79,6 +79,13 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
 void Scene::updateChildren() {
 	for (auto &it : this->sceneChildren) {
 		it.second->update();
+		auto ent = dynamic_cast<Entity*>(it.second.get());
+		if (ent) {
+			for (auto &compo : ent->compos) {
+				compo->update(ent);
+			}
+		}
+		// for (auto it.second->)
 		if (it.second->canKill) {
 			this->killList.push_back(it.first);
 		}
