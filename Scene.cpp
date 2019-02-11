@@ -77,12 +77,11 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
 }
 
 void Scene::updateChildren() {
-	for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
-		it->second->update();
-		if (it->second->canKill) {
-			this->killList.push_back(it->first);
+	for (auto &it : this->sceneChildren) {
+		it.second->update();
+		if (it.second->canKill) {
+			this->killList.push_back(it.first);
 		}
-		it++;
 	}
 }
 
