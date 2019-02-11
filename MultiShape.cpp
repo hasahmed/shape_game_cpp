@@ -1,16 +1,16 @@
 #include "shapegame"
 using namespace shapegame;
 
-MultiShape::MultiShape(Position pos): Object(pos) {}
 
-MultiShape::MultiShape(Object* controller, std::vector<Object*>& shapes): Object(*controller) {
-	using namespace std;
-	for (Object *s : shapes) {
-		this->shapes.push_back(s);
-	}
-	// std::cout << "shapes.size(): " << shapes.size() << std::endl;
-	// cout << *this << endl;
-}
+MultiShape::MultiShape(Position pos): Entity(pos) {}
+// MultiShape::MultiShape(Object* controller, std::vector<Object*>& shapes): Entity(*controller) {
+// 	using namespace std;
+// 	for (Object *s : shapes) {
+// 		this->shapes.push_back(s);
+// 	}
+// 	// std::cout << "shapes.size(): " << shapes.size() << std::endl;
+// 	// cout << *this << endl;
+// }
 void MultiShape::onAdd(){
 	// std::cout << "shapes.size(): " << this->shapes.size() << std::endl;
 	for (Object *s : this->shapes) {
