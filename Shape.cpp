@@ -7,7 +7,7 @@ Shape::Shape(
         Position pos,
         Color color
         ) :
-            Object(pos),
+            Entity(pos),
             _height(height),
             _width(width),
             color(color),
