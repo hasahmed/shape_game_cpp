@@ -31,3 +31,5 @@
 #include "DebugKeyHandler.hpp"
 #include "Quad.hpp"
 #include "TriangleIsosceles.hpp"
+#include "Entity.hpp"
+#include "Component.hpp"

@@ -15,28 +15,11 @@ enum Direction {
 	UP = -1,
 	DOWN = 1
 };
-
-class Component {
-	protected:
-	Object *entity = nullptr;
-	public:
-	Component(Object *entity): entity(entity) {}
-	Component() {}
-	virtual ~Component(){}
-	virtual void update() {}
-	void setEntity(Object* ent) {
-		this->entity = ent;
-	}
-	virtual void translate(float x, float y) {
-		this->entity->translate(x, y);
-	}
-};
-
 class CarComponent : public Component {
 	public:
-	void update() override {
-		this->translate(0, 100 * G::dt);
-		if (this->entity->pos.getY() < KILL_Y || this->entity->pos.getY() > KILL_Z) this->entity->kill();
+	void update(Object *ent) override {
+		ent->translate(0, 100 * G::dt);
+		if (ent->pos.getY() < KILL_Y || ent->pos.getY() > KILL_Z) ent->kill();
 	}
 };
 
@@ -79,42 +62,43 @@ class WindShield : public MultiShape {
 		this->addShape(q);
 	}
 };
-class Entity : public Object {
-	private:
-	std::vector<std::unique_ptr<Component>> compos;
-	public:
-	void addComponent(Component *compo) {
-		compo->setEntity(this);
-		this->compos.emplace_back(compo);
-	}
-	void addComponent(std::unique_ptr<Component> compo) {
-		compo->setEntity(this);
-		this->compos.push_back(std::move(compo));
-	}
-	void update() override {
-		for (auto &compo : this->compos) {
-			compo->update();
-		}
-	}
-};
+// class Entity : public Object {
+// 	private:
+// 	std::vector<std::unique_ptr<Component>> compos;
+// 	public:
+// 	void addComponent(Component *compo) {
+// 		compo->setEntity(this);
+// 		this->compos.emplace_back(compo);
+// 	}
+// 	void addComponent(std::unique_ptr<Component> compo) {
+// 		compo->setEntity(this);
+// 		this->compos.push_back(std::move(compo));
+// 	}
+// 	void update() override {
+// 		for (auto &compo : this->compos) {
+// 			compo->update();
+// 		}
+// 	}
+// };
 
 class CarBase : public MultiShape {
-	private:
-	std::vector<std::unique_ptr<Component>> compos;
+	// private:
+	// std::vector<std::unique_ptr<Component>> compos;
+	// public:
+	// void addComponent(Component *compo) {
+	// 	compo->setEntity(this);
+	// 	this->compos.emplace_back(compo);
+	// }
+	// void addComponent(std::unique_ptr<Component> compo) {
+	// 	compo->setEntity(this);
+	// 	this->compos.push_back(std::move(compo));
+	// }
+	// void update() override {
+	// 	for (auto &compo : this->compos) {
+	// 		compo->update();
+	// 	}
+	// }
 	public:
-	void addComponent(Component *compo) {
-		compo->setEntity(this);
-		this->compos.emplace_back(compo);
-	}
-	void addComponent(std::unique_ptr<Component> compo) {
-		compo->setEntity(this);
-		this->compos.push_back(std::move(compo));
-	}
-	void update() override {
-		for (auto &compo : this->compos) {
-			compo->update();
-		}
-	}
 	CarBase(float width, float length, Point flair, Point flairHeight, Position pos, Color color): MultiShape(pos) {
 		auto bodyLength = length - flairHeight.getX() - flairHeight.getX();
 		auto body = new Rectangle(width, bodyLength, pos, color);
@@ -190,14 +174,14 @@ class TaxiBase: public MultiShape {
 // 		Car(pos, dir, minMaxSpeed, color, new TaxiBase(pos)) {
 // 		}
 // };
-class Taxi : public TaxiBase, public Entity {
-	public:
-	Taxi(Position pos): TaxiBase(pos), Entity() {
-	}
-	// void update() override {
-	// 	this->translate(0, 1);
-	// }
-};
+// class Taxi : public TaxiBase, public Entity {
+// 	public:
+// 	Taxi(Position pos): TaxiBase(pos), Entity() {
+// 	}
+// 	// void update() override {
+// 	// 	this->translate(0, 1);
+// 	// }
+// };
 
 // class CarSpawner : public Object {
 // 	public:
@@ -308,8 +292,8 @@ int main() {
 	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
 	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
 	// g.scene->addChild(new Taxi(Position(100, 100)));
-	auto x = new Taxi(Position(100, 100));
-	g.scene->addChild(x);
+	// auto x = new Taxi(Position(100, 100));
+	// g.scene->addChild(x);
 	// new Taxi(Position(100, 100));
 	// for (auto lane : leftRoadLanesX) {
 	// 	g.scene->addChild(new CarSpawner(Position(lane + 25, -300), Direction::DOWN));

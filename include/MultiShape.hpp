@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
-#include "Object.hpp"
 #include "Position.hpp"
+#include "Entity.hpp"
 
 namespace shapegame {
-	class MultiShape : public Object {
+	class MultiShape : public Entity {
 		protected:
 		std::vector<Object*> shapes;
 		public:
