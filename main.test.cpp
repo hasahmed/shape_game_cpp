@@ -31,11 +31,6 @@ class Car : public Object {
 	): Object(pos), minMaxSpeed(minMaxSpeed), dir(dir) {
 		int minSpeed = floor(this->minMaxSpeed.getY());
 		this->speed = (rand() % minSpeed) + this->minMaxSpeed.getX();
-		if (base) {
-			this->shapes.push_back(base);
-		} else {
-			this->shapes.push_back(new Rectangle(50, 100, pos, color));
-		}
 	}
 	void update() override {
 		this->translate(0, speed * this->dir * G::dt);
@@ -137,13 +132,13 @@ class TaxiBase: public MultiShape {
 // 		Car(pos, dir, minMaxSpeed, color, new TaxiBase(pos)) {
 // 		}
 // };
-class Taxi : public TaxiBase {
+class Taxi : public TaxiBase, public Car {
 	public:
-	Taxi(Position pos): TaxiBase(pos) {
+	Taxi(Position pos): TaxiBase(pos), Car(pos) {
 	}
-	void update() override {
-		this->translate(0, 1);
-	}
+	// void update() override {
+	// 	this->translate(0, 1);
+	// }
 };
 
 // class CarSpawner : public Object {
@@ -254,7 +249,10 @@ int main() {
 	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
 	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
 	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	g.scene->addChild(new Taxi(Position(100, 100)));
+	// g.scene->addChild(new Taxi(Position(100, 100)));
+	auto x = new Taxi(Position(100, 100));
+	// g.scene->addChild((Car*)x);
+	// new Taxi(Position(100, 100));
 	// for (auto lane : leftRoadLanesX) {
 	// 	g.scene->addChild(new CarSpawner(Position(lane + 25, -300), Direction::DOWN));
 	// }
