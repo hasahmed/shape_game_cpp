@@ -6,9 +6,10 @@
 #include "Position.hpp"
 #include "Globals.hpp"
 #include "Dirtyable.hpp"
+#include "Entity.hpp"
 
 namespace shapegame {
-    class Shape : public Object {
+    class Shape : public Entity {
         friend class Scene;
         friend class RenderPackage;
         protected:
