@@ -16,7 +16,7 @@ enum Direction {
 	DOWN = 1
 };
 
-class Car : public MultiShape {
+class Car : public Object {
 	private:
 	Point minMaxSpeed;
 	float speed = 0;
@@ -28,7 +28,7 @@ class Car : public MultiShape {
 		Point minMaxSpeed = Point(100, 200),
 		Color color = Color::WHITE,
 		Object *base = nullptr
-	): MultiShape(pos), minMaxSpeed(minMaxSpeed), dir(dir) {
+	): Object(pos), minMaxSpeed(minMaxSpeed), dir(dir) {
 		int minSpeed = floor(this->minMaxSpeed.getY());
 		this->speed = (rand() % minSpeed) + this->minMaxSpeed.getX();
 		if (base) {
@@ -38,7 +38,7 @@ class Car : public MultiShape {
 		}
 	}
 	void update() override {
-		this->setPosition(this->pos.getX(), (this->pos.getY() + speed * this->dir * G::dt));
+		this->translate(0, speed * this->dir * G::dt);
 		if (this->pos.getY() < KILL_Y || this->pos.getY() > KILL_Z) this->kill();
 	}
 };
@@ -95,9 +95,9 @@ class CarBase : public MultiShape {
 	}
 };
 
-class TaxyBase: public MultiShape {
+class TaxiBase: public MultiShape {
 	public:
-	TaxyBase(Position pos): MultiShape(pos) {
+	TaxiBase(Position pos): MultiShape(pos) {
 		int carWidth = 40;
 		int carLength = 90;
 		auto body = new CarBase(carWidth, carLength, Point(10, 3), Point(8, 5), Position(100, 100), Color::YELLOW);
@@ -131,30 +131,39 @@ class TaxyBase: public MultiShape {
 	}
 };
 
-class Taxy : public Car {
+// class Taxi : public Car {
+// 	public:
+// 	Taxi(Position pos, Direction dir = Direction::UP, Point minMaxSpeed = Point(100, 200), Color color = Color::YELLOW):
+// 		Car(pos, dir, minMaxSpeed, color, new TaxiBase(pos)) {
+// 		}
+// };
+class Taxi : public TaxiBase {
 	public:
-	Taxy(Position pos, Direction dir = Direction::UP, Point minMaxSpeed = Point(100, 200), Color color = Color::YELLOW):
-		Car(pos, dir, minMaxSpeed, color, new TaxyBase(pos)) {
-		}
+	Taxi(Position pos): TaxiBase(pos) {
+	}
+	void update() override {
+		this->translate(0, 1);
+	}
 };
 
-class CarSpawner : public Object {
-	public:
-	int intervalMs = 0;
-	Timer *t = nullptr;
-	private:
-	Direction dir = Direction::UP;
-	public:
-	CarSpawner(Position pos, Direction dir = Direction::UP, int intervalMs = 1000): 
-		Object(pos),
-		intervalMs(intervalMs),
-		dir(dir) {
-			t = new Timer(intervalMs, true, true, [=](){
-				Game::inst().scene->addChild(new Taxy(this->pos, this->dir));
-			});
-			Game::inst().scene->addChild(this->t);
-		}
-};
+// class CarSpawner : public Object {
+// 	public:
+// 	int intervalMs = 0;
+// 	Timer *t = nullptr;
+// 	private:
+// 	Direction dir = Direction::UP;
+// 	public:
+// 	CarSpawner(Position pos, Direction dir = Direction::UP, int intervalMs = 1000): 
+// 		Object(pos),
+// 		intervalMs(intervalMs),
+// 		dir(dir) {
+// 			t = new Timer(intervalMs, true, true, [=](){
+// 				// Game::inst().scene->addChild(new Taxi(this->pos, this->dir));
+// 				Game::inst().scene->addChild(new Taxi(this->pos));
+// 			});
+// 			Game::inst().scene->addChild(this->t);
+// 		}
+// };
 
 class RoadLine : public Rectangle {
 	public:
@@ -218,7 +227,7 @@ int main() {
 
 	/**
 	 */
-	// g.scene->addChild(new TaxyBase(Position(100, 100)));
+	// g.scene->addChild(new TaxiBase(Position(100, 100)));
 	// g.scene->addChild(new WindShield(Position(100, 100)));
 	// g.scene->addChild(new CarBase(200, 100, Point(-10, 3), Point(50, 50), Position(100, 100), Color::BLACK));
 	// g.scene->addChild(new CarBase(40, 100, Point(10, 3), Point(8, 5), Position(100, 100), Color::YELLOW));
@@ -245,11 +254,12 @@ int main() {
 	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
 	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
 	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	for (auto lane : leftRoadLanesX) {
-		g.scene->addChild(new CarSpawner(Position(lane + 25, -300), Direction::DOWN));
-	}
-	for (auto lane : rightRoadLanesX) {
-		g.scene->addChild(new CarSpawner(Position(lane - 70, 800)));
-	}
+	g.scene->addChild(new Taxi(Position(100, 100)));
+	// for (auto lane : leftRoadLanesX) {
+	// 	g.scene->addChild(new CarSpawner(Position(lane + 25, -300), Direction::DOWN));
+	// }
+	// for (auto lane : rightRoadLanesX) {
+	// 	g.scene->addChild(new CarSpawner(Position(lane - 70, 800)));
+	// }
 	g.run();
 }
