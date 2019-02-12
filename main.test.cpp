@@ -10,6 +10,8 @@ using namespace shapegame;
 #define SCREEN_HEIGHT 700
 #define KILL_Y -1000
 #define KILL_Z 2000
+#define BASE_CAR_WIDTH 40
+#define BASE_CAR_LENGTH 90
 
 enum Direction {
 	UP = -1,
@@ -45,29 +47,6 @@ class Steerable : public Component {
 	}
 };
 
-
-class Car : public Object {
-	private:
-	Point minMaxSpeed;
-	float speed = 0;
-	Direction dir = Direction::UP;
-	public:
-	Car(
-		Position pos,
-		Direction dir = Direction::UP,
-		Point minMaxSpeed = Point(100, 200),
-		Color color = Color::WHITE,
-		Object *base = nullptr
-	): Object(pos), minMaxSpeed(minMaxSpeed), dir(dir) {
-		int minSpeed = floor(this->minMaxSpeed.getY());
-		this->speed = (rand() % minSpeed) + this->minMaxSpeed.getX();
-	}
-	void update() override {
-		this->translate(0, speed * this->dir * G::dt);
-		if (this->pos.getY() < KILL_Y || this->pos.getY() > KILL_Z) this->kill();
-	}
-};
-
 class WindShield : public MultiShape {
 	public:
 	WindShield(Position pos): WindShield(30, 10, pos, 3) {}
@@ -84,47 +63,12 @@ class WindShield : public MultiShape {
 		this->addShape(q);
 	}
 };
-// class Entity : public Object {
-// 	private:
-// 	std::vector<std::unique_ptr<Component>> compos;
-// 	public:
-// 	void addComponent(Component *compo) {
-// 		compo->setEntity(this);
-// 		this->compos.emplace_back(compo);
-// 	}
-// 	void addComponent(std::unique_ptr<Component> compo) {
-// 		compo->setEntity(this);
-// 		this->compos.push_back(std::move(compo));
-// 	}
-// 	void update() override {
-// 		for (auto &compo : this->compos) {
-// 			compo->update();
-// 		}
-// 	}
-// };
 
 class CarBase : public MultiShape {
-	// private:
-	// std::vector<std::unique_ptr<Component>> compos;
-	// public:
-	// void addComponent(Component *compo) {
-	// 	compo->setEntity(this);
-	// 	this->compos.emplace_back(compo);
-	// }
-	// void addComponent(std::unique_ptr<Component> compo) {
-	// 	compo->setEntity(this);
-	// 	this->compos.push_back(std::move(compo));
-	// }
-	// void update() override {
-	// 	for (auto &compo : this->compos) {
-	// 		compo->update();
-	// 	}
-	// }
 	public:
 	CarBase(float width, float length, Point flair, Point flairHeight, Position pos, Color color): MultiShape(pos) {
 		auto bodyLength = length - flairHeight.getX() - flairHeight.getX();
 		auto body = new Rectangle(width, bodyLength, pos, color);
-
 
 		auto front = new Quad(
 			Position(0, 0),
@@ -157,8 +101,8 @@ class CarBase : public MultiShape {
 class TaxiBase: public MultiShape {
 	public:
 	TaxiBase(Position pos): MultiShape(pos) {
-		int carWidth = 40;
-		int carLength = 90;
+		int carWidth = BASE_CAR_WIDTH;
+		int carLength = BASE_CAR_LENGTH;
 		auto body = new CarBase(carWidth, carLength, Point(10, 3), Point(8, 5), pos, Color::YELLOW);
 
 		auto windShield = new WindShield(pos);
@@ -198,33 +142,6 @@ class Taxi : public TaxiBase {
 		// this->setZOrder(0);
 	}
 };
-// class Taxi : public TaxiBase, public Entity {
-// 	public:
-// 	Taxi(Position pos): TaxiBase(pos), Entity() {
-// 	}
-// 	// void update() override {
-// 	// 	this->translate(0, 1);
-// 	// }
-// };
-
-// class CarSpawner : public Object {
-// 	public:
-// 	int intervalMs = 0;
-// 	Timer *t = nullptr;
-// 	private:
-// 	Direction dir = Direction::UP;
-// 	public:
-// 	CarSpawner(Position pos, Direction dir = Direction::UP, int intervalMs = 1000): 
-// 		Object(pos),
-// 		intervalMs(intervalMs),
-// 		dir(dir) {
-// 			t = new Timer(intervalMs, true, true, [=](){
-// 				// Game::inst().scene->addChild(new Taxi(this->pos, this->dir));
-// 				Game::inst().scene->addChild(new Taxi(this->pos));
-// 			});
-// 			Game::inst().scene->addChild(this->t);
-// 		}
-// };
 
 class RoadLine : public Rectangle {
 	public:
