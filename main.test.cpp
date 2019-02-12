@@ -128,9 +128,9 @@ class TaxiBase: public MultiShape {
 		this->shapes.push_back(rightBackWheel);
 		this->shapes.push_back(rightWheel);
 		this->shapes.push_back(leftWheel);
-		this->shapes.push_back(windShield);
 		this->shapes.push_back(body);
 		this->shapes.push_back(topThing);
+		this->shapes.push_back(windShield);
 	}
 };
 
