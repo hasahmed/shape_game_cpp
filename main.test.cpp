@@ -12,6 +12,8 @@ using namespace shapegame;
 #define KILL_Z 2000
 #define BASE_CAR_WIDTH 40
 #define BASE_CAR_LENGTH 90
+#define BASE_FLAIR Point(10, 3)
+#define BASE_FLAIR_HEIGHT Point(8, 5)
 
 enum Direction {
 	UP = -1,
@@ -23,6 +25,12 @@ class CarComponent : public Component {
 		float speed = 0;
 		Direction dir = Direction::UP;
 	public:
+		void setDirection(Direction dir) {
+			this->dir = dir;
+		}
+		void setSpeed(float speed) {
+			this->speed = speed;
+		}
 		CarComponent(
 			Direction dir = Direction::UP,
 			Point minMaxSpeed = Point(100, 200)
@@ -118,27 +126,43 @@ class CarBase : public MultiShape {
 	}
 };
 
+class Car : public CarBase {
+	public:
+	// using CarBase::CarBase;
+		Car(Position pos, Color color, Direction dir = Direction::UP): CarBase(
+			BASE_CAR_WIDTH,
+			BASE_CAR_LENGTH,
+			BASE_FLAIR,
+			BASE_FLAIR_HEIGHT,
+			pos,
+			color) {
+				auto cc = new CarComponent();
+				cc->setDirection(dir);
+				cc->setSpeed(5);
+				this->addComponent(cc);
+				this->addComponent(new Steerable());
+		}
+};
+
 class TaxiBase: public MultiShape {
 	public:
 	TaxiBase(Position pos): MultiShape(pos) {
+	}
+};
+
+class Taxi : public Car {
+	public:
+	Taxi(Position pos): Car(pos, Color::YELLOW) {
 		int carWidth = BASE_CAR_WIDTH;
 		int carLength = BASE_CAR_LENGTH;
-		auto body = new CarBase(carWidth, carLength, Point(10, 3), Point(8, 5), pos, Color::YELLOW);
+		// auto body = new CarBase(carWidth, carLength, Point(10, 3), Point(8, 5), pos, Color::YELLOW);
 
 
 		auto topThing = new Rectangle(25, 6, pos, Color::WHITE);
 		topThing->translate(7, 35);
 
-		this->shapes.push_back(body);
+		// this->shapes.push_back(body);
 		this->shapes.push_back(topThing);
-	}
-};
-
-class Taxi : public TaxiBase {
-	public:
-	Taxi(Position pos): TaxiBase(pos) {
-		this->addComponent(new CarComponent());
-		this->addComponent(new Steerable());
 	}
 };
 
