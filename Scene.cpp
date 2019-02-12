@@ -59,26 +59,11 @@ Object* shapegame::Scene::addChild(Object *obj) {
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
-	// std::vector<std::pair<unsigned int, RenderPackage*>> rps;
 	for (auto &it : this->drawVect) {
 		it.second->draw(w);
 		if (it.second->shape.collidable)
 			this->collisionList->add(&(it.second->shape));
-		// it.second->draw(w);
-		// rps.push_back({it.first, it.second.get()});
 	}
-	// std::sort(rps.begin(), rps.end(), [=](RenderPackage* a, RenderPackage* b){
-	// 	return a->shape.getZOrder() < b->shape.getZOrder();
-	// });
-	// std::sort(rps.begin(), rps.end(), [=](
-	// 	std::pair<unsigned int, RenderPackage*>a,
-	// 	std::pair<unsigned int, RenderPackage*> b
-	// ){
-	// 	return a.first < b.first;
-	// });
-	// for (auto rp : rps) {
-	// 	rp.second->draw(w);
-	// }
 	this->collisionList->check();
 	this->collisionList->clear();
 }

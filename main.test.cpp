@@ -51,7 +51,7 @@ class WindShield : public MultiShape {
 	public:
 	WindShield(Position pos): WindShield(30, 10, pos, 3) {}
 	WindShield(float width, float height, Position pos, float flair): MultiShape(pos) {
-		this->setZOrder(1);
+		// this->setZOrder(1);
 		auto q = new Quad(
 			Position(0, 0),
 			Point(-flair, -height),
@@ -110,7 +110,7 @@ class TaxiBase: public MultiShape {
 
 		auto topThing = new Rectangle(25, 6, pos, Color::WHITE);
 		topThing->translate(7, 35);
-		topThing->setZOrder(1);
+		// topThing->setZOrder(1);
 
 		auto leftWheel = new Rectangle(2, 15, pos, Color::BLACK);
 		leftWheel->translate(-2, 5);
