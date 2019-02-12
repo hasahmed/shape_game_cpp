@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include <vector>
-#include <deque>
+#include <map>
 #include <unordered_map>
 #include "Shape.hpp"
 #include "Object.hpp"
@@ -24,7 +24,7 @@ namespace shapegame {
             void setShaderProg(GLuint shaderprog);
 						std::vector<unsigned int> killList;
             std::unordered_map<unsigned int, std::unique_ptr<Object>> sceneChildren;
-            std::unordered_map<unsigned int, std::unique_ptr<RenderPackage>> drawVect;
+            std::map<unsigned int, std::unique_ptr<RenderPackage>> drawVect;
             static Scene *_inst;
 						void killQueued();
         public:
