@@ -1,10 +1,9 @@
 #pragma once
 namespace shapegame {
 	class Point {
-		protected: 
-			float _x;
-			float _y;
 		public:
+			float x;
+			float y;
 			virtual ~Point();
 			Point();
 			Point(float x, float y);
