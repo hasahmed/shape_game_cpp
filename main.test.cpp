@@ -16,10 +16,32 @@ enum Direction {
 	DOWN = 1
 };
 class CarComponent : public Component {
+	private:
+		Point minMaxSpeed;
+		float speed = 0;
+		Direction dir = Direction::UP;
 	public:
-	void update(Object *ent) override {
-		ent->translate(0, 100 * G::dt * -1);
-		if (ent->pos.getY() < KILL_Y || ent->pos.getY() > KILL_Z) ent->kill();
+		CarComponent(
+			Direction dir = Direction::UP,
+			Point minMaxSpeed = Point(100, 200)
+		): minMaxSpeed(minMaxSpeed), dir(dir)  {
+			int minSpeed = floor(minMaxSpeed.getX());
+			int maxSpeed = floor(minMaxSpeed.getY());
+			this->speed = (rand() % minSpeed) + maxSpeed;
+		}
+		void update(Entity *ent) override {
+			ent->translate(0, speed * this->dir * G::dt);
+			if (ent->pos.getY() < KILL_Y || ent->pos.getY() > KILL_Z) ent->kill();
+		}
+};
+
+class Steerable : public Component {
+	public:
+	void update(Entity *ent) override {
+		if (Input::Kb::down(Input::Kb::Key::RIGHT))
+			ent->translate(100 * G::dt, 0);
+		if (Input::Kb::down(Input::Kb::Key::LEFT))
+			ent->translate(-1 * 100 * G::dt, 0);
 	}
 };
 
@@ -172,6 +194,8 @@ class Taxi : public TaxiBase {
 	public:
 	Taxi(Position pos): TaxiBase(pos) {
 		this->addComponent(new CarComponent());
+		this->addComponent(new Steerable());
+		// this->setZOrder(0);
 	}
 };
 // class Taxi : public TaxiBase, public Entity {

@@ -1,5 +1,5 @@
 #include "shapegame"
 
 using namespace shapegame;
-void Component::update(Object *ent) {}
+void Component::update(Entity *ent) {}
 Component::~Component(){}
