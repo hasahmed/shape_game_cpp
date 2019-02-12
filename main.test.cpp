@@ -85,6 +85,21 @@ class CarBase : public MultiShape {
 			color
 		);
 
+		auto windShield = new WindShield(pos);
+		windShield->translate(5, 25);
+		auto leftWheel = new Rectangle(2, 15, pos, Color::BLACK);
+		leftWheel->translate(-2, 5);
+
+		auto leftBackWheel = new Rectangle(2, 15, pos, Color::BLACK);
+		leftBackWheel->translate(-2, 55);
+
+		auto rightWheel = new Rectangle(2, 15, pos, Color::BLACK);
+		rightWheel->translate(width, 5);
+
+		auto rightBackWheel = new Rectangle(2, 15, pos, Color::BLACK);
+		rightBackWheel->translate(width, 55);
+
+
 
 		body->setPosition(pos);
 		front->setPosition(pos);
@@ -95,6 +110,11 @@ class CarBase : public MultiShape {
 		this->addShape(body);
 		this->addShape(front);
 		this->addShape(back);
+		this->addShape(leftBackWheel);
+		this->addShape(rightBackWheel);
+		this->addShape(rightWheel);
+		this->addShape(leftWheel);
+		this->addShape(windShield);
 	}
 };
 
@@ -105,32 +125,13 @@ class TaxiBase: public MultiShape {
 		int carLength = BASE_CAR_LENGTH;
 		auto body = new CarBase(carWidth, carLength, Point(10, 3), Point(8, 5), pos, Color::YELLOW);
 
-		auto windShield = new WindShield(pos);
-		windShield->translate(5, 25);
 
 		auto topThing = new Rectangle(25, 6, pos, Color::WHITE);
 		topThing->translate(7, 35);
 		// topThing->setZOrder(1);
 
-		auto leftWheel = new Rectangle(2, 15, pos, Color::BLACK);
-		leftWheel->translate(-2, 5);
-
-		auto leftBackWheel = new Rectangle(2, 15, pos, Color::BLACK);
-		leftBackWheel->translate(-2, 55);
-
-		auto rightWheel = new Rectangle(2, 15, pos, Color::BLACK);
-		rightWheel->translate(carWidth, 5);
-
-		auto rightBackWheel = new Rectangle(2, 15, pos, Color::BLACK);
-		rightBackWheel->translate(carWidth, 55);
-
-		this->shapes.push_back(leftBackWheel);
-		this->shapes.push_back(rightBackWheel);
-		this->shapes.push_back(rightWheel);
-		this->shapes.push_back(leftWheel);
 		this->shapes.push_back(body);
 		this->shapes.push_back(topThing);
-		this->shapes.push_back(windShield);
 	}
 };
 
