@@ -18,7 +18,7 @@ enum Direction {
 class CarComponent : public Component {
 	public:
 	void update(Object *ent) override {
-		ent->translate(0, 100 * G::dt);
+		ent->translate(0, 100 * G::dt * -1);
 		if (ent->pos.getY() < KILL_Y || ent->pos.getY() > KILL_Z) ent->kill();
 	}
 };
@@ -137,7 +137,7 @@ class TaxiBase: public MultiShape {
 	TaxiBase(Position pos): MultiShape(pos) {
 		int carWidth = 40;
 		int carLength = 90;
-		auto body = new CarBase(carWidth, carLength, Point(10, 3), Point(8, 5), Position(100, 100), Color::YELLOW);
+		auto body = new CarBase(carWidth, carLength, Point(10, 3), Point(8, 5), pos, Color::YELLOW);
 
 		auto windShield = new WindShield(pos);
 		windShield->translate(5, 25);
@@ -168,12 +168,12 @@ class TaxiBase: public MultiShape {
 	}
 };
 
-// class Taxi : public Car {
-// 	public:
-// 	Taxi(Position pos, Direction dir = Direction::UP, Point minMaxSpeed = Point(100, 200), Color color = Color::YELLOW):
-// 		Car(pos, dir, minMaxSpeed, color, new TaxiBase(pos)) {
-// 		}
-// };
+class Taxi : public TaxiBase {
+	public:
+	Taxi(Position pos): TaxiBase(pos) {
+		this->addComponent(new CarComponent());
+	}
+};
 // class Taxi : public TaxiBase, public Entity {
 // 	public:
 // 	Taxi(Position pos): TaxiBase(pos), Entity() {
@@ -291,7 +291,9 @@ int main() {
 	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
 	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
 	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	// g.scene->addChild(new Taxi(Position(100, 100)));
+	// g.scene->addChild(new TaxiBase(Position(500, 500)));
+	g.scene->addChild(new Taxi(Position(500, 500)));
+	new CarComponent();
 	// auto x = new Taxi(Position(100, 100));
 	// g.scene->addChild(x);
 	// new Taxi(Position(100, 100));
