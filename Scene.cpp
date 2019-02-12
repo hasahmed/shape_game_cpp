@@ -52,7 +52,6 @@ Object* shapegame::Scene::addChild(Object *obj) {
     this->sceneChildren.insert({
         nextInsert,
         std::unique_ptr<Object>(obj)
-        // std::move(std::unique_ptr<Object>(obj))
     });
 		nextInsert++;
     obj->onAdd();

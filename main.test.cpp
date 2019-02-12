@@ -128,7 +128,6 @@ class TaxiBase: public MultiShape {
 
 		auto topThing = new Rectangle(25, 6, pos, Color::WHITE);
 		topThing->translate(7, 35);
-		// topThing->setZOrder(1);
 
 		this->shapes.push_back(body);
 		this->shapes.push_back(topThing);
@@ -140,7 +139,6 @@ class Taxi : public TaxiBase {
 	Taxi(Position pos): TaxiBase(pos) {
 		this->addComponent(new CarComponent());
 		this->addComponent(new Steerable());
-		// this->setZOrder(0);
 	}
 };
 
