@@ -8,8 +8,8 @@ using namespace shapegame;
 #define LINE_HEIGHT 40
 #define SCREEN_WIDTH 1200
 #define SCREEN_HEIGHT 700
-#define KILL_Y -1000
-#define KILL_Z 2000
+#define KILL_UP - 400
+#define KILL_DOWN 1200
 #define BASE_CAR_WIDTH 40
 #define BASE_CAR_LENGTH 90
 #define BASE_FLAIR Point(10, 3)
@@ -41,7 +41,7 @@ class CarComponent : public Component {
 		}
 		void update(Entity *ent) override {
 			ent->translate(0, speed * this->dir * G::dt);
-			if (ent->pos.getY() < KILL_Y || ent->pos.getY() > KILL_Z) ent->kill();
+			if (ent->pos.getY() < KILL_UP || ent->pos.getY() > KILL_DOWN) ent->kill();
 		}
 };
 
@@ -138,31 +138,20 @@ class Car : public CarBase {
 			color) {
 				auto cc = new CarComponent();
 				cc->setDirection(dir);
-				cc->setSpeed(5);
+				cc->setSpeed(500);
 				this->addComponent(cc);
 				this->addComponent(new Steerable());
 		}
 };
-
-class TaxiBase: public MultiShape {
-	public:
-	TaxiBase(Position pos): MultiShape(pos) {
-	}
-};
-
 class Taxi : public Car {
 	public:
 	Taxi(Position pos): Car(pos, Color::YELLOW) {
-		int carWidth = BASE_CAR_WIDTH;
-		int carLength = BASE_CAR_LENGTH;
-		// auto body = new CarBase(carWidth, carLength, Point(10, 3), Point(8, 5), pos, Color::YELLOW);
-
-
 		auto topThing = new Rectangle(25, 6, pos, Color::WHITE);
 		topThing->translate(7, 35);
-
-		// this->shapes.push_back(body);
 		this->shapes.push_back(topThing);
+	}
+	void onKill() override {
+		std::cout << "killd" << std::endl;
 	}
 };
 
@@ -207,6 +196,16 @@ class RoadLines : public MultiShape {
 	}
 	void update() override {
 		// this->setPosition(this->pos.getX(), this->pos.getY() + 30 * G::dt);
+	}
+};
+
+template <class T>
+class Spawner: public Object {
+	public:
+	Spawner(Position pos, unsigned int intervalMs): Object(pos) {
+		Game::inst().scene->addChild(new Timer(intervalMs, true, true, [=](){
+			Game::inst().scene->addChild(new T(pos));
+		}));
 	}
 };
 
@@ -261,9 +260,9 @@ int main() {
 	// auto x = new Taxi(Position(100, 100));
 	// g.scene->addChild(x);
 	// new Taxi(Position(100, 100));
-	// for (auto lane : leftRoadLanesX) {
-	// 	g.scene->addChild(new CarSpawner(Position(lane + 25, -300), Direction::DOWN));
-	// }
+	for (auto lane : leftRoadLanesX) {
+		g.scene->addChild(new Spawner<Taxi>(Position(lane + 25, 1000), 500));
+	}
 	// for (auto lane : rightRoadLanesX) {
 	// 	g.scene->addChild(new CarSpawner(Position(lane - 70, 800)));
 	// }
