@@ -239,30 +239,25 @@ int main() {
 
 
 
-	auto leftRoadLines = new RoadLines(
-		Point(15, - LINE_HEIGHT / 2),
-		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
-		Point(6, 10)
-	);
-	auto rightRoadLines = new RoadLines(
-		Point(695, - LINE_HEIGHT / 2),
-		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
-		Point(6, 10)
-	);
-	g.scene->addChild(leftRoadLines);
-	g.scene->addChild(rightRoadLines);
-	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
-	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
-	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	// g.scene->addChild(new TaxiBase(Position(500, 500)));
-	g.scene->addChild(new Taxi(Position(500, 500)));
-	new CarComponent();
-	// auto x = new Taxi(Position(100, 100));
-	// g.scene->addChild(x);
-	// new Taxi(Position(100, 100));
-	for (auto lane : leftRoadLanesX) {
-		g.scene->addChild(new Spawner<Taxi>(Position(lane + 25, 1000), 500));
-	}
+	// auto leftRoadLines = new RoadLines(
+	// 	Point(15, - LINE_HEIGHT / 2),
+	// 	Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
+	// 	Point(6, 10)
+	// );
+	// auto rightRoadLines = new RoadLines(
+	// 	Point(695, - LINE_HEIGHT / 2),
+	// 	Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
+	// 	Point(6, 10)
+	// );
+	// g.scene->addChild(leftRoadLines);
+	// g.scene->addChild(rightRoadLines);
+	// std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
+	// std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
+	// g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
+	// g.scene->addChild(new Taxi(Position(500, 500)));
+	// for (auto lane : leftRoadLanesX) {
+	// 	g.scene->addChild(new Spawner<Taxi>(Position(lane + 25, 1000), 500));
+	// }
 	// for (auto lane : rightRoadLanesX) {
 	// 	g.scene->addChild(new CarSpawner(Position(lane - 70, 800)));
 	// }
