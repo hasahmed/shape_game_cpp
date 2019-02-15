@@ -7,6 +7,8 @@ using namespace shapegame;
 int main(){
 	Object o(10.2, 0.5);
 	o.pos.setX(100);
+	auto x = new Object();
+	delete x;
   // assert(o.pos.getX() == 10.2f);
   // assert(o.pos.getY() == 0.5f);
   // shapegame::Object o2(shapegame::Position(99.99, 5.123));
