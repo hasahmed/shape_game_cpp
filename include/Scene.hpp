@@ -43,6 +43,7 @@ namespace shapegame {
             void keyDispatch(int key, int action);
 						void mouseBtnDispatch(int btn, int action);
             void setBackgroundColor(Color& color);
+						int numChildren();
             Scene();
     };
 }
