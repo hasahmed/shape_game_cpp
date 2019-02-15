@@ -8,13 +8,6 @@ using namespace shapegame;
 Triangle::Triangle(Position first, Point second, Point third, Color color):
 	Shape(0, 0, ShapeType::Triangle, first, color), second(second), third(third) {
 
-		// find point mp with min x
-		// collisionPosition = (minX, mp.y + maxY)
-		// width = maxX - minX;
-		// height = maxY - minY;
-
-		//this->collisionRect = new Rectangle(collisionPosition, width, height);
-
 		std::vector<Point*> verts {
 			&this->pos,
 			&this->second,
