@@ -1,4 +1,5 @@
 #include "shapegame"
+#include <memory>
 using namespace shapegame;
 
 
@@ -13,13 +14,20 @@ MultiShape::MultiShape(Position pos): Entity(pos) {}
 // }
 void MultiShape::onAdd(){
 	// std::cout << "shapes.size(): " << this->shapes.size() << std::endl;
-	for (Object *s : this->shapes) {
-		Game::inst().scene->addChild(s);
+	for (auto &s : this->unAddedShapes) {
+		auto sRaw = s.release();
+		this->shapes.push_back(sRaw);
+		Game::inst().scene->addChild(sRaw);
 	}
+	this->unAddedShapes.clear();
+}
+void MultiShape::addShape(std::unique_ptr<Object> shape) {
+	shape->setZOrder(this->getZOrder());
+	this->unAddedShapes.push_back(std::move(shape));
 }
 void MultiShape::addShape(Object* shape) {
-	shape->setZOrder(this->getZOrder());
-	this->shapes.push_back(shape);
+	this->addShape(std::unique_ptr<Object>(shape));
+	// this->unAddedShapes.push_back(std::unique_ptr<Object>(shape));
 }
 void MultiShape::setZOrder(int zOrder) {
 	Object::setZOrder(zOrder);
