@@ -65,11 +65,11 @@ Object* shapegame::Scene::addChild(Object *obj) {
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
 	for (auto &it : this->drawVect) {
 		it.second->draw(w);
-		if (it.second->shape.collidable)
-			this->collisionList->add(&(it.second->shape));
+		// if (it.second->shape.collidable)
+			// this->collisionList->add(&(it.second->shape));
 	}
-	this->collisionList->check();
-	this->collisionList->clear();
+	// this->collisionList->check();
+	// this->collisionList->clear();
 }
 
 void Scene::updateChildren() {
@@ -81,7 +81,6 @@ void Scene::updateChildren() {
 				compo->update(ent);
 			}
 		}
-		// for (auto it.second->)
 		if (it.second->canKill) {
 			this->killList.push_back(it.first);
 		}
