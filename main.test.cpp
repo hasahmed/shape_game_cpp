@@ -10,7 +10,7 @@ int main() {
 	auto rect = new Rectangle(100, 100, Position(100, 500), Color::WHITE);
 	// auto tri = new TriangleIsosceles(100, 100, Position(500, 500), Color::WHITE);
 	g.scene->addChild(rect);
-	rect->kill();
+	// rect->kill();
 	// g.scene->addChild(tri);
 	// tri->kill();
 	g.run();

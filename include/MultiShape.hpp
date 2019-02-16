@@ -3,8 +3,11 @@
 #include "Position.hpp"
 #include "Entity.hpp"
 
+
 namespace shapegame {
+	class Scene;
 	class MultiShape : public Entity {
+		friend class Scene;
 		protected:
 		std::vector<Object*> shapes;
 		public:
