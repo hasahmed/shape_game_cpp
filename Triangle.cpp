@@ -5,6 +5,10 @@
 
 using namespace shapegame;
 
+Triangle::~Triangle(){
+	std::cout << "Triangle Killed" << std::endl;
+}
+
 Triangle::Triangle(Position first, Point second, Point third, Color color):
 	Shape(0, 0, ShapeType::Triangle, first, color), second(second), third(third) {
 

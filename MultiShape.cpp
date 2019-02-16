@@ -46,3 +46,6 @@ void MultiShape::onKill() {
 		s->kill();
 	}
 }
+MultiShape::~MultiShape() {
+	std::cout << "MultiShape Killed" << std::endl;
+}

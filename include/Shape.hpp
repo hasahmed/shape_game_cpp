@@ -19,8 +19,7 @@ namespace shapegame {
 					bool collidable = false;
 					Color color;
 					ShapeType type;
-
-					~Shape(){}
+					~Shape();
 					Shape(float height, float width, ShapeType type, Color color);
 					Shape(float height, float width, ShapeType type, Position pos, Color color);
 					float getHeight() const;

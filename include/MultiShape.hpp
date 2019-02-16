@@ -8,6 +8,7 @@ namespace shapegame {
 		protected:
 		std::vector<Object*> shapes;
 		public:
+		~MultiShape();
 		MultiShape(Object* controller, std::vector<Object*>& shapes);
 		MultiShape(Position pos);
 		virtual void addShape(Object* shape);
