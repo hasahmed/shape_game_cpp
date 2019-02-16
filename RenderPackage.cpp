@@ -18,6 +18,10 @@ bool RenderPackage::updateDirty() {
     return false;
 }
 
+RenderPackage::~RenderPackage(){
+	std::cout << "RenderPackage deleted" << std::endl;
+}
+
 void RenderPackage::draw(GLFWwindow *w) {
 	auto &renderObj = *this->glRenderObject;
 	GLint uniloc = glGetUniformLocation(renderObj.shaderProg, "incolor");

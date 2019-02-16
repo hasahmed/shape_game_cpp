@@ -9,6 +9,7 @@ namespace shapegame {
 			Shape& shape; // Scene owns this Shape object
 			std::unique_ptr<GLRenderObject> glRenderObject; // this should be more generic so that
 			// the type of render object it holds could be arbitrary for other rendering systems
+			~RenderPackage();
 			RenderPackage(Shape &shape, GLRenderObject &glRenderObject);
 			void draw(GLFWwindow *w);
 			bool updateDirty();
