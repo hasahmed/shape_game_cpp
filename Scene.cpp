@@ -47,12 +47,30 @@ shapegame::Scene::Scene() :
 // Then we wouldn't need a try block because the dynamic cast would return
 // null instead of throwing
 Object* shapegame::Scene::addChild(Object *obj) {
+	/* Regular shape */
     Shape *s = dynamic_cast<Shape*>(obj);
     if (s) {
         GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
         auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
         this->drawVect.insert({nextInsert, std::move(rPack)});
     }
+		/* Multishape */
+		MultiShape *m = dynamic_cast<MultiShape*>(obj);
+		if (m) {
+			for (Object *o : m->shapes) {
+				Shape *s = dynamic_cast<Shape*>(o);
+				if (s) {
+					GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
+					auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
+					this->drawVect.insert({nextInsert, std::move(rPack)});
+				} else {
+					this->sceneChildren.insert({
+							nextInsert,
+							std::unique_ptr<Object>(o)
+					});
+				}
+			}
+		}
     this->sceneChildren.insert({
         nextInsert,
         std::unique_ptr<Object>(obj)

@@ -13,9 +13,9 @@ MultiShape::MultiShape(Position pos): Entity(pos) {}
 // }
 void MultiShape::onAdd(){
 	// std::cout << "shapes.size(): " << this->shapes.size() << std::endl;
-	for (Object *s : this->shapes) {
-		Game::inst().scene->addChild(s);
-	}
+	// for (Object *s : this->shapes) {
+	// 	Game::inst().scene->addChild(s);
+	// }
 }
 void MultiShape::addShape(Object* shape) {
 	shape->setZOrder(this->getZOrder());
@@ -47,5 +47,5 @@ void MultiShape::onKill() {
 	}
 }
 MultiShape::~MultiShape() {
-	std::cout << "MultiShape Killed" << std::endl;
+	// std::cout << "MultiShape Killed" << std::endl;
 }

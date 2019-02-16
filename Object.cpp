@@ -8,7 +8,7 @@ Object::Object(double x, double y) {
 Object::Object() {}
 Object::Object(Point pos) : Object(pos.getX(), pos.getY()) {}
 Object::~Object(){
-	std::cout << "Object Killed" << std::endl;
+	// std::cout << "Object Killed" << std::endl;
 }
 void Object::kill() {
 	this->onKill();

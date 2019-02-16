@@ -23,8 +23,8 @@ namespace shapegame {
             GLuint _shaderProg;
             void setShaderProg(GLuint shaderprog);
 						std::vector<unsigned int> killList;
-            std::unordered_map<unsigned int, std::unique_ptr<Object>> sceneChildren;
-            std::map<unsigned int, std::unique_ptr<RenderPackage>> drawVect;
+            std::unordered_multimap<unsigned int, std::unique_ptr<Object>> sceneChildren;
+            std::multimap<unsigned int, std::unique_ptr<RenderPackage>> drawVect;
             static Scene *_inst;
 						void killQueued();
         public:

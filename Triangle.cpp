@@ -6,7 +6,7 @@
 using namespace shapegame;
 
 Triangle::~Triangle(){
-	std::cout << "Triangle Killed" << std::endl;
+	// std::cout << "Triangle Killed" << std::endl;
 }
 
 Triangle::Triangle(Position first, Point second, Point third, Color color):

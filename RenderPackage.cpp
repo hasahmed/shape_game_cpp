@@ -19,7 +19,7 @@ bool RenderPackage::updateDirty() {
 }
 
 RenderPackage::~RenderPackage(){
-	std::cout << "RenderPackage deleted" << std::endl;
+	std::cout << "RenderPackage Killed" << std::endl;
 }
 
 void RenderPackage::draw(GLFWwindow *w) {
