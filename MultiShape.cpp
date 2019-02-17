@@ -41,11 +41,9 @@ void MultiShape::setPosition(float x, float y) {
 		// s->translate(changeInX, changeInY);
 	}
 }
-void MultiShape::onKill() {
-	for (Object *s : this->shapes) {
-		s->kill();
-	}
-}
+void MultiShape::onKill() {}
 MultiShape::~MultiShape() {
-	// std::cout << "MultiShape Killed" << std::endl;
+	#if PRINT_DESTRUCTION
+	std::cout << "MultiShape Killed" << std::endl;
+	#endif
 }

@@ -1,7 +1,9 @@
 #include "shapegame"
 using namespace shapegame;
 Shape::~Shape(){
-	// std::cout << "Shape Killed" << std::endl;
+	#if PRINT_DESTRUCTION
+	std::cout << "Shape Killed" << std::endl;
+	#endif
 }
 Shape::Shape(
         float height,

@@ -201,11 +201,17 @@ class RoadLines : public MultiShape {
 
 template <class T>
 class Spawner: public Object {
+	private:
+	Timer *t;
 	public:
 	Spawner(Position pos, unsigned int intervalMs): Object(pos) {
-		Game::inst().scene->addChild(new Timer(intervalMs, true, true, [=](){
+		this->t = Game::inst().scene->addChildAs<Timer>(new Timer(intervalMs, true, true, [=](){
 			Game::inst().scene->addChild(new T(pos));
 		}));
+	}
+	void onMouseClick(Mouse::Btn btn, Input::Action action) override {
+		this->t->stop();
+		this->kill();
 	}
 };
 
@@ -225,18 +231,6 @@ int main() {
 	g.scene->setBackgroundColor(Color::GRAY);
 	g.scene->addChild(new DebugKeyHandler());
 
-	/**
-	 */
-	// g.scene->addChild(new TaxiBase(Position(100, 100)));
-	// g.scene->addChild(new WindShield(Position(100, 100)));
-	// g.scene->addChild(new CarBase(200, 100, Point(-10, 3), Point(50, 50), Position(100, 100), Color::BLACK));
-	// g.scene->addChild(new CarBase(40, 100, Point(10, 3), Point(8, 5), Position(100, 100), Color::YELLOW));
-
-
-	/**
-	 * 
-	 */
-
 
 
 	auto leftRoadLines = new RoadLines(
@@ -253,14 +247,10 @@ int main() {
 	g.scene->addChild(rightRoadLines);
 	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
 	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
-	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
 	g.scene->addChild(new Taxi(Position(500, 500)));
+	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
 	for (auto lane : leftRoadLanesX) {
 		g.scene->addChild(new Spawner<Taxi>(Position(lane + 25, 1000), 500));
 	}
-	// g.scene->addChild(new Rectangle(100, 100, Position(100, 100), Color::WHITE));
-	// for (auto lane : rightRoadLanesX) {
-	// 	g.scene->addChild(new CarSpawner(Position(lane - 70, 800)));
-	// }
 	g.run();
 }
