@@ -19,7 +19,9 @@ bool RenderPackage::updateDirty() {
 }
 
 RenderPackage::~RenderPackage(){
+	#if PRINT_DESTRUCTION
 	std::cout << "RenderPackage Killed" << std::endl;
+	#endif
 }
 
 void RenderPackage::draw(GLFWwindow *w) {

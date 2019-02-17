@@ -29,6 +29,9 @@ namespace shapegame {
             static Scene *_inst;
 						void killQueued();
 						void addMultiShape(MultiShape *multi);
+						void addToDrawVect(Shape *shape);
+						void addToSceneChildren(Object *obj);
+						void addShape(Shape *shape);
         public:
             std::unique_ptr<CollisionList> collisionList;
             void updateChildren();

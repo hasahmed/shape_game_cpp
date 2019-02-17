@@ -2,6 +2,7 @@
 #include <iostream>
 #include "shapegl.hpp"
 #define DEBUG 1
+#define PRINT_DESTRUCTION 0
 #define GLCHECKERR() _gl_check_error(__FILE__,__LINE__)
 #if DEBUG
 #define GLCALL(gl_function) do {\

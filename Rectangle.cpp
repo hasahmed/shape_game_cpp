@@ -24,7 +24,9 @@ Rectangle::Rectangle(
 	this->shapes.push_back(secondTriangle);
 }
 Rectangle::~Rectangle() {
-	// std::cout << "Rect Killed" << std::endl;
+	#if PRINT_DESTRUCTION
+	std::cout << "Rect Killed" << std::endl;
+	#endif
 }
 
 // Rectangle(): Rectangle(0, 0, Position(), Color()) {}

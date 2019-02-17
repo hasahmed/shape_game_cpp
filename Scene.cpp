@@ -14,21 +14,26 @@ Scene* Scene::_inst = nullptr;
 int Scene::numChildren() {
 	return this->sceneChildren.size();
 }
+void Scene::addToSceneChildren(Object *obj) {
+	this->sceneChildren.insert({
+			nextInsert,
+			std::unique_ptr<Object>(obj)
+	});
+	obj->onAdd();
+}
+
+
 void Scene::addMultiShape(MultiShape *multi) {
+	this->addToSceneChildren(multi);
 	for (Object *obj : multi->shapes) {
 		Shape *s = dynamic_cast<Shape*>(obj);
 		MultiShape *m = dynamic_cast<MultiShape*>(obj);
 		if (s) {
-			GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
-			auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
-			this->drawVect.insert({nextInsert, std::move(rPack)});
+			this->addShape(s);
 		} else if (m) {
 			this->addMultiShape(m);
 		} else {
-			this->sceneChildren.insert({
-					nextInsert,
-					std::unique_ptr<Object>(obj)
-			});
+			this->addToSceneChildren(obj);
 		}
 	}
 }
@@ -61,6 +66,17 @@ shapegame::Scene::Scene() :
         Scene::_inst = this;
 }
 
+void Scene::addToDrawVect(Shape* shape) {
+		GLRenderObject renderObj = GLRenderObject(*shape, this->_shaderProg);
+		auto rPack = std::make_unique<RenderPackage>(*shape, renderObj);
+		this->drawVect.insert({nextInsert, std::move(rPack)});
+}
+
+void Scene::addShape(Shape *shape) {
+	this->addToDrawVect(shape);
+	this->addToSceneChildren(shape);
+}
+
 // note instead of being passed a refrence I should really be passed a ponter.
 // Then we wouldn't need a try block because the dynamic cast would return
 // null instead of throwing
@@ -69,43 +85,27 @@ Object* shapegame::Scene::addChild(Object *obj) {
     Shape *s = dynamic_cast<Shape*>(obj);
 		MultiShape *m = dynamic_cast<MultiShape*>(obj);
     if (s) {
-			GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
-			auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
-			this->drawVect.insert({nextInsert, std::move(rPack)});
-			this->sceneChildren.insert({
-					nextInsert,
-					std::unique_ptr<Object>(obj)
-			});
-    } else if (m) {
+			this->addShape(s);
+    }
+		 else if (m) {
 			this->addMultiShape(m);
+		} else {
+			// plain old object
+			this->addToSceneChildren(obj);
 		}
-		/* Multishape */
-		// if (m) {
-		// 	for (Object *o : m->shapes) {
-		// 		Shape *s = dynamic_cast<Shape*>(o);
-		// 		if (s) {
-		// 			GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
-		// 			auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
-		// 			this->drawVect.insert({nextInsert, std::move(rPack)});
-		// 		} else {
-		// 			this->sceneChildren.insert({
-		// 					nextInsert,
-		// 					std::unique_ptr<Object>(o)
-		// 			});
-		// 		}
-		// 	}
-		// }
 		nextInsert++;
-    obj->onAdd();
     return obj;
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
 	for (auto &it : this->drawVect) {
 		it.second->draw(w);
+		// std::cout << it.first << ",";
 		// if (it.second->shape.collidable)
 			// this->collisionList->add(&(it.second->shape));
 	}
+	std::cout << "drawVect size: " << this->drawVect.size() << std::endl;
+		// std::cout << std::endl << std::endl;
 	// this->collisionList->check();
 	// this->collisionList->clear();
 }
@@ -113,6 +113,7 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
 void Scene::updateChildren() {
 	for (auto &it : this->sceneChildren) {
 		it.second->update();
+		// std::cout << it.first << ",";
 		auto ent = dynamic_cast<Entity*>(it.second.get());
 		if (ent) {
 			for (auto &compo : ent->compos) {
@@ -123,6 +124,8 @@ void Scene::updateChildren() {
 			this->killList.push_back(it.first);
 		}
 	}
+	std::cout << "sceneChildren size: " << this->sceneChildren.size() << std::endl;
+		// std::cout << std::endl << std::endl;
 }
 
 // room for improvement
