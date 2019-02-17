@@ -7,7 +7,7 @@ include_directories(../include)
 include_directories(../deps)
 include_directories(../deps/KHR)
 include_directories(../deps/glad)
-SET(CMAKE_EXE_LINKER_FLAGS "-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo")
+# SET(CMAKE_EXE_LINKER_FLAGS "-lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo")
 SET(ALL_SRCS
 	../Color.cpp
 	../Debug.cpp
@@ -49,10 +49,12 @@ SET(NO_GLFW_SRCS
 	../Triangle.cpp
 	../Entity.cpp
 	../Component.cpp
+	../Rectangle.cpp
+	../MultiShape.cpp
 )
-add_executable(Object.test Object.test.cpp ${NO_GLFW_SRCS})
-add_executable(Triangle.test Triangle.test.cpp ${NO_GLFW_SRCS})
-add_executable(MultiShape.test MultiShape.test.cpp ${ALL_SRCS})
+# add_executable(Object.test Object.test.cpp ${NO_GLFW_SRCS})
+# add_executable(Triangle.test Triangle.test.cpp ${NO_GLFW_SRCS})
+add_executable(MultiShape.test MultiShape.test.cpp ${NO_GLFW_SRCS})
 # add_executable(MultiShape.test.cpp ${ALL_SRCS})
 # add_executable(FileUtil.test FileUtil.test.cpp ../FileUtil.cpp)
 # add_executable(Position.test Position.test.cpp ../Position.cpp)
