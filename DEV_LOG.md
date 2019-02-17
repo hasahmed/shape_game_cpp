@@ -11,3 +11,7 @@ Realized that current 'simple' implementation of adding multishapes to the scene
 It doesn't consider that a multishape might have a multishape as a child. Due to the recursive
 nature of such nestings it is necessary to have the adding of multishapes (and accounting for their subsequent
 removal) will take a bit more work
+
+# 2/17/19
+Still tons of memory leaks in the engine. Tried to point valgrind at it, but there were many many errors.
+Errors when killing multishapes.

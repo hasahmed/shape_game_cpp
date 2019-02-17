@@ -20,8 +20,8 @@ Rectangle::Rectangle(
 		Point(pos.getX() + width, pos.getY() + height),
 		color
 	);
-	this->shapes.push_back(firstTriangle);
-	this->shapes.push_back(secondTriangle);
+	this->addShape(firstTriangle);
+	this->addShape(secondTriangle);
 }
 Rectangle::~Rectangle() {
 	#if PRINT_DESTRUCTION

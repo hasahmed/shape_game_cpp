@@ -25,15 +25,19 @@ void Scene::addToSceneChildren(Object *obj) {
 
 void Scene::addMultiShape(MultiShape *multi) {
 	this->addToSceneChildren(multi);
-	for (Object *obj : multi->shapes) {
-		Shape *s = dynamic_cast<Shape*>(obj);
-		MultiShape *m = dynamic_cast<MultiShape*>(obj);
-		if (s) {
-			this->addShape(s);
-		} else if (m) {
+	for (auto &obj : multi->unAddedShapes) {
+		MultiShape *m = dynamic_cast<MultiShape*>(obj.get());
+		if (m) {
+			//recurse
 			this->addMultiShape(m);
-		} else {
-			this->addToSceneChildren(obj);
+		} else { // 
+			Object *objRaw = obj.release(); //take over multishapes ownership
+			Shape *shapeRaw = dynamic_cast<Shape*>(objRaw);
+			if (shapeRaw) { // if its a shape
+				this->addShape(shapeRaw);
+			} else { //its a plain old object
+				this->addToSceneChildren(objRaw);
+			}
 		}
 	}
 }
@@ -100,14 +104,7 @@ Object* shapegame::Scene::addChild(Object *obj) {
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
 	for (auto &it : this->drawVect) {
 		it.second->draw(w);
-		// std::cout << it.first << ",";
-		// if (it.second->shape.collidable)
-			// this->collisionList->add(&(it.second->shape));
 	}
-	// std::cout << "drawVect size: " << this->drawVect.size() << std::endl;
-		// std::cout << std::endl << std::endl;
-	// this->collisionList->check();
-	// this->collisionList->clear();
 }
 
 void Scene::updateChildren() {
