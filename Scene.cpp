@@ -104,7 +104,7 @@ void shapegame::Scene::drawChildren(GLFWwindow *w) {
 		// if (it.second->shape.collidable)
 			// this->collisionList->add(&(it.second->shape));
 	}
-	std::cout << "drawVect size: " << this->drawVect.size() << std::endl;
+	// std::cout << "drawVect size: " << this->drawVect.size() << std::endl;
 		// std::cout << std::endl << std::endl;
 	// this->collisionList->check();
 	// this->collisionList->clear();
@@ -124,7 +124,7 @@ void Scene::updateChildren() {
 			this->killList.push_back(it.first);
 		}
 	}
-	std::cout << "sceneChildren size: " << this->sceneChildren.size() << std::endl;
+	// std::cout << "sceneChildren size: " << this->sceneChildren.size() << std::endl;
 		// std::cout << std::endl << std::endl;
 }
 

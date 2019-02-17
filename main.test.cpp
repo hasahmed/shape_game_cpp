@@ -151,7 +151,7 @@ class Taxi : public Car {
 		this->shapes.push_back(topThing);
 	}
 	void onKill() override {
-		std::cout << "killd" << std::endl;
+		// std::cout << "killd" << std::endl;
 	}
 };
 
