@@ -4,9 +4,15 @@ using namespace shapegame;
 
 MultiShape::MultiShape(Position pos): Entity(pos) {}
 void MultiShape::onAdd(){}
+void MultiShape::onMultiAdd(){
+	this->unAddedShapes.clear();
+}
+void MultiShape::addShape(std::unique_ptr<Object> shape) {
+	this->unAddedShapes.push_back(std::move(shape));
+	this->shapes.push_back(shape.get());
+}
 void MultiShape::addShape(Object* shape) {
-	shape->setZOrder(this->getZOrder());
-	this->shapes.push_back(shape);
+	this->addShape(std::unique_ptr<Object>(shape));
 }
 void MultiShape::setZOrder(int zOrder) {
 	Object::setZOrder(zOrder);
