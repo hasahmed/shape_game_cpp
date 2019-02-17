@@ -14,6 +14,24 @@ Scene* Scene::_inst = nullptr;
 int Scene::numChildren() {
 	return this->sceneChildren.size();
 }
+void Scene::addMultiShape(MultiShape *multi) {
+	for (Object *obj : multi->shapes) {
+		Shape *s = dynamic_cast<Shape*>(obj);
+		MultiShape *m = dynamic_cast<MultiShape*>(obj);
+		if (s) {
+			GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
+			auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
+			this->drawVect.insert({nextInsert, std::move(rPack)});
+		} else if (m) {
+			this->addMultiShape(m);
+		} else {
+			this->sceneChildren.insert({
+					nextInsert,
+					std::unique_ptr<Object>(obj)
+			});
+		}
+	}
+}
 
 void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (Scene::_inst) {
@@ -49,32 +67,34 @@ shapegame::Scene::Scene() :
 Object* shapegame::Scene::addChild(Object *obj) {
 	/* Regular shape */
     Shape *s = dynamic_cast<Shape*>(obj);
-    if (s) {
-        GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
-        auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
-        this->drawVect.insert({nextInsert, std::move(rPack)});
-    }
-		/* Multishape */
 		MultiShape *m = dynamic_cast<MultiShape*>(obj);
-		if (m) {
-			for (Object *o : m->shapes) {
-				Shape *s = dynamic_cast<Shape*>(o);
-				if (s) {
-					GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
-					auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
-					this->drawVect.insert({nextInsert, std::move(rPack)});
-				} else {
-					this->sceneChildren.insert({
-							nextInsert,
-							std::unique_ptr<Object>(o)
-					});
-				}
-			}
+    if (s) {
+			GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
+			auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
+			this->drawVect.insert({nextInsert, std::move(rPack)});
+			this->sceneChildren.insert({
+					nextInsert,
+					std::unique_ptr<Object>(obj)
+			});
+    } else if (m) {
+			this->addMultiShape(m);
 		}
-    this->sceneChildren.insert({
-        nextInsert,
-        std::unique_ptr<Object>(obj)
-    });
+		/* Multishape */
+		// if (m) {
+		// 	for (Object *o : m->shapes) {
+		// 		Shape *s = dynamic_cast<Shape*>(o);
+		// 		if (s) {
+		// 			GLRenderObject renderObj = GLRenderObject(*s, this->_shaderProg);
+		// 			auto rPack = std::make_unique<RenderPackage>(*s, renderObj);
+		// 			this->drawVect.insert({nextInsert, std::move(rPack)});
+		// 		} else {
+		// 			this->sceneChildren.insert({
+		// 					nextInsert,
+		// 					std::unique_ptr<Object>(o)
+		// 			});
+		// 		}
+		// 	}
+		// }
 		nextInsert++;
     obj->onAdd();
     return obj;

@@ -12,6 +12,7 @@
 #include "ShapePair.hpp"
 #include "CollisionList.hpp"
 #include "Color.hpp"
+#include "MultiShape.hpp"
 
 
 namespace shapegame {
@@ -27,6 +28,7 @@ namespace shapegame {
             std::multimap<unsigned int, std::unique_ptr<RenderPackage>> drawVect;
             static Scene *_inst;
 						void killQueued();
+						void addMultiShape(MultiShape *multi);
         public:
             std::unique_ptr<CollisionList> collisionList;
             void updateChildren();
