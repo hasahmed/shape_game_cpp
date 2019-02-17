@@ -37,6 +37,7 @@ namespace shapegame {
             void updateChildren();
             void drawChildren(GLFWwindow *w);
             Object* addChild(Object *shape);
+						Object* addChild(std::unique_ptr<Object> obj);
             template <class T>
             T* addChildAs(T *shape){
                 static_assert(std::is_base_of<Object, T>::value, "T must extend Object");

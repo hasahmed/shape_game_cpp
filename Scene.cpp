@@ -24,7 +24,6 @@ void Scene::addToSceneChildren(Object *obj) {
 
 
 void Scene::addMultiShape(MultiShape *multi) {
-	this->addToSceneChildren(multi);
 	for (auto &obj : multi->unAddedShapes) {
 		MultiShape *m = dynamic_cast<MultiShape*>(obj.get());
 		if (m) {
@@ -78,14 +77,18 @@ void Scene::addToDrawVect(Shape* shape) {
 
 void Scene::addShape(Shape *shape) {
 	this->addToDrawVect(shape);
-	this->addToSceneChildren(shape);
 }
 
 // note instead of being passed a refrence I should really be passed a ponter.
 // Then we wouldn't need a try block because the dynamic cast would return
 // null instead of throwing
+Object* Scene::addChild(std::unique_ptr<Object> obj) {
+	return this->addChild(obj.release());
+}
+
 Object* shapegame::Scene::addChild(Object *obj) {
 	/* Regular shape */
+		this->addToSceneChildren(obj);
     Shape *s = dynamic_cast<Shape*>(obj);
 		MultiShape *m = dynamic_cast<MultiShape*>(obj);
     if (s) {
@@ -93,10 +96,7 @@ Object* shapegame::Scene::addChild(Object *obj) {
     }
 		 else if (m) {
 			this->addMultiShape(m);
-		} else {
-			// plain old object
-			this->addToSceneChildren(obj);
-		}
+		} 
 		nextInsert++;
     return obj;
 }
