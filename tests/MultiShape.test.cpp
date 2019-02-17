@@ -8,8 +8,8 @@ using namespace shapegame;
 class TwoRects : public MultiShape {
 	public:
 	TwoRects(Position pos): MultiShape(pos) {
-		this->shapes.push_back((Shape*) new Rectangle(100, 100, pos, Color::BLACK));
-		this->shapes.push_back((Shape*) new Rectangle(100, 100, Position(pos.getX() + 200, pos.getY()), Color::BLACK));
+		this->addShape(new Rectangle(100, 100, pos, Color::BLACK));
+		this->addShape(new Rectangle(100, 100, Position(pos.getX() + 200, pos.getY()), Color::BLACK));
 	}
 };
 
