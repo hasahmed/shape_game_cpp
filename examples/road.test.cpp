@@ -148,7 +148,7 @@ class Taxi : public Car {
 	Taxi(Position pos): Car(pos, Color::YELLOW) {
 		auto topThing = new Rectangle(25, 6, pos, Color::WHITE);
 		topThing->translate(7, 35);
-		this->shapes.push_back(topThing);
+		this->addShape(topThing);
 	}
 	void onKill() override {
 		// std::cout << "killd" << std::endl;
@@ -164,10 +164,10 @@ class RoadLine : public Rectangle {
 class MidLine : public MultiShape {
 	public:
 	MidLine(Position pos): MultiShape(pos) {
-		this->shapes.push_back(
+		this->addShape(
 			new RoadLine(pos, Point(LINE_WIDTH, SCREEN_HEIGHT), Color::YELLOW)
 		);
-		this->shapes.push_back(
+		this->addShape(
 			new RoadLine(Position(pos.getX() + (LINE_WIDTH * 2), pos.getY()), Point(3, 1000), Color::YELLOW)
 		);
 	}
@@ -181,7 +181,7 @@ class RoadLines : public MultiShape {
 	RoadLines(Position pos, Point freq, Point amount): MultiShape(pos), freq(freq), amount(amount)  {
 		for (int x = 0; x < amount.getX(); x++) {
 			for (int y = 0; y < amount.getY(); y++) {
-				this->shapes.push_back(
+				this->addShape(
 					new RoadLine(Position(pos.getX() + x * freq.getX(), pos.getY() + y * freq.getY()))
 				);
 			}
