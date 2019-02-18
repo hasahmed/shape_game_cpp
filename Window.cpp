@@ -3,7 +3,11 @@
 using namespace shapegame;
 
 GLFWwindow* Window::getWindowHandle() const {
-	return this->window_handle;
+	return this->windowHandle;
+}
+
+WindowInterface* Window::make(int width, int height, std::string title) {
+	return new Window(width, height, title);
 }
 
 shapegame::Window::Window(int width, int height, std::string window_title) {
@@ -21,12 +25,12 @@ shapegame::Window::Window(int width, int height, std::string window_title) {
     /* Create a windowed mode window and its OpenGL context */
     this->_width = width;
     this->_height = height;
-    this->window_handle = glfwCreateWindow(width, height, window_title.c_str(), NULL, NULL);
-    if (!this->window_handle) {
+    this->windowHandle = glfwCreateWindow(width, height, window_title.c_str(), NULL, NULL);
+    if (!this->windowHandle) {
         glfwTerminate();
         throw std::runtime_error("glfw failed to create window");
     }
-    glfwMakeContextCurrent(this->window_handle);
+    glfwMakeContextCurrent(this->windowHandle);
 #ifndef __MACH__
     gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
 #endif
@@ -34,13 +38,13 @@ shapegame::Window::Window(int width, int height, std::string window_title) {
     this->gl_version = glGetString(GL_VERSION); // version as a string
 
 
-    glfwSetKeyCallback(this->window_handle, Scene::keyCallback);
-		glfwSetMouseButtonCallback(this->window_handle, Scene::mouseBtnCallback);
+    glfwSetKeyCallback(this->windowHandle, Scene::keyCallback);
+		glfwSetMouseButtonCallback(this->windowHandle, Scene::mouseBtnCallback);
 }
 
 
 
-std::string shapegame::Window::info_string() {
+std::string shapegame::Window::infoString() {
     std::string render_str((char*)(this->gl_renderer));
     std::string version_str((char*)(this->gl_version));
     return "Renderer: " + render_str + "\n" + "OpenGL version supported: " + version_str;
@@ -53,5 +57,5 @@ int shapegame::Window::getWidth() {
     return _width;
 }
 // GLFWwindow* shapegame::Window::getWindowHandle() {
-//     return this->window_handle;
+//     return this->windowHandle;
 // }

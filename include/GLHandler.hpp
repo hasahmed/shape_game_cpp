@@ -8,7 +8,7 @@
 namespace shapegame {
     class GLHandler {
         private:
-            GLFWwindow *window_handle;
+            GLFWwindow *windowHandle;
             GLuint vbo, vao;
             Scene &_scene;
             static int _assignableVertexAttribIndex;
