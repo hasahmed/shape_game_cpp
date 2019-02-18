@@ -15,3 +15,6 @@ removal) will take a bit more work
 # 2/17/19
 Still tons of memory leaks in the engine. Tried to point valgrind at it, but there were many many errors.
 Errors when killing multishapes.
+
+-- Found the source of the multishape errors. Apparently after you std::move a smart pointer that smart pointers
+contents are invalid. Makes sense in hindshight
