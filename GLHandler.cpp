@@ -25,7 +25,7 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) :
     _scene(scene),
     _clearColor(Color::BLACK)
 {
-    this->window_handle = window->getWindowHandle();
+    this->windowHandle = window->getWindowHandle();
 
     //compile and link shaders
     //------------------------------------------------------------------------
@@ -122,22 +122,22 @@ void shapegame::GLHandler::check_shader_err(int shader){
 void shapegame::GLHandler::run() {
     typedef std::chrono::high_resolution_clock Clock;
     auto t1 = Clock::now();
-    while (!glfwWindowShouldClose(this->window_handle)) {
+    while (!glfwWindowShouldClose(this->windowHandle)) {
         auto t2 = Clock::now();
         std::chrono::duration<double> elapsed_seconds = t2 - t1;
-        glfwGetCursorPos(this->window_handle, &mouse_x, &mouse_y);
+        glfwGetCursorPos(this->windowHandle, &mouse_x, &mouse_y);
         this->setClearColor(this->_scene._bgColor);
-        //int mouse_pressed = glfwGetMouseButton(this->window_handle, GLFW_MOUSE_BUTTON_LEFT);
+        //int mouse_pressed = glfwGetMouseButton(this->windowHandle, GLFW_MOUSE_BUTTON_LEFT);
         GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
         _scene.updateChildren();
-        _scene.drawChildren(this->window_handle);
+        _scene.drawChildren(this->windowHandle);
 				_scene.killQueued();
 
         glfwPollEvents();
         // put the stuff we've been drawing onto the display
         glfwSwapInterval(1);
-        glfwSwapBuffers(this->window_handle);
+        glfwSwapBuffers(this->windowHandle);
         std::chrono::duration<double> frameLength = Clock::now() - t2;
 				G::dt = frameLength.count();
 				G::fps = 1.0f / G::dt;
