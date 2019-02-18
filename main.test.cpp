@@ -257,14 +257,13 @@ int main() {
 	g.scene->addChild(rightRoadLines);
 	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
 	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
-	auto windShield = new WindShield(Position(100, 100));
-	// new CarBase(100, 100, Point(10, 10), Point(10, 10), Position(500, 500), Color::BLACK);
-	// new Taxi(Position(500, 500));
-	// g.scene->addChild(new Taxi(Position(500, 500)));
-	// g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	// for (auto lane : leftRoadLanesX) {
-	// 	// g.scene->addChild(new Spawner<Taxi>(Position(lane + 25, 1000), 500));
-	// 	g.scene->addChild(new Spawner<CarTri>(Position(lane + 25, 1000), 500));
-	// }
+	new CarBase(100, 100, Point(10, 10), Point(10, 10), Position(500, 500), Color::BLACK);
+	new Taxi(Position(500, 500));
+	g.scene->addChild(new Taxi(Position(500, 500)));
+	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
+	for (auto lane : leftRoadLanesX) {
+		g.scene->addChild(new Spawner<Taxi>(Position(lane + 25, 1000), 500));
+		// g.scene->addChild(new Spawner<CarTri>(Position(lane + 25, 1000), 500));
+	}
 	g.run();
 }

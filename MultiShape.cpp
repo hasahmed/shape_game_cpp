@@ -8,8 +8,9 @@ void MultiShape::onMultiAdd(){
 	this->unAddedShapes.clear();
 }
 void MultiShape::addShape(std::unique_ptr<Object> shape) {
-	this->unAddedShapes.push_back(std::move(shape));
+	// std::cout << "Shape addr: " << shape.get() << std::endl;
 	this->shapes.push_back(shape.get());
+	this->unAddedShapes.push_back(std::move(shape));
 }
 void MultiShape::addShape(Object* shape) {
 	this->addShape(std::unique_ptr<Object>(shape));
@@ -28,7 +29,11 @@ void MultiShape::setPosition(float x, float y) {
 	auto changeInY = y - this->pos.getY();
 	Object::setPosition(x, y);
 	for (Object *s : this->shapes) {
-		s->setPosition(s->pos.getX() + changeInX, s->pos.getY() + changeInY);
+		if (s) {
+			s->setPosition(s->pos.getX() + changeInX, s->pos.getY() + changeInY);
+		} else {
+			throw std::runtime_error("None of the shapes in the multishape should be null");
+		}
 	}
 }
 void MultiShape::onKill() {}
