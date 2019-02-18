@@ -138,7 +138,6 @@ class Car : public CarBase {
 			color) {
 				auto cc = new CarComponent();
 				cc->setDirection(dir);
-				cc->setSpeed(500);
 				this->addComponent(cc);
 				this->addComponent(new Steerable());
 		}
