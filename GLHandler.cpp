@@ -25,7 +25,7 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) :
     _scene(scene),
     _clearColor(Color::BLACK)
 {
-    this->window_handle = window->window_handle;
+    this->window_handle = window->getWindowHandle();
 
     //compile and link shaders
     //------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 using namespace shapegame;
 using namespace shapegame::Input;
 bool Kb::down(Kb::Key key) {
-	GLFWwindow *w = Game::inst().getWindow()->window_handle;
+	GLFWwindow *w = Game::inst().getWindow()->getWindowHandle();
 	return glfwGetKey(w, (int)key) == GLFW_PRESS;
 }
 bool Kb::up(Kb::Key key) {
@@ -10,7 +10,7 @@ bool Kb::up(Kb::Key key) {
 }
 
 Position Mouse::pos() {
-	GLFWwindow *w = Game::inst().getWindow()->window_handle;
+	GLFWwindow *w = Game::inst().getWindow()->getWindowHandle();
 	double x = 0;
 	double y = 0;
 	glfwGetCursorPos(w, &x, &y);

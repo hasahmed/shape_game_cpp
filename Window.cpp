@@ -1,4 +1,11 @@
 #include "shapegame"
+
+using namespace shapegame;
+
+GLFWwindow* Window::getWindowHandle() const {
+	return this->window_handle;
+}
+
 shapegame::Window::Window(int width, int height, std::string window_title) {
 
     if (!glfwInit())
