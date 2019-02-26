@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named MultiShape.test
+
+# Build rule for target.
+MultiShape.test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 MultiShape.test
+.PHONY : MultiShape.test
+
+# fast build rule for target.
+MultiShape.test/fast:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/build
+.PHONY : MultiShape.test/fast
+
+#=============================================================================
 # Target rules for targets named Object.test
 
 # Build rule for target.
@@ -122,6 +135,33 @@ Object.test: cmake_check_build_system
 Object.test/fast:
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/build
 .PHONY : Object.test/fast
+
+MultiShape.test.o: MultiShape.test.cpp.o
+
+.PHONY : MultiShape.test.o
+
+# target to build an object file
+MultiShape.test.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/MultiShape.test.cpp.o
+.PHONY : MultiShape.test.cpp.o
+
+MultiShape.test.i: MultiShape.test.cpp.i
+
+.PHONY : MultiShape.test.i
+
+# target to preprocess a source file
+MultiShape.test.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/MultiShape.test.cpp.i
+.PHONY : MultiShape.test.cpp.i
+
+MultiShape.test.s: MultiShape.test.cpp.s
+
+.PHONY : MultiShape.test.s
+
+# target to generate assembly for a file
+MultiShape.test.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/MultiShape.test.cpp.s
+.PHONY : MultiShape.test.cpp.s
 
 Object.test.o: Object.test.cpp.o
 
@@ -156,6 +196,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.o: Users/hasanka
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.o
 
@@ -165,6 +206,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.i: Users/hasanka
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.i
 
@@ -174,6 +216,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.s: Users/hasanka
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Color.cpp.s
 
@@ -183,6 +226,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.o: Users/has
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.o
 
@@ -192,6 +236,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.i: Users/has
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.i
 
@@ -201,6 +246,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.s: Users/has
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Component.cpp.s
 
@@ -210,6 +256,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.o: Users/hasank
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.o
 
@@ -219,6 +266,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.i: Users/hasank
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.i
 
@@ -228,6 +276,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.s: Users/hasank
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Entity.cpp.s
 
@@ -237,6 +286,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.o: Users/ha
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.o
 
@@ -246,6 +296,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.i: Users/ha
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.i
 
@@ -255,6 +306,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.s: Users/ha
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/MultiShape.cpp.s
 
@@ -264,6 +316,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.o: Users/hasank
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.o
 
@@ -273,6 +326,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.i: Users/hasank
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.i
 
@@ -282,6 +336,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.s: Users/hasank
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Object.cpp.s
 
@@ -291,6 +346,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.o: Users/hasanka
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.o
 
@@ -300,6 +356,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.i: Users/hasanka
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.i
 
@@ -309,6 +366,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.s: Users/hasanka
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Point.cpp.s
 
@@ -318,6 +376,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.o: Users/hasa
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.o
 
@@ -327,6 +386,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.i: Users/hasa
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.i
 
@@ -336,6 +396,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.s: Users/hasa
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Position.cpp.s
 
@@ -345,6 +406,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.o: Users/has
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.o
 
@@ -354,6 +416,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.i: Users/has
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.i
 
@@ -363,6 +426,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.s: Users/has
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Rectangle.cpp.s
 
@@ -372,6 +436,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.o: Users/hasanka
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.o
 
@@ -381,6 +446,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.i: Users/hasanka
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.i
 
@@ -390,6 +456,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.s: Users/hasanka
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Shape.cpp.s
 
@@ -399,6 +466,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.o: Users/has
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.o
 
@@ -408,6 +476,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.i: Users/has
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.i
 
@@ -417,6 +486,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.s: Users/has
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/ShapePair.cpp.s
 
@@ -426,6 +496,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.o: Use
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.o
 
@@ -435,6 +506,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.i: Use
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.i
 
@@ -444,6 +516,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.s: Use
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/SimpleCollision.cpp.s
 
@@ -453,6 +526,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.o: Users/hasanka
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.o
 
@@ -462,6 +536,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.i: Users/hasanka
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.i
 
@@ -471,6 +546,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.s: Users/hasanka
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Timer.cpp.s
 
@@ -480,6 +556,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.o: Users/hasa
 
 # target to build an object file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.o
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.o
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.o
 
@@ -489,6 +566,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.i: Users/hasa
 
 # target to preprocess a source file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.i
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.i
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.i
 
@@ -498,6 +576,7 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.s: Users/hasa
 
 # target to generate assembly for a file
 Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.s
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.s
 
@@ -509,7 +588,11 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... MultiShape.test"
 	@echo "... Object.test"
+	@echo "... MultiShape.test.o"
+	@echo "... MultiShape.test.i"
+	@echo "... MultiShape.test.s"
 	@echo "... Object.test.o"
 	@echo "... Object.test.i"
 	@echo "... Object.test.s"
