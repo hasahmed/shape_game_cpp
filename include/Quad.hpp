@@ -7,5 +7,6 @@ namespace shapegame {
 		public:
 		using MultiShape::MultiShape;
 		Quad(Position p1, Point p2, Point p3, Point p4, Color color);
+		virtual ~Quad() = default;
 	};
 }

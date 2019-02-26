@@ -6,7 +6,7 @@
 #include "Shape.hpp"
 #include "Object.hpp"
 #include "Triangle.hpp"
-#include "GLHandler.hpp"
+#include "GLHandlerImpl.hpp"
 #include "GLRenderObject.hpp"
 #include "RenderPackage.hpp"
 #include "ShapePair.hpp"
@@ -18,7 +18,7 @@
 namespace shapegame {
 
     class Scene {
-        friend class GLHandler;
+        friend class GLHandlerImpl;
         private:
             Color _bgColor;
             GLuint _shaderProg;

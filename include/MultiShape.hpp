@@ -29,7 +29,7 @@ namespace shapegame {
 		std::vector<Object*> shapes;
 		std::vector<std::unique_ptr<Object>> unAddedShapes;
 		public:
-		~MultiShape();
+		virtual ~MultiShape();
 		MultiShape(Object* controller, std::vector<Object*>& shapes);
 		MultiShape(Position pos);
 		virtual void addShape(Object* shape);

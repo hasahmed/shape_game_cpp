@@ -17,6 +17,7 @@ namespace shapegame {
 
 		public:
 			Timer(double millisecs, bool repeates, bool autoStart, std::function<void(void)> callBack, bool killOnComplete=true);
+			~Timer() = default;
 			void start();
 			void stop();
 			void onAdd() override;

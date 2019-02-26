@@ -6,7 +6,7 @@
 #include "Color.hpp"
 
 namespace shapegame {
-    class GLHandler {
+    class GLHandlerImpl {
         private:
             GLFWwindow *windowHandle;
             GLuint vbo, vao;
@@ -17,7 +17,7 @@ namespace shapegame {
             float color[4] = {1.0, 1.0, 0.0, 1.0}; // what is this color for?
 
             GLuint shader_prog;
-            GLHandler(Window *window, Scene &scene);
+            GLHandlerImpl(Window *window, Scene &scene);
             double mouse_x, mouse_y;
             //methods
             void check_shader_err(int shader);

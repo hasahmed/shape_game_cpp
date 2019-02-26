@@ -37,6 +37,7 @@ void MultiShape::setPosition(float x, float y) {
 	}
 }
 void MultiShape::onKill() {}
+
 MultiShape::~MultiShape() {
 	#if PRINT_DESTRUCTION
 	std::cout << "MultiShape Killed" << std::endl;
