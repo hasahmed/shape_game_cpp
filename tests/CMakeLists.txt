@@ -54,7 +54,7 @@ SET(NO_GLFW_SRCS
 )
 add_executable(Object.test Object.test.cpp ${NO_GLFW_SRCS})
 # add_executable(Triangle.test Triangle.test.cpp ${NO_GLFW_SRCS})
-# add_executable(MultiShape.test MultiShape.test.cpp ${NO_GLFW_SRCS})
+ add_executable(MultiShape.test MultiShape.test.cpp ${NO_GLFW_SRCS})
 # add_executable(MultiShape.test.cpp ${ALL_SRCS})
 # add_executable(FileUtil.test FileUtil.test.cpp ../FileUtil.cpp)
 # add_executable(Position.test Position.test.cpp ../Position.cpp)

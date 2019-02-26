@@ -15,7 +15,7 @@ class TwoRects : public MultiShape {
 
 int main(){
 	// new Position(100, 100);
-	TwoRects *t = new TwoRects(Position(100, 100));
+	Object *t = new TwoRects(Position(100, 100));
 	// MultiShape m(Position(100, 100));
 	delete t;
 }
