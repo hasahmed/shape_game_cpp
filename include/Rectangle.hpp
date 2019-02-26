@@ -6,7 +6,7 @@
 namespace shapegame {
 	class Rectangle : public MultiShape{
 		public:
-			~Rectangle();
+			virtual ~Rectangle();
 			Rectangle(float width, float height, Position pos, Color color);
 	};
 }

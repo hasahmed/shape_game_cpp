@@ -13,7 +13,7 @@ namespace shapegame {
 				Point second; // second point of the triangle
 				Point third; // third
 				Position collisionPosition;
-				~Triangle();
+				virtual ~Triangle();
 				Triangle();
 				Triangle(Position first, Point second, Point third);
 				Triangle(Position first, Point second, Point third, Color color);

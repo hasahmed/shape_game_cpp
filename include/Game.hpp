@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include "Window.hpp"
-#include "GLHandler.hpp"
+#include "GLHandlerImpl.hpp"
 #include "Scene.hpp"
 #include "VertexGenerator.hpp"
 
@@ -10,7 +10,7 @@ namespace shapegame {
 	class Game {
 		private:
 			std::unique_ptr<Window> _window;
-			std::unique_ptr<GLHandler> _glHandler;
+			std::unique_ptr<GLHandlerImpl> _glHandler;
 			std::unique_ptr<VertexGenerator> _vertexGenerator;
 			static Game *_inst;
 		public:

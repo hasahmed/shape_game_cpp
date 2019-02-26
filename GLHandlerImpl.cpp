@@ -7,11 +7,11 @@
 
 using namespace shapegame;
 
-int shapegame::GLHandler::_assignableVertexAttribIndex = 0;
+int shapegame::GLHandlerImpl::_assignableVertexAttribIndex = 0;
 
 
 
-void GLHandler::setClearColor(Color& color) {
+void GLHandlerImpl::setClearColor(Color& color) {
     this->_clearColor = color;
     GLCALL(glClearColor(
         this->_clearColor.r,
@@ -21,7 +21,7 @@ void GLHandler::setClearColor(Color& color) {
     ));
 }
 
-shapegame::GLHandler::GLHandler(Window *window, Scene &scene) :
+shapegame::GLHandlerImpl::GLHandlerImpl(Window *window, Scene &scene) :
     _scene(scene),
     _clearColor(Color::BLACK)
 {
@@ -109,7 +109,7 @@ shapegame::GLHandler::GLHandler(Window *window, Scene &scene) :
 
 
 }
-void shapegame::GLHandler::check_shader_err(int shader){
+void shapegame::GLHandlerImpl::check_shader_err(int shader){
     char infoLog[512];
     int success = 1;
     glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
@@ -119,7 +119,7 @@ void shapegame::GLHandler::check_shader_err(int shader){
     }
 }
 
-void shapegame::GLHandler::run() {
+void shapegame::GLHandlerImpl::run() {
     typedef std::chrono::high_resolution_clock Clock;
     auto t1 = Clock::now();
     while (!glfwWindowShouldClose(this->windowHandle)) {

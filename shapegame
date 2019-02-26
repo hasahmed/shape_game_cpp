@@ -4,7 +4,7 @@
 #include "FileUtil.hpp"
 #include "Window.hpp"
 #include "Globals.hpp"
-#include "GLHandler.hpp"
+#include "GLHandlerImpl.hpp"
 #include "ShaderHandler.hpp"
 #include "Game.hpp"
 #include "Object.hpp"
@@ -33,3 +33,4 @@
 #include "TriangleIsosceles.hpp"
 #include "Entity.hpp"
 #include "Component.hpp"
+#include "NullGLHandler.hpp"
