@@ -78,14 +78,9 @@ void Scene::addToDrawVect(Shape* shape) {
 void Scene::addShape(Shape *shape) {
 	this->addToDrawVect(shape);
 }
-
-// note instead of being passed a refrence I should really be passed a ponter.
-// Then we wouldn't need a try block because the dynamic cast would return
-// null instead of throwing
 Object* Scene::addChild(std::unique_ptr<Object> obj) {
 	return this->addChild(obj.release());
 }
-
 Object* shapegame::Scene::addChild(Object *obj) {
 	/* Regular shape */
 		this->addToSceneChildren(obj);
