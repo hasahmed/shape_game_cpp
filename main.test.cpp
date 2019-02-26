@@ -149,6 +149,9 @@ class Taxi : public Car {
 		topThing->translate(7, 35);
 		this->addShape(topThing);
 	}
+	void onAdd() override {
+		std::cout << "Here" << std::endl;
+	}
 	void onKill() override {
 		// std::cout << "killd" << std::endl;
 	}
@@ -198,13 +201,17 @@ class RoadLines : public MultiShape {
 	}
 };
 
+int i = 0;
+
 template <class T>
 class Spawner: public Object {
 	private:
 	Timer *t;
 	public:
 	Spawner(Position pos, unsigned int intervalMs): Object(pos) {
-		this->t = Game::inst().scene->addChildAs<Timer>(new Timer(intervalMs, true, true, [=](){
+		this->t = Game::inst().scene->addChildAs<Timer>(new Timer(intervalMs, true, true, [=]() mutable {
+			i++;
+			std::cout << "Car spawned: " << i << std::endl;
 			Game::inst().scene->addChild(new T(pos));
 		}));
 	}
