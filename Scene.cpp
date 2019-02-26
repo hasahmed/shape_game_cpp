@@ -84,14 +84,14 @@ Object* Scene::addChild(std::unique_ptr<Object> obj) {
 Object* shapegame::Scene::addChild(Object *obj) {
 	/* Regular shape */
 		this->addToSceneChildren(obj);
-    Shape *s = dynamic_cast<Shape*>(obj);
-		MultiShape *m = dynamic_cast<MultiShape*>(obj);
-    if (s) {
-			this->addShape(s);
-    }
-		 else if (m) {
-			this->addMultiShape(m);
-		} 
+    // Shape *s = dynamic_cast<Shape*>(obj);
+		// MultiShape *m = dynamic_cast<MultiShape*>(obj);
+    // if (s) {
+		// 	this->addShape(s);
+    // }
+		//  else if (m) {
+		// 	this->addMultiShape(m);
+		// } 
 		nextInsert++;
     return obj;
 }
