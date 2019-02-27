@@ -1,4 +1,6 @@
 #include "shapegame"
+#include <map>
+#include <map>
 #include <vector>
 #include <random>
 using namespace shapegame;
@@ -150,7 +152,6 @@ class Taxi : public Car {
 		this->addShape(topThing);
 	}
 	void onAdd() override {
-		std::cout << "Here" << std::endl;
 	}
 	void onKill() override {
 		// std::cout << "killd" << std::endl;
@@ -211,7 +212,7 @@ class Spawner: public Object {
 	Spawner(Position pos, unsigned int intervalMs): Object(pos) {
 		this->t = Game::inst().scene->addChildAs<Timer>(new Timer(intervalMs, true, true, [=]() mutable {
 			i++;
-			std::cout << "Car spawned: " << i << std::endl;
+			// std::cout << "Car spawned: " << i << std::endl;
 			Game::inst().scene->addChild(new T(pos));
 		}));
 	}
@@ -236,14 +237,14 @@ class CarTri : public TriangleIsosceles {
 		this->addComponent(new CarComponent());
 	}
 	void onKill() override {
-		std::cout << "CarTri Killed" << std::endl;
+		// std::cout << "CarTri Killed" << std::endl;
 	}
 };
 
 int main() {
 
 
-	Game g(1200, 700, "Busy Highway");
+	Game g(1200, 800, "Busy Highway");
 	g.scene->setBackgroundColor(Color::GRAY);
 	g.scene->addChild(new DebugKeyHandler());
 
@@ -263,9 +264,6 @@ int main() {
 	g.scene->addChild(rightRoadLines);
 	std::vector<float> leftRoadLanesX = leftRoadLines->getLanesX();
 	std::vector<float> rightRoadLanesX = rightRoadLines->getLanesX();
-	new CarBase(100, 100, Point(10, 10), Point(10, 10), Position(500, 500), Color::BLACK);
-	new Taxi(Position(500, 500));
-	g.scene->addChild(new Taxi(Position(500, 500)));
 	g.scene->addChild(new MidLine(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
 	for (auto lane : leftRoadLanesX) {
 		g.scene->addChild(new Spawner<Taxi>(Position(lane + 25, 1000), 500));

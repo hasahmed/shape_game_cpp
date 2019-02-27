@@ -134,6 +134,12 @@ void shapegame::GLHandlerImpl::run() {
         _scene.drawChildren(this->windowHandle);
 				_scene.killQueued();
 
+				// std::cout << "\r";
+				// std::cout << std::flush;
+				// std::cout << "drawChildren:" << _scene.drawVect.size() << std::endl;
+				// std::cout << "\rdrawChildren:" << _scene.drawVect.size();
+				// std::cout << "\rsceneChildren:" << _scene.sceneChildren.size();
+
         glfwPollEvents();
         // put the stuff we've been drawing onto the display
         glfwSwapInterval(1);
