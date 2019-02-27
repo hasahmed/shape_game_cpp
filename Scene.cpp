@@ -31,8 +31,7 @@ void Scene::addMultiShape(MultiShape *multi) {
 			this->addMultiShape(m);
 		} else { // 
 			Object *objRaw = obj.release(); //take over multishapes ownership
-			Shape *shapeRaw = dynamic_cast<Shape*>(objRaw);
-			if (shapeRaw) { // if its a shape
+			if (Shape *shapeRaw = dynamic_cast<Shape*>(objRaw)) { // if its a shape
 				this->addShape(shapeRaw);
 			} else { //its a plain old object
 				this->addToSceneChildren(objRaw);
@@ -84,14 +83,12 @@ Object* Scene::addChild(std::unique_ptr<Object> obj) {
 Object* shapegame::Scene::addChild(Object *obj) {
 	/* Regular shape */
 		this->addToSceneChildren(obj);
-    // Shape *s = dynamic_cast<Shape*>(obj);
-		// MultiShape *m = dynamic_cast<MultiShape*>(obj);
-    // if (s) {
-		// 	this->addShape(s);
-    // }
-		//  else if (m) {
-		// 	this->addMultiShape(m);
-		// } 
+    if (Shape *s = dynamic_cast<Shape*>(obj)) {
+			this->addShape(s);
+    }
+		 else if (MultiShape *m = dynamic_cast<MultiShape*>(obj)) {
+			this->addMultiShape(m);
+		}
 		nextInsert++;
     return obj;
 }

@@ -580,6 +580,36 @@ Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.s:
 	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.s
 .PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.cpp.s
 
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.o: Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.o
+
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.o
+
+# target to build an object file
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.o:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.o
+	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.o
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.o
+
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.i: Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.i
+
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.i
+
+# target to preprocess a source file
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.i:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.i
+	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.i
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.i
+
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.s: Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.s
+
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.s
+
+# target to generate assembly for a file
+Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.s:
+	$(MAKE) -f CMakeFiles/MultiShape.test.dir/build.make CMakeFiles/MultiShape.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.s
+	$(MAKE) -f CMakeFiles/Object.test.dir/build.make CMakeFiles/Object.test.dir/Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.s
+.PHONY : Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -635,6 +665,9 @@ help:
 	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.o"
 	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.i"
 	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/Triangle.s"
+	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.o"
+	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.i"
+	@echo "... Users/hasankatie/programming/my_repos/cpp_repos/shapegame/TriangleIsosceles.s"
 .PHONY : help
 
 

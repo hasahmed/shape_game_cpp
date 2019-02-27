@@ -2,6 +2,24 @@
 #include <vector>
 using namespace shapegame;
 
+// template <class T>
+// class Spawner: public Object {
+// 	private:
+// 	Timer *t;
+// 	public:
+// 	Spawner(Position pos, unsigned int intervalMs): Object(pos) {
+// 		this->t = Game::inst().scene->addChildAs<Timer>(new Timer(intervalMs, true, true, [=]() mutable {
+// 			i++;
+// 			std::cout << "Car spawned: " << i << std::endl;
+// 			Game::inst().scene->addChild(new T(pos));
+// 		}));
+// 	}
+// 	void onMouseClick(Mouse::Btn btn, Input::Action action) override {
+// 		this->t->stop();
+// 		this->kill();
+// 	}
+// };
+
 class Box : public MultiShape {
 	public:
 	Box(Position pos): MultiShape(pos) {

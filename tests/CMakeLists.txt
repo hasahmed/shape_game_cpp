@@ -51,6 +51,7 @@ SET(NO_GLFW_SRCS
 	../Component.cpp
 	../Rectangle.cpp
 	../MultiShape.cpp
+	../TriangleIsosceles.cpp
 )
 add_executable(Object.test Object.test.cpp ${NO_GLFW_SRCS})
 # add_executable(Triangle.test Triangle.test.cpp ${NO_GLFW_SRCS})
