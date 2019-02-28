@@ -15,24 +15,26 @@ int Scene::numChildren() {
 	return this->sceneChildren.size();
 }
 void Scene::addToSceneChildren(std::unique_ptr<Object> obj) {
+	obj->onAdd();
 	this->sceneChildren.insert({
 			nextInsert,
 			std::move(obj)
 	});
-	obj->onAdd();
 }
 
 void Scene::addMultiShape(std::unique_ptr<MultiShape> multi) {
+	auto rawMulti = multi.get();
 	this->addToSceneChildren(std::move(multi));
-	for (auto &obj : multi->unAddedShapes) {
+	for (auto &obj : rawMulti->unAddedShapes) {
 		if (dynamic_cast<MultiShape*>(obj.get())) {
 			auto mRaw = dynamic_cast<MultiShape*>(obj.release());
 			if (!mRaw) throw std::runtime_error("This really shouldn't have happened. Look for answers");
 			auto mUnique = std::unique_ptr<MultiShape>(mRaw);
 			this->addMultiShape(std::move(mUnique));
 		} else {
+			auto objRaw = obj.get();
 			this->addToSceneChildren(std::move(obj));
-			if (auto shape = dynamic_cast<Shape*>(obj.get())) { // if its a shape
+			if (auto shape = dynamic_cast<Shape*>(objRaw)) { // if its a shape
 				this->addShape(*shape);
 			}
 		}
@@ -77,21 +79,20 @@ void Scene::addShape(Shape &shape) {
 	this->addToDrawVect(shape);
 }
 Object* Scene::addChild(std::unique_ptr<Object> obj) {
-	if (dynamic_cast<MultiShape*>(obj.get())){
+	auto rawObj = obj.get();
+	if (dynamic_cast<MultiShape*>(rawObj)) {
 		auto rawM = dynamic_cast<MultiShape*>(obj.release());
 		if (!rawM) throw std::runtime_error("Invariant Violation. Should never be null");
 		auto uniM = std::unique_ptr<MultiShape>(rawM);
 		this->addMultiShape(std::move(uniM));
 	} else {
 		this->addToSceneChildren(std::move(obj));
-    if (Shape *s = dynamic_cast<Shape*>(obj.get())) {
+    if (Shape *s = dynamic_cast<Shape*>(rawObj)) {
 			this->addShape(*s);
     }
-		 else if (dynamic_cast<MultiShape*>(obj.get())) {
-		}
-		nextInsert++;
 	}
-	return obj.get();
+	nextInsert++;
+	return rawObj;
 }
 Object* shapegame::Scene::addChild(Object *obj) {
 	return this->addChild(std::unique_ptr<Object>(obj));
