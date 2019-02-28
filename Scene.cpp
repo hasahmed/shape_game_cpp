@@ -14,26 +14,26 @@ Scene* Scene::_inst = nullptr;
 int Scene::numChildren() {
 	return this->sceneChildren.size();
 }
-void Scene::addToSceneChildren(Object *obj) {
+void Scene::addToSceneChildren(std::unique_ptr<Object> obj) {
 	this->sceneChildren.insert({
 			nextInsert,
-			std::unique_ptr<Object>(obj)
+			std::move(obj)
 	});
 	obj->onAdd();
 }
 
-
-void Scene::addMultiShape(MultiShape *multi) {
+void Scene::addMultiShape(std::unique_ptr<MultiShape> multi) {
+	this->addToSceneChildren(std::move(multi));
 	for (auto &obj : multi->unAddedShapes) {
-		MultiShape *m = dynamic_cast<MultiShape*>(obj.get());
-		if (m) {
-			//recurse
-			this->addMultiShape(m);
-		} else { // 
-			Object *objRaw = obj.release(); //take over multishapes ownership
-			this->addToSceneChildren(objRaw);
-			if (Shape *shapeRaw = dynamic_cast<Shape*>(objRaw)) { // if its a shape
-				this->addShape(shapeRaw);
+		if (dynamic_cast<MultiShape*>(obj.get())) {
+			auto mRaw = dynamic_cast<MultiShape*>(obj.release());
+			if (!mRaw) throw std::runtime_error("This really shouldn't have happened. Look for answers");
+			auto mUnique = std::unique_ptr<MultiShape>(mRaw);
+			this->addMultiShape(std::move(mUnique));
+		} else {
+			this->addToSceneChildren(std::move(obj));
+			if (auto shape = dynamic_cast<Shape*>(obj.get())) { // if its a shape
+				this->addShape(*shape);
 			}
 		}
 	}
@@ -67,29 +67,34 @@ shapegame::Scene::Scene() :
         Scene::_inst = this;
 }
 
-void Scene::addToDrawVect(Shape* shape) {
-		GLRenderObject renderObj = GLRenderObject(*shape, this->_shaderProg);
-		auto rPack = std::make_unique<RenderPackage>(*shape, renderObj);
+void Scene::addToDrawVect(Shape &shape) {
+		GLRenderObject renderObj = GLRenderObject(shape, this->_shaderProg);
+		auto rPack = std::make_unique<RenderPackage>(shape, renderObj);
 		this->drawVect.insert({nextInsert, std::move(rPack)});
 }
 
-void Scene::addShape(Shape *shape) {
+void Scene::addShape(Shape &shape) {
 	this->addToDrawVect(shape);
 }
 Object* Scene::addChild(std::unique_ptr<Object> obj) {
-	return this->addChild(obj.release());
-}
-Object* shapegame::Scene::addChild(Object *obj) {
-	/* Regular shape */
-		this->addToSceneChildren(obj);
-    if (Shape *s = dynamic_cast<Shape*>(obj)) {
-			this->addShape(s);
+	if (dynamic_cast<MultiShape*>(obj.get())){
+		auto rawM = dynamic_cast<MultiShape*>(obj.release());
+		if (!rawM) throw std::runtime_error("Invariant Violation. Should never be null");
+		auto uniM = std::unique_ptr<MultiShape>(rawM);
+		this->addMultiShape(std::move(uniM));
+	} else {
+		this->addToSceneChildren(std::move(obj));
+    if (Shape *s = dynamic_cast<Shape*>(obj.get())) {
+			this->addShape(*s);
     }
-		 else if (MultiShape *m = dynamic_cast<MultiShape*>(obj)) {
-			this->addMultiShape(m);
+		 else if (dynamic_cast<MultiShape*>(obj.get())) {
 		}
 		nextInsert++;
-    return obj;
+	}
+	return obj.get();
+}
+Object* shapegame::Scene::addChild(Object *obj) {
+	return this->addChild(std::unique_ptr<Object>(obj));
 }
 
 void shapegame::Scene::drawChildren(GLFWwindow *w) {
