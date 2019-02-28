@@ -28,10 +28,10 @@ namespace shapegame {
             std::multimap<unsigned int, std::unique_ptr<RenderPackage>> drawVect;
             static Scene *_inst;
 						void killQueued();
-						void addMultiShape(MultiShape *multi);
-						void addToDrawVect(Shape *shape);
-						void addToSceneChildren(Object *obj);
-						void addShape(Shape *shape);
+						void addMultiShape(std::unique_ptr<MultiShape> multi);
+						void addToSceneChildren(std::unique_ptr<Object> obj);
+						void addToDrawVect(Shape &shape);
+						void addShape(Shape &shape);
         public:
             std::unique_ptr<CollisionList> collisionList;
             void updateChildren();
