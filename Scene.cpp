@@ -31,10 +31,9 @@ void Scene::addMultiShape(MultiShape *multi) {
 			this->addMultiShape(m);
 		} else { // 
 			Object *objRaw = obj.release(); //take over multishapes ownership
+			this->addToSceneChildren(objRaw);
 			if (Shape *shapeRaw = dynamic_cast<Shape*>(objRaw)) { // if its a shape
 				this->addShape(shapeRaw);
-			} else { //its a plain old object
-				this->addToSceneChildren(objRaw);
 			}
 		}
 	}
