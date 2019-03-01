@@ -9,6 +9,7 @@ using namespace shapegame;
 
 int shapegame::GLHandlerImpl::_assignableVertexAttribIndex = 0;
 
+float color[4] = {1.0, 1.0, 0.0, 1.0};
 
 
 void GLHandlerImpl::setClearColor(Color& color) {
@@ -125,7 +126,7 @@ void shapegame::GLHandlerImpl::run() {
     while (!glfwWindowShouldClose(this->windowHandle)) {
         auto t2 = Clock::now();
         std::chrono::duration<double> elapsed_seconds = t2 - t1;
-        glfwGetCursorPos(this->windowHandle, &mouse_x, &mouse_y);
+        // glfwGetCursorPos(this->windowHandle, &mouse_x, &mouse_y);
         this->setClearColor(this->_scene._bgColor);
         //int mouse_pressed = glfwGetMouseButton(this->windowHandle, GLFW_MOUSE_BUTTON_LEFT);
         GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));

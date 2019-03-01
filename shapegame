@@ -34,3 +34,4 @@
 #include "Entity.hpp"
 #include "Component.hpp"
 #include "NullGLHandler.hpp"
+#include "GLHandler.hpp"
