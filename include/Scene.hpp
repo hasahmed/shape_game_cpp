@@ -39,10 +39,10 @@ namespace shapegame {
             Object* addChild(Object *shape);
 						Object* addChild(std::unique_ptr<Object> obj);
             template <class T>
-            T* addChildAs(T *shape){
-                static_assert(std::is_base_of<Object, T>::value, "T must extend Object");
-                this->addChild(shape);
-                return shape;
+            T* addChildAs(T uniqueShape){
+							auto rawPtr = uniqueShape.get();
+							this->addChild(std::move(uniqueShape));
+							return rawPtr;
             }
             static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 						static void mouseBtnCallback(GLFWwindow* window, int btn, int action, int mods);
