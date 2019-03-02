@@ -33,7 +33,7 @@ void shapegame::Game::run() {
     this->_glHandler->run();
 }
 
-shapegame::Window const* shapegame::Game::getWindow() {
+IWindow const* shapegame::Game::getWindow() {
     return this->_window.get();
 }
 

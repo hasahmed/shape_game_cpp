@@ -6,10 +6,6 @@ GLFWwindow* Window::getWindowHandle() const {
 	return this->windowHandle;
 }
 
-WindowInterface* Window::make(int width, int height, std::string title) {
-	return new Window(width, height, title);
-}
-
 shapegame::Window::Window(int width, int height, std::string window_title) {
 
     if (!glfwInit())

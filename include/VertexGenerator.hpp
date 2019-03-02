@@ -1,7 +1,7 @@
 #pragma once
 #include "Shape.hpp"
 #include "Game.hpp"
-#include "Window.hpp"
+#include "IWindow.hpp"
 #include "Point.hpp"
 #include <memory>
 
@@ -11,10 +11,10 @@ namespace shapegame {
         public:
             static VertexGenerator* instance();
             std::vector<float> generate(const Shape &shape);
-            VertexGenerator(Window *window);
+            VertexGenerator(IWindow *window);
         private:
             static VertexGenerator *_instance;
-            Window *_window;
+            IWindow *_window;
             std::vector<float> triangleVerts(const Shape &shape);
             std::vector<float> rectangleVerts(const Shape &shape);
             std::vector<float> circleVerts(const Shape &shape);

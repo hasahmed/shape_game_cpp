@@ -67,7 +67,7 @@ std::vector<float> shapegame::VertexGenerator::rectangleVerts(const Shape &shape
     };
 }
 
-shapegame::VertexGenerator::VertexGenerator(Window *window) : _window(window) {
+shapegame::VertexGenerator::VertexGenerator(IWindow *window) : _window(window) {
     shapegame::VertexGenerator::_instance = this;
 }
 float shapegame::VertexGenerator::horPxStep() {
