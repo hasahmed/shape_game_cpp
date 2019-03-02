@@ -23,7 +23,7 @@ void GLHandlerImpl::setClearColor(Color& color) {
     ));
 }
 
-shapegame::GLHandlerImpl::GLHandlerImpl(Window *window, Scene &scene) :
+shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     _scene(scene),
     _clearColor(Color::BLACK)
 {

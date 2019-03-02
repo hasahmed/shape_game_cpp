@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "shapegl.hpp"
-#include "Window.hpp"
+#include "IWindow.hpp"
 #include "Scene.hpp"
 #include "Color.hpp"
 #include "GLHandler.hpp"
@@ -19,7 +19,7 @@ namespace shapegame {
         public:
 
             GLuint shader_prog;
-            GLHandlerImpl(Window *window, Scene &scene);
+            GLHandlerImpl(IWindow *window, Scene &scene);
             //methods
             void check_shader_err(int shader);
             void setClearColor(Color& color) override;
