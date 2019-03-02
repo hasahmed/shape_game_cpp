@@ -110,9 +110,7 @@ void shapegame::Scene::drawChildren() {
 void Scene::updateChildren() {
 	for (auto &it : this->sceneChildren) {
 		it.second->update();
-		// std::cout << it.first << ",";
-		auto ent = dynamic_cast<Entity*>(it.second.get());
-		if (ent) {
+		if (auto ent = dynamic_cast<Entity*>(it.second.get())) {
 			for (auto &compo : ent->compos) {
 				compo->update(ent);
 			}
@@ -121,8 +119,6 @@ void Scene::updateChildren() {
 			this->killList.push_back(it.first);
 		}
 	}
-	// std::cout << "sceneChildren size: " << this->sceneChildren.size() << std::endl;
-		// std::cout << std::endl << std::endl;
 }
 
 // room for improvement
