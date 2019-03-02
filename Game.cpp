@@ -16,7 +16,7 @@ shapegame::Game::Game(
     this->_window = std::make_unique<Window>(windowWidth, windowHeight, windowTitle);
     this->scene = std::make_unique<Scene>();
     // this->_glHandler = std::make_unique<GLHandlerImpl>(_window.get(), *scene);
-    this->_glHandler = std::make_unique<NullRenderer>();
+    this->_glHandler = std::make_unique<NullRenderer>(*this->scene);
     this->_vertexGenerator = std::make_unique<VertexGenerator>(_window.get());
 
     Game::_inst = this;

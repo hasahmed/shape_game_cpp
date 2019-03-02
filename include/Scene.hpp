@@ -13,12 +13,14 @@
 #include "CollisionList.hpp"
 #include "Color.hpp"
 #include "MultiShape.hpp"
+#include "NullRenderer.hpp"
 
 
 namespace shapegame {
 
     class Scene {
         friend class GLHandlerImpl;
+				friend class NullRenderer;
         private:
             Color _bgColor;
             GLuint _shaderProg;
