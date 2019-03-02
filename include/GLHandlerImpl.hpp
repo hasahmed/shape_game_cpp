@@ -5,6 +5,7 @@
 #include "Scene.hpp"
 #include "Color.hpp"
 #include "GLHandler.hpp"
+#include "RenderPackage.hpp"
 
 namespace shapegame {
     class GLHandlerImpl : public GLHandler {
@@ -22,6 +23,7 @@ namespace shapegame {
             void check_shader_err(int shader);
             void setClearColor(Color& color) override;
             //void cursor_position_callback(GLFWwindow *window, double x, double y);
+						void draw(RenderPackage &rPack) override;
             void run() override;
     };
 }

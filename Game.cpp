@@ -38,3 +38,6 @@ shapegame::Game& shapegame::Game::inst() {
         throw std::runtime_error("Instance of game cannot be returned before one was constructed");
     }
 }
+GLHandler& Game::getRenderer(){
+	return *this->_glHandler;
+}

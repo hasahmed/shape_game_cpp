@@ -98,9 +98,9 @@ Object* shapegame::Scene::addChild(Object *obj) {
 	return this->addChild(std::unique_ptr<Object>(obj));
 }
 
-void shapegame::Scene::drawChildren(GLFWwindow *w) {
+void shapegame::Scene::drawChildren() {
 	for (auto &it : this->drawVect) {
-		it.second->draw(w);
+		it.second->draw();
 	}
 }
 

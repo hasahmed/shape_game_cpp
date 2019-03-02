@@ -22,6 +22,7 @@ namespace shapegame {
 					);
 			Game();
 			static Game& inst();
+			GLHandler& getRenderer();
 			void run();
 			Window const* getWindow();
 	};

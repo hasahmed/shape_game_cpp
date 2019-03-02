@@ -3,6 +3,7 @@
 #include <ctime>
 #include <chrono>
 #include "shapegame"
+#include "GLRenderObject.hpp"
 
 
 using namespace shapegame;
@@ -120,6 +121,37 @@ void shapegame::GLHandlerImpl::check_shader_err(int shader){
     }
 }
 
+void GLHandlerImpl::draw(RenderPackage &rPack) {
+	auto &renderObj = *rPack.glRenderObject;
+	GLint uniloc = glGetUniformLocation(renderObj.shaderProg, "incolor");
+	GLCALL(glUniform4fv(uniloc, 1, rPack.shape.color.getRawColor()));
+	GLCALL(glBindVertexArray(renderObj.vao));
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo));
+
+	if (rPack.updateDirty()){
+		GLCALL(
+			glBufferData(
+				GL_ARRAY_BUFFER,
+				renderObj.verts.size() * sizeof(float),
+				&(renderObj.verts)[0],
+				GL_DYNAMIC_DRAW
+			)
+		);
+	}
+	GLCALL(
+		glVertexAttribPointer(
+			renderObj.vertexAttribIndex,
+			3,
+			GL_FLOAT,
+			GL_FALSE,
+			0,
+			0
+		)
+	);
+	GLCALL(glDrawArrays(GL_TRIANGLES, 0, renderObj.verts.size()));
+	GLCALL(glBindVertexArray(0));
+}
+
 void shapegame::GLHandlerImpl::run() {
     typedef std::chrono::high_resolution_clock Clock;
     auto t1 = Clock::now();
@@ -132,7 +164,7 @@ void shapegame::GLHandlerImpl::run() {
         GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
         _scene.updateChildren();
-        _scene.drawChildren(this->windowHandle);
+        _scene.drawChildren();
 				_scene.killQueued();
 
 				// std::cout << "\r";

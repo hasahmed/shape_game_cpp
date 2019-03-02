@@ -35,7 +35,7 @@ namespace shapegame {
         public:
             std::unique_ptr<CollisionList> collisionList;
             void updateChildren();
-            void drawChildren(GLFWwindow *w);
+            void drawChildren();
             Object* addChild(Object *shape);
 						Object* addChild(std::unique_ptr<Object> obj);
             template <class T>

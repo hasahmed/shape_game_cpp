@@ -24,7 +24,7 @@ RenderPackage::~RenderPackage(){
 	#endif
 }
 
-void RenderPackage::draw(GLFWwindow *w) {
+void RenderPackage::draw() {
 	auto &renderObj = *this->glRenderObject;
 	GLint uniloc = glGetUniformLocation(renderObj.shaderProg, "incolor");
 	GLCALL(glUniform4fv(uniloc, 1, this->shape.color.getRawColor()));
