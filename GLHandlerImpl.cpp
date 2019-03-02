@@ -152,6 +152,36 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
 	GLCALL(glBindVertexArray(0));
 }
 
+void GLHandlerImpl::initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint shaderProg) {
+	rObj.shaderProg = shaderProg;
+	rObj.vertexAttribIndex = 0;
+	rObj.verts = VertexGenerator::instance()->generate(shape);
+
+	GLint uniloc = glGetUniformLocation(rObj.shaderProg, "incolor");
+	GLCALL(glUniform4fv(uniloc, 1, shape.color.getRawColor()));
+
+	GLCALL(glUseProgram(rObj.shaderProg));
+	GLCALL(glGenVertexArrays(1, &(rObj.vao))); //generates vertex attribute array
+	GLCALL(glGenBuffers(1, &(rObj.vbo))); //generates 1 gpu buffer object
+	GLCALL(glBindVertexArray(rObj.vao)); //binds current buffers to current vao
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, rObj.vbo)); //binds vbo to the array buffer portion of gpu memory?
+	GLCALL(
+		glBufferData(
+			GL_ARRAY_BUFFER,
+			rObj.verts.size() * sizeof(float),
+			&(rObj.verts)[0],
+			GL_DYNAMIC_DRAW
+		)
+	); //dynamic because it will be modified often and updated often
+
+	GLCALL(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL));
+
+	GLCALL(glEnableVertexAttribArray(0));
+	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, 0)); //this is actually an unbinding
+	GLCALL(glBindVertexArray(0)); //also an unbinding
+
+}
+
 void shapegame::GLHandlerImpl::run() {
     typedef std::chrono::high_resolution_clock Clock;
     auto t1 = Clock::now();

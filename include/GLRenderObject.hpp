@@ -12,7 +12,7 @@ namespace shapegame {
 						GLuint shaderProg;
             std::vector<float> verts;
             GLRenderObject(Shape &s, GLuint shaderProg);
-            GLRenderObject() = default;
+						GLRenderObject() = default;
     };
 }
 std::ostream& operator<< (std::ostream& stream, const shapegame::GLRenderObject& rObj);

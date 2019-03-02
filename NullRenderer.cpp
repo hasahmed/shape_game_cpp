@@ -12,3 +12,4 @@ using namespace shapegame;
 		}
 	}
 	void NullRenderer::draw(RenderPackage &rPack) {}
+	void NullRenderer::initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint shaderProg) {}

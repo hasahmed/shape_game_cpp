@@ -70,7 +70,9 @@ shapegame::Scene::Scene() :
 }
 
 void Scene::addToDrawVect(Shape &shape) {
-		GLRenderObject renderObj = GLRenderObject(shape, this->_shaderProg);
+		GLRenderObject renderObj;
+		Game::inst().initRenderObj(renderObj, shape, this->_shaderProg);
+		// GLRenderObject renderObj = GLRenderObject(shape, this->_shaderProg);
 		auto rPack = std::make_unique<RenderPackage>(shape, renderObj);
 		this->drawVect.insert({nextInsert, std::move(rPack)});
 }

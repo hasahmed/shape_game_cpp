@@ -12,6 +12,7 @@ namespace shapegame {
 			void setClearColor(Color& color) override;
 			void run() override;
 			void draw(RenderPackage &rPack) override;
+			void initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint shaderProg) override;
 			virtual ~NullRenderer() = default;
 	};
 } // namespace shapegame
