@@ -13,7 +13,8 @@ shapegame::Game::Game(
     if (Game::_inst) {
         throw std::runtime_error("Game can only be constructed once");
     }
-    this->_window = std::make_unique<Window>(windowWidth, windowHeight, windowTitle);
+    // this->_window = std::make_unique<Window>(windowWidth, windowHeight, windowTitle);
+    this->_window = std::make_unique<NullWindow>();
     this->scene = std::make_unique<Scene>();
     // this->_glHandler = std::make_unique<GLHandlerImpl>(_window.get(), *scene);
     this->_glHandler = std::make_unique<NullRenderer>(*this->scene);

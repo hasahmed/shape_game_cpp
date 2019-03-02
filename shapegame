@@ -37,3 +37,4 @@
 #include "GLHandler.hpp"
 #include "NullRenderer.hpp"
 #include "IWindow.hpp"
+#include "NullWindow.hpp"

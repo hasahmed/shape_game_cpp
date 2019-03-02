@@ -52,6 +52,3 @@ int shapegame::Window::getHeight() {
 int shapegame::Window::getWidth() {
     return _width;
 }
-// GLFWwindow* shapegame::Window::getWindowHandle() {
-//     return this->windowHandle;
-// }
