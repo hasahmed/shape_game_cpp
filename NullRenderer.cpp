@@ -1,5 +1,5 @@
 #include "shapegame"
-#define ITERATIONS 100000
+#define ITERATIONS 1000
 
 using namespace shapegame;
 
