@@ -39,23 +39,41 @@ SET(ALL_SRCS
 )
 SET(NO_GLFW_SRCS
 	../Color.cpp
+	../Component.cpp
+	../Debug.cpp
+	../DebugKeyHandler.cpp
+	../Drawable.cpp
+	../Entity.cpp
+	../FileUtil.cpp
+	../GLRenderObject.cpp
+	../Game.cpp
+	../Globals.cpp
+	../Input.cpp
+	../MultiShape.cpp
+	../NullGLHandler.cpp
+	../NullRenderer.cpp
+	../NullWindow.cpp
 	../Object.cpp
 	../Point.cpp
 	../Position.cpp
+	../Quad.cpp
+	../Rectangle.cpp
+	../RenderPackage.cpp
+	../Scene.cpp
+	../ShaderHandler.cpp
 	../Shape.cpp
 	../ShapePair.cpp
 	../SimpleCollision.cpp
 	../Timer.cpp
 	../Triangle.cpp
-	../Entity.cpp
-	../Component.cpp
-	../Rectangle.cpp
-	../MultiShape.cpp
 	../TriangleIsosceles.cpp
+	../VertexGenerator.cpp
+
 )
-add_executable(Object.test Object.test.cpp ${NO_GLFW_SRCS})
+# add_executable(Object.test Object.test.cpp ${NO_GLFW_SRCS})
 # add_executable(Triangle.test Triangle.test.cpp ${NO_GLFW_SRCS})
- add_executable(MultiShape.test MultiShape.test.cpp ${NO_GLFW_SRCS})
+#  add_executable(MultiShape.test MultiShape.test.cpp ${NO_GLFW_SRCS})
+ add_executable(null-main.test null-main.test.cpp ${NO_GLFW_SRCS})
 # add_executable(MultiShape.test.cpp ${ALL_SRCS})
 # add_executable(FileUtil.test FileUtil.test.cpp ../FileUtil.cpp)
 # add_executable(Position.test Position.test.cpp ../Position.cpp)
@@ -67,4 +85,4 @@ add_executable(Object.test Object.test.cpp ${NO_GLFW_SRCS})
 # 							../Shape.cpp
 # 							../Position.cpp
 # 							../Object.cpp
-# 							../Color.cpp)CollisionTree.cpp../CollisionTree.cpp
+# 							../Color.cpp)CollisionTree.cpp../CollisionTree.cppCollisionTree.cpp
