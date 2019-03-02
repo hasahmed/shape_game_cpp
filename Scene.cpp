@@ -100,7 +100,8 @@ Object* shapegame::Scene::addChild(Object *obj) {
 
 void shapegame::Scene::drawChildren() {
 	for (auto &it : this->drawVect) {
-		it.second->draw();
+		Game::inst().draw(*it.second);
+		// it.second->draw();
 	}
 }
 

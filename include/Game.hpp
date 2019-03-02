@@ -4,6 +4,7 @@
 #include "GLHandler.hpp"
 #include "Scene.hpp"
 #include "VertexGenerator.hpp"
+#include "RenderPackage.hpp"
 
 
 namespace shapegame {
@@ -22,7 +23,7 @@ namespace shapegame {
 					);
 			Game();
 			static Game& inst();
-			GLHandler& getRenderer();
+			void draw(RenderPackage &rPack);
 			void run();
 			Window const* getWindow();
 	};

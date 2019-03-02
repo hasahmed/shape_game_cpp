@@ -11,7 +11,7 @@ namespace shapegame {
 			// the type of render object it holds could be arbitrary for other rendering systems
 			~RenderPackage();
 			RenderPackage(Shape &shape, GLRenderObject &glRenderObject);
-			void draw();
+			// void draw();
 			bool updateDirty();
 	};
 }
