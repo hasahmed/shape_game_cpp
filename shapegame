@@ -35,3 +35,4 @@
 #include "Component.hpp"
 #include "NullGLHandler.hpp"
 #include "GLHandler.hpp"
+#include "NullRenderer.hpp"
