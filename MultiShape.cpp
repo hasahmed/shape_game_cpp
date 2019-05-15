@@ -38,6 +38,10 @@ void MultiShape::setPosition(float x, float y) {
 }
 void MultiShape::onKill() {}
 
+std::vector<Object*>& MultiShape::getChildren() {
+	return this->shapes;
+}
+
 MultiShape::~MultiShape() {
 	#if PRINT_DESTRUCTION
 	std::cout << "MultiShape Killed" << std::endl;

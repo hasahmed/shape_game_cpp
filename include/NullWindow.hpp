@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "IWindow.hpp"
 
 namespace shapegame {

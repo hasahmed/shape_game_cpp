@@ -29,15 +29,16 @@ namespace shapegame {
 		std::vector<Object*> shapes;
 		std::vector<std::unique_ptr<Object>> unAddedShapes;
 		public:
-		virtual ~MultiShape();
-		MultiShape(Object* controller, std::vector<Object*>& shapes);
-		MultiShape(Position pos);
-		virtual void addShape(Object* shape);
-		virtual void addShape(std::unique_ptr<Object> shape);
-		virtual void onAdd() override;
-		virtual void onKill() override;
-		virtual void setPosition(float x, float y) override;
-		virtual void setPosition(Point pos) override;
-		virtual void setZOrder(int zOrder) override;
+			virtual ~MultiShape();
+			MultiShape(Object* controller, std::vector<Object*>& shapes);
+			MultiShape(Position pos);
+			virtual void addShape(Object* shape);
+			virtual void addShape(std::unique_ptr<Object> shape);
+			std::vector<Object*>& getChildren();
+			virtual void onAdd() override;
+			virtual void onKill() override;
+			virtual void setPosition(float x, float y) override;
+			virtual void setPosition(Point pos) override;
+			virtual void setZOrder(int zOrder) override;
 	};
 }

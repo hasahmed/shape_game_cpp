@@ -38,3 +38,4 @@
 #include "NullRenderer.hpp"
 #include "IWindow.hpp"
 #include "NullWindow.hpp"
+#include "Tree.hpp"
