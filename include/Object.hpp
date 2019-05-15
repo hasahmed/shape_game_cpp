@@ -9,9 +9,12 @@ namespace shapegame {
     class Object : public Dirtyable {
 			friend class Scene;
 			friend class Position;
+			friend class MultiShape;
 			private:
 				bool canKill = false;
 				bool _dirty = false;
+				Object *_parent = nullptr;
+				void setParent(Object *parent);
 				int zOrder = 0;
 			public:
 				Position pos;
@@ -19,6 +22,7 @@ namespace shapegame {
 				Object(double x, double y);
 				Object(Point pos);
 				void kill();
+				Object* getParent();
 				virtual ~Object();
 				virtual void update();
 				virtual void onAdd();

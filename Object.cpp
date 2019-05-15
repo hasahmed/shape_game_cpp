@@ -44,3 +44,10 @@ void Object::setDirty(bool dirty) {
 bool Object::isDirty() {
 	return this->_dirty;
 }
+
+void Object::setParent(Object *parent) {
+	this->_parent = parent;
+}
+Object* Object::getParent() {
+	return this->_parent;
+}
