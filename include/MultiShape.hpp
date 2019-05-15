@@ -3,31 +3,16 @@
 #include "Position.hpp"
 #include "Entity.hpp"
 
-// class ShapeVector {
-// 	private:
-// 	bool inScene = false;
-// 	std::unique_ptr<std::vector<std::unique_ptr<Object>>> unAddedShapes;
-// 	std::unique_ptr<std::vector<Object*>> addedShapes;
-// 	public:
-// 	void onAdded(){
-// 		this->inScene = true;
-// 	}
-// 	std::vector<Object*>& getShapes() {
-// 		if (this->inScene) {
-// 			return 
-// 		}
-// 	}
-// };
-
-
 namespace shapegame {
 	class Scene;
 	class MultiShape : public Entity {
 		friend class Scene;
 		private:
-		void onMultiAdd();
-		std::vector<Object*> shapes;
-		std::vector<std::unique_ptr<Object>> unAddedShapes;
+			void onMultiAdd();
+			std::vector<Object*> shapes;
+			 /* to protect from memory-leaks in case deleted before being added to the scene */
+			std::vector<std::unique_ptr<Object>> unAddedShapes; 
+			Object* _parent = nullptr;
 		public:
 			virtual ~MultiShape();
 			MultiShape(Object* controller, std::vector<Object*>& shapes);
@@ -35,6 +20,7 @@ namespace shapegame {
 			virtual void addShape(Object* shape);
 			virtual void addShape(std::unique_ptr<Object> shape);
 			std::vector<Object*>& getChildren();
+			Object* getParent();
 			virtual void onAdd() override;
 			virtual void onKill() override;
 			virtual void setPosition(float x, float y) override;
