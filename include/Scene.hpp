@@ -25,9 +25,9 @@ namespace shapegame {
             Color _bgColor;
             GLuint _shaderProg;
             void setShaderProg(GLuint shaderprog);
-						std::vector<unsigned int> killList;
-            std::unordered_multimap<unsigned int, std::unique_ptr<Object>> sceneChildren;
-            std::multimap<unsigned int, std::unique_ptr<RenderPackage>> drawVect;
+						std::map<unsigned int, Object*> killList;
+            std::vector<std::unique_ptr<Object>> sceneChildren;
+            std::unordered_map<Object*, std::unique_ptr<RenderPackage>> drawVect;
             static Scene *_inst;
 						void killQueued();
 						void addMultiShape(std::unique_ptr<MultiShape> multi);
@@ -40,6 +40,7 @@ namespace shapegame {
             void drawChildren();
             Object* addChild(Object *shape);
 						Object* addChild(std::unique_ptr<Object> obj);
+						void addMultiShapeChild(std::unique_ptr<Object> obj);
             template <class T>
             T* addChildAs(T uniqueShape){
 							auto rawPtr = uniqueShape.get();
