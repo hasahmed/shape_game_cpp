@@ -104,11 +104,28 @@ Object* shapegame::Scene::addChild(Object *obj) {
 }
 
 void shapegame::Scene::drawChildren() {
-	for (auto &it : this->drawVect) {
-		Game::inst().draw(*it.second);
-		// it.second->draw();
+	for (auto &child : this->sceneChildren) {
+		drawChild(child.get());
 	}
+	// for (auto &it : this->drawVect) {
+	// 	Game::inst().draw(*it.second);
+	// 	// it.second->draw();
+	// }
 }
+void shapegame::Scene::drawChild(Object *child) {
+	if (auto shape = dynamic_cast<Shape*>(child)) { // if its a shape
+		auto rPack = this->drawVect.find(child);
+		if (rPack == this->drawVect.end())
+			throw std::runtime_error("There has been an error. Every shape should have a RenderPackage");
+		Game::inst().draw(*rPack->second);
+	} else if (auto mShape = dynamic_cast<MultiShape*>(child)) {
+		for (auto mChild : mShape->getShapes()) {
+			this->drawChild(child);
+		}
+	} // otherwise its a regular Object and nothing else needs to happen
+}
+
+
 
 void Scene::updateChildren() {
 	int i = 0;
