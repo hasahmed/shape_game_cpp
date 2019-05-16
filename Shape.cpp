@@ -45,13 +45,13 @@ void Shape::translate(float x, float y) {
 void Shape::translate(Position pos){
     this->translate(pos.getX(), pos.getY());
 }
-std::ostream& operator<< (std::ostream& stream, const Shape& shape) {
-	using namespace std;
-	cout << "Address: " << &shape << endl;
-	cout << "X: " << shape.pos.getX() << endl;
-	cout << "Y: " << shape.pos.getY() << endl;
-	cout << "Type: " << (int)shape.type << endl;
-	cout << "Height: " << shape.getHeight() << endl;
-	cout << "Width: " << shape.getWidth() << endl;
-	return stream;
-}
+// std::ostream& operator<< (std::ostream& stream, const Shape& shape) {
+// 	using namespace std;
+// 	cout << "Address: " << &shape << endl;
+// 	cout << "X: " << shape.pos.getX() << endl;
+// 	cout << "Y: " << shape.pos.getY() << endl;
+// 	cout << "Type: " << (int)shape.type << endl;
+// 	cout << "Height: " << shape.getHeight() << endl;
+// 	cout << "Width: " << shape.getWidth() << endl;
+// 	return stream;
+// }

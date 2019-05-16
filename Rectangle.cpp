@@ -8,21 +8,22 @@ Rectangle::Rectangle(
 	Position pos,
 	Color color
 ) : MultiShape(pos) {
-	Triangle *firstTriangle = new Triangle(
+	auto firstTriangle = std::make_unique<Triangle>(
 		Position(pos.getX(), pos.getY() + height),
 		Point(pos),
 		Point(pos.getX() + width, pos.getY() + height),
 		color
 	);
-	Triangle *secondTriangle = new Triangle(
+	std::unique_ptr<Triangle> secondTriangle = std::make_unique<Triangle>(
 		Position(pos),
 		Point(pos.getX() + width, pos.getY()),
 		Point(pos.getX() + width, pos.getY() + height),
 		color
 	);
-	this->addShape(firstTriangle);
-	this->addShape(secondTriangle);
+	this->addShape(std::move(firstTriangle));
+	this->addShape(std::move(secondTriangle));
 }
+
 Rectangle::~Rectangle() {
 	#if PRINT_DESTRUCTION
 	std::cout << "Rect Killed" << std::endl;

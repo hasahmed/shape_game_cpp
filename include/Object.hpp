@@ -33,7 +33,6 @@ namespace shapegame {
 				virtual void setPosition(float x, float y);
 				virtual void setPosition(Point pos);
 				virtual void translate(float x, float y);
-				virtual void setZOrder(int zOrder);
 				virtual int getZOrder();
 				void setDirty(bool dirty) override;
 				bool isDirty() override;

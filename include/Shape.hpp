@@ -32,4 +32,4 @@ namespace shapegame {
 					virtual void translate(Position pos);
     };
 }
-std::ostream& operator<< (std::ostream& stream, const shapegame::Shape& shape);
+// std::ostream& operator<< (std::ostream& stream, const shapegame::Shape& shape);

@@ -41,7 +41,7 @@ namespace shapegame {
             void drawChildren();
             Object* addChild(Object *shape);
 						Object* addChild(std::unique_ptr<Object> obj);
-						void addMultiShapeChild(std::unique_ptr<Object> obj);
+						void addMultiShapeChild(Object* obj);
             template <class T>
             T* addChildAs(T uniqueShape){
 							auto rawPtr = uniqueShape.get();

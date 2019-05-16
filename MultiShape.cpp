@@ -6,19 +6,12 @@ MultiShape::MultiShape(Position pos): Entity(pos) {}
 void MultiShape::onAdd(){}
 /* BASE IMPL */
 void MultiShape::addShape(std::unique_ptr<Object> shape) {
-	Object *s = shape.get();
-	s->setParent(this);
-	this->shapes.push_back(s);
+	shape->setParent(this);
+	this->shapes.push_back(shape.get());
 	this->shapeStorage.push_back(std::move(shape));
 }
 void MultiShape::addShape(Object* shape) {
 	this->addShape(std::unique_ptr<Object>(shape));
-}
-void MultiShape::setZOrder(int zOrder) {
-	Object::setZOrder(zOrder);
-	for (Object *s : this->shapes) {
-		s->setZOrder(zOrder);
-	}
 }
 void MultiShape::setPosition(Point pos) {
 	this->setPosition(pos.getX(), pos.getY());

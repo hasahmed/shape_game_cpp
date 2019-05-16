@@ -23,6 +23,5 @@ namespace shapegame {
 			virtual void onKill() override;
 			virtual void setPosition(float x, float y) override;
 			virtual void setPosition(Point pos) override;
-			virtual void setZOrder(int zOrder) override;
 	};
 }

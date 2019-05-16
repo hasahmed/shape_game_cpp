@@ -32,9 +32,6 @@ void Object::setPosition(Point pos) {
 void Object::translate(float x, float y) {
 	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
 }
-void Object::setZOrder(int zOrder) {
-	this->zOrder = zOrder;
-}
 int Object::getZOrder() {
 	return this->zOrder;
 }
