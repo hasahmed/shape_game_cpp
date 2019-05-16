@@ -123,7 +123,6 @@ void shapegame::Scene::drawChild(Object *child) {
 void Scene::updateChildren() {
 	int i = 0;
 	for (auto &obj : this->sceneChildren) {
-		i++; // record position in vector for insertion in killList. I know I could just use iterators, but nah
 		obj->update();
 		if (auto ent = dynamic_cast<Entity*>(obj.get())) {
 			for (auto &compo : ent->compos) {
@@ -137,7 +136,10 @@ void Scene::updateChildren() {
 		}
 		if (obj->canKill) {
 			this->killList.insert({i, obj.get()});
+			// std::cout << i << std::endl;
+			// exit(0);
 		}
+		i++; // record position in vector for insertion in killList. I know I could just use iterators, but nah
 	}
 }
 void Scene::updateMultiChild(Object *child, int childIdx) {
