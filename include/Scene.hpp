@@ -26,6 +26,7 @@ namespace shapegame {
             GLuint _shaderProg;
             void setShaderProg(GLuint shaderprog);
 						std::map<unsigned int, Object*> killList;
+						std::vector<Object*> subKillList;
             std::vector<std::unique_ptr<Object>> sceneChildren;
             std::unordered_map<Object*, std::unique_ptr<RenderPackage>> drawVect;
             static Scene *_inst;
@@ -35,7 +36,7 @@ namespace shapegame {
 						void addToDrawVect(Shape &shape);
 						void addShape(Shape &shape);
             void drawChild(Object *child);
-						void updateMultiChild(Object *child, int childIdx);
+						void updateMultiChild(Object *child);
         public:
             std::unique_ptr<CollisionList> collisionList;
             void updateChildren();

@@ -66,10 +66,11 @@ void Scene::setBackgroundColor(Color& color) {
 
 shapegame::Scene::Scene() :
     _bgColor(Color::BLUE),
+		subKillList(),
     sceneChildren(),
     drawVect(),
-    collisionList(new SimpleCollision()
-		){
+    collisionList(new SimpleCollision())
+		{
         Scene::_inst = this;
 }
 
@@ -131,7 +132,7 @@ void Scene::updateChildren() {
 		}
 		if (auto mShape = dynamic_cast<MultiShape*>(obj.get())) {
 			for (auto child : mShape->getShapes()) {
-				this->updateMultiChild(child, 0); // first child index is 0
+				this->updateMultiChild(child); // first child index is 0
 			}
 		}
 		if (obj->canKill) {
@@ -142,7 +143,7 @@ void Scene::updateChildren() {
 		i++; // record position in vector for insertion in killList. I know I could just use iterators, but nah
 	}
 }
-void Scene::updateMultiChild(Object *child, int childIdx) {
+void Scene::updateMultiChild(Object *child) {
 		child->update();
 		if (auto ent = dynamic_cast<Entity*>(child)) {
 			for (auto &compo : ent->compos) {
@@ -151,22 +152,34 @@ void Scene::updateMultiChild(Object *child, int childIdx) {
 		}
 		if (auto mShape = dynamic_cast<MultiShape*>(child)) {
 			for (auto mChild : mShape->getShapes()) {
-				this->updateMultiChild(mChild, childIdx + 1);
+				this->updateMultiChild(mChild);
 			}
 		}
-		// if (child->canKill) {
-		// 	this->killList.insert({i, obj.get()});
-		// }
-	// }
+		if (child->canKill) {
+			this->subKillList.push_back(child);
+		}
 }
 
 
 void Scene::killQueued(){
+	for (auto subChild : this->subKillList) {
+		if (dynamic_cast<Shape*>(subChild)){
+			this->drawVect.erase(subChild);
+		}
+		if (auto parent = dynamic_cast<MultiShape*>(subChild->getParent())){
+			parent->removeShape(subChild);
+		} else {
+			throw std::runtime_error("Error: No object should have a parent that is not a multishape");
+		}
+	}
 	for (auto it: this->killList) {
-		this->drawVect.erase(it.second);
+		if (dynamic_cast<Shape*>(it.second)){
+			this->drawVect.erase(it.second);
+		}
 		this->sceneChildren.erase(this->sceneChildren.begin() + it.first);
 	}
 	this->killList.clear();
+	this->subKillList.clear();
 }
 
 void shapegame::Scene::setShaderProg(GLuint shaderProg) {

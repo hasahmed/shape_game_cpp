@@ -10,7 +10,9 @@ int main() {
 	g.scene->addChild(std::make_unique<DebugKeyHandler>());
 	// g.scene->addChild(std::make_unique<Triangle>(Position(100, 100), Point(500, 300), Point(50, 300)));
 	auto x = g.scene->addChild(std::make_unique<Rectangle>(100, 100, Position(100, 500), Color::BLUE));
-	x->kill();
+	auto children = ((MultiShape*)x)->getShapes();
+	children.at(0)->kill();
+	// x->kill();
 	// auto rect = std::make_unique<Rectangle>(100, 100, Position(100, 500), Color::BLUE);
 	g.run();
 }

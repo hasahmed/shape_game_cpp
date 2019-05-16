@@ -16,6 +16,7 @@ namespace shapegame {
 			virtual ~MultiShape();
 			MultiShape(Object* controller, std::vector<Object*>& shapes);
 			MultiShape(Position pos);
+			bool removeShape(Object* obj);
 			virtual void addShape(Object* shape);
 			virtual void addShape(std::unique_ptr<Object> shape);
 			std::vector<Object*>& getShapes();

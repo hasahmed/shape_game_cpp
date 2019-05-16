@@ -7,7 +7,6 @@ void MultiShape::onAdd(){}
 /* BASE IMPL */
 void MultiShape::addShape(std::unique_ptr<Object> shape) {
 	shape->setParent(this);
-	this->shapes.push_back(shape.get());
 	this->shapeStorage.push_back(std::move(shape));
 }
 void MultiShape::addShape(Object* shape) {
@@ -31,7 +30,21 @@ void MultiShape::setPosition(float x, float y) {
 void MultiShape::onKill() {}
 
 std::vector<Object*>& MultiShape::getShapes() {
+	this->shapes.clear();
+	for (auto &shape : this->shapeStorage) {
+		this->shapes.push_back(shape.get());
+	}
 	return this->shapes;
+}
+bool MultiShape::removeShape(Object *obj) {
+	auto *children = &this->shapeStorage;
+	for (auto it = children->begin(); it != children->end(); ++it) {
+		if (it->get() == obj) {
+			this->shapeStorage.erase(it);
+			return true;
+		}
+	}
+	return false;
 }
 
 MultiShape::~MultiShape() {
