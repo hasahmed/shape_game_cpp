@@ -35,6 +35,7 @@ namespace shapegame {
 						void addToDrawVect(Shape &shape);
 						void addShape(Shape &shape);
             void drawChild(Object *child);
+						void updateMultiChild(Object *child, int childIdx);
         public:
             std::unique_ptr<CollisionList> collisionList;
             void updateChildren();

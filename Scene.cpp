@@ -87,11 +87,7 @@ void Scene::addShape(Shape &shape) {
 Object* Scene::addChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
 	auto rawObj = obj.get();
 	if (dynamic_cast<MultiShape*>(rawObj)) {
-		// auto rawM = dynamic_cast<MultiShape*>(obj.release());
-		// if (!rawM) throw std::runtime_error("Invariant Violation. Should never be null");
-		// auto uniM = std::unique_ptr<MultiShape>(rawM);
 		this->addMultiShape(std::unique_ptr<MultiShape>((MultiShape*)obj.release()));
-		// this->addMultiShape(std::unique_ptr<MultiShape>(rawM));
 	} else {
 		this->addToSceneChildren(std::move(obj));
     if (Shape *s = dynamic_cast<Shape*>(rawObj)) {
@@ -109,18 +105,7 @@ void shapegame::Scene::drawChildren() {
 		drawChild(child.get());
 	}
 }
-int i = 0;
 void shapegame::Scene::drawChild(Object *child) {
-	i++;
-		// if (i > 2) { 
-		// 	Shape *shape = dynamic_cast<Shape*>(child);
-		// 	// if (!shape) {
-		// 	// 	puts("Good");
-		// 	// }
-		// 	std::cout << shape << std::endl;
-		// 	// std::cout << !!shape << std::endl;
-		// 	exit(0);
-		// }
 	if (auto shape = dynamic_cast<Shape*>(child)) { // if its a shape
 		auto rPack = this->drawVect.find(child);
 		if (rPack == this->drawVect.end())
@@ -138,11 +123,16 @@ void shapegame::Scene::drawChild(Object *child) {
 void Scene::updateChildren() {
 	int i = 0;
 	for (auto &obj : this->sceneChildren) {
-		i++; // record position in vector. I know I could just use iterators but nah
+		i++; // record position in vector for insertion in killList. I know I could just use iterators, but nah
 		obj->update();
 		if (auto ent = dynamic_cast<Entity*>(obj.get())) {
 			for (auto &compo : ent->compos) {
 				compo->update(ent);
+			}
+		}
+		if (auto mShape = dynamic_cast<MultiShape*>(obj.get())) {
+			for (auto child : mShape->getShapes()) {
+				this->updateMultiChild(child, 0); // first child index is 0
 			}
 		}
 		if (obj->canKill) {
@@ -150,8 +140,25 @@ void Scene::updateChildren() {
 		}
 	}
 }
+void Scene::updateMultiChild(Object *child, int childIdx) {
+		child->update();
+		if (auto ent = dynamic_cast<Entity*>(child)) {
+			for (auto &compo : ent->compos) {
+				compo->update(ent);
+			}
+		}
+		if (auto mShape = dynamic_cast<MultiShape*>(child)) {
+			for (auto mChild : mShape->getShapes()) {
+				this->updateMultiChild(mChild, childIdx + 1);
+			}
+		}
+		// if (child->canKill) {
+		// 	this->killList.insert({i, obj.get()});
+		// }
+	// }
+}
 
-// room for improvement
+
 void Scene::killQueued(){
 	for (auto it: this->killList) {
 		this->drawVect.erase(it.second);
