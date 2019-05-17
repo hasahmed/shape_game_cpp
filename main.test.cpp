@@ -213,7 +213,8 @@ class Spawner: public Object {
 		this->t = (Timer*) Game::inst().scene->addChild(std::make_unique<Timer>(intervalMs, true, true, [=]() mutable {
 			i++;
 			// std::cout << "Car spawned: " << i << std::endl;
-			Game::inst().scene->addChild(std::move(std::make_unique<T>(pos)));
+			auto x = std::make_unique<T>(pos);
+			Game::inst().scene->addChild(std::move(x));
 		}));
 	}
 	void onMouseClick(Mouse::Btn btn, Input::Action action) override {

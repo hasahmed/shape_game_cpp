@@ -137,8 +137,6 @@ void Scene::updateChildren() {
 		}
 		if (obj->canKill) {
 			this->killList.insert({i, obj.get()});
-			// std::cout << i << std::endl;
-			// exit(0);
 		}
 		i++; // record position in vector for insertion in killList. I know I could just use iterators, but nah
 	}
