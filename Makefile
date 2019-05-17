@@ -39,14 +39,17 @@ run: all
 main.test: $(OBJS) main.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
-sani: CXXFLAGS += -fsanitize=address -fno-omit-frame-pointer
-sani: LDFLAGS += -L/usr/local/opt/llvm/lib -fsanitize=address -fno-omit-frame-pointer
+sani: CXXFLAGS += -fsanitize=address -fno-omit-frame-pointer -glldb -g -O0 -gfull -g3 -gcolumn-info
+sani: LDFLAGS += -L/usr/local/opt/llvm/lib -fsanitize=address -fno-omit-frame-pointer -g
 sani: main.test
 
 
 dbg: CXXFLAGS += -glldb -g -O0 -gfull -g3 -gcolumn-info
 dbg: LDFLAGS += -g
 dbg: main.test
+
+dbg-run: dbg
+	PATH=/usr/bin /usr/bin/lldb ./main.test
 
 deletion.test: $(OBJS) deletion.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)

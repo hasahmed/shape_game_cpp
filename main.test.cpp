@@ -215,8 +215,16 @@ class Spawner: public Object {
 			// std::cout << "Car spawned: " << i << std::endl;
 			// auto x = std::make_unique<T>(pos);
 			// Game::inst().scene->addChild(std::move(x));
-			Game::inst().scene->shouldCheck = true;
-			Game::inst().scene->queueAddChild(std::make_unique<DebugKeyHandler>());
+
+			if (!Game::inst().scene->shouldCheck) {
+				puts("print once");
+				Game::inst().scene->shouldCheck = true;
+				auto x = std::make_unique<DebugKeyHandler>();
+
+				std::cout << x.get() << std::endl;
+				Game::inst().scene->queueAddChild(std::move(x));
+			}
+
 		}, false));
 	}
 	void onMouseClick(Mouse::Btn btn, Input::Action action) override {

@@ -15,6 +15,10 @@ int Scene::numChildren() {
 	return this->sceneChildren.size();
 }
 void Scene::addToSceneChildren(std::unique_ptr<Object> obj) {
+	std::cout << obj.get() << std::endl;
+	if (Game::inst().scene->shouldCheck) {
+		puts("Here");
+	}
 	obj->onAdd();
 	this->sceneChildren.push_back(std::move(obj));
 }
@@ -87,11 +91,13 @@ void Scene::addShape(Shape &shape) {
 }
 
 void Scene::queueAddChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
+	std::cout << obj.get() << std::endl;
 	this->queuedChildren.push_back(std::move(obj));
 }
 
 Object* Scene::addChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
 	auto rawObj = obj.get();
+	std::cout << rawObj << std::endl;
 	if (dynamic_cast<MultiShape*>(rawObj)) {
 		this->addMultiShape(std::unique_ptr<MultiShape>((MultiShape*)obj.release()));
 	} else {
@@ -147,11 +153,8 @@ void Scene::updateChildren() {
 	}
 	for (auto &obj : this->queuedChildren) {
 		this->addChild(std::move(obj));
-		// if (this->shouldCheck) {
-		// 	puts("Here");
-		// 	exit(0);
-		// }
 	}
+	this->queuedChildren.clear();
 }
 void Scene::updateMultiChild(Object *child) {
 		child->update();
