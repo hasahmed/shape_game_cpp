@@ -216,8 +216,8 @@ class Spawner: public Object {
 			// auto x = std::make_unique<T>(pos);
 			// Game::inst().scene->addChild(std::move(x));
 			Game::inst().scene->shouldCheck = true;
-			Game::inst().scene->addChild(std::make_unique<DebugKeyHandler>());
-		}));
+			Game::inst().scene->queueAddChild(std::make_unique<DebugKeyHandler>());
+		}, false));
 	}
 	void onMouseClick(Mouse::Btn btn, Input::Action action) override {
 		this->t->stop();

@@ -1,21 +1,26 @@
 UNAME := $(shell uname -s)
-CXXFLAGS = -std=c++17 -g -Og -Wall -Wno-unused-variable -Wno-unused-private-field
+# CXXFLAGS = -std=c++17 -glldb -g -O0 -gfull -g3 -gcolumn-info -Wall -Wno-unused-variable -Wno-unused-private-field -fsanitize=address -fno-omit-frame-pointer
+CXXFLAGS = -std=c++17 -Wall -Wno-unused-variable -Wno-unused-private-field
+# CXXFLAGS = -std=c++17 -fsanitize=address -fno-omit-frame-pointer
 SRC = $(wildcard *.cpp)
 SRC := $(filter-out %.test.cpp, $(SRC))
 TESTS = $(wildcard *.test.cpp)
 OBJS = $(SRC:.cpp=.o)
+# LDFLAGS = -L/usr/local/opt/llvm/lib -fsanitize=address -fno-omit-frame-pointer
+LDFLAGS = ""
+LD=clang++
 
 ifeq ($(UNAME),Linux)
 	CXX := c++
-	LDFLAGS := `pkg-config --libs glfw3` -ldl
+	LDFLAGS += `pkg-config --libs glfw3` -ldl
 	INC_DIR := -Ideps -Iinclude
 	CXXFLAGS += $(INC_DIR)
 	OBJS += glad.o
 endif
 
 ifeq ($(UNAME),Darwin)
-	CXX := c++
-	LDFLAGS=-lglfw -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo -g -v
+	CXX := clang++
+	LDFLAGS += -lglfw -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo -g -v
 	INC_DIR := -Iinclude
 	CXXFLAGS += $(INC_DIR)
 endif
@@ -33,6 +38,15 @@ run: all
 
 main.test: $(OBJS) main.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
+
+sani: CXXFLAGS += -fsanitize=address -fno-omit-frame-pointer
+sani: LDFLAGS += -L/usr/local/opt/llvm/lib -fsanitize=address -fno-omit-frame-pointer
+sani: main.test
+
+
+dbg: CXXFLAGS += -glldb -g -O0 -gfull -g3 -gcolumn-info
+dbg: LDFLAGS += -g
+dbg: main.test
 
 deletion.test: $(OBJS) deletion.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
