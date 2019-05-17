@@ -28,6 +28,7 @@ namespace shapegame {
 						std::map<unsigned int, Object*> killList;
 						std::vector<Object*> subKillList;
             std::vector<std::unique_ptr<Object>> sceneChildren;
+            // std::vector<std::unique_ptr<Object>> queuedChildren;
             std::unordered_map<Object*, std::unique_ptr<RenderPackage>> drawVect;
             static Scene *_inst;
 						void killQueued();
@@ -38,11 +39,13 @@ namespace shapegame {
             void drawChild(Object *child);
 						void updateMultiChild(Object *child);
         public:
+						bool shouldCheck = false;
             std::unique_ptr<CollisionList> collisionList;
             void updateChildren();
             void drawChildren();
             Object* addChild(Object *shape);
 						Object* addChild(std::unique_ptr<Object> obj);
+						// void queueAddChild(std::unique_ptr<Object> obj);
 						void addMultiShapeChild(Object* obj);
             template <class T>
             T* addChildAs(T uniqueShape){

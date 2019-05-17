@@ -85,6 +85,11 @@ void Scene::addToDrawVect(Shape &shape) {
 void Scene::addShape(Shape &shape) {
 	this->addToDrawVect(shape);
 }
+
+// void Scene::queueAddChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
+// 	this->queuedChildren.push_back(std::move(obj));
+// }
+
 Object* Scene::addChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
 	auto rawObj = obj.get();
 	if (dynamic_cast<MultiShape*>(rawObj)) {
@@ -140,6 +145,13 @@ void Scene::updateChildren() {
 		}
 		i++; // record position in vector for insertion in killList. I know I could just use iterators, but nah
 	}
+	// for (auto &obj : this->queuedChildren) {
+	// 	this->addChild(std::move(obj));
+	// 	if (this->shouldCheck) {
+	// 		puts("Here");
+	// 		exit(0);
+	// 	}
+	// }
 }
 void Scene::updateMultiChild(Object *child) {
 		child->update();
