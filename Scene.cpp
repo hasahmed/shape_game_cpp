@@ -15,10 +15,9 @@ int Scene::numChildren() {
 	return this->sceneChildren.size();
 }
 void Scene::addToSceneChildren(std::unique_ptr<Object> obj) {
-	std::cout << obj.get() << std::endl;
-	if (Game::inst().scene->shouldCheck) {
-		puts("Here");
-	}
+	// if (Game::inst().scene->shouldCheck) {
+	// 	puts("Here");
+	// }
 	obj->onAdd();
 	this->sceneChildren.push_back(std::move(obj));
 }
@@ -91,13 +90,11 @@ void Scene::addShape(Shape &shape) {
 }
 
 void Scene::queueAddChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
-	std::cout << obj.get() << std::endl;
 	this->queuedChildren.push_back(std::move(obj));
 }
 
 Object* Scene::addChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
 	auto rawObj = obj.get();
-	std::cout << rawObj << std::endl;
 	if (dynamic_cast<MultiShape*>(rawObj)) {
 		this->addMultiShape(std::unique_ptr<MultiShape>((MultiShape*)obj.release()));
 	} else {
@@ -130,18 +127,29 @@ void shapegame::Scene::drawChild(Object *child) {
 	} // otherwise its a regular Object and nothing else needs to happen
 }
 
-
+int j = 0;
 
 void Scene::updateChildren() {
 	int i = 0;
+	if (i == 4 && j == 260) {
+		puts("Here");
+	}
 	for (auto &obj : this->sceneChildren) {
+		std::cout << "canKill: " << obj->canKill << std::endl;
+		std::cout << "addr:" << obj.get() << std::endl;
+		std::cout << "i   :" << i << std::endl;
+		std::cout << "j   :" << j << std::endl;
+		puts("start");
 		obj->update();
+		std::cout << "canKill: " << obj->canKill << std::endl;
 		if (auto ent = dynamic_cast<Entity*>(obj.get())) {
+			puts("Entity");
 			for (auto &compo : ent->compos) {
 				compo->update(ent);
 			}
 		}
 		if (auto mShape = dynamic_cast<MultiShape*>(obj.get())) {
+			puts("Multi");
 			for (auto child : mShape->getShapes()) {
 				this->updateMultiChild(child); // first child index is 0
 			}
@@ -150,6 +158,8 @@ void Scene::updateChildren() {
 			this->killList.insert({i, obj.get()});
 		}
 		i++; // record position in vector for insertion in killList. I know I could just use iterators, but nah
+		j++;
+		puts("end");
 	}
 	for (auto &obj : this->queuedChildren) {
 		this->addChild(std::move(obj));

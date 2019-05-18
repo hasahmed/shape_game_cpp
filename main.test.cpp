@@ -213,17 +213,17 @@ class Spawner: public Object {
 		this->t = (Timer*) Game::inst().scene->addChild(std::make_unique<Timer>(intervalMs, true, true, [=]() mutable {
 			i++;
 			// std::cout << "Car spawned: " << i << std::endl;
-			// auto x = std::make_unique<T>(pos);
-			// Game::inst().scene->addChild(std::move(x));
+			auto x = std::make_unique<T>(pos);
+			Game::inst().scene->addChild(std::move(x));
 
-			if (!Game::inst().scene->shouldCheck) {
-				puts("print once");
-				Game::inst().scene->shouldCheck = true;
-				auto x = std::make_unique<DebugKeyHandler>();
+			// if (!Game::inst().scene->shouldCheck) {
+			// 	puts("print once");
+			// 	Game::inst().scene->shouldCheck = true;
+			// 	auto x = std::make_unique<DebugKeyHandler>();
 
-				std::cout << x.get() << std::endl;
-				Game::inst().scene->queueAddChild(std::move(x));
-			}
+			// 	std::cout << x.get() << std::endl;
+			// 	Game::inst().scene->queueAddChild(std::move(x));
+			// }
 
 		}, false));
 	}
