@@ -11,7 +11,8 @@ RenderPackage::RenderPackage(Shape &shape,
 bool RenderPackage::updateDirty() {
     if (this->shape.isDirty()){
         // super waste. Don't throw away verticies, move them instead.
-        this->glRenderObject->verts = VertexGenerator::instance()->generate(this->shape);
+        // this->glRenderObject->verts = VertexGenerator::instance()->generate(this->shape);
+        VertexGenerator::instance()->generate(this->shape, this->glRenderObject->verts);
 				this->shape.setDirty(false);
         return true;
     }

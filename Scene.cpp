@@ -75,6 +75,7 @@ shapegame::Scene::Scene() :
     collisionList(new SimpleCollision())
 		{
         Scene::_inst = this;
+				sceneChildren.reserve(1000);
 }
 
 void Scene::addToDrawVect(Shape &shape) {

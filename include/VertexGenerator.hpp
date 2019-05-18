@@ -10,14 +10,14 @@ namespace shapegame {
         friend class Game;
         public:
             static VertexGenerator* instance();
-            std::vector<float> generate(const Shape &shape);
+            void generate(const Shape &shape, std::vector<float>& verts);
             VertexGenerator(IWindow *window);
         private:
             static VertexGenerator *_instance;
             IWindow *_window;
-            std::vector<float> triangleVerts(const Shape &shape);
-            std::vector<float> rectangleVerts(const Shape &shape);
-            std::vector<float> circleVerts(const Shape &shape);
+            void triangleVerts(const Shape &shape, std::vector<float> &verts);
+            void rectangleVerts(const Shape &shape, std::vector<float> &verts);
+            void circleVerts(const Shape &shape, std::vector<float> &verts);
             float horPxStep();
             float vertPxStep();
             float yPxToGl(float coord);

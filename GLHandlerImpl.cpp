@@ -155,7 +155,7 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
 void GLHandlerImpl::initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint shaderProg) {
 	rObj.shaderProg = shaderProg;
 	rObj.vertexAttribIndex = 0;
-	rObj.verts = VertexGenerator::instance()->generate(shape);
+	VertexGenerator::instance()->generate(shape, rObj.verts);
 
 	GLint uniloc = glGetUniformLocation(rObj.shaderProg, "incolor");
 	GLCALL(glUniform4fv(uniloc, 1, shape.color.getRawColor()));
