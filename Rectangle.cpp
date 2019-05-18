@@ -8,6 +8,7 @@ Rectangle::Rectangle(
 	Position pos,
 	Color color
 ) : MultiShape(pos) {
+	this->name = "Rectangle";
 	auto firstTriangle = std::make_unique<Triangle>(
 		Position(pos.getX(), pos.getY() + height),
 		Point(pos),

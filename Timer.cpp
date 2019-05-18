@@ -14,6 +14,7 @@ Timer::Timer(
 		autoStart(autoStart),
 		callBack(callBack),
 		killOnComplete(killOnComplete) {
+			this->name = "Timer";
 }
 void Timer::onAdd() {
 	if (this->autoStart) {

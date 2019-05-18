@@ -16,7 +16,9 @@ Shape::Shape(
             _height(height),
             _width(width),
             color(color),
-            type(type) {}
+            type(type) {
+							this->name = "Shape";
+						}
 
 Shape::Shape(float height, float width, ShapeType type, Color color) :
     Shape(height, width, type, Position(0.0, 0.0), color) {}

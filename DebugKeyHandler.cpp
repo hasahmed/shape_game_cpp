@@ -3,6 +3,10 @@
 using namespace shapegame;
 using namespace shapegame::Input;
 
+DebugKeyHandler::DebugKeyHandler() {
+	this->name = "DebugKeyHandler";
+}
+
 void DebugKeyHandler::onKeyPress(Kb::Key key, Input::Action action) {
 	if (action != Action::DOWN) return; // skip up actions
 	if (key == Kb::Key::ESCAPE)

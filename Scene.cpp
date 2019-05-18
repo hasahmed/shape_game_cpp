@@ -135,10 +135,10 @@ void Scene::updateChildren() {
 		puts("Here");
 	}
 	for (auto &obj : this->sceneChildren) {
-		std::cout << "canKill: " << obj->canKill << std::endl;
-		std::cout << "addr:" << obj.get() << std::endl;
-		std::cout << "i   :" << i << std::endl;
-		std::cout << "j   :" << j << std::endl;
+		std::cout << "name: " << obj->name << std::endl;
+		// std::cout << "addr:" << obj.get() << std::endl;
+		// std::cout << "i   :" << i << std::endl;
+		// std::cout << "j   :" << j << std::endl;
 		puts("start");
 		obj->update();
 		std::cout << "canKill: " << obj->canKill << std::endl;

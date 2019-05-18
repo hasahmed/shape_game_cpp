@@ -17,6 +17,7 @@ namespace shapegame {
 				void setParent(Object *parent);
 				int zOrder = 0;
 			public:
+				std::string name = "Object";
 				Position pos;
 				Object();
 				Object(double x, double y);

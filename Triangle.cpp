@@ -13,7 +13,7 @@ Triangle::~Triangle(){
 
 Triangle::Triangle(Position first, Point second, Point third, Color color):
 	Shape(0, 0, ShapeType::Triangle, first, color), second(second), third(third) {
-
+		this->name = "Triangle";
 		std::vector<Point*> verts {
 			&this->pos,
 			&this->second,

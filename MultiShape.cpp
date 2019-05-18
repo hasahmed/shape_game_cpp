@@ -2,7 +2,9 @@
 using namespace shapegame;
 
 
-MultiShape::MultiShape(Position pos): Entity(pos) {}
+MultiShape::MultiShape(Position pos): Entity(pos) {
+	this->name = "MultiShape";
+}
 void MultiShape::onAdd(){}
 /* BASE IMPL */
 void MultiShape::addShape(std::unique_ptr<Object> shape) {
