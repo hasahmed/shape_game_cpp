@@ -1,12 +1,10 @@
 UNAME := $(shell uname -s)
-# CXXFLAGS = -std=c++17 -glldb -g -O0 -gfull -g3 -gcolumn-info -Wall -Wno-unused-variable -Wno-unused-private-field -fsanitize=address -fno-omit-frame-pointer
 CXXFLAGS = -std=c++17 -Wall -Wno-unused-variable -Wno-unused-private-field
-# CXXFLAGS = -std=c++17 -fsanitize=address -fno-omit-frame-pointer
 SRC = $(wildcard *.cpp)
 SRC := $(filter-out %.test.cpp, $(SRC))
 TESTS = $(wildcard *.test.cpp)
 OBJS = $(SRC:.cpp=.o)
-# LDFLAGS = -L/usr/local/opt/llvm/lib -fsanitize=address -fno-omit-frame-pointer
+LDFLAGS = -L/usr/local/opt/llvm/lib # -fsanitize=address -fno-omit-frame-pointer
 LDFLAGS = ""
 LD=clang++
 
@@ -38,6 +36,10 @@ run: all
 
 main.test: $(OBJS) main.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
+
+
+prod: CXXFLAGS += -Ofast
+prod: main.test
 
 sani: CXXFLAGS += -fsanitize=address -fno-omit-frame-pointer -glldb -g -O0 -gfull -g3 -gcolumn-info
 sani: LDFLAGS += -L/usr/local/opt/llvm/lib -fsanitize=address -fno-omit-frame-pointer -g
