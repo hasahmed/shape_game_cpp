@@ -80,10 +80,9 @@ shapegame::Scene::Scene() :
 
 void Scene::addToDrawVect(Shape &shape) {
 		GLRenderObject renderObj;
-		Game::inst().initRenderObj(renderObj, shape, this->_shaderProg);
-		// GLRenderObject renderObj = GLRenderObject(shape, this->_shaderProg);
-		auto rPack = std::make_unique<RenderPackage>(shape, renderObj);
-		this->drawVect.insert({&shape, std::move(rPack)});
+		// Game::inst().initRenderObj(renderObj, shape, this->_shaderProg);
+		// auto rPack = std::make_unique<RenderPackage>(shape, renderObj);
+		// this->drawVect.insert({&shape, std::move(rPack)});
 }
 
 void Scene::addShape(Shape &shape) {
@@ -112,7 +111,7 @@ Object* shapegame::Scene::addChild(Object *obj) {
 
 void shapegame::Scene::drawChildren() {
 	for (auto &child : this->sceneChildren) {
-		drawChild(child.get());
+		// drawChild(child.get());
 	}
 }
 void shapegame::Scene::drawChild(Object *child) {
