@@ -39,6 +39,7 @@ namespace shapegame {
             void drawChild(Object *child);
 						void drawVectDelete(Object *shape);
 						void updateMultiChild(Object *child);
+						void killMulti(Object *obj);
         public:
 						bool shouldCheck = false;
             std::unique_ptr<CollisionList> collisionList;

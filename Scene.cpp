@@ -127,29 +127,16 @@ void shapegame::Scene::drawChild(Object *child) {
 	} // otherwise its a regular Object and nothing else needs to happen
 }
 
-int j = 0;
-
 void Scene::updateChildren() {
 	int i = 0;
-	if (i == 4 && j == 260) {
-		puts("Here");
-	}
 	for (auto &obj : this->sceneChildren) {
-		std::cout << "name: " << obj->name << std::endl;
-		// std::cout << "addr:" << obj.get() << std::endl;
-		// std::cout << "i   :" << i << std::endl;
-		// std::cout << "j   :" << j << std::endl;
-		puts("start");
 		obj->update();
-		std::cout << "canKill: " << obj->canKill << std::endl;
 		if (auto ent = dynamic_cast<Entity*>(obj.get())) {
-			puts("Entity");
 			for (auto &compo : ent->compos) {
 				compo->update(ent);
 			}
 		}
 		if (auto mShape = dynamic_cast<MultiShape*>(obj.get())) {
-			puts("Multi");
 			for (auto child : mShape->getShapes()) {
 				this->updateMultiChild(child); // first child index is 0
 			}
@@ -158,8 +145,6 @@ void Scene::updateChildren() {
 			this->killList.insert({i, obj.get()});
 		}
 		i++; // record position in vector for insertion in killList. I know I could just use iterators, but nah
-		j++;
-		puts("end");
 	}
 	for (auto &obj : this->queuedChildren) {
 		this->addChild(std::move(obj));
@@ -191,7 +176,7 @@ void Scene::drawVectDelete(Object *shape) {
 void Scene::killQueued(){
 	for (auto subChild : this->subKillList) { //loop through all things to be killed that are children of a multishape
 		if (dynamic_cast<Shape*>(subChild)){ // if it is a shape
-			this->drawVect.erase(subChild); //remove it from the drawVect
+			this->drawVectDelete(subChild); //remove it from the drawVect
 		}
 		if (auto parent = dynamic_cast<MultiShape*>(subChild->getParent())){ //if its parent is a multishape (should never not be)
 			parent->removeShape(subChild); //then remove the shape from the parent
@@ -200,13 +185,30 @@ void Scene::killQueued(){
 		}
 	}
 	for (auto it: this->killList) {
+		if (auto multi = dynamic_cast<MultiShape*>(it.second)){
+			killMulti(multi);
+		}
 		if (dynamic_cast<Shape*>(it.second)){
-			this->drawVect.erase(it.second);
+			this->drawVectDelete(it.second);
 		}
 		this->sceneChildren.erase(this->sceneChildren.begin() + it.first);
 	}
 	this->killList.clear();
 	this->subKillList.clear();
+}
+
+void Scene::killMulti(Object *obj) {
+	if (auto multi = dynamic_cast<MultiShape*>(obj)){
+		for (auto &subShape : multi->getShapes()) {
+			if (auto subMulti = dynamic_cast<MultiShape*>(subShape)){
+				killMulti(subMulti);
+			}
+		}
+	} else {
+		if (auto shape = dynamic_cast<Shape*>(obj)) {
+			this->drawVectDelete(shape);
+		}
+	}
 }
 
 void shapegame::Scene::setShaderProg(GLuint shaderProg) {
