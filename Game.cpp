@@ -48,3 +48,6 @@ shapegame::Game& shapegame::Game::inst() {
 void Game::draw(RenderPackage &rPack){
 	this->_glHandler->draw(rPack);
 }
+void Game::terminateRenderObj(RenderPackage &rPack) {
+	this->_glHandler->terminateRenderObj(rPack);
+}

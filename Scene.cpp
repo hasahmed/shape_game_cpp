@@ -80,9 +80,9 @@ shapegame::Scene::Scene() :
 
 void Scene::addToDrawVect(Shape &shape) {
 		GLRenderObject renderObj;
-		// Game::inst().initRenderObj(renderObj, shape, this->_shaderProg);
-		// auto rPack = std::make_unique<RenderPackage>(shape, renderObj);
-		// this->drawVect.insert({&shape, std::move(rPack)});
+		Game::inst().initRenderObj(renderObj, shape, this->_shaderProg);
+		auto rPack = std::make_unique<RenderPackage>(shape, renderObj);
+		this->drawVect.insert({&shape, std::move(rPack)});
 }
 
 void Scene::addShape(Shape &shape) {
@@ -111,7 +111,7 @@ Object* shapegame::Scene::addChild(Object *obj) {
 
 void shapegame::Scene::drawChildren() {
 	for (auto &child : this->sceneChildren) {
-		// drawChild(child.get());
+		drawChild(child.get());
 	}
 }
 void shapegame::Scene::drawChild(Object *child) {
@@ -183,14 +183,18 @@ void Scene::updateMultiChild(Object *child) {
 		}
 }
 
+void Scene::drawVectDelete(Object *shape) {
+	Game::inst().terminateRenderObj(*this->drawVect.find(shape)->second);
+	this->drawVect.erase(shape); //remove it from the drawVect
+}
 
 void Scene::killQueued(){
-	for (auto subChild : this->subKillList) {
-		if (dynamic_cast<Shape*>(subChild)){
-			this->drawVect.erase(subChild);
+	for (auto subChild : this->subKillList) { //loop through all things to be killed that are children of a multishape
+		if (dynamic_cast<Shape*>(subChild)){ // if it is a shape
+			this->drawVect.erase(subChild); //remove it from the drawVect
 		}
-		if (auto parent = dynamic_cast<MultiShape*>(subChild->getParent())){
-			parent->removeShape(subChild);
+		if (auto parent = dynamic_cast<MultiShape*>(subChild->getParent())){ //if its parent is a multishape (should never not be)
+			parent->removeShape(subChild); //then remove the shape from the parent
 		} else {
 			throw std::runtime_error("Error: No object should have a parent that is not a multishape");
 		}

@@ -37,6 +37,7 @@ namespace shapegame {
 						void addToDrawVect(Shape &shape);
 						void addShape(Shape &shape);
             void drawChild(Object *child);
+						void drawVectDelete(Object *shape);
 						void updateMultiChild(Object *child);
         public:
 						bool shouldCheck = false;

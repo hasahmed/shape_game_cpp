@@ -121,6 +121,12 @@ void shapegame::GLHandlerImpl::check_shader_err(int shader){
     }
 }
 
+void GLHandlerImpl::terminateRenderObj(RenderPackage &rPack) {
+	auto &renderObj = *rPack.glRenderObject;
+	GLCALL(glDeleteVertexArrays(1, &(renderObj.vao)));
+	GLCALL(glDeleteBuffers(1, &(renderObj.vbo)));
+}
+
 void GLHandlerImpl::draw(RenderPackage &rPack) {
 	auto &renderObj = *rPack.glRenderObject;
 	GLint uniloc = glGetUniformLocation(renderObj.shaderProg, "incolor");

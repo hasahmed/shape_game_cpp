@@ -27,6 +27,7 @@ namespace shapegame {
 			void draw(RenderPackage &rPack);
 			void run();
 			void initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint shaderProg);
+			void terminateRenderObj(RenderPackage &rPack);
 			IWindow const* getWindow();
 	};
 }
