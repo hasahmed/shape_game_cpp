@@ -267,30 +267,32 @@ int main() {
 
 	Game g(1200, 800, "Busy Highway");
 	g.scene->setBackgroundColor(Color::GRAY);
-	g.scene->addChild(std::make_unique<DebugKeyHandler>());
+	// g.scene->addChild(std::make_unique<DebugKeyHandler>());
 
 
 
-	auto leftRoadLines = std::make_unique<RoadLines>(
-		Point(15, - LINE_HEIGHT / 2),
-		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
-		Point(6, 10)
-	);
-	auto rightRoadLines = std::make_unique<RoadLines>(
-		Point(695, - LINE_HEIGHT / 2),
-		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
-		Point(6, 10)
-	);
-	auto rawLeftRoadLines = leftRoadLines.get();
-	auto rawRightRoadLines = leftRoadLines.get();
-	g.scene->addChild(std::move(leftRoadLines));
-	g.scene->addChild(std::move(rightRoadLines));
-	std::vector<float> leftRoadLanesX =  rawLeftRoadLines->getLanesX();
-	std::vector<float> rightRoadLanesX = rawRightRoadLines->getLanesX();
-	g.scene->addChild(std::make_unique<MidLine>(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	for (auto lane : leftRoadLanesX) {
-		g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(lane + 25, 1000), 500));
-		// g.scene->addChild(std::make_unique<Spawner<CarTri>>(Position(lane + 25, 1000), 500));
-	}
+	// auto leftRoadLines = std::make_unique<RoadLines>(
+	// 	Point(15, - LINE_HEIGHT / 2),
+	// 	Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
+	// 	Point(6, 10)
+	// );
+	// auto rightRoadLines = std::make_unique<RoadLines>(
+	// 	Point(695, - LINE_HEIGHT / 2),
+	// 	Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
+	// 	Point(6, 10)
+	// );
+	// auto rawLeftRoadLines = leftRoadLines.get();
+	// auto rawRightRoadLines = leftRoadLines.get();
+	// g.scene->addChild(std::move(leftRoadLines));
+	// g.scene->addChild(std::move(rightRoadLines));
+	// std::vector<float> leftRoadLanesX =  rawLeftRoadLines->getLanesX();
+	// std::vector<float> rightRoadLanesX = rawRightRoadLines->getLanesX();
+	// g.scene->addChild(std::make_unique<MidLine>(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
+	// for (auto lane : leftRoadLanesX) {
+	// 	g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(lane + 25, 1000), 500));
+	// 	// g.scene->addChild(std::make_unique<Spawner<CarTri>>(Position(lane + 25, 1000), 500));
+	// }
+	// g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(25, 1000), 500));
+	g.scene->addChild(std::make_unique<Taxi>(Position(25, 1000)));
 	g.run();
 }
