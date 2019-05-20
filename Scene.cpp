@@ -122,8 +122,8 @@ void Scene::drawChild(Object *child) {
 	if (auto shape = dynamic_cast<Shape*>(child)) { // if its a shape
 		auto rPack = this->drawVect.find(shape);
 		if (rPack == this->drawVect.end()) {
-			// return;
-			throw std::runtime_error("There has been an error. Every shape should have a RenderPackage");
+			return;
+			// throw std::runtime_error("There has been an error. Every shape should have a RenderPackage");
 		}
 		Game::inst().draw(*rPack->second);
 	} else if (auto mShape = dynamic_cast<MultiShape*>(child)) {
@@ -197,10 +197,18 @@ void Scene::killQueued(){
 		if (dynamic_cast<Shape*>(it.second)){
 			this->drawVectDelete(it.second);
 		}
+		std::cout << "Killed a: " << it.second->name << std::endl;
 		this->sceneChildren.erase(this->sceneChildren.begin() + it.first);
+
+
 	}
 	this->killList.clear();
 	this->subKillList.clear();
+	std::cout << "draw-vect-size : " << this->drawVect.size() << std::endl;
+	std::cout << "scene children size : " << this->sceneChildren.size() << std::endl;
+	std::cout << "kill-list-size" << this->killList.size() << std::endl;
+	std::cout << "sub-kill-list-size" << this->subKillList.size() << std::endl;
+	std::cout << "queuedChildren-size" << this->queuedChildren.size() << std::endl;
 }
 
 void Scene::killMulti(Object *obj) {

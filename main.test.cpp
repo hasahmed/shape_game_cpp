@@ -10,7 +10,7 @@ using namespace shapegame;
 #define LINE_HEIGHT 40
 #define SCREEN_WIDTH 1200
 #define SCREEN_HEIGHT 700
-#define KILL_UP - 400
+#define KILL_UP 500
 #define KILL_DOWN 1200
 #define BASE_CAR_WIDTH 40
 #define BASE_CAR_LENGTH 90
@@ -120,13 +120,13 @@ class CarBase : public MultiShape {
 
 
 		this->addShape(std::move(body));
-		this->addShape(std::move(front));
-		this->addShape(std::move(back));
-		this->addShape(std::move(leftBackWheel));
-		this->addShape(std::move(rightBackWheel));
-		this->addShape(std::move(rightWheel));
-		this->addShape(std::move(leftWheel));
-		this->addShape(std::move(windShield));
+		// this->addShape(std::move(front));
+		// this->addShape(std::move(back));
+		// this->addShape(std::move(leftBackWheel));
+		// this->addShape(std::move(rightBackWheel));
+		// this->addShape(std::move(rightWheel));
+		// this->addShape(std::move(leftWheel));
+		// this->addShape(std::move(windShield));
 	}
 };
 
@@ -158,7 +158,7 @@ class Taxi : public Car {
 	void onAdd() override {
 	}
 	void onKill() override {
-		// std::cout << "killd" << std::endl;
+		std::cout << "killd" << std::endl;
 	}
 };
 
@@ -293,6 +293,9 @@ int main() {
 	// 	// g.scene->addChild(std::make_unique<Spawner<CarTri>>(Position(lane + 25, 1000), 500));
 	// }
 	// g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(25, 1000), 500));
-	g.scene->addChild(std::make_unique<Taxi>(Position(25, 1000)));
+	for (int i = 0; i < 100; i++) {
+		// g.scene->addChild(std::make_unique<Taxi>(Position(25, 1000)));
+		g.scene->addChild(std::make_unique<CarTri>(Position(25, 1000)));
+	}
 	g.run();
 }
