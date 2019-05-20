@@ -105,20 +105,26 @@ Object* Scene::addChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
 	}
 	return rawObj;
 }
-Object* shapegame::Scene::addChild(Object *obj) {
+Object* Scene::addChild(Object *obj) {
 	return this->addChild(std::unique_ptr<Object>(obj));
 }
 
-void shapegame::Scene::drawChildren() {
+void Scene::drawChildren() {
+	std::vector<Object*> childrenPtrs;
 	for (auto &child : this->sceneChildren) {
-		drawChild(child.get());
+		childrenPtrs.push_back(child.get());
+	}
+	for (auto child : childrenPtrs) {
+		drawChild(child);
 	}
 }
-void shapegame::Scene::drawChild(Object *child) {
+void Scene::drawChild(Object *child) {
 	if (auto shape = dynamic_cast<Shape*>(child)) { // if its a shape
-		auto rPack = this->drawVect.find(child);
-		if (rPack == this->drawVect.end())
+		auto rPack = this->drawVect.find(shape);
+		if (rPack == this->drawVect.end()) {
+			// return;
 			throw std::runtime_error("There has been an error. Every shape should have a RenderPackage");
+		}
 		Game::inst().draw(*rPack->second);
 	} else if (auto mShape = dynamic_cast<MultiShape*>(child)) {
 		for (auto mChild : mShape->getShapes()) {
@@ -170,7 +176,7 @@ void Scene::updateMultiChild(Object *child) {
 
 void Scene::drawVectDelete(Object *shape) {
 	Game::inst().terminateRenderObj(*this->drawVect.find(shape)->second);
-	this->drawVect.erase(shape); //remove it from the drawVect
+	auto res = this->drawVect.erase(shape); //remove it from the drawVect
 }
 
 void Scene::killQueued(){
@@ -202,6 +208,8 @@ void Scene::killMulti(Object *obj) {
 		for (auto &subShape : multi->getShapes()) {
 			if (auto subMulti = dynamic_cast<MultiShape*>(subShape)){
 				killMulti(subMulti);
+			} else if (auto shape = dynamic_cast<Shape*>(subShape)) {
+				this->drawVectDelete(shape);
 			}
 		}
 	} else {
