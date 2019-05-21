@@ -267,7 +267,7 @@ int main() {
 
 	Game g(1200, 800, "Busy Highway");
 	g.scene->setBackgroundColor(Color::GRAY);
-	// g.scene->addChild(std::make_unique<DebugKeyHandler>());
+	g.scene->addChild(std::make_unique<DebugKeyHandler>());
 
 
 
@@ -295,7 +295,8 @@ int main() {
 	// g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(25, 1000), 500));
 	for (int i = 0; i < 100; i++) {
 		// g.scene->addChild(std::make_unique<Taxi>(Position(25, 1000)));
-		g.scene->addChild(std::make_unique<CarTri>(Position(25, 1000)));
+		// g.scene->addChild(std::make_unique<CarTri>(Position(25, 1000)));
+		g.scene->addChild(std::make_unique<Rectangle>(100, 100, Position(100, 100), Color::BLACK));
 	}
 	g.run();
 }

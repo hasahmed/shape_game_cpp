@@ -122,8 +122,8 @@ void Scene::drawChild(Object *child) {
 	if (auto shape = dynamic_cast<Shape*>(child)) { // if its a shape
 		auto rPack = this->drawVect.find(shape);
 		if (rPack == this->drawVect.end()) {
-			return;
-			// throw std::runtime_error("There has been an error. Every shape should have a RenderPackage");
+			// return;
+			throw std::runtime_error("There has been an error. Every shape should have a RenderPackage");
 		}
 		Game::inst().draw(*rPack->second);
 	} else if (auto mShape = dynamic_cast<MultiShape*>(child)) {
