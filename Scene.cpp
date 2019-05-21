@@ -43,8 +43,8 @@ void Scene::addMultiShapeChild(Object* obj) {
 void Scene::addMultiShape(std::unique_ptr<MultiShape> multi) {
 	auto rawMulti = multi.get();
 	this->addToSceneChildren(std::move(multi));
-	for (auto &obj : rawMulti->shapeStorage) {
-		addMultiShapeChild(obj.get());
+	for (auto &subObj : rawMulti->getShapes()) {
+		addMultiShapeChild(subObj);
 	}
 }
 
