@@ -200,10 +200,12 @@ void Scene::updateChildren() {
 // }
 
 void Scene::killQueued(){
-	for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end(); ++it) {
+	for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
 		if (it->obj->canKill) {
 			it->obj->onKill();
 			it = this->sceneChildren.erase(it);
+		} else {
+			++it;
 		}
 	}
 	// for (auto subChild : this->subKillList) { //loop through all things to be killed that are children of a multishape
