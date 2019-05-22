@@ -223,7 +223,7 @@ class Spawner: public Object {
 			i++;
 			// std::cout << "Car spawned: " << i << std::endl;
 			auto x = std::make_unique<T>(pos);
-			Game::inst().scene->queueAddChild(std::move(x));
+			Game::inst().scene->addChild(std::move(x));
 
 			// if (!Game::inst().scene->shouldCheck) {
 			// 	puts("print once");

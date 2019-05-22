@@ -83,13 +83,7 @@ add_executable(catch-tests catch-tests.cpp ${ALL_SRCS})
 #  add_executable(null-main.test null-main.test.cpp ${NO_GLFW_SRCS})
 # add_executable(MultiShape.test.cpp ${ALL_SRCS})
 # add_executable(FileUtil.test FileUtil.test.cpp ../FileUtil.cpp)
-# add_executable(Position.test Position.test.cpp ../Position.cpp)
-# add_executable(Color.test Color.test.cpp ../Color.cpp)
-# add_executable(CollisionTree.test CollisionTree.test.cpp ../CollisionTree.cpp)
-# add_executable(RenderPackage.test
-# 							RenderPackage.test.cpp
-# 							../RenderPackage.cpp
-# 							../Shape.cpp
-# 							../Position.cpp
-# 							../Object.cpp
-# 							../Color.cpp)CollisionTree.cpp../CollisionTree.cppCollisionTree.cpp../CollisionTree.cpp
+# add_etShapes().size() == 1);
+	REQUIRE(t->removeShape(nullptr) == false);
+	REQUIRE(t->getShapes().size() == 1);
+}

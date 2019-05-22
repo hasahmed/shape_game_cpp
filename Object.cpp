@@ -48,3 +48,6 @@ void Object::setParent(Object *parent) {
 Object* Object::getParent() {
 	return this->_parent;
 }
+bool Object::isInScene() {
+	return this->_inScene;
+}

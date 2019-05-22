@@ -8,10 +8,16 @@ RenderPackage::RenderPackage(Shape &shape,
         GLRenderObject &glRenderObject): shape(shape) {
     this->glRenderObject = std::make_unique<GLRenderObject>(glRenderObject);
 }
+// RenderPackage::RenderPackage(RenderPackage &&rPack):
+// 	shape(rPack.shape), glRenderObject(std::move(rPack.glRenderObject)) {}// this->glRenderObject = std::move(rPack.glRenderObject);
+RenderPackage::RenderPackage(const RenderPackage &rPack):
+	shape(rPack.shape) {
+		// glRenderObject(std::move(rPack.glRenderObject));
+		this->glRenderObject = std::make_unique<GLRenderObject>(*rPack.glRenderObject.get());
+	}
+
 bool RenderPackage::updateDirty() {
     if (this->shape.isDirty()){
-        // super waste. Don't throw away verticies, move them instead.
-        // this->glRenderObject->verts = VertexGenerator::instance()->generate(this->shape);
         VertexGenerator::instance()->generate(this->shape, this->glRenderObject->verts);
 				this->shape.setDirty(false);
         return true;
