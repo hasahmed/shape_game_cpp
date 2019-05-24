@@ -16,8 +16,6 @@ namespace shapegame {
             static VertexGenerator *_instance;
             IWindow *_window;
             void triangleVerts(const Shape &shape, float *verts);
-            // void rectangleVerts(const Shape &shape, std::vector<float> &verts);
-            // void circleVerts(const Shape &shape, float *verts);
             float horPxStep();
             float vertPxStep();
             float yPxToGl(float coord);

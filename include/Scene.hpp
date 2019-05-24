@@ -30,7 +30,6 @@ namespace shapegame {
 		}
 		void addRPack(RenderPackage *rPack) {
 			this->rPacks.emplace_back(std::move(*rPack));
-			// this->rPacks.push_back(std::move(rPack));
 		}
 	};
 
@@ -42,16 +41,12 @@ namespace shapegame {
 				GLuint _shaderProg;
 				void setShaderProg(GLuint shaderprog);
 				std::vector<Object*> killList;
-				// std::vector<Object*> subKillList;
 				std::vector<ObjRenderWrapper> sceneChildren;
-				// std::vector<std::unique_ptr<Object>> queuedChildren;
-				// std::unordered_map<Object*, std::unique_ptr<RenderPackage>> drawVect;
 				static Scene *_inst;
 				void initRenderables(ObjRenderWrapper &owr, Shape &shape);
 				void addSubChild(ObjRenderWrapper &owr, Object* subObj);
 				void killQueued();
 				void drawChild(ObjRenderWrapper &owr);
-				// void killMulti(Object *obj);
 			public:
 				bool shouldCheck = false;
 				std::unique_ptr<CollisionList> collisionList;

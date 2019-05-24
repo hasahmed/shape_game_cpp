@@ -62,7 +62,6 @@ class WindShield : public MultiShape {
 	WindShield(Position pos): WindShield(30, 10, pos, 3) {}
 	WindShield(float width, float height, Position pos, float flair): MultiShape(pos) {
 		this->name = "WindShield";
-		// this->setZOrder(1);
 		auto q = std::make_unique<Quad>(
 			Position(0, 0),
 			Point(-flair, -height),
@@ -132,7 +131,6 @@ class CarBase : public MultiShape {
 
 class Car : public CarBase {
 	public:
-	// using CarBase::CarBase;
 		Car(Position pos, Color color, Direction dir = Direction::UP): CarBase(
 			BASE_CAR_WIDTH,
 			BASE_CAR_LENGTH,
@@ -157,54 +155,6 @@ class Taxi : public Car {
 	}
 	void onAdd() override {}
 	void onKill() override {}
-};
-
-class RoadLine : public Rectangle {
-	public:
-	RoadLine(Position pos, Point size = Point(LINE_WIDTH, LINE_HEIGHT), Color color = Color::WHITE):
-		Rectangle(size.getX(), size.getY(), pos, color) {
-			this->name = "RoadLine";
-		}
-};
-
-class MidLine : public MultiShape {
-	public:
-	MidLine(Position pos): MultiShape(pos) {
-		this->name = "MidLine";
-		this->addShape(
-			std::make_unique<RoadLine>(pos, Point(LINE_WIDTH, SCREEN_HEIGHT), Color::YELLOW)
-		);
-		this->addShape(
-			std::make_unique<RoadLine>(Position(pos.getX() + (LINE_WIDTH * 2), pos.getY()), Point(3, 1000), Color::YELLOW)
-		);
-	}
-};
-
-class RoadLines : public MultiShape {
-	private:
-	Point freq;
-	Point amount;
-	public:
-	RoadLines(Position pos, Point freq, Point amount): MultiShape(pos), freq(freq), amount(amount)  {
-		this->name = "Roadlines";
-		for (int x = 0; x < amount.getX(); x++) {
-			for (int y = 0; y < amount.getY(); y++) {
-				this->addShape(
-					std::make_unique<RoadLine>(Position(pos.getX() + x * freq.getX(), pos.getY() + y * freq.getY()))
-				);
-			}
-		}
-	}
-	std::vector<float> getLanesX(){
-		std::vector<float> ret;
-		for (int x = 0; x < this->amount.getX(); x++) {
-			ret.push_back(this->pos.getX() + x * freq.getX());
-		}
-		return ret;
-	}
-	void update() override {
-		// this->setPosition(this->pos.getX(), this->pos.getY() + 30 * G::dt);
-	}
 };
 
 template <class T>
@@ -242,46 +192,18 @@ class CarTri : public TriangleIsosceles {
 		this->name = "CarTri";
 		this->addComponent(std::make_unique<CarComponent>());
 	}
-	void onKill() override {
-		// std::cout << "CarTri Killed" << std::endl;
-	}
+	void onKill() override {}
 };
 
 int main() {
-
 
 	Game g(1200, 800, "Busy Highway");
 	g.scene->setBackgroundColor(Color::GRAY);
 	g.scene->addChild(std::make_unique<DebugKeyHandler>());
 
 
-
-	auto leftRoadLines = std::make_unique<RoadLines>(
-		Point(15, - LINE_HEIGHT / 2),
-		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
-		Point(6, 10)
-	);
-	auto rightRoadLines = std::make_unique<RoadLines>(
-		Point(695, - LINE_HEIGHT / 2),
-		Point(98, LINE_HEIGHT * 2 + LINE_HEIGHT / 2),
-		Point(6, 10)
-	);
-	auto rawLeftRoadLines = leftRoadLines.get();
-	auto rawRightRoadLines = leftRoadLines.get();
-	g.scene->addChild(std::move(leftRoadLines));
-	g.scene->addChild(std::move(rightRoadLines));
-	std::vector<float> leftRoadLanesX =  rawLeftRoadLines->getLanesX();
-	std::vector<float> rightRoadLanesX = rawRightRoadLines->getLanesX();
-	g.scene->addChild(std::make_unique<MidLine>(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	for (auto lane : leftRoadLanesX) {
-		g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(lane + 25, 1000), 500));
-		// g.scene->addChild(std::make_unique<Spawner<CarTri>>(Position(lane + 25, 1000), 500));
-	}
-	for (int i = 0; i < 100; i++) {
-	// g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(25, 1000), 500));
-		// g.scene->addChild(std::make_unique<Taxi>(Position(25, 1000)));
-		// g.scene->addChild(std::make_unique<CarTri>(Position(25, 1000)));
-		// g.scene->addChild(std::make_unique<Rectangle>(100, 100, Position(100, 100), Color::BLACK));
+	for (int i = 0; i < 10; i++) {
+		g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(i + 25, 1000), 500));
 	}
 	g.run();
 }
