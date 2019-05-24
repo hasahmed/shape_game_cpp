@@ -125,7 +125,6 @@ void GLHandlerImpl::terminateRenderObj(RenderPackage &rPack) {
 	auto &renderObj = *rPack.glRenderObject;
 	GLCALL(glDeleteVertexArrays(1, &(renderObj.vao)));
 	GLCALL(glDeleteBuffers(1, &(renderObj.vbo)));
-	puts("here);");
 }
 
 void GLHandlerImpl::draw(RenderPackage &rPack) {

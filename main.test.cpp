@@ -219,8 +219,8 @@ class Spawner: public Object {
 		this->t = (Timer*) Game::inst().scene->addChild(std::make_unique<Timer>(intervalMs, true, true, [=]() mutable {
 			i++;
 			// std::cout << "Car spawned: " << i << std::endl;
-			auto x = std::make_unique<T>(pos);
-			Game::inst().scene->addChild(std::move(x));
+			// auto x = std::make_unique<T>(pos);
+			// Game::inst().scene->addChild(std::move(x));
 
 			// if (!Game::inst().scene->shouldCheck) {
 			// 	puts("print once");
@@ -289,11 +289,11 @@ int main() {
 		g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(lane + 25, 1000), 500));
 		// g.scene->addChild(std::make_unique<Spawner<CarTri>>(Position(lane + 25, 1000), 500));
 	}
-	g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(25, 1000), 500));
-	// for (int i = 0; i < 100; i++) {
-		// g.scene->addChild(std::make_unique<Taxi>(Position(25, 1000)));
+	for (int i = 0; i < 100; i++) {
+	// g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(25, 1000), 500));
+		g.scene->addChild(std::make_unique<Taxi>(Position(25, 1000)));
 		// g.scene->addChild(std::make_unique<CarTri>(Position(25, 1000)));
 		// g.scene->addChild(std::make_unique<Rectangle>(100, 100, Position(100, 100), Color::BLACK));
-	// }
+	}
 	g.run();
 }

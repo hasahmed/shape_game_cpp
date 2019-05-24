@@ -75,8 +75,6 @@ void Scene::initRenderables(ObjRenderWrapper &owr, Shape &shape) {
 		GLRenderObject renderObj;
 		Game::inst().initRenderObj(renderObj, shape, this->_shaderProg);
 		owr.rPacks.emplace_back(shape, renderObj);
-		// auto rPack = std::make_unique<RenderPackage>(shape, renderObj);
-		// this->drawVect.insert({&shape, std::move(rPack)});
 }
 
 // void Scene::addShape(Shape &shape) {
@@ -203,6 +201,9 @@ void Scene::killQueued(){
 	for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
 		if (it->obj->canKill) {
 			it->obj->onKill();
+			for (auto &rPack : it->rPacks) {
+				Game::inst().terminateRenderObj(rPack);
+			}
 			it = this->sceneChildren.erase(it);
 		} else {
 			++it;

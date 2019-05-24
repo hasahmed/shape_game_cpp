@@ -37,9 +37,11 @@ void shapegame::VertexGenerator::triangleVerts(const Shape& shape, std::vector<f
 			verts.push_back(x1);
 			verts.push_back(y1);
 			verts.push_back(0.0f);
+
 			verts.push_back(x2);
 			verts.push_back(y2);
 			verts.push_back(0.0f);
+
 			verts.push_back(x3);
 			verts.push_back(y3);
 			verts.push_back(0.0f);
