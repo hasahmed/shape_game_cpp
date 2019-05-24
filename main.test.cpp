@@ -10,7 +10,7 @@ using namespace shapegame;
 #define LINE_HEIGHT 40
 #define SCREEN_WIDTH 1200
 #define SCREEN_HEIGHT 700
-#define KILL_UP 500
+#define KILL_UP 0
 #define KILL_DOWN 1200
 #define BASE_CAR_WIDTH 40
 #define BASE_CAR_LENGTH 90
