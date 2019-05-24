@@ -207,8 +207,6 @@ class RoadLines : public MultiShape {
 	}
 };
 
-int i = 0;
-
 template <class T>
 class Spawner: public Object {
 	private:
@@ -217,19 +215,9 @@ class Spawner: public Object {
 	Spawner(Position pos, unsigned int intervalMs): Object(pos) {
 		this->name = "Spawner";
 		this->t = (Timer*) Game::inst().scene->addChild(std::make_unique<Timer>(intervalMs, true, true, [=]() mutable {
-			i++;
-			// std::cout << "Car spawned: " << i << std::endl;
-			// auto x = std::make_unique<T>(pos);
-			// Game::inst().scene->addChild(std::move(x));
+			auto x = std::make_unique<T>(pos);
+			Game::inst().scene->addChild(std::move(x));
 
-			// if (!Game::inst().scene->shouldCheck) {
-			// 	puts("print once");
-			// 	Game::inst().scene->shouldCheck = true;
-			// 	auto x = std::make_unique<DebugKeyHandler>();
-
-			// 	std::cout << x.get() << std::endl;
-			// 	Game::inst().scene->queueAddChild(std::move(x));
-			// }
 
 		}, false));
 	}
@@ -291,7 +279,7 @@ int main() {
 	}
 	for (int i = 0; i < 100; i++) {
 	// g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(25, 1000), 500));
-		g.scene->addChild(std::make_unique<Taxi>(Position(25, 1000)));
+		// g.scene->addChild(std::make_unique<Taxi>(Position(25, 1000)));
 		// g.scene->addChild(std::make_unique<CarTri>(Position(25, 1000)));
 		// g.scene->addChild(std::make_unique<Rectangle>(100, 100, Position(100, 100), Color::BLACK));
 	}

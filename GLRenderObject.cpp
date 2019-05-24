@@ -10,7 +10,7 @@ std::ostream& operator<< (std::ostream& stream, const shapegame::GLRenderObject&
 	cout << "Verts: " << endl;
 
 	cout << "[";
-	for (int i = 0; i < rObj.verts.size(); i++) {
+	for (int i = 0; i < rObj.numVerts; i++) {
 		cout << rObj.verts[i];
 		if ((i + 1) % 3 == 0 && i != 0) {
 			cout << "]" << endl << "[";

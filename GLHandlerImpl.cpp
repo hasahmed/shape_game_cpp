@@ -138,8 +138,8 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
 		GLCALL(
 			glBufferData(
 				GL_ARRAY_BUFFER,
-				renderObj.verts.size() * sizeof(float),
-				&(renderObj.verts)[0],
+				renderObj.numVerts * sizeof(float),
+				renderObj.verts,
 				GL_DYNAMIC_DRAW
 			)
 		);
@@ -154,7 +154,7 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
 			0
 		)
 	);
-	GLCALL(glDrawArrays(GL_TRIANGLES, 0, renderObj.verts.size()));
+	GLCALL(glDrawArrays(GL_TRIANGLES, 0, renderObj.numVerts));
 	GLCALL(glBindVertexArray(0));
 }
 
@@ -174,8 +174,8 @@ void GLHandlerImpl::initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint sha
 	GLCALL(
 		glBufferData(
 			GL_ARRAY_BUFFER,
-			rObj.verts.size() * sizeof(float),
-			&(rObj.verts)[0],
+			rObj.numVerts * sizeof(float),
+			rObj.verts,
 			GL_DYNAMIC_DRAW
 		)
 	); //dynamic because it will be modified often and updated often

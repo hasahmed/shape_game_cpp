@@ -6,14 +6,14 @@ using namespace shapegame;
 
 shapegame::VertexGenerator* shapegame::VertexGenerator::_instance = NULL;
 
-void shapegame::VertexGenerator::generate(const Shape &shape, std::vector<float>& verts) {
+void shapegame::VertexGenerator::generate(const Shape &shape, float *verts) {
     switch (shape.type) {
         case ShapeType::Triangle:
             return triangleVerts(shape, verts);
-        case ShapeType::Rectangle:
-            return rectangleVerts(shape, verts);
-        case ShapeType::Circle:
-					return circleVerts(shape, verts);
+        // case ShapeType::Rectangle:
+        //     return rectangleVerts(shape, verts);
+        // case ShapeType::Circle:
+				// 	return circleVerts(shape, verts);
 				default:
 					throw std::invalid_argument(
 							std::string(
@@ -23,7 +23,7 @@ void shapegame::VertexGenerator::generate(const Shape &shape, std::vector<float>
     }
 }
 
-void shapegame::VertexGenerator::triangleVerts(const Shape& shape, std::vector<float> &verts) {
+void shapegame::VertexGenerator::triangleVerts(const Shape& shape, float *verts) {
 		Shape *nonConstShape = const_cast<Shape*>(&shape);
 		Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
 		if (t) {
@@ -33,51 +33,33 @@ void shapegame::VertexGenerator::triangleVerts(const Shape& shape, std::vector<f
 			float y2 = this->yPxToGl(t->second.getY());
 			float x3 = this->xPxToGl(t->third.getX());
 			float y3 = this->yPxToGl(t->third.getY());
-			verts.clear();
-			verts.push_back(x1);
-			verts.push_back(y1);
-			verts.push_back(0.0f);
 
-			verts.push_back(x2);
-			verts.push_back(y2);
-			verts.push_back(0.0f);
+			verts[0] = x1;
+			verts[1] = y1;
+			verts[2] = 0.0f;
 
-			verts.push_back(x3);
-			verts.push_back(y3);
-			verts.push_back(0.0f);
+			verts[3] = x2;
+			verts[4] = y2;
+			verts[5] = 0.0f;
 
+			verts[6] = x3;
+			verts[7] = y3;
+			verts[8] = 0.0f;
 
-			// return std::vector<float>{
-			// 	x1, y1, 0.0f, //lower left,
-			// 	x2, y2, 0.0f, //lower right
-			// 	x3, y3, 0.0f, // top left
-			// };
     } else {
 			throw std::runtime_error("Shape should be a triangle");
     }
 }
-void shapegame::VertexGenerator::circleVerts(const Shape &shape, std::vector<float> &verts) {
-    throw std::runtime_error("Not Implemented");
-}
-void shapegame::VertexGenerator::rectangleVerts(const Shape &shape, std::vector<float> &verts) {
+// void shapegame::VertexGenerator::circleVerts(const Shape &shape, std::vector<float> &verts) {
+//     throw std::runtime_error("Not Implemented");
+// }
+// void shapegame::VertexGenerator::rectangleVerts(const Shape &shape, std::vector<float> &verts) {
 
-    float x = this->xPxToGl(shape.pos.getX());
-    float y = this->yPxToGl(shape.pos.getY());
-    float xsize = shape.getWidth() * horPxStep();
-    float ysize = shape.getHeight() * vertPxStep();
-
-    // return std::vector<float>{
-    //     x,              y - ysize,   0.0f, //lower left,
-    //     x + xsize,      y - ysize,   0.0f, //lower right
-    //     x,              y,           0.0f, // top left
-
-
-    //         // triangle 2
-    //     x,              y,           0.0f, // top left
-    //     x + xsize,      y - ysize,   0.0f, //lower right
-    //     x + xsize,      y,           0.0f //lower right
-    // };
-}
+//     float x = this->xPxToGl(shape.pos.getX());
+//     float y = this->yPxToGl(shape.pos.getY());
+//     float xsize = shape.getWidth() * horPxStep();
+//     float ysize = shape.getHeight() * vertPxStep();
+// }
 
 shapegame::VertexGenerator::VertexGenerator(IWindow *window) : _window(window) {
     shapegame::VertexGenerator::_instance = this;

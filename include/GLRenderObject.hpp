@@ -10,7 +10,8 @@ namespace shapegame {
             GLuint vao;
             GLuint vbo;
 						GLuint shaderProg;
-            std::vector<float> verts;
+            float verts[9];
+						int numVerts = 9;
             GLRenderObject(Shape &s, GLuint shaderProg);
 						GLRenderObject() = default;
     };
