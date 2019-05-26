@@ -4,22 +4,20 @@ SRC = $(wildcard *.cpp)
 SRC := $(filter-out %.test.cpp, $(SRC))
 TESTS = $(wildcard *.test.cpp)
 OBJS = $(SRC:.cpp=.o)
-LDFLAGS = -L/usr/local/opt/llvm/lib # -fsanitize=address -fno-omit-frame-pointer
-LDFLAGS = ""
-LD=clang++
+INC_DIR := -Ideps -Iinclude
 
 ifeq ($(UNAME),Linux)
 	CXX := c++
 	LDFLAGS += `pkg-config --libs glfw3` -ldl
-	INC_DIR := -Ideps -Iinclude
 	CXXFLAGS += $(INC_DIR)
 	OBJS += glad.o
 endif
 
 ifeq ($(UNAME),Darwin)
 	CXX := clang++
+	LD=clang++
 	LDFLAGS += -lglfw -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo -g -v
-	INC_DIR := -Iinclude
+	LDFLAGS += -L/usr/local/opt/llvm/lib
 	CXXFLAGS += $(INC_DIR)
 endif
 
