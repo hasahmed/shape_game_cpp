@@ -153,8 +153,6 @@ class Taxi : public Car {
 		topThing->translate(7, 35);
 		this->addShape(std::move(topThing));
 	}
-	void onAdd() override {}
-	void onKill() override {}
 };
 
 class RoadLine : public Rectangle {
