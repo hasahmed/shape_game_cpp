@@ -169,9 +169,8 @@ class RoadLine : public Rectangle {
 class MidLine : public MultiShape {
 	public:
 	MidLine(Position pos): MultiShape(pos) {
-		this->name = "MidLine";
-		this->addShape(
-			std::make_unique<RoadLine>(pos, Point(LINE_WIDTH, SCREEN_HEIGHT), Color::YELLOW)
+		this->addShape( //left line
+			std::make_unique<RoadLine>(pos, Point(LINE_WIDTH, SCREEN_HEIGHT + 500), Color::YELLOW)
 		);
 		this->addShape(
 			std::make_unique<RoadLine>(Position(pos.getX() + (LINE_WIDTH * 2), pos.getY()), Point(3, 1000), Color::YELLOW)
