@@ -10,7 +10,7 @@ using namespace shapegame;
 #define LINE_HEIGHT 40
 #define SCREEN_WIDTH 1200
 #define SCREEN_HEIGHT 700
-#define KILL_UP 0
+#define KILL_UP -400 
 #define KILL_DOWN 1200
 #define BASE_CAR_WIDTH 40
 #define BASE_CAR_LENGTH 90
@@ -35,7 +35,7 @@ class CarComponent : public Component {
 		}
 		CarComponent(
 			Direction dir = Direction::UP,
-			Point minMaxSpeed = Point(1, 1)
+			Point minMaxSpeed = Point(100, 200)
 		): minMaxSpeed(minMaxSpeed), dir(dir)  {
 			int minSpeed = floor(minMaxSpeed.getX());
 			int maxSpeed = floor(minMaxSpeed.getY());
@@ -270,12 +270,11 @@ int main() {
 	std::vector<float> leftRoadLanesX =  rawLeftRoadLines->getLanesX();
 	std::vector<float> rightRoadLanesX = rawRightRoadLines->getLanesX();
 	g.scene->addChild(std::make_unique<MidLine>(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	g.scene->addChild(std::make_unique<Taxi>(Position(25, 500)));
-	// for (auto lane : leftRoadLanesX) {
-	// 	g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(lane + 25, 1000), 500));
-	// 	break;
-	// 	// g.scene->addChild(std::make_unique<Spawner<CarTri>>(Position(lane + 25, 1000), 500));
-	// }
+	// g.scene->addChild(std::make_unique<Taxi>(Position(25, 500)));
+	for (auto lane : leftRoadLanesX) {
+		g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(lane + 25, 1000), 500));
+		// g.scene->addChild(std::make_unique<Spawner<CarTri>>(Position(lane + 25, 1000), 500));
+	}
 
 	// for (int i = 0; i < 10; i++) {
 	// 	g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(i + 25, 1000), 500));
