@@ -103,6 +103,9 @@ void Scene::updateChildren() {
 		childrenRefs.push_back(&orw);
 	}
 	for (auto orw : childrenRefs) {
+		// for (auto &rPack : orw->rPacks) {
+		// 	std::cout << rPack.glRenderObject->shaderProg << std::endl;
+		// }
 		orw->obj->update();
 		if (auto ent = dynamic_cast<Entity*>(orw->obj.get())) {
 			for (auto &compo : ent->compos) {

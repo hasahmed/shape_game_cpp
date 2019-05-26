@@ -16,3 +16,4 @@ dist/
 *.dSYM
 .vscode/*
 instrumentscli0.trace/
+process.dct
