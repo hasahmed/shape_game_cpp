@@ -15,7 +15,6 @@ int Scene::numChildren() {
 	return this->sceneChildren.size();
 }
 
-
 void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (Scene::_inst) {
         _inst->keyDispatch(key, action);
@@ -103,9 +102,6 @@ void Scene::updateChildren() {
 		childrenRefs.push_back(&orw);
 	}
 	for (auto orw : childrenRefs) {
-		// for (auto &rPack : orw->rPacks) {
-		// 	std::cout << rPack.glRenderObject->shaderProg << std::endl;
-		// }
 		orw->obj->update();
 		if (auto ent = dynamic_cast<Entity*>(orw->obj.get())) {
 			for (auto &compo : ent->compos) {

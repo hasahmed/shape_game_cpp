@@ -22,7 +22,7 @@ namespace shapegame {
 			std::vector<Object*>& getShapes();
 			virtual void onAdd() override;
 			virtual void onKill() override;
-			virtual void setPosition(float x, float y) override;
-			virtual void setPosition(Point pos) override;
+			void setPosition(float x, float y) override;
+			void setPosition(Point pos) override;
 	};
 }

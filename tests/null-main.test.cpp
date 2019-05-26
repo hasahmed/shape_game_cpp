@@ -61,7 +61,6 @@ class WindShield : public MultiShape {
 	public:
 	WindShield(Position pos): WindShield(30, 10, pos, 3) {}
 	WindShield(float width, float height, Position pos, float flair): MultiShape(pos) {
-		// this->setZOrder(1);
 		auto q = std::make_unique<Quad>(
 			Position(0, 0),
 			Point(-flair, -height),

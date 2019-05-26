@@ -16,7 +16,6 @@ namespace shapegame {
 				bool _inScene = false;
 				Object *_parent = nullptr;
 				void setParent(Object *parent);
-				int zOrder = 0;
 			public:
 				std::string name = "Object";
 				Position pos;
@@ -34,8 +33,7 @@ namespace shapegame {
 				virtual void onMouseClick(Mouse::Btn btn, Input::Action action);
 				virtual void setPosition(float x, float y);
 				virtual void setPosition(Point pos);
-				virtual void translate(float x, float y);
-				virtual int getZOrder();
+				void translate(float x, float y);
 				bool isInScene();
 				void setDirty(bool dirty) override;
 				bool isDirty() override;
