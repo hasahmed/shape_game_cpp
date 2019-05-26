@@ -21,7 +21,7 @@ void MultiShape::setPosition(float x, float y) {
 	auto changeInX = x - this->pos.getX();
 	auto changeInY = y - this->pos.getY();
 	Object::setPosition(x, y);
-	for (Object *s : this->shapes) {
+	for (Object *s : this->getShapes()) {
 		if (s) {
 			s->setPosition(s->pos.getX() + changeInX, s->pos.getY() + changeInY);
 		} else {

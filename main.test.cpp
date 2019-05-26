@@ -35,7 +35,7 @@ class CarComponent : public Component {
 		}
 		CarComponent(
 			Direction dir = Direction::UP,
-			Point minMaxSpeed = Point(100, 200)
+			Point minMaxSpeed = Point(1, 1)
 		): minMaxSpeed(minMaxSpeed), dir(dir)  {
 			int minSpeed = floor(minMaxSpeed.getX());
 			int maxSpeed = floor(minMaxSpeed.getY());
@@ -119,13 +119,13 @@ class CarBase : public MultiShape {
 
 
 		this->addShape(std::move(body));
-		// this->addShape(std::move(front));
-		// this->addShape(std::move(back));
-		// this->addShape(std::move(leftBackWheel));
-		// this->addShape(std::move(rightBackWheel));
-		// this->addShape(std::move(rightWheel));
-		// this->addShape(std::move(leftWheel));
-		// this->addShape(std::move(windShield));
+		this->addShape(std::move(front));
+		this->addShape(std::move(back));
+		this->addShape(std::move(leftBackWheel));
+		this->addShape(std::move(rightBackWheel));
+		this->addShape(std::move(rightWheel));
+		this->addShape(std::move(leftWheel));
+		this->addShape(std::move(windShield));
 	}
 };
 
@@ -270,14 +270,15 @@ int main() {
 	std::vector<float> leftRoadLanesX =  rawLeftRoadLines->getLanesX();
 	std::vector<float> rightRoadLanesX = rawRightRoadLines->getLanesX();
 	g.scene->addChild(std::make_unique<MidLine>(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	for (auto lane : leftRoadLanesX) {
-		g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(lane + 25, 1000), 500));
-		// g.scene->addChild(std::make_unique<Spawner<CarTri>>(Position(lane + 25, 1000), 500));
-}
+	g.scene->addChild(std::make_unique<Taxi>(Position(25, 500)));
+	// for (auto lane : leftRoadLanesX) {
+	// 	g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(lane + 25, 1000), 500));
+	// 	break;
+	// 	// g.scene->addChild(std::make_unique<Spawner<CarTri>>(Position(lane + 25, 1000), 500));
+	// }
 
-
-	for (int i = 0; i < 10; i++) {
-		g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(i + 25, 1000), 500));
-	}
+	// for (int i = 0; i < 10; i++) {
+	// 	g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(i + 25, 1000), 500));
+	// }
 	g.run();
 }
