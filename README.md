@@ -2,13 +2,10 @@
 A simple 2D Game Engine for Drawing Shapes In C++
 
 ## Table of Contents
-[What Is It?](#wat)
-
-[Why?](#why)
-
-[Should I Use This?](#shouldi)
-
-[Quick Start?](#quickstart)
+* [What Is It?](#wat)
+* [Why?](#why)
+* [Should I Use This?](#shouldi)
+* [Quick Start](#quickstart)
 
 
 <a name="wat"></a>
