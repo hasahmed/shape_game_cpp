@@ -3,9 +3,9 @@ A simple 2D Game Engine for Drawing Shapes In C++
 
 ## Table of Contents
 * [What Is It?](#wat)
-  * [What Is It?](#wat)
-* [Why?](#why)
-* [Should I Use This?](#shouldi)
+* [FAQ?](#faq)
+  * [Why Should I Use This?](#shouldi)
+  * [Why Did You Make This?](#why)
 * [Quick Start](#quickstart)
 
 
@@ -14,6 +14,8 @@ A simple 2D Game Engine for Drawing Shapes In C++
 Shapegame is a 2D game engine for drawing shapes written in modern C++.
 In this engine you cannot draw anything but shapes. No images, or text or anything. Just shapes.
 
+## FAQ
+<a name="faq" />
 <a name="why"></a>
 ### Why?
 Why write a game engine? There are about a million game engines and they are all faster and better than this one.
