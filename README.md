@@ -3,7 +3,7 @@ A simple 2D Game Engine for Drawing Shapes In C++
 
 ## Table of Contents
 * [What Is It?](#wat)
-* [FAQ?](#faq)
+* [FAQ](#faq)
   * [Why Should I Use This?](#shouldi)
   * [Why Did You Make This?](#why)
 * [Quick Start](#quickstart)
@@ -17,6 +17,7 @@ In this engine you cannot draw anything but shapes. No images, or text or anythi
 ## FAQ
 <a name="faq" />
 <a name="why"></a>
+
 ### Why?
 Why write a game engine? There are about a million game engines and they are all faster and better than this one.
 I wrote this game engine as a learning experience for myself. I wanted to learn C++ and OpenGL.
