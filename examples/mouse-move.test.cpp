@@ -2,7 +2,7 @@
  * 8 WAY Character
  * 
  */
-#include "shapegame"
+#include "shapegame.hpp"
 #include <cstdlib>
 using namespace shapegame;
 using namespace shapegame::Input;

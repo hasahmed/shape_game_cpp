@@ -1,4 +1,4 @@
-#include "shapegame"
+#include "shapegame.hpp"
 #include <vector>
 #include <random>
 using namespace shapegame;

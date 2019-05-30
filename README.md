@@ -19,7 +19,7 @@ Want to quickly draw some shapes without learning an entire game engine? This ai
 ## Quickstart
 
 ```C++
-#include "shapegame"
+#include "shapegame.hpp"
 using namespace shapegame;
 int main() {
 	Game game(400, 400, "My New Game");

@@ -1,0 +1,56 @@
+#include "shapegame.hpp"
+using namespace shapegame;
+
+
+MultiShape::MultiShape(Position pos): Entity(pos) {
+	this->name = "MultiShape";
+}
+void MultiShape::onAdd(){}
+/* BASE IMPL */
+void MultiShape::addShape(std::unique_ptr<Object> shape) {
+	shape->setParent(this);
+	this->shapeStorage.push_back(std::move(shape));
+}
+void MultiShape::addShape(Object* shape) {
+	this->addShape(std::unique_ptr<Object>(shape));
+}
+void MultiShape::setPosition(Point pos) {
+	this->setPosition(pos.getX(), pos.getY());
+}
+void MultiShape::setPosition(float x, float y) {
+	auto changeInX = x - this->pos.getX();
+	auto changeInY = y - this->pos.getY();
+	Object::setPosition(x, y);
+	for (Object *s : this->getShapes()) {
+		if (s) {
+			s->setPosition(s->pos.getX() + changeInX, s->pos.getY() + changeInY);
+		} else {
+			throw std::runtime_error("None of the shapes in the multishape should be null");
+		}
+	}
+}
+void MultiShape::onKill() {}
+
+std::vector<Object*>& MultiShape::getShapes() {
+	this->shapes.clear();
+	for (auto &shape : this->shapeStorage) {
+		this->shapes.push_back(shape.get());
+	}
+	return this->shapes;
+}
+bool MultiShape::removeShape(Object *obj) {
+	auto *children = &this->shapeStorage;
+	for (auto it = children->begin(); it != children->end(); ++it) {
+		if (it->get() == obj) {
+			this->shapeStorage.erase(it);
+			return true;
+		}
+	}
+	return false;
+}
+
+MultiShape::~MultiShape() {
+	#if PRINT_DESTRUCTION
+	std::cout << "MultiShape Killed" << std::endl;
+	#endif
+}

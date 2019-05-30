@@ -1,9 +1,9 @@
 UNAME := $(shell uname -s)
 CXXFLAGS = -std=c++17 -Wall -Wno-unused-variable -Wno-unused-private-field
-SRC = $(wildcard *.cpp)
-SRC := $(filter-out %.test.cpp, $(SRC))
-TESTS = $(wildcard *.test.cpp)
-OBJS = $(SRC:.cpp=.o)
+SRC = $(wildcard src/*.cpp)
+OBJS = $(SRC:src/%.cpp=obj/%.o)
+# TMP_OBJS = $(SRC:.cpp=.o)
+# OBJS = $(subst src,tmp,$(TMP_OBJS))
 INC_DIR := -Ideps -Iinclude
 
 ifeq ($(UNAME),Linux)
@@ -26,13 +26,16 @@ MACOS_DIST_NAME = shapegame.dylib
 LINUX_DIST_NAME = shapegame.a
 WIN_DIST_NAME = shapegame.lib
 
+# echo $(SRC)
+# show-src:
+# 	echo $(OBJS)
 
 all: main.test
 
 run: all
 	./$(EXE)
 
-main.test: $(OBJS) main.test.o
+main.test: $(OBJS) obj/main.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 
@@ -66,11 +69,17 @@ shapegame.dylib: objs
 	$(CXX) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
 	-undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
 
+obj/main.test.o:
+	@$(CXX) $(CXXFLAGS) $(INC_DIR) -c examples/main.test.cpp -o obj/main.test.o
+	@echo "Compiled "main.test.o" successfully!"
 
+$(OBJS): obj/%.o : src/%.cpp
+	@$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@
+	@echo "Compiled "$<" successfully!"
 
 .PHONY: clean
 clean:
 	@echo "Cleaning..."
-	@rm -f $(OBJS) $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME) *.o *.test
+	@rm -f $(OBJS) obj/main.test.o $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME) *.o *.test
 	@rm -rf *.dSYM
 	@echo "Done cleaning"

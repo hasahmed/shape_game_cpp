@@ -1,4 +1,4 @@
-#include "shapegame"
+#include "shapegame.hpp"
 using namespace shapegame;
 int main(){
 	Game game;

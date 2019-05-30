@@ -6,7 +6,7 @@
 
 
 #include <queue>
-#include "shapegame"
+#include "shapegame.hpp"
 using namespace shapegame;
 using namespace shapegame::Input;
 

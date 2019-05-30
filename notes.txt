@@ -1,1 +1,0 @@
-apparently glad is something that doesn't neccessarily NEED to be generated because it just works out of the box with glfw. So I just took that glad.c and .h. Inshallah kheir

@@ -1,4 +1,4 @@
-#include "shapegame"
+#include "shapegame.hpp"
 using namespace shapegame;
 class KeyHandler : public Object {
     void onKeyPress(int key, Input::Action action) override {
