@@ -17,3 +17,7 @@ dist/
 .vscode/*
 instrumentscli0.trace/
 process.dct
+obj/*
+bin/*
+!obj/.gitkeep
+!bin/.gitkeep

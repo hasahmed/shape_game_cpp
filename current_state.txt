@@ -1,2 +1,0 @@
-Currenlty trying to get the std::vector of shapes contained in scene to operate properly. It seems now that I have placed garbage memory inside the object.
-Look more into std::move as it may be the answer to this issue. Also consider simply copying data to start with, (though you have run into errors trying to do that too);
