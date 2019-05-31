@@ -14,8 +14,6 @@ endif
 ifeq ($(UNAME),Darwin)
 	CXX := clang++
 	LD=clang++
-	#LDFLAGS += libGL.dylib -lglfw -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo -g
-	#LDFLAGS += platform/mac/libGL.dylib platform/mac/libGLU.dylib -lglfw -framework Cocoa -framework IOKit -framework CoreVideo -g
 	LDFLAGS += platform/mac/libGL.dylib platform/mac/libGLU.dylib platform/mac/libglfw.3.dylib -framework Cocoa -framework IOKit -framework CoreVideo -g
 	LDFLAGS += -L/usr/local/opt/llvm/lib
 	CXXFLAGS += $(INC_DIR)
