@@ -1,15 +1,14 @@
 #!/usr/local/bin/python3
 
 import os
+import glob
 import subprocess
 from os import listdir
 from os.path import isdir, join
 
 DIST_PATH = 'dist'
 INCLUDE = 'include'
-SHAPE_GAME_HEADER = 'shapegame.hpp'
-CXX = "clang++"
-CXXFLAGS = '-std=c++17 -E -P'
+OUT_HEADER = 'shapegame.hpp'
 
 
 def has_include():
@@ -30,12 +29,24 @@ try:
 except:
     pass
 
-# subprocess.Popen(CXX, CXXFLAGS.split(), join(INCLUDE, SHAPE_GAME_HEADER), '>', join(DIST_PATH, SHAPE_GAME_HEADER))
-os.system("%s %s %s > %s"
-            %(
-                CXX,
-                CXXFLAGS,
-                join(INCLUDE,SHAPE_GAME_HEADER),
-                join(DIST_PATH, SHAPE_GAME_HEADER)
-            )
-        )
+headers = glob.glob(join(INCLUDE, "*.hpp"))
+includes = set()
+other_lines = []
+for header in headers:
+	with open(header) as header_file:
+		for line in header_file:
+			if "#include <" in line:
+				includes.add(line)
+			else:
+				if (not '#include "' in line) and (not '#pragma' in line):
+					other_lines.append(line)
+
+out_header = open(join(DIST_PATH, OUT_HEADER), "w+")
+
+out_header.write('#pragma once\n')
+for line in includes:
+	out_header.write(line)
+for line in other_lines:
+	out_header.write(line)
+
+out_header.close()
