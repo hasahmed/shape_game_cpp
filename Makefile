@@ -75,6 +75,10 @@ $(OBJS): obj/%.o : src/%.cpp
 	@$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@
 	@echo "Compiled "$<" successfully!"
 
+#$(CXX) $(INC_DIR) -fPIC -dynamiclib -o shapegame.dylib $(OBJS)
+dist-mac: $(OBJS)
+	$(CXX) $(LDFLAGS) $(INC_DIR) -fPIC -dynamiclib -o dist/shapegame.dylib $(OBJS)
+
 .PHONY: clean
 clean:
 	@echo "Cleaning..."
