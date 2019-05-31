@@ -2,8 +2,6 @@ UNAME := $(shell uname -s)
 CXXFLAGS = -std=c++17 -Wall -Wno-unused-variable -Wno-unused-private-field
 SRC = $(wildcard src/*.cpp)
 OBJS = $(SRC:src/%.cpp=obj/%.o)
-# TMP_OBJS = $(SRC:.cpp=.o)
-# OBJS = $(subst src,tmp,$(TMP_OBJS))
 INC_DIR := -Ideps -Iinclude
 
 ifeq ($(UNAME),Linux)
