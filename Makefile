@@ -24,17 +24,13 @@ MACOS_DIST_NAME = shapegame.dylib
 LINUX_DIST_NAME = shapegame.a
 WIN_DIST_NAME = shapegame.lib
 
-# echo $(SRC)
-# show-src:
-# 	echo $(OBJS)
-
 all: main.test
 
 run: all
 	./$(EXE)
 
 main.test: $(OBJS) obj/main.test.o
-	$(CXX) -o $@ $^ $(LDFLAGS)
+	$(CXX) -o bin/$@ $^ $(LDFLAGS)
 
 
 prod: CXXFLAGS += -Ofast
@@ -63,7 +59,7 @@ glad.o:
 	$(CXX) $(CXXFLAGS) -c -o glad.o deps/glad.c
 
 
-shapegame.dylib: objs
+shapegame.dylib: $(OBJS)
 	$(CXX) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
 	-undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
 
