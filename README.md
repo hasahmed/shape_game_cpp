@@ -149,13 +149,13 @@ actually going to be drawn i.e. [Shape](#shape) and [MultiShape](#multishape)
 
 <a name="object-kill" />
 
-#### void kill()
+### void kill()
 Calling this method will queue and object to be removed from the [Scene](#scene) when it is safe to do so.
 
 
 <a name="object-update" />
 
-#### virtual void update()
+### virtual void update()
 if overridden this method will be called every frame
 
 <a name="object-on-add" />
@@ -165,18 +165,18 @@ if overridden this method will be called right after the object is added to the 
 
 <a name="object-on-remove" />
 
-#### virtual void onRemove()
+### virtual void onRemove()
 if overridden this method will be called right after the object is added to the [Scene](#scene)
 
 <a name="object-on-kill" />
 
-#### virtual void onKill()
+### virtual void onKill()
 if overridden this method will be called right after the object is removed from the [Scene](#scene)
 
 
 <a name="object-on-key-press" />
 
-#### virtual void onKeyPress(Kb::Key key, Input::Action action)
+### virtual void onKeyPress(Kb::Key key, Input::Action action)
 if overridden this method will be called when a key is pressed. The Key will be passed in along with the action.
 
 <a name="object-on-mouse-click" />
