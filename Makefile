@@ -71,9 +71,9 @@ $(OBJS): obj/%.o : src/%.cpp
 	@$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@
 	@echo "Compiled "$<" successfully!"
 
-#$(CXX) $(INC_DIR) -fPIC -dynamiclib -o shapegame.dylib $(OBJS)
 dist-mac: $(OBJS)
-	$(CXX) $(LDFLAGS) $(INC_DIR) -fPIC -dynamiclib -o dist/shapegame.dylib $(OBJS)
+	$(CXX) $(INC_DIR) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
+	 -undefined suppress -flat_namespace $(OBJS) -o dist/$(MACOS_DIST_NAME) -v
 
 .PHONY: clean
 clean:
