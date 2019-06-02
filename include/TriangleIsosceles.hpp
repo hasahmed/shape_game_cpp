@@ -5,6 +5,6 @@
 namespace shapegame {
 	class TriangleIsosceles : public Triangle {
 		public:
-		TriangleIsosceles(float width, float height, Position pos, Color color);
+		TriangleIsosceles(float width=100, float height=100, Position pos=Position(), Color color=Color::BLACK);
 	};
 }
