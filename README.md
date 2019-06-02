@@ -103,15 +103,15 @@ This is the base class for every object in the game.
 
 ##### Methods
 * void [kill](#object-kill)()
-* Object* [getParent](#object-get-parent)()
+* [Object](#object)* [getParent](#object-get-parent)()
 * virtual void [update](#object-update)()
 * virtual void [onAdd](#object-on-add)()
 * virtual void [onRemove](#object-on-remove)()
 * virtual void [onKill](#object-on-kill)()
-* virtual void [onKeyPress](#object-on-key-press)(Kb::Key key, Input::Action action);
-* virtual void [onMouseClick](#object-on-mouse-click)(Mouse::Btn btn, Input::Action action);
+* virtual void [onKeyPress](#object-on-key-press)([Kb::Key](#keyboard-key) key, [Input::Action](#action) action);
+* virtual void [onMouseClick](#object-on-mouse-click)([Mouse::Btn](#mouse-btn) btn, [Input::Action](#action) action);
 * virtual void [setPosition](#object-set-position)(float x, float y);
-* virtual void [setPosition](#object-set-position-point)(Point pos);
+* virtual void [setPosition](#object-set-position-point)([Point](#point) pos);
 * void [translate](#object-translate)(float x, float y);
 
 
