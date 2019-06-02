@@ -73,7 +73,8 @@ $(OBJS): obj/%.o : src/%.cpp
 
 dist-mac: $(OBJS)
 	$(CXX) $(INC_DIR) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
-	 -undefined suppress -flat_namespace $(OBJS) -o dist/$(MACOS_DIST_NAME) -v
+	 -undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
+	 mv $(MACOS_DIST_NAME) ./dist/
 
 .PHONY: clean
 clean:
