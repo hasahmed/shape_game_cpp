@@ -102,7 +102,7 @@ This is the base class for every object in the game.
 
 
 ### Object Methods
-* void [kill](#object-kill)()
+* void `[kill](#object-kill)()`
 * [Object](#object)* [getParent](#object-get-parent)()
 * virtual void [update](#object-update)()
 * virtual void [onAdd](#object-on-add)()
