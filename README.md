@@ -117,16 +117,19 @@ This is the base class for every object in the game.
 
 ##### Constructor Details
 
-##### Object::Object()
 <a name="object-default" />
+
+##### Object::Object()
 Constructs a default Object with a position of 0, 0
 
-##### Object::Object(double x, double y)
 <a name="object-doubles" />
+
+##### Object::Object(double x, double y)
 Constructs an Object with a position with whatever passed in x and y
 
-##### Object::Object(Point pos)
 <a name="object-point" />
+
+##### Object::Object(Point pos)
 Constructs an Object with a position of whatever passed in Point
 
 
@@ -143,118 +146,131 @@ actually going to be drawn i.e. [Shape](#shape) and [MultiShape](#multishape)
 
 ##### Method Details
 
-###### void kill()
+
 <a name="object-kill" />
 
+###### void kill()
 Calling this method will queue and object to be removed from the [Scene](#scene) when it is safe to do so.
 
 
-###### virtual void update()
 <a name="object-update" />
 
+###### virtual void update()
 if overridden this method will be called every frame
 
-###### virtual void onAdd()
 <a name="object-on-add" />
 
+###### virtual void onAdd()
 if overridden this method will be called right after the object is added to the [Scene](#scene)
 
-###### virtual void onRemove()
 <a name="object-on-remove" />
 
+###### virtual void onRemove()
 if overridden this method will be called right after the object is added to the [Scene](#scene)
 
-###### virtual void onKill()
 <a name="object-on-kill" />
 
+###### virtual void onKill()
 if overridden this method will be called right after the object is removed from the [Scene](#scene)
 
 
-###### virtual void onKeyPress(Kb::Key key, Input::Action action)
 <a name="object-on-key-press" />
 
+###### virtual void onKeyPress(Kb::Key key, Input::Action action)
 if overridden this method will be called when a key is pressed. The Key will be passed in along with the action.
 
-##### virtual void onMouseClick(Mouse::Btn btn, Input::Action action)
 <a name="object-on-mouse-click" />
 
+##### virtual void onMouseClick(Mouse::Btn btn, Input::Action action)
 if overridden this method will be called the mouse is clicked. The mouse button that was clicked will be passed
 to the method along with the action
 
-##### Object* getParent()
 <a name="object-get-parent" />
+
+##### Object* getParent()
 This will return a pointer to the Objects parent. An Object will only have a parent if it is a child of a [MulitShape](#multishape).
 Otherwise it will simply return null.
 
 
-##### void setPosition(float x, float y);
 <a name="object-set-position" />
 
+##### void setPosition(float x, float y);
 Sets the [pos](#object-pos) property of the object to x and y.
 
-##### void setPosition(Point pos);
 <a name="object-set-position-point" />
 
+##### void setPosition(Point pos);
 Sets the [pos](#object-pos) property of the object to pos.
 
-##### void translate(float x, float y);
+
 <a name="object-translate" />
 
+##### void translate(float x, float y);
 Moves the object from its current position x, and y pixels on their respective axes.
 
 
 
-#### Shape
 <a name="shape" />
+
+#### Shape
 Needs docs
 
 
+
+<a name="scene" />
 
 #### Scene
-<a name="scene" />
 Needs docs
 
 
 
-#### Position
 <a name="position" />
+
+#### Position
 Needs Docs
 
 
+
+<a name="multishape" />
 
 #### MultiShape
-<a name="multishape" />
 Needs Docs
 
 
 
+
+<a name="input" />
 
 ### Input
-<a name="input" />
 Needs Docs
+
+<a name="keyboard" />
 
 #### Keyboard
-<a name="keyboard" />
 Needs Docs
+
+<a name="keyboard-key" />
 
 ##### Key
-<a name="keyboard-key" />
 Needs Docs
+
+<a name="mouse" />
 
 #### Mouse
-<a name="mouse" />
 Needs Docs
+
+<a name="mouse-btn" />
 
 ##### Btn
-<a name="mouse-btn" />
 Needs Docs
 
 
 
 
 
-## FAQ
 <a name="faq" />
+
+## FAQ
 
 FAQ is probably misleading because none of these questions have actually been asked of me, they are just questions that
 would probably come to my mind when reading about a game engine.
