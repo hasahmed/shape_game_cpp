@@ -84,24 +84,24 @@ A list of every overrideable callback can be found [here](#callbacks)
 This is a list of every class in the engine that is note worthy for users of the engine. I.e. this isn't documentation
 for people who want to modify engine code. You'll have to read the code for that!
 
-#### Object
+### Object
 <a name="object" />
 
 This is the base class for every object in the game. 
 
-##### Constructors
+### Object Constructors
 
 * [Object()](#object-default)
 * [Object(double x, double y)](#object-doubles);
 * [Object(Point pos)](#object-point);
 
 
-##### Properties
+### Object Properties
 
 [Position](#position) [pos](#object-pos)
 
 
-##### Methods
+### Object Methods
 * void [kill](#object-kill)()
 * [Object](#object)* [getParent](#object-get-parent)()
 * virtual void [update](#object-update)()
@@ -115,28 +115,28 @@ This is the base class for every object in the game.
 * void [translate](#object-translate)(float x, float y);
 
 
-##### Constructor Details
+### Object Constructor Details
 
 <a name="object-default" />
 
-##### Object::Object()
+### Object::Object()
 Constructs a default Object with a position of 0, 0
 
 <a name="object-doubles" />
 
-##### Object::Object(double x, double y)
+### Object::Object(double x, double y)
 Constructs an Object with a position with whatever passed in x and y
 
 <a name="object-point" />
 
-##### Object::Object(Point pos)
+### Object::Object(Point pos)
 Constructs an Object with a position of whatever passed in Point
 
 
 
-##### Property Details
+### Object Property Details
 
-##### Object::pos
+### Object::pos
 <a name="object-pos" />
 
 The position of the object. This determines where the object is located on the x, y axes.
@@ -144,96 +144,96 @@ For the most part this doesn't matter for the [Object](#object) class. It starts
 actually going to be drawn i.e. [Shape](#shape) and [MultiShape](#multishape)
 
 
-##### Method Details
+### Object Method Details
 
 
 <a name="object-kill" />
 
-###### void kill()
+#### void kill()
 Calling this method will queue and object to be removed from the [Scene](#scene) when it is safe to do so.
 
 
 <a name="object-update" />
 
-###### virtual void update()
+#### virtual void update()
 if overridden this method will be called every frame
 
 <a name="object-on-add" />
 
-###### virtual void onAdd()
+### virtual void onAdd()
 if overridden this method will be called right after the object is added to the [Scene](#scene)
 
 <a name="object-on-remove" />
 
-###### virtual void onRemove()
+#### virtual void onRemove()
 if overridden this method will be called right after the object is added to the [Scene](#scene)
 
 <a name="object-on-kill" />
 
-###### virtual void onKill()
+#### virtual void onKill()
 if overridden this method will be called right after the object is removed from the [Scene](#scene)
 
 
 <a name="object-on-key-press" />
 
-###### virtual void onKeyPress(Kb::Key key, Input::Action action)
+#### virtual void onKeyPress(Kb::Key key, Input::Action action)
 if overridden this method will be called when a key is pressed. The Key will be passed in along with the action.
 
 <a name="object-on-mouse-click" />
 
-##### virtual void onMouseClick(Mouse::Btn btn, Input::Action action)
+### virtual void onMouseClick(Mouse::Btn btn, Input::Action action)
 if overridden this method will be called the mouse is clicked. The mouse button that was clicked will be passed
 to the method along with the action
 
 <a name="object-get-parent" />
 
-##### Object* getParent()
+### Object* getParent()
 This will return a pointer to the Objects parent. An Object will only have a parent if it is a child of a [MulitShape](#multishape).
 Otherwise it will simply return null.
 
 
 <a name="object-set-position" />
 
-##### void setPosition(float x, float y);
+### void setPosition(float x, float y);
 Sets the [pos](#object-pos) property of the object to x and y.
 
 <a name="object-set-position-point" />
 
-##### void setPosition(Point pos);
+### void setPosition(Point pos);
 Sets the [pos](#object-pos) property of the object to pos.
 
 
 <a name="object-translate" />
 
-##### void translate(float x, float y);
+### void translate(float x, float y);
 Moves the object from its current position x, and y pixels on their respective axes.
 
 
 
 <a name="shape" />
 
-#### Shape
+### Shape
 Needs docs
 
 
 
 <a name="scene" />
 
-#### Scene
+### Scene
 Needs docs
 
 
 
 <a name="position" />
 
-#### Position
+### Position
 Needs Docs
 
 
 
 <a name="multishape" />
 
-#### MultiShape
+### MultiShape
 Needs Docs
 
 
@@ -246,25 +246,23 @@ Needs Docs
 
 <a name="keyboard" />
 
-#### Keyboard
+### Keyboard (Kb)
 Needs Docs
 
 <a name="keyboard-key" />
 
-##### Key
+#### Keyboard Key (Kb::Key)
 Needs Docs
 
 <a name="mouse" />
 
-#### Mouse
+### Mouse
 Needs Docs
 
 <a name="mouse-btn" />
 
-##### Btn
+#### Mouse::Btn
 Needs Docs
-
-
 
 
 
