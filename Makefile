@@ -68,8 +68,7 @@ obj/main.test.o:
 	@echo "Compiled "main.test.o" successfully!"
 
 $(OBJS): obj/%.o : src/%.cpp
-	@$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@
-	@echo "Compiled "$<" successfully!"
+	$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@
 
 dist-mac: $(OBJS)
 	$(CXX) $(INC_DIR) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
