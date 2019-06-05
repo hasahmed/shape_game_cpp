@@ -254,6 +254,30 @@ the [pos](#object-pos) property of [Object](#object) is used instead.
 [Point](#point) [third](#triangle-third)
 
 
+### *Triangle* Constructor Details
+
+
+
+
+
+
+### *Triangle* Property Details
+
+<a name="triangle-second"></a>
+
+### *Triangle*::second
+
+This property of the triangle specifies where the 2nd point of the triangle will be placed on the x, y axes.
+It should be noted that triangles points are placed onto the screen in a clockwise manner. It should also be noted
+that the [Object::pos](#object-pos) property represents the first point of the triangle.
+
+<a name="triangle-third"></a>
+
+### *Triangle*::third
+
+Same as [Triangle::second](#triangle-second) except the 3rd point to be placed.
+
+
 <a name="multishape"></a>
 ### MultiShape
 Needs Docs
