@@ -32,6 +32,9 @@ run: all
 main.test: $(OBJS) obj/main.test.o
 	$(CXX) -o bin/$@ $^ $(LDFLAGS)
 
+add-child-as: $(OBJS) obj/add-child-as.o
+	$(CXX) -o bin/$@ $^ $(LDFLAGS)
+
 
 prod: CXXFLAGS += -Ofast
 prod: main.test
@@ -63,9 +66,12 @@ shapegame.dylib: $(OBJS)
 	$(CXX) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
 	-undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
 
+
 obj/main.test.o:
-	@$(CXX) $(CXXFLAGS) $(INC_DIR) -c examples/main.test.cpp -o obj/main.test.o
-	@echo "Compiled "main.test.o" successfully!"
+	$(CXX) $(CXXFLAGS) $(INC_DIR) -c examples/main.test.cpp -o obj/main.test.o
+
+obj/add-child-as.o:
+	$(CXX) $(CXXFLAGS) $(INC_DIR) -c examples/add-child-as.cpp -o $@
 
 $(OBJS): obj/%.o : src/%.cpp
 	$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@

@@ -358,8 +358,64 @@ Returns a vector of pointers to the shapes that are currently a child of the [Mu
 
 
 <a name="scene"></a>
+
 ### Scene
-Needs docs
+
+The scene is the container for every object that you want to be a part of your game. When an [Object](#object) is in the
+the scene, all of its overloaded [callbacks](#callbacks) are called at the appropriate times. The scene also owns the
+memory of all of its containing objects. It handles freeing them when the program ends, as well as when they are
+[killed](#object-kill).
+
+### Scene Methods
+* [Object](#object)* [addChild](#scene-add-child-raw)([Object](#object) *obj);
+* [Object](#object)* [addChild](#scene-add-child-smart)(std::unique_ptr<[Object](#object)> obj);
+* template <class T> T* [addChildAs](#scene-add-child-as)(T uniqueShape){
+* void [setBackgroundColor](#scene-set-background-color)([Color](#color)& color);
+
+
+### Scene Method Details
+
+<a name="scene-add-child-raw"></a>
+
+### [Object](#object)* [addChild](#scene-add-child-raw)([Object](#object) *obj);
+Adds a obj to the scene, as well as takes control of the memory of the obj. A pointer to the object is returned.
+Once added to the scene the obj has all of its overriden [callbacks](#callbacks) called at the appropriate times.
+
+
+<a name="scene-add-child-smart"></a>
+
+### [Object](#object)* [addChild](#scene-add-child-smart)(std::unique_ptr<[Object](#object)> obj);
+Same as [addChild](#scene-add-child-raw) above, but excepts a smart pointer. Still returns a raw pointer to the object.
+
+<a name="scene-add-child-as"></a>
+
+### template <class T> T* [addChildAs](#scene-add-child-as)(T uniqueShape){
+Same as [addChild](#scene-add-child-smart) except also has a template argument for what the returned pointer should be
+cast to. This is convenient for being able to construct and add an object to the scene and assigne it to a variable in
+the same line. Returns a raw pointer to the object cast to type T.
+E.g.
+```C++
+#include <iostream>
+#include "shapegame.hpp"
+
+using namespace shapegame;
+
+class Car : public Triangle {
+	public:
+		Car(): Triangle() {}
+		void honk(){
+			std::cout << "BEEP BEEP" << std::endl;
+		}
+};
+int main() {
+	Game game;
+	auto car = game.scene->addChildAs<Car>(std::make_unique<Car>());
+	car->honk();
+	game.run();
+}
+```
+
+* void [setBackgroundColor](#scene-set-background-color)([Color](#color)& color);
 
 
 <a name="entity"></a>

@@ -11,10 +11,6 @@ unsigned int nextInsert = 0;
 
 Scene* Scene::_inst = nullptr;
 
-int Scene::numChildren() {
-	return this->sceneChildren.size();
-}
-
 void Scene::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
     if (Scene::_inst) {
         _inst->keyDispatch(key, action);

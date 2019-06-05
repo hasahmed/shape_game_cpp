@@ -36,6 +36,7 @@ namespace shapegame {
 	class Scene {
 			friend class GLHandlerImpl;
 			friend class NullRenderer;
+			friend class Window;
 			private:
 				Color _bgColor;
 				GLuint _shaderProg;
@@ -47,26 +48,27 @@ namespace shapegame {
 				void addSubChild(ObjRenderWrapper &owr, Object* subObj);
 				void killQueued();
 				void drawChild(ObjRenderWrapper &owr);
-			public:
-				bool shouldCheck = false;
-				std::unique_ptr<CollisionList> collisionList;
 				void updateChildren();
 				void drawChildren();
-				Object* addChild(Object *shape);
-				Object* addChild(std::unique_ptr<Object> obj);
+				std::unique_ptr<CollisionList> collisionList;
 				void addMultiShapeChild(Object* obj);
-				template <class T>
-				T* addChildAs(T uniqueShape){
-					auto rawPtr = uniqueShape.get();
-					this->addChild(std::move(uniqueShape));
-					return rawPtr;
-				}
 				static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 				static void mouseBtnCallback(GLFWwindow* window, int btn, int action, int mods);
 				void keyDispatch(int key, int action);
 				void mouseBtnDispatch(int btn, int action);
-				void setBackgroundColor(Color& color);
-				int numChildren();
+			public:
 				Scene();
+				Object* addChild(Object *obj);
+				Object* addChild(std::unique_ptr<Object> obj);
+				template <class T>
+				T* addChildAs(std::unique_ptr<Object> uniqueShape){
+					auto rawPtr = uniqueShape.get();
+					this->addChild(std::move(uniqueShape));
+					if (auto typedPtr = dynamic_cast<T*>(rawPtr)) {
+						return typedPtr;
+					}
+					throw std::runtime_error("Template function failed because couldn't dynamic cast to template type");
+				}
+				void setBackgroundColor(Color& color);
 	};
 }
