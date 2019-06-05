@@ -257,8 +257,19 @@ the [pos](#object-pos) property of [Object](#object) is used instead.
 ### *Triangle* Constructor Details
 
 
+<a name="triangle-pos"></a>
+
+### *Triangle*::Triangle([Position](#position) first, [Point](#point) second, [Point](#point) third);
+
+Constructs a Triangle object whose points are at the locations specified by the first, second, and third arguments.
+It should be noted that triangles points are placed onto the screen in a clockwise manner.
 
 
+<a name="triangle-color"></a>
+
+### *Triangle*::Triangle([Position](#position) first, [Point](#point) second, [Point](#point) third, [Color](#color) color);
+
+Same as constructor [above](#triangle-pos), but accepts a [Color](#color) argument to set the color of the triangle.
 
 
 ### *Triangle* Property Details
