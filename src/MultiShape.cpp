@@ -7,7 +7,7 @@ MultiShape::MultiShape(Position pos): Entity(pos) {
 }
 /* BASE IMPL */
 void MultiShape::addShape(std::unique_ptr<Object> obj) {
-	shape->setParent(this);
+	obj->setParent(this);
 	this->shapeStorage.push_back(std::move(obj));
 }
 void MultiShape::addShape(Object* obj) {
