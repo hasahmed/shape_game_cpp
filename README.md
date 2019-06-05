@@ -9,6 +9,8 @@ Want to quickly draw some shapes without learning an entire game engine? This ai
 ## Table of Contents
 * [Motivation](#motivation)
 * [Quick Start](#quickstart)
+* [Supported Platforms](#supported-platforms)
+* [Set Up](#set-up)
 * [Docs](#docs)
   * [Overview](#overview)
   * [Classes](#classes)
@@ -101,6 +103,7 @@ This is the base class for every object in the game.
 [Position](#position) [pos](#object-pos)
 
 
+
 ### Object Methods
 * void [kill](#object-kill)()
 * [Object](#object)* [getParent](#object-get-parent)()
@@ -136,12 +139,15 @@ Constructs an Object with a position of whatever passed in Point
 
 ### Object Property Details
 
-### Object::pos
+
+
 <a name="object-pos" />
+
+### Object::pos
 
 The position of the object. This determines where the object is located on the x, y axes.
 For the most part this doesn't matter for the [Object](#object) class. It starts to matter when dealing with things that are
-actually going to be drawn i.e. [Shape](#shape) and [MultiShape](#multishape)
+actually going to be drawn on the screen i.e. [Shape](#shape) and [MultiShape](#multishape)
 
 
 ### Object Method Details
@@ -212,8 +218,33 @@ Moves the object from its current position x, and y pixels on their respective a
 
 <a name="shape" />
 
-### Shape
+### *Shape* Extends [Entity](#entity)
 Needs docs
+
+### Shape Constructors
+### Shape Properties
+### Shape Methods
+
+
+### Shape Constructor Details
+### Shape Property Details
+### Shape Method Details
+
+
+
+
+
+<a name="entity" />
+
+### *Entity* Extends [Object](#object)
+
+
+
+<a name="entity" />
+
+### *Component*
+
+
 
 
 

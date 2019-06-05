@@ -13,10 +13,10 @@ namespace shapegame {
         friend class Scene;
         friend class RenderPackage;
         protected:
-					float _height;
-					float _width;
+					float _height; // not needed?
+					float _width; //not needed?
         public:
-					bool collidable = false;
+					bool collidable = false; //not needed?
 					Color color;
 					ShapeType type;
 					virtual ~Shape();
@@ -24,10 +24,10 @@ namespace shapegame {
 					Shape(float height, float width, ShapeType type, Position pos, Color color);
 					float getHeight() const;
 					float getWidth() const;
-					virtual void onCollisionStart(Shape &other);
-					virtual void onCollisionStop(Shape &other);
-					virtual void onColliding(Shape &other);
-					bool isColliding(Shape &other);
+					// virtual void onCollisionStart(Shape &other);
+					// virtual void onCollisionStop(Shape &other);
+					// virtual void onColliding(Shape &other);
+					// bool isColliding(Shape &other);
 					virtual void translate(float x, float y);
 					virtual void translate(Position pos);
     };
