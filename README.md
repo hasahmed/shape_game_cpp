@@ -83,13 +83,13 @@ int main() {
 A list of every overrideable callback can be found [here](#callbacks)
 
 ### Classes
-<a name="classes" />
+<a name="classes"></a>
 
 This is a list of every class in the engine that is note worthy for users of the engine. I.e. this isn't documentation
 for people who want to modify engine code. You'll have to read the code for that!
 
 ### Object
-<a name="object" />
+<a name="object"></a>
 
 This is the base class for every object in the game. 
 
@@ -122,17 +122,17 @@ This is the base class for every object in the game.
 
 ### Object Constructor Details
 
-<a name="object-default" />
+<a name="object-default"></a>
 
 ### Object::Object()
 Constructs a default Object with a position of 0, 0
 
-<a name="object-doubles" />
+<a name="object-doubles"></a>
 
 ### Object::Object(double x, double y)
 Constructs an Object with a position with whatever passed in x and y
 
-<a name="object-point" />
+<a name="object-point"></a>
 
 ### Object::Object(Point pos)
 Constructs an Object with a position of whatever passed in Point
@@ -143,7 +143,7 @@ Constructs an Object with a position of whatever passed in Point
 
 
 
-<a name="object-pos" />
+<a name="object-pos"></a>
 
 ### Object::pos
 
@@ -155,71 +155,70 @@ actually going to be drawn on the screen i.e. [Shape](#shape) and [MultiShape](#
 ### Object Method Details
 
 
-<a name="object-kill" />
+<a name="object-kill"></a>
 
 ### void kill()
 Calling this method will queue and object to be removed from the [Scene](#scene) when it is safe to do so.
 
 
-<a name="object-update" />
+<a name="object-update"></a>
 
 ### virtual void update()
 if overridden this method will be called every frame
 
-<a name="object-on-add" />
+<a name="object-on-add"></a>
 
 ### virtual void onAdd()
 if overridden this method will be called right after the object is added to the [Scene](#scene)
 
-<a name="object-on-remove" />
+<a name="object-on-remove"></a>
 
 ### virtual void onRemove()
 if overridden this method will be called right after the object is added to the [Scene](#scene)
 
-<a name="object-on-kill" />
+<a name="object-on-kill"></a>
 
 ### virtual void onKill()
 if overridden this method will be called right after the object is removed from the [Scene](#scene)
 
 
-<a name="object-on-key-press" />
+<a name="object-on-key-press"></a>
 
 ### virtual void onKeyPress(Kb::Key key, Input::Action action)
 if overridden this method will be called when a key is pressed. The Key will be passed in along with the action.
 
-<a name="object-on-mouse-click" />
+<a name="object-on-mouse-click"></a>
 
 ### virtual void onMouseClick(Mouse::Btn btn, Input::Action action)
 if overridden this method will be called the mouse is clicked. The mouse button that was clicked will be passed
 to the method along with the action
 
-<a name="object-get-parent" />
+<a name="object-get-parent"></a>
 
 ### Object* getParent()
 This will return a pointer to the Objects parent. An Object will only have a parent if it is a child of a [MulitShape](#multishape).
 Otherwise it will simply return null.
 
 
-<a name="object-set-position" />
+<a name="object-set-position"></a>
 
 ### void setPosition(float x, float y);
 Sets the [pos](#object-pos) property of the object to x and y.
 
-<a name="object-set-position-point" />
+<a name="object-set-position-point"></a>
 
 ### void setPosition(Point pos);
 Sets the [pos](#object-pos) property of the object to pos.
 
 
-<a name="object-translate" />
+<a name="object-translate"></a>
 
 ### void translate(float x, float y);
 Moves the object from its current position x, and y pixels on their respective axes.
 
 
 
-<a name="shape" />
-
+<a name="shape"></a>
 ### *Shape* Extends [Entity](#entity)
 Needs docs
 
@@ -240,14 +239,12 @@ Needs Docs
 
 
 
-<a name="entity" />
-
+<a name="entity"></a>
 ### *Entity* Extends [Object](#object)
 
 
 
-<a name="Component" />
-
+<a name="Component"></a>
 ### *Component*
 Needs Docs
 
@@ -255,14 +252,13 @@ Needs Docs
 
 
 
-<a name="scene" />
-
+<a name="scene"></a>
 ### Scene
 Needs docs
 
 
 
-<a name="position" />
+<a name="position"></a>
 
 ### Position
 Needs Docs
@@ -273,34 +269,34 @@ Needs Docs
 
 
 
-<a name="input" />
+<a name="input"></a>
 
 ### Input
 Needs Docs
 
-<a name="keyboard" />
+<a name="keyboard"></a>
 
 ### Keyboard (Kb)
 Needs Docs
 
-<a name="keyboard-key" />
+<a name="keyboard-key"></a>
 
 #### Keyboard Key (Kb::Key)
 Needs Docs
 
-<a name="mouse" />
+<a name="mouse"></a>
 
 ### Mouse
 Needs Docs
 
-<a name="mouse-btn" />
+<a name="mouse-btn"></a>
 
 #### Mouse::Btn
 Needs Docs
 
 
 
-<a name="faq" />
+<a name="faq"></a>
 
 ## FAQ
 
