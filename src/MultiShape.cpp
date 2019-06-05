@@ -5,14 +5,13 @@ using namespace shapegame;
 MultiShape::MultiShape(Position pos): Entity(pos) {
 	this->name = "MultiShape";
 }
-void MultiShape::onAdd(){}
 /* BASE IMPL */
-void MultiShape::addShape(std::unique_ptr<Object> shape) {
+void MultiShape::addShape(std::unique_ptr<Object> obj) {
 	shape->setParent(this);
-	this->shapeStorage.push_back(std::move(shape));
+	this->shapeStorage.push_back(std::move(obj));
 }
-void MultiShape::addShape(Object* shape) {
-	this->addShape(std::unique_ptr<Object>(shape));
+void MultiShape::addShape(Object* obj) {
+	this->addShape(std::unique_ptr<Object>(obj));
 }
 void MultiShape::setPosition(Point pos) {
 	this->setPosition(pos.getX(), pos.getY());
@@ -29,7 +28,6 @@ void MultiShape::setPosition(float x, float y) {
 		}
 	}
 }
-void MultiShape::onKill() {}
 
 std::vector<Object*>& MultiShape::getShapes() {
 	this->shapes.clear();

@@ -242,16 +242,16 @@ Everything in computer graphics is all about triangles. This engine is no differ
 up all other shapes by combining them in [MultiShapes](#multishape)
 
 ### *Triangle* Constructors
-[Triangle](#triangle-pos)([Position](#position) first, [Point](#point) second, [Point](#point) third);
-[Triangle](#triangle-color)([Position](#position) first, [Point](#point) second, [Point](#point) third, [Color](#color) color);
+* [Triangle](#triangle-pos)([Position](#position) first, [Point](#point) second, [Point](#point) third);
+* [Triangle](#triangle-color)([Position](#position) first, [Point](#point) second, [Point](#point) third, [Color](#color) color);
 
 ### *Triangle* Properties
 
 It should be noted that there is no property in triangle called `first` to accompany `second` and `third` because
 the [pos](#object-pos) property of [Object](#object) is used instead.
 
-[Point](#point) [second](#triangle-second)
-[Point](#point) [third](#triangle-third)
+* [Point](#point) [second](#triangle-second)
+* [Point](#point) [third](#triangle-third)
 
 
 ### *Triangle* Constructor Details
@@ -290,8 +290,71 @@ Same as [Triangle::second](#triangle-second) except the 3rd point to be placed.
 
 
 <a name="multishape"></a>
+
 ### MultiShape
-Needs Docs
+
+MultiShape's are just like regular shapes, except they allow you to combine multiple [Objects](#object) together in a
+nice package via the [addShape](#multishape-add-shape-raw). As stated in the [Triangle](#triangle) docs, this is the class that is used to make every shape that
+ships with the engine other than [Triangle](#triangle). In reality MultiShape probably isn't the best name because
+regular [Objects](#object) can be added to [MultiShapes](#multishape) as well.
+
+
+### MultiShape Constructors
+
+* [MultiShape](#multishape-pos)([Position](#position) pos);
+
+
+### MultiShape Methods
+
+* bool [removeShape](#multishape-remove-shape)([Object](#object)* obj);
+* void [addShape](#multishpae-add-shape-raw)([Object](#object)* shape);
+* void [addShape](#multishape-add-shape-smart)(std::unique_ptr<[Object](#object)> shape);
+* std::vector<[Object](#object)*>& [getShapes](#multishape-get-shapes)();
+
+
+### MultiShape Constructor Details
+
+
+<a name="multishape-pos"></a>
+
+### *MultiShape*::MultiShape([Position](#position) pos);
+
+Constructs a [MultiShape](#multishape) at the given position pos.
+
+
+### MultiShape Method Details
+
+
+<a name="multishape-remove-shape"></a>
+
+### *MultiShape*::removeShape([Object](#object) obj);
+
+This removes an object specified by a pointer to that object from the [MultiShapes](#muiltishape)
+children.
+*Note* This method is named poorly. Despite being named as though it only operates on shapes, it operates on [Objects](#object)
+and any class derived from that.
+
+
+<a name="multishape-add-shape-raw"></a>
+
+### void *MultiShape*::addShape([Object](#object) *obj);
+
+Adds a child shape to this multishape, and takes over the memory of the object passed in. The MultiShape is now responsible
+for whatever memory is given to it. It creates a smart pointer out of it, and that is freed when the MultiShape is.
+
+
+<a name="multishape-add-shape-smart"></a>
+
+### void *MultiShape*::addShape(std::unique_ptr<[Object](#object)> obj)
+
+Adds a child shape to this multishape.
+
+
+<a name="multishape-get-shapes"></a>
+
+### std::vector<[Object](#object)*>& *MultiShape*::getShapes()
+
+Returns a vector of pointers to the shapes that are currently a child of the [MultiShape](#multishape)
 
 
 <a name="scene"></a>
