@@ -11,8 +11,8 @@ namespace shapegame {
         public:
 				using Shape::setPosition;
 				// pos inherited from Object
-				Point second; // second point of the triangle
-				Point third; // third
+				Point second; // should be private
+				Point third; // should be private?
 				Position collisionPosition;
 				virtual ~Triangle();
 				Triangle();

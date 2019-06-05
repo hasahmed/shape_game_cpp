@@ -235,8 +235,23 @@ base class for every drawable object in this engine. The [Triangle](#triangle)
 The color property of the shape. Determines what color it is a drawn as on the screen. Is of type [Color](#color)
 
 <a name="triangle"></a>
-### Triangle
-Needs Docs
+
+### *Triangle* Extends [Shape](#Shape)
+
+Everything in computer graphics is all about triangles. This engine is no different. This is the shape that makes
+up all other shapes by combining them in [MultiShapes](#multishape)
+
+### *Triangle* Constructors
+[Triangle](#triangle-pos)([Position](#position) first, [Point](#point) second, [Point](#point) third);
+[Triangle](#triangle-color)([Position](#position) first, [Point](#point) second, [Point](#point) third, [Color](#color) color);
+
+### *Triangle* Properties
+
+It should be noted that there is no property in triangle called `first` to accompany `second` and `third` because
+the [pos](#object-pos) property of [Object](#object) is used instead.
+
+[Point](#point) [second](#triangle-second)
+[Point](#point) [third](#triangle-third)
 
 
 <a name="multishape"></a>
