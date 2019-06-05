@@ -17,6 +17,8 @@ Want to quickly draw some shapes without learning an entire game engine? This ai
 	  * [Object](#object)
 	  * [Shape](#shape)
 	  * [MultiShape](#multishape)
+	  * [Entity](#shape)
+	  * [Component](#shape)
 	  * [Scene](#scene)
 	  * [Position](#position)
   * [Input](#input)
@@ -232,6 +234,10 @@ Needs docs
 
 
 
+<a name="multishape" />
+### MultiShape
+Needs Docs
+
 
 
 <a name="entity" />
@@ -240,9 +246,10 @@ Needs docs
 
 
 
-<a name="entity" />
+<a name="Component" />
 
 ### *Component*
+Needs Docs
 
 
 
@@ -262,10 +269,6 @@ Needs Docs
 
 
 
-<a name="multishape" />
-
-### MultiShape
-Needs Docs
 
 
 
