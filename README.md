@@ -16,9 +16,11 @@ Want to quickly draw some shapes without learning an entire game engine? This ai
   * [Classes](#classes)
 	  * [Object](#object)
 	  * [Shape](#shape)
+	  * [Triangle](#triangle)
 	  * [MultiShape](#multishape)
 	  * [Entity](#shape)
 	  * [Component](#shape)
+	  * [Color](#color)
 	  * [Scene](#scene)
 	  * [Position](#position)
   * [Input](#input)
@@ -212,7 +214,6 @@ Sets the [pos](#object-pos) property of the object to pos.
 
 
 <a name="object-translate"></a>
-
 ### void translate(float x, float y);
 Moves the object from its current position x, and y pixels on their respective axes.
 
@@ -220,17 +221,22 @@ Moves the object from its current position x, and y pixels on their respective a
 
 <a name="shape"></a>
 ### *Shape* Extends [Entity](#entity)
-Needs docs
 
-### Shape Constructors
+Shape class won't actually ever be used directly by the user of this library. It is mostly a wrapper around the TRUE
+base class for every drawable object in this engine. The [Triangle](#triangle)
+
 ### Shape Properties
-### Shape Methods
+[Color](#color) [color](#shape-color)
 
-
-### Shape Constructor Details
 ### Shape Property Details
-### Shape Method Details
 
+<a name="shape-color"></a>
+### *Shape*::color
+The color property of the shape. Determines what color it is a drawn as on the screen. Is of type [Color](#color)
+
+<a name="triangle"></a>
+### Triangle
+Needs Docs
 
 
 <a name="multishape"></a>
@@ -238,10 +244,13 @@ Needs docs
 Needs Docs
 
 
+<a name="scene"></a>
+### Scene
+Needs docs
+
 
 <a name="entity"></a>
 ### *Entity* Extends [Object](#object)
-
 
 
 <a name="Component"></a>
@@ -249,13 +258,9 @@ Needs Docs
 Needs Docs
 
 
-
-
-
-<a name="scene"></a>
-### Scene
+<a name="color"></a>
+### Color
 Needs docs
-
 
 
 <a name="position"></a>

@@ -10,6 +10,7 @@ namespace shapegame {
     class Triangle : public Shape {
         public:
 				using Shape::setPosition;
+				// pos inherited from Object
 				Point second; // second point of the triangle
 				Point third; // third
 				Position collisionPosition;
