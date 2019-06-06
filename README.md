@@ -111,6 +111,11 @@ This is the base class for every object in the game.
 ### Object Methods
 * void [kill](#object-kill)()
 * [Object](#object)* [getParent](#object-get-parent)()
+* void [translate](#object-translate)(float x, float y);
+
+<a name="callbacks"></a>
+
+# Object callbacks
 * virtual void [update](#object-update)()
 * virtual void [onAdd](#object-on-add)()
 * virtual void [onRemove](#object-on-remove)()
@@ -119,7 +124,6 @@ This is the base class for every object in the game.
 * virtual void [onMouseClick](#object-on-mouse-click)([Mouse::Btn](#mouse-btn) btn, [Input::Action](#action) action);
 * virtual void [setPosition](#object-set-position)(float x, float y);
 * virtual void [setPosition](#object-set-position-point)([Point](#point) pos);
-* void [translate](#object-translate)(float x, float y);
 
 
 ### Object Constructor Details
@@ -459,12 +463,130 @@ Adds compo to the entity.
 <a name="component"></a>
 
 ### *Component*
-Needs Docs
+
+This is the 'Component' part of the engines ['Entity Component System'](https://en.wikipedia.org/wiki/Entity_component_system).
+This is used to add functionality to objects without the use of inheritance. As of right now the only method that
+can be utilized is the [update](#object-update) method, but in the future there could likely be support of all of the
+[callbacks](#callbacks).
+
+### *Component* Methods
+
+* virtual void [update](#component-update)([Entity](#entity) *ent)
+
+### *Component* Method Details
+
+<a name="component-update"></a>
+
+### virtual void update([Entity](#entity) *ent)
+
+This method will be called every frame with the [Entity](#entity) that it is attached to being passed in as the ent
+argument.
+
+
 
 
 <a name="color"></a>
-### Color
-Needs docs
+
+### *Color*
+Color class is used to reprsent colors in this engine. The colors are reprsented using RGBA where RGBA can have a
+value between 0 and 1. E.g. red would be r = 1, g = 0, b = 0, a = 1.
+
+### *Color* Constructors
+
+* [Color](#color-ctor-default)()
+* [Color](#color-ctor-rgb)(float red, float green, float blue)
+* [Color](#color-ctor-rgba)(float red, float green, float blue, float alpha)
+
+
+### *Color* Properties
+* float [r](#color-prop-r);
+* float [g](#color-prop-g);
+* float [b](#color-prop-b);
+* float [a](#color-prop-a);
+
+
+
+### *Color* Methods
+* void [set](#color-meth-set-rgb)(float red, float green, float blue);
+* void [set](#color-meth-set-rgba)(float red, float green, float blue, float alpha);
+* void [set](#color-meth-set-color)(Color& c);
+* float* [getRawColor](#color-meth-get-raw-color)();
+
+
+
+
+### *Color* Constructor Details
+
+<a name="color-ctor-default"></a>
+
+### *Color*::Color()
+
+Constructs a default color with rgba = 1 (black).
+
+<a name="color-ctor-rgb"></a>
+
+### *Color*::Color(float r, float g, float b)
+
+Constructs a color with corrisponding rgb and alpha of 1.
+
+
+<a name="color-ctor-rgba"></a>
+
+### *Color*::Color(float r, float g, float b, float a)
+
+Constructs a color with corrisponding rgba
+
+### *Color* Property Details
+
+
+<a name="color-prop-r"></a>
+### float r
+The red property of the color. Can be a value between 0 and 1, where 1 is the most red it can be and 0 is the least.
+
+
+
+<a name="color-prop-g"></a>
+### float g
+The green property of the color. Can be a value between 0 and 1, where 1 is the most green it can be and 0 is the least.
+
+
+
+<a name="color-prop-b"></a>
+### float b
+The blue property of the color. Can be a value between 0 and 1, where 1 is the most blue it can be and 0 is the least.
+
+
+<a name="color-prop-a"></a>
+### float a
+The alpha (opacity) property of the color. Can be a value between 0 and 1, where 1 is the most opaque it can be and 0 is the least.
+
+
+
+
+
+### *Color* Method Details
+
+
+<a name="color-meth-set-rgb"></a>
+### *Color*::set(float r, float g, float b)
+Sets the rgb values of the color and assigns alpha (a) a value of 1
+
+
+<a name="color-meth-set-rgba"></a>
+### *Color*::set(float r, float g, float b, float a)
+Sets the rgba values of the color.
+
+
+<a name="color-meth-set-color"></a>
+### *Color*::set([Color](#color) &color)
+Sets the rgba values of the object to that of color.
+
+<a name="color-meth-get-raw-color"></a>
+### float* *Color*::getRawColor()
+Returns a pointer to the underlying rgba values as an array of length 4.
+
+
+
 
 
 <a name="position"></a>
