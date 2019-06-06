@@ -22,6 +22,7 @@ Want to quickly draw some shapes without learning an entire game engine? This ai
 	  * [Component](#shape)
 	  * [Color](#color)
 	  * [Scene](#scene)
+	  * [Point](#point)
 	  * [Position](#position)
   * [Input](#input)
 	  * [Action](#action)
@@ -625,8 +626,64 @@ Constructs a Position with an x and y that are the same as pos.
 <a name="point"></a>
 
 ### *Point*
+Constains an x, y value in order to represent a point on the screen graph.
 
 
+### *Point* Constructors
+* [Point](#point-ctor-default)()
+* [Point](#point-ctor-xy)(float x, float y)
+
+### *Point* Properties
+* float [x](#point-prop-x)
+* float [y](#point-prop-y)
+
+
+### *Point* Methods
+* float [getX](#point-meth-get-x)() const;
+* float [getY](#point-meth-get-y)() const;
+* void [setX](#point-meth-set-x)(const float x)
+* void [setY](#point-meth-set-y)(const float y)
+
+
+### *Point* Constructor Details
+
+<a name="point-ctor-default"></a>
+### *Point*::Point()
+
+<a name="point-ctor-xy"></a>
+### *Point*::Point(float x, float y)
+
+
+
+### *Point* Property Details
+
+<a name="point-prop-x"></a>
+### float x
+The x property of the [Point](#point)
+
+<a name="point-prop-y"></a>
+### float y
+The y property of the [Point](#point)
+
+
+
+### *Point* Method Details
+
+<a name="point-meth-get-x"></a>
+### float getX() const;
+returns the x value.
+
+<a name="point-meth-get-y"></a>
+### float getY() const;
+returns the y value.
+
+<a name="point-meth-set-x"></a>
+### float setX(const float x) const;
+sets the x value.
+
+<a name="point-meth-set-y"></a>
+### float setY(const float y) const;
+sets the y value.
 
 
 
