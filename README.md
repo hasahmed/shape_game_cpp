@@ -591,8 +591,40 @@ Returns a pointer to the underlying rgba values as an array of length 4.
 
 <a name="position"></a>
 
-### Position
-Needs Docs
+### *Position* Extends [Point](#point)
+
+Position represents the position of an object on the x, y axes.
+
+### *Position* Constructors
+[Position](#position-ctor-default)();
+[Position](#position-ctor-xy)(float x, float y);
+[Position](#position-ctor-point)(Point pos);
+
+
+
+### *Position* Constructor Details
+
+
+<a name="position-ctor-default"></a>
+### *Position*::Position()
+Constructs a default Position with an x, y of 0, 0.
+
+
+<a name="position-ctor-xy"></a>
+### *Position*::Position(float x, float y)
+Constructs a Position with given x, y.
+
+
+<a name="position-ctor-point"></a>
+### *Position*::Position([Point](#point) pos)
+Constructs a Position with an x and y that are the same as pos.
+
+
+
+
+<a name="point"></a>
+
+### *Point*
 
 
 

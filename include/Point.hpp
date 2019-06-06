@@ -7,8 +7,8 @@ namespace shapegame {
 			virtual ~Point();
 			Point();
 			Point(float x, float y);
-			virtual float getX() const;
-			virtual float getY() const;
+			float getX() const;
+			float getY() const;
 			virtual void setX(const float x);
 			virtual void setY(const float y);
 	};
