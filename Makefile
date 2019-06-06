@@ -3,12 +3,13 @@ CXXFLAGS = -std=c++17 -Wall -Wno-unused-variable -Wno-unused-private-field
 SRC = $(wildcard src/*.cpp)
 OBJS = $(SRC:src/%.cpp=obj/%.o)
 INC_DIR := -Ideps -Iinclude
+GLAD = ""
 
 ifeq ($(UNAME),Linux)
 	CXX := c++
 	LDFLAGS += `pkg-config --libs glfw3` -ldl
 	CXXFLAGS += $(INC_DIR)
-	OBJS += glad.o
+	GLAD = obj/glad.o
 endif
 
 ifeq ($(UNAME),Darwin)
@@ -29,10 +30,10 @@ all: main.test
 run: all
 	./$(EXE)
 
-main.test: $(OBJS) obj/main.test.o
+main.test: $(OBJS) $(GLAD) obj/main.test.o
 	$(CXX) -o bin/$@ $^ $(LDFLAGS)
 
-add-child-as: $(OBJS) obj/add-child-as.o
+add-child-as: $(OBJS) $(GLAD) obj/add-child-as.o
 	$(CXX) -o bin/$@ $^ $(LDFLAGS)
 
 
@@ -58,8 +59,8 @@ triangle.test: $(OBJS) triangle.test.o
 
 
 #linux specific
-glad.o:
-	$(CXX) $(CXXFLAGS) -c -o glad.o deps/glad.c
+obj/glad.o:
+	$(CXX) $(CXXFLAGS) -c deps/glad.c -o obj/glad.o
 
 
 shapegame.dylib: $(OBJS)
