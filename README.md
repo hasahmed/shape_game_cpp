@@ -427,9 +427,37 @@ Sets the background color of the scene to the value of color.
 
 ### *Entity* Extends [Object](#object)
 
+This class is the 'Entity' part of the [Entity Component System](https://en.wikipedia.org/wiki/Entity_component_system).
+[Shapes](#shape) extend from this class, so its likely that most of the objects you deal with as a user of this engine
+will be Entities that you can add [Components](#componenet) to.
 
 
-<a name="Component"></a>
+### *Entity* Methods
+* void [addComponent](#entity-add-component-raw)([Component](#component) *compo);
+* void [addComponent](#entity-add-component-smart)(std::unique_ptr<[Component](#component)> compo);
+
+
+### *Entity* Methods Details
+
+<a name="entity-add-component-raw"></a>
+
+### void addComponent([Component](#component) *compo)
+
+Creates a new smart pointer out of compo and adds it to the Entity.
+
+
+
+<a name="entity-add-component-smart"></a>
+
+### void addComponent(std::unique_ptr<[Component](#component)> compo)
+
+Adds compo to the entity.
+
+
+
+
+<a name="component"></a>
+
 ### *Component*
 Needs Docs
 

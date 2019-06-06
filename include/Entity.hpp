@@ -9,7 +9,7 @@ namespace shapegame {
 		Entity(Position pos);
 		Entity() = default;
 		virtual ~Entity();
-		virtual void addComponent(Component *compo);
-		virtual void addComponent(std::unique_ptr<Component> compo);
+		void addComponent(Component *compo);
+		void addComponent(std::unique_ptr<Component> compo);
 	};
 }
