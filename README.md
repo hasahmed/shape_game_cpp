@@ -415,11 +415,18 @@ int main() {
 }
 ```
 
-* void [setBackgroundColor](#scene-set-background-color)([Color](#color)& color);
+
+<a name="scene-set-background-color"></a>
+
+### void setBackgroundColor([Color](#color)& color)
+
+Sets the background color of the scene to the value of color.
 
 
 <a name="entity"></a>
+
 ### *Entity* Extends [Object](#object)
+
 
 
 <a name="Component"></a>
