@@ -7,8 +7,8 @@ GLAD = ""
 
 ifeq ($(UNAME),Linux)
 	CXX := c++
-	LDFLAGS += `pkg-config --libs glfw3` -ldl
-	CXXFLAGS += $(INC_DIR)
+	LDFLAGS += platform/linux/libglfw.so
+	CXXFLAGS += $(INC_DIR) -fPIC
 	GLAD = obj/glad.o
 endif
 
@@ -22,8 +22,8 @@ endif
 
 EXE = main
 MACOS_DIST_NAME = shapegame.dylib
-LINUX_DIST_NAME = shapegame.a
-WIN_DIST_NAME = shapegame.lib
+LINUX_DIST_NAME = shapegame.so
+WIN_DIST_NAME = shapegame.dll
 
 all: main.test
 
@@ -82,9 +82,13 @@ dist-mac: $(OBJS)
 	 -undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
 	 mv $(MACOS_DIST_NAME) ./dist/
 
+dist-linux: $(OBJS) $(GLAD)
+	$(CXX) $(INC_DIR) -shared -undefined $(OBJS) -o $(LINUX_DIST_NAME)
+	 mv $(LINUX_DIST_NAME) ./dist/
+
 .PHONY: clean
 clean:
 	@echo "Cleaning..."
-	@rm -f $(OBJS) obj/main.test.o $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME) *.o *.test
+	@rm -f $(OBJS) $(GLAD) bin/* obj/main.test.o $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME) *.o *.test
 	@rm -rf *.dSYM
 	@echo "Done cleaning"
