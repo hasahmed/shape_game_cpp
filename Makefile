@@ -3,7 +3,7 @@ CXXFLAGS = -std=c++17 -Wall -Wno-unused-variable -Wno-unused-private-field
 SRC = $(wildcard src/*.cpp)
 OBJS = $(SRC:src/%.cpp=obj/%.o)
 INC_DIR := -Ideps -Iinclude
-GLAD = ""
+GLAD =
 
 ifeq ($(UNAME),Linux)
 	CXX := c++
@@ -80,11 +80,11 @@ $(OBJS): obj/%.o : src/%.cpp
 dist-mac: $(OBJS)
 	$(CXX) $(INC_DIR) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
 	 -undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
-	 mv $(MACOS_DIST_NAME) ./dist/
+	 mv $(MACOS_DIST_NAME) ./dist/mac
 
 dist-linux: $(OBJS) $(GLAD)
 	$(CXX) $(INC_DIR) -shared -undefined $(OBJS) -o $(LINUX_DIST_NAME)
-	 mv $(LINUX_DIST_NAME) ./dist/
+	 mv $(LINUX_DIST_NAME) ./dist/linux
 
 .PHONY: clean
 clean:
