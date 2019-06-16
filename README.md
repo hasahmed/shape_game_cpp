@@ -3,12 +3,14 @@ A simple 2D Game Engine for Drawing Shapes In C++
 
 <a name="motivation"></a>
 # Motivation
-Want to quickly draw some shapes without learning an entire game engine? This aims to be that. Minimal shape drawing in C++.
+Want to quickly draw some shapes without learning a heavy-weight game engine like Unreal or Unity?
+This aims to be that. Minimal shape drawing in C++.
 
 
 ## Table of Contents
 * [Motivation](#motivation)
 * [Quick Start](#quickstart)
+* [Downloads](#downloads)
 * [Supported Platforms](#supported-platforms)
 * [Set Up](#set-up)
 * [Docs](#docs)
@@ -50,6 +52,14 @@ int main() {
 	game.scene->addChild(new TriangleIsosceles(100, 100, pos, Color::BLACK));
 }
 ```
+
+
+<a name="downloads"><a/>
+
+### Downloads
+
+
+
 ## Docs
 <a name="docs"> <a/>
 
@@ -84,6 +94,10 @@ int main() {
 }
 ```
 A list of every overrideable callback can be found [here](#callbacks)
+
+
+
+
 
 ### Classes
 <a name="classes"></a>
@@ -835,17 +849,6 @@ The following are members of the enum class Kb::Key:
 * RIGHT_ALT
 * RIGHT_SUPER
 * MENU
-
-
-<!-- <a name="mouse"></a> -->
-
-<!-- ### Mouse
-Needs Docs
-
-<a name="mouse-btn"></a>
-
-#### Mouse::Btn
-Needs Docs -->
 
 
 

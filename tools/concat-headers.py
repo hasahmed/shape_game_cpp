@@ -1,33 +1,19 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 
-import os
-import glob
-import subprocess
-from os import listdir
-from os.path import isdir, join
+import util
+
+# import os
+# import glob
+# import subprocess
+# from os import listdir
+# from os.path import isdir, join
+
+util.cd_root()
 
 DIST_PATH = 'dist'
 INCLUDE = 'include'
 OUT_HEADER = 'shapegame.hpp'
 
-
-def has_include():
-    dirs = listdir('.')
-    for dir in dirs:
-        if isdir(dir):
-            if dir == INCLUDE:
-                return True
-    return False
-
-if not has_include():
-    os.chdir('..')
-if not has_include():
-    print('Expected include/ diretory in current or parent directory')
-    exit()
-try:
-    os.mkdir(DIST_PATH)
-except:
-    pass
 
 headers = glob.glob(join(INCLUDE, "*.hpp"))
 includes = set()

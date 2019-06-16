@@ -16,5 +16,9 @@ cmake_install.cmake
 .vscode/*
 obj/*
 bin/*
+
 !obj/.gitkeep
 !bin/.gitkeep
+
+# headers in dist are just a copy of outside headers
+dist/*.hpp
