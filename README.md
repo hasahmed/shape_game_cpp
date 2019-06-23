@@ -858,6 +858,44 @@ The following are members of the enum class Kb::Key:
 * MENU
 
 
+<a name="engine-dev"></a>
+## Engine Development
+This will walk you through setting up your environment for engine development on
+windows, mac, linux. If you already have your environment set up for general C++
+development, then this shouldn't bee too bad.
+
+### Windows Setup
+<a name="engine-dev-linux"></a>
+fill in later
+
+### Windows Setup
+<a name="engine-dev-mac"></a>
+fill in later
+
+<a name="engine-dev-win"></a>
+### Windows Setup
+*NOTE* This tutorial assumes 64 bit Windows. You will likely have to make tweaks if
+you are running on a 32 bit system.
+
+1. Install [MSYS2](https://www.msys2.org/)
+2. From MSYS2 run `pacman -S git gcc make mingw-w64-x86_64-glfw`
+3. From MSYS2 run `git clone https://github.com/hasahmed/shape_game_cpp.git`
+4. From MSYS2 run `cd shape_game_cpp`
+5. From MSYS2 run `make`
+6. From MSYS2 run `cd bin && ./main.test`
+
+If everything went correctly you should see a window open and a game run.
+The game is an example game from the examples/ folder. You should now be able
+to modify any engine code and rebuild with `make` from the project root directory.
+Note that the current `Makefile` does not rebuild all dependecies when one file is
+changed, so you may find yourself needing to run `make clean` and then running
+`make` again after that.
+
+If anyone feels like contributing tutorials / solution files for building with Visual Studio be my guest.
+
+
+
+
 
 <a name="faq"></a>
 
