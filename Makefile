@@ -20,6 +20,13 @@ ifeq ($(UNAME),Darwin)
 	CXXFLAGS += $(INC_DIR)
 endif
 
+ifeq ($(UNAME),MINGW64_NT-10.0-17134)
+	INC_DIR += -I/mingw64/include
+	GLAD = obj/glad.o
+	CXXFLAGS += $(INC_DIR) -fPIC
+	LDFLAGS += platform/win/glfw3.dll
+endif
+
 EXE = main
 MACOS_DIST_NAME = shapegame.dylib
 LINUX_DIST_NAME = shapegame.so
@@ -58,9 +65,8 @@ triangle.test: $(OBJS) triangle.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 
-#linux specific
 obj/glad.o:
-	$(CXX) $(CXXFLAGS) -c deps/glad.c -o obj/glad.o
+	$(CXX) $(CXXFLAGS) $(INC_DIR) -c deps/glad.c -o obj/glad.o
 
 
 shapegame.dylib: $(OBJS)
@@ -85,6 +91,10 @@ dist-mac: $(OBJS)
 dist-linux: $(OBJS) $(GLAD)
 	$(CXX) $(INC_DIR) -shared -undefined $(OBJS) -o $(LINUX_DIST_NAME)
 	 mv $(LINUX_DIST_NAME) ./dist/linux
+
+dist-win: $(OBJS) $(GLAD)
+	$(CXX) $(LDFLAGS) $(INC_DIR) -shared -undefined $(OBJS) $(GLAD) -o $(WIN_DIST_NAME)
+	mv $(WIN_DIST_NAME) ./dist/win
 
 .PHONY: clean
 clean:
