@@ -66,6 +66,33 @@ int main() {
 ### Downloads
 
 
+<a name="supported-platforms"><a/>
+## Supported Platforms
+- Windows
+- Mac
+- Linux
+
+
+<a name="set-up"><a/>
+## Setup
+The following section will walk you through the setup to use the engine on your desired platform. For one you will need [GLFW](glfw.org).
+
+<a name="set-up-mac"><a/>
+## Setup Mac
+To install GLFW you can either build from source as described on their site, or you can install homebrew and run from the terminal
+`brew install glfw`
+
+<a name="set-up-linux"><a/>
+## Setup Linux
+To install GLFW you can either build from source as described on their site, or you can install via apt on Ubuntu with
+`sudo apt install libglfw3-dev`
+
+<a name="set-up-win"><a/>
+## Setup Windows
+1. Install [MSYS2](https://www.msys2.org/)
+2. From MSYS2 run `pacman -S git gcc make mingw-w64-x86_64-glfw`
+
+
 
 ## Docs
 <a name="docs"> <a/>
@@ -856,6 +883,7 @@ The following are members of the enum class Kb::Key:
 * RIGHT_ALT
 * RIGHT_SUPER
 * MENU
+
 
 
 <a name="engine-dev"></a>
