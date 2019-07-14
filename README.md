@@ -4,8 +4,9 @@ Shapegame is a simple and minimal 2D game engine for drawing shapes in C++ with 
 ## Quickstart
 
 1. Download The Shapegame Library from here.
-2. Install GLFW on your system.
-3. Create a test file called `main.cpp` with the following contents:
+2. Unzip the files and put them in a directory where you want to work.
+3. Install GLFW on your system.
+4. Create a test file called `main.cpp` with the following contents:
 
 ```C++
 #include "shapegame.hpp"
@@ -13,10 +14,17 @@ using namespace shapegame;
 int main() {
 	Game game(400, 400, "My New Game");
 	game.scene->setBackgroundColor(Color::BLUE);
-	game.scene->addChild(new TriangleIsosceles(100, 100, pos, Color::BLACK));
+	game.scene->addChild(new TriangleIsosceles(100, 100, Position(100, 100), Color::BLACK));
+
+	game.run();
 }
 ```
-4. Compile it
+5. Compile it and link with glfw and shapegame. Here is what some example invocations might look like:
+- MacOS: `g++ -std=c++17 -o main main.cpp -I shapegame/include shapegame/platform/mac/shapegame.a -lglfw -framework Cocoa -framework IOKit -framework CoreVideo -framework OpenGL`
+- Windows (after installing and setting up MinGW): `g++ -std=c++17 -o main main.cpp -I shapegame/include shapegame/platform/win/shapegame.lib -lglfw`
+- Linux: `g++ -std=c++17 -o main main.cpp -I shapegame/include shapegame/platform/linux/shapegame.a -lglfw`
+
+6. Run it from the command line with `./main` (`./main.exe` on windows)
 
 <a name="motivation"></a>
 # Motivation
