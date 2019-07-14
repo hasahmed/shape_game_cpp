@@ -92,8 +92,8 @@ dist-linux: $(OBJS) $(GLAD)
 	 mv $(LINUX_DIST_NAME) ./dist/linux
 
 dist-win: $(OBJS) $(GLAD)
-	$(CXX) $(LDFLAGS) $(INC_DIR) -shared -undefined $(OBJS) $(GLAD) -o $(WIN_DIST_NAME)
-	mv $(WIN_DIST_NAME) ./dist/win
+	ar rcs $(MACOS_DIST_NAME) $(OBJS) $(GLAD)
+	mv $(WIN_DIST_NAME) ./dist/platform/win
 
 .PHONY: clean
 clean:
