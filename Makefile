@@ -90,8 +90,8 @@ dist-mac: $(OBJS)
 	mv $(MACOS_DIST_NAME) ./$(DIST_DIR)/platform/mac
 
 dist-linux: $(OBJS) $(GLAD)
-	$(CXX) $(INC_DIR) -shared -undefined $(OBJS) -o $(LINUX_DIST_NAME)
-	 mv $(LINUX_DIST_NAME) ./$(DIST_DIR)/linux
+	ar rcs $(LINUX_DIST_NAME) $(OBJS) $(GLAD)
+	mv $(LINUX_DIST_NAME) ./$(DIST_DIR)/platform/linux
 
 dist-win: $(OBJS) $(GLAD)
 	ar rcs $(WIN_DIST_NAME) $(OBJS) $(GLAD)
