@@ -25,7 +25,10 @@ int main() {
 ```
 g++ -std=c++17 -o main.exe main.cpp `pkg-config --cflags glfw3` -I./shapegame/deps -I./shapegame/include shapegame/platform/win/shapegame.lib `pkg-config --libs glfw3`
 ```
-- Linux: `g++ -std=c++17 -o main main.cpp `pkg-config --cflags glfw3` -I./shapegame/deps -I./shapegame/include shapegame/platform/linux/shapegame.a `pkg-config --libs glfw3``
+- Linux:
+```
+g++ -std=c++17 -o main main.cpp `pkg-config --cflags glfw3` -I./shapegame/deps -I./shapegame/include shapegame/platform/linux/shapegame.a `pkg-config --libs glfw3`
+```
 
 6. Run it from the command line with `./main` (`./main.exe` on windows)
 
