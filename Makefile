@@ -28,9 +28,9 @@ ifeq ($(UNAME),MINGW64_NT-10.0-17134)
 endif
 
 EXE = main
-MACOS_DIST_NAME = shapegame.dylib
-LINUX_DIST_NAME = shapegame.so
-WIN_DIST_NAME = shapegame.dll
+MACOS_DIST_NAME = shapegame.a
+LINUX_DIST_NAME = shapegame.a
+WIN_DIST_NAME = shapegame.lib
 
 all: main.test
 
@@ -84,9 +84,8 @@ $(OBJS): obj/%.o : src/%.cpp
 	$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@
 
 dist-mac: $(OBJS)
-	$(CXX) $(INC_DIR) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
-	 -undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
-	 mv $(MACOS_DIST_NAME) ./dist/mac
+	ar rcs $(MACOS_DIST_NAME) $(OBJS)
+	mv $(MACOS_DIST_NAME) ./dist/platform/mac
 
 dist-linux: $(OBJS) $(GLAD)
 	$(CXX) $(INC_DIR) -shared -undefined $(OBJS) -o $(LINUX_DIST_NAME)
