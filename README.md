@@ -21,7 +21,7 @@ int main() {
 ```
 5. Compile it and link with glfw and shapegame. Here is what some example invocations might look like:
 - MacOS: `g++ -std=c++17 -o main main.cpp -I shapegame/include shapegame/platform/mac/shapegame.a -lglfw -framework Cocoa -framework IOKit -framework CoreVideo -framework OpenGL`
-- Windows (after installing and setting up MinGW): `g++ -std=c++17 -o main main.cpp -I shapegame/include shapegame/platform/win/shapegame.lib -lglfw`
+- Windows (after installing and setting up MSYS2): `g++ -std=c++17 -o main main.cpp -I shapegame/include shapegame/platform/win/shapegame.lib -lglfw`
 - Linux: `g++ -std=c++17 -o main main.cpp -I shapegame/include shapegame/platform/linux/shapegame.a -lglfw`
 
 6. Run it from the command line with `./main` (`./main.exe` on windows)
