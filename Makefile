@@ -32,6 +32,8 @@ MACOS_DIST_NAME = shapegame.a
 LINUX_DIST_NAME = shapegame.a
 WIN_DIST_NAME = shapegame.lib
 
+DIST_DIR=dist-libs
+
 all: main.test
 
 run: all
@@ -85,15 +87,15 @@ $(OBJS): obj/%.o : src/%.cpp
 
 dist-mac: $(OBJS)
 	ar rcs $(MACOS_DIST_NAME) $(OBJS)
-	mv $(MACOS_DIST_NAME) ./dist/platform/mac
+	mv $(MACOS_DIST_NAME) ./$(DIST_DIR)/platform/mac
 
 dist-linux: $(OBJS) $(GLAD)
 	$(CXX) $(INC_DIR) -shared -undefined $(OBJS) -o $(LINUX_DIST_NAME)
-	 mv $(LINUX_DIST_NAME) ./dist/linux
+	 mv $(LINUX_DIST_NAME) ./$(DIST_DIR)/linux
 
 dist-win: $(OBJS) $(GLAD)
 	ar rcs $(WIN_DIST_NAME) $(OBJS) $(GLAD)
-	mv $(WIN_DIST_NAME) ./dist/platform/win
+	mv $(WIN_DIST_NAME) ./$(DIST_DIR)/platform/win
 
 .PHONY: clean
 clean:
