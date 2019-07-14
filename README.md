@@ -1,10 +1,28 @@
 # Shapegame
-A simple 2D Game Engine for Drawing Shapes In C++
+Shapegame is a simple and minimal 2D game engine for drawing shapes in C++ with a focus on ease of use and clarity.
+
+## Quickstart
+
+1. Download The Shapegame Library from here.
+2. Install GLFW on your system.
+3. Create a test file called `main.cpp` with the following contents:
+
+```C++
+#include "shapegame.hpp"
+using namespace shapegame;
+int main() {
+	Game game(400, 400, "My New Game");
+	game.scene->setBackgroundColor(Color::BLUE);
+	game.scene->addChild(new TriangleIsosceles(100, 100, pos, Color::BLACK));
+}
+```
+4. Compile it
 
 <a name="motivation"></a>
 # Motivation
 Want to quickly draw some shapes without learning a heavy-weight game engine like Unreal or Unity?
 This aims to be that. Minimal shape drawing in C++.
+
 
 
 ## Table of Contents
@@ -48,17 +66,6 @@ This aims to be that. Minimal shape drawing in C++.
   * [Why Did You Make This?](#why)
 
 
-## Quickstart
-
-```C++
-#include "shapegame.hpp"
-using namespace shapegame;
-int main() {
-	Game game(400, 400, "My New Game");
-	game.scene->setBackgroundColor(Color::BLUE);
-	game.scene->addChild(new TriangleIsosceles(100, 100, pos, Color::BLACK));
-}
-```
 
 
 <a name="downloads"><a/>
