@@ -92,7 +92,7 @@ dist-linux: $(OBJS) $(GLAD)
 	 mv $(LINUX_DIST_NAME) ./dist/linux
 
 dist-win: $(OBJS) $(GLAD)
-	ar rcs $(MACOS_DIST_NAME) $(OBJS) $(GLAD)
+	ar rcs $(WIN_DIST_NAME) $(OBJS) $(GLAD)
 	mv $(WIN_DIST_NAME) ./dist/platform/win
 
 .PHONY: clean
