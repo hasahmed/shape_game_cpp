@@ -2,8 +2,9 @@ import os
 from os import listdir
 from os.path import isdir
 
-DIST_PATH = 'dist'
+DIST_PATH = 'dist-libs'
 INCLUDE = 'include'
+DEPS = 'deps'
 
 
 def has_include():

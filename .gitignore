@@ -23,3 +23,4 @@ bin/*
 # headers in dist are just a copy of outside headers
 dist/*.hpp
 __pycache__
+zip-dist/
