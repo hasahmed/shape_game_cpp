@@ -14,5 +14,5 @@ Position Mouse::pos() {
 	double x = 0;
 	double y = 0;
 	glfwGetCursorPos(w, &x, &y);
-	return Position();
+	return Position(x, y);
 }

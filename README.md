@@ -35,7 +35,7 @@ g++ -std=c++17 -o main main.cpp `pkg-config --cflags glfw3` -I./shapegame/deps -
 
 6. Run it from the command line with `./main` (`./main.exe` in MSYS2 on windows)
 
-If you run into issues feel free to open an issue on github or send me an email.
+If you run into issues feel free to open an issue on github or send me an [email](https://hasanyahmed.com/contact/)
 
 <a name="motivation"></a>
 # Motivation
@@ -47,6 +47,7 @@ This aims to be that. Minimal shape drawing in C++.
 ## Table of Contents
 * [Quick Start](#quickstart)
 * [Motivation](#motivation)
+* [A Simple Game](#simple-game)
 * [Downloads](#downloads)
 * [Supported Platforms](#supported-platforms)
 * [GLFW Package Manager Installation](#ez-install-glfw)
@@ -85,6 +86,11 @@ This aims to be that. Minimal shape drawing in C++.
   * [Why Did You Make This?](#why)
 
 
+<a name="simple-game"><a/>
+
+### A Simple Game
+
+You can download the example project (doesn't exist yet)
 
 
 <a name="downloads"><a/>
