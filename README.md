@@ -5,7 +5,7 @@ Shapegame is a simple and minimal 2D game engine for drawing shapes in C++ with 
 
 ## Quickstart
 
-1. Download The Shapegame Library from (here)[https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0].
+1. Download The Shapegame Library from [here](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
 2. Unzip the files and put them in a directory where you want to work.
 3. Install GLFW on your system.
 4. Create a test file called `main.cpp` with the following contents:
