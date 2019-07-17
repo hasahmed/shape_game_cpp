@@ -5,9 +5,9 @@ Shapegame is a simple and minimal 2D game engine for drawing shapes in C++ with 
 
 ## Quickstart
 
-1. Download The Shapegame Library from [here](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
+1. Download The Shapegame Library from zip [here](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
 2. Unzip the files and put them in a directory where you want to work.
-3. Install GLFW on your system.
+3. Install [GLFW](https://www.glfw.org/) on your system.
 4. Create a test file called `main.cpp` with the following contents:
 
 ```C++
@@ -48,10 +48,10 @@ This aims to be that. Minimal shape drawing in C++.
 * [Motivation](#motivation)
 * [Downloads](#downloads)
 * [Supported Platforms](#supported-platforms)
-* [Set Up](#set-up)
-  * [Linux](#set-up-linux)
-  * [Mac](#set-up-mac)
-  * [Windows](#set-up-win)
+* [GLFW Package Manager Installation](#ez-install-glfw)
+  * [Linux](#ez-install-glfw-linux)
+  * [Mac](#ez-install-glfw-mac)
+  * [Windows](#ez-install-glfw-win)
 * [Docs](#docs)
   * [Overview](#overview)
   * [Classes](#classes)
@@ -89,31 +89,36 @@ This aims to be that. Minimal shape drawing in C++.
 <a name="downloads"><a/>
 
 ### Downloads
+[ShapeGame v1.0.0](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
 
 
 <a name="supported-platforms"><a/>
+
 ## Supported Platforms
 - Windows
 - Mac
 - Linux
 
 
-<a name="set-up"><a/>
-## Setup
-The following section will walk you through the setup to use the engine on your desired platform. For one you will need [GLFW](glfw.org).
+<a name="ez-install-glfw"><a/>
 
-<a name="set-up-mac"><a/>
-## Setup Mac
-To install GLFW you can either build from source as described on their site, or you can install homebrew and run from the terminal
+### GLFW Package Manager Installation
+
+The following section will walk you through using your package manager to install [GLFW](glfw.org) on your desired platform.
+
+<a name="ez-install-glfw-mac"><a/>
+## Mac
+Via homebrew and run from the terminal
 `brew install glfw`
 
-<a name="set-up-linux"><a/>
-## Setup Linux
-To install GLFW you can either build from source as described on their site, or you can install via apt on Ubuntu with
+<a name="ez-install-glfw-linux"><a/>
+## Linux
+
+Via apt on Ubuntu
 `sudo apt install libglfw3-dev`
 
-<a name="set-up-win"><a/>
-## Setup Windows
+<a name="ez-install-glfw-win"><a/>
+## Windows
 1. Install [MSYS2](https://www.msys2.org/)
 2. From MSYS2 run `pacman -S git gcc make mingw-w64-x86_64-glfw`
 
