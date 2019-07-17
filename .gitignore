@@ -24,4 +24,4 @@ bin/*
 dist/*.hpp
 __pycache__
 zip-dist/
-!zip-dist/.gitignore
+!zip-dist/.gitkeep
