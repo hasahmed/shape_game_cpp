@@ -105,7 +105,7 @@ This aims to be that. Minimal shape drawing in C++.
 
 ### GLFW Package Manager Installation
 
-The following section will walk you through using your package manager to install [GLFW](www.glfw.org) on your desired platform.
+The following section will walk you through using your package manager to install [GLFW](https://www.glfw.org) on your desired platform.
 
 <a name="ez-install-glfw-mac"><a/>
 ## Mac
