@@ -1,6 +1,8 @@
 # Shapegame
 Shapegame is a simple and minimal 2D game engine for drawing shapes in C++ with a focus on ease of use and clarity.
 
+<a name="quickstart"></a>
+
 ## Quickstart
 
 1. Download The Shapegame Library from here.
@@ -30,7 +32,7 @@ g++ -std=c++17 -o main.exe main.cpp `pkg-config --cflags glfw3` -I./shapegame/de
 g++ -std=c++17 -o main main.cpp `pkg-config --cflags glfw3` -I./shapegame/deps -I./shapegame/include shapegame/platform/linux/shapegame.a `pkg-config --libs glfw3`
 ```
 
-6. Run it from the command line with `./main` (`./main.exe` on windows)
+6. Run it from the command line with `./main` (`./main.exe` in MSYS2 on windows)
 
 <a name="motivation"></a>
 # Motivation
@@ -40,8 +42,8 @@ This aims to be that. Minimal shape drawing in C++.
 
 
 ## Table of Contents
-* [Motivation](#motivation)
 * [Quick Start](#quickstart)
+* [Motivation](#motivation)
 * [Downloads](#downloads)
 * [Supported Platforms](#supported-platforms)
 * [Set Up](#set-up)
