@@ -23,7 +23,7 @@ namespace shapegame {
 				N7 = GLFW_MOUSE_BUTTON_7,
 				N8 = GLFW_MOUSE_BUTTON_8
 			};
-			static Position pos();
+			static Position getPos();
 		};
 		class Kb {
 			public:
