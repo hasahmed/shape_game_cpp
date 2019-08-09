@@ -42,7 +42,8 @@ shapegame::Scene::Scene() :
 void Scene::initRenderables(ObjRenderWrapper &owr, Shape &shape) {
 		GLRenderObject renderObj;
 		Game::inst().initRenderObj(renderObj, shape, this->_shaderProg);
-		owr.rPacks.emplace_back(shape, renderObj);
+		auto rPack = std::make_unique<RenderPackage>(shape, renderObj);
+		owr.rPacks.push_back(std::move(rPack));
 }
 
 Object* Scene::addChild(Object *obj) {
@@ -86,7 +87,7 @@ void Scene::addSubChild(ObjRenderWrapper &owr, Object* subObj) {
 void Scene::drawChildren() {
 	for (auto &orw : this->sceneChildren) {
 		for (auto &rPack : orw.rPacks) {
-			Game::inst().draw(rPack);
+			Game::inst().draw(*rPack);
 		}
 	}
 }
@@ -112,7 +113,7 @@ void Scene::killQueued(){
 		if (it->obj->canKill) {
 			it->obj->onKill();
 			for (auto &rPack : it->rPacks) {
-				Game::inst().terminateRenderObj(rPack);
+				Game::inst().terminateRenderObj(*rPack);
 			}
 			it = this->sceneChildren.erase(it);
 		} else {

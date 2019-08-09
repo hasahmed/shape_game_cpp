@@ -23,14 +23,14 @@ namespace shapegame {
 	*/
 	struct ObjRenderWrapper {
 		std::unique_ptr<Object> obj;
-		std::vector<RenderPackage> rPacks;
+		std::vector<std::unique_ptr<RenderPackage>> rPacks;
 		ObjRenderWrapper(std::unique_ptr<Object> pObj): obj(std::move(pObj)) {}
-		ObjRenderWrapper(std::unique_ptr<Object> pObj, RenderPackage* rPack): ObjRenderWrapper(std::move(pObj)) {
-			this->rPacks.emplace_back(*rPack);
-		}
-		void addRPack(RenderPackage *rPack) {
-			this->rPacks.emplace_back(std::move(*rPack));
-		}
+		// ObjRenderWrapper(std::unique_ptr<Object> pObj, RenderPackage* rPack): ObjRenderWrapper(std::move(pObj)) {
+		// 	this->rPacks.emplace_back(*rPack);
+		// }
+		// void addRPack(RenderPackage *rPack) {
+		// 	this->rPacks.emplace_back(std::move(*rPack));
+		// }
 	};
 
 	class Scene {
