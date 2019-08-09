@@ -42,7 +42,7 @@ namespace shapegame {
 				GLuint _shaderProg;
 				void setShaderProg(GLuint shaderprog);
 				std::vector<Object*> killList;
-				std::vector<ObjRenderWrapper> sceneChildren;
+				std::vector<std::unique_ptr<ObjRenderWrapper>> sceneChildren;
 				static Scene *_inst;
 				void initRenderables(ObjRenderWrapper &owr, Shape &shape);
 				void addSubChild(ObjRenderWrapper &owr, Object* subObj);

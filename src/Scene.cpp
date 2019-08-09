@@ -51,22 +51,23 @@ Object* Scene::addChild(Object *obj) {
 }
 
 Object* Scene::addChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
-	ObjRenderWrapper &orw = this->sceneChildren.emplace_back(std::move(obj));
-	Object *objRaw = orw.obj.get();
+	auto orw = std::make_unique<ObjRenderWrapper>(std::move(obj));
+	this->sceneChildren.push_back(std::move(orw));
+	Object *objRaw = orw->obj.get();
 	objRaw->onAdd();
 
 	if (auto *multi = dynamic_cast<MultiShape*>(objRaw)) {
 		for (auto *subObj : multi->getShapes()) {
-			addSubChild(orw, subObj);
+			addSubChild(*orw, subObj);
 		}
 	} 
 	else if (auto *shape = dynamic_cast<Shape*>(objRaw)) {
-		initRenderables(orw, *shape);
+		initRenderables(*orw, *shape);
 	}
 	else if (auto *object = dynamic_cast<Object*>(objRaw)) {
 		// do nothing
 	}
-	return orw.obj.get();
+	return orw->obj.get();
 }
 
 void Scene::addSubChild(ObjRenderWrapper &owr, Object* subObj) {
@@ -86,7 +87,7 @@ void Scene::addSubChild(ObjRenderWrapper &owr, Object* subObj) {
 
 void Scene::drawChildren() {
 	for (auto &orw : this->sceneChildren) {
-		for (auto &rPack : orw.rPacks) {
+		for (auto &rPack : orw->rPacks) {
 			Game::inst().draw(*rPack);
 		}
 	}
@@ -96,7 +97,7 @@ void Scene::updateChildren() {
 	std::vector<ObjRenderWrapper*> childrenRefs;
 	childrenRefs.reserve(this->sceneChildren.size());
 	for (auto &orw : this->sceneChildren) {
-		childrenRefs.push_back(&orw);
+		childrenRefs.push_back(orw.get());
 	}
 	for (auto orw : childrenRefs) {
 		orw->obj->update();
@@ -109,10 +110,11 @@ void Scene::updateChildren() {
 }
 
 void Scene::killQueued(){
-	for (auto it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
-		if (it->obj->canKill) {
-			it->obj->onKill();
-			for (auto &rPack : it->rPacks) {
+	for (std::vector<std::unique_ptr<ObjRenderWrapper>>::iterator it = this->sceneChildren.begin(); it != this->sceneChildren.end();) {
+		ObjRenderWrapper &orw = **it;
+		if (orw.obj->canKill) {
+			orw.obj->onKill();
+			for (auto &rPack : orw.rPacks) {
 				Game::inst().terminateRenderObj(*rPack);
 			}
 			it = this->sceneChildren.erase(it);
@@ -128,11 +130,11 @@ void shapegame::Scene::setShaderProg(GLuint shaderProg) {
 
 void Scene::keyDispatch(int key, int action) {
     for (auto &orw : this->sceneChildren) {
-       orw.obj->onKeyPress((Input::Kb::Key)key, (Input::Action)action);
+       orw->obj->onKeyPress((Input::Kb::Key)key, (Input::Action)action);
     }
 }
 void Scene::mouseBtnDispatch(int btn, int action) {
     for (auto &orw : this->sceneChildren) {
-        orw.obj->onMouseClick((Input::Mouse::Btn)btn,  (Input::Action)action);
+        orw->obj->onMouseClick((Input::Mouse::Btn)btn,  (Input::Action)action);
     }
 }
