@@ -52,22 +52,23 @@ Object* Scene::addChild(Object *obj) {
 
 Object* Scene::addChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
 	auto orw = std::make_unique<ObjRenderWrapper>(std::move(obj));
-	this->sceneChildren.push_back(std::move(orw));
+	ObjRenderWrapper *orwRaw = orw.get();
 	Object *objRaw = orw->obj.get();
+	this->sceneChildren.push_back(std::move(orw));
 	objRaw->onAdd();
 
 	if (auto *multi = dynamic_cast<MultiShape*>(objRaw)) {
 		for (auto *subObj : multi->getShapes()) {
-			addSubChild(*orw, subObj);
+			addSubChild(*orwRaw, subObj);
 		}
 	} 
 	else if (auto *shape = dynamic_cast<Shape*>(objRaw)) {
-		initRenderables(*orw, *shape);
+		initRenderables(*orwRaw, *shape);
 	}
 	else if (auto *object = dynamic_cast<Object*>(objRaw)) {
 		// do nothing
 	}
-	return orw->obj.get();
+	return objRaw;
 }
 
 void Scene::addSubChild(ObjRenderWrapper &owr, Object* subObj) {
