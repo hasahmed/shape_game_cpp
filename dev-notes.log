@@ -1,0 +1,17 @@
+8/25/19
+Currently not sure where we are in terms of progress. Check trello.
+
+Current Goals:
+    - Make the game in ../shapegame-examples/main.cpp run without running into
+      errors.
+      Current error is a heap-user-after-free main.cpp.
+      Now that I see that actually it looks like it might
+      be an error in the game code...
+
+        - Upon further inspection it seems as though the code that causes issue
+          lies in calling object->kill() in the main.cpp file of example.
+          - This is undoubtly a logical error in the example file.
+            The object that kill is attempting to be called on was likely removed
+            from the list, and thus freed. Double check logic.
+          - It seems then that calling
+

@@ -22,8 +22,8 @@ namespace shapegame {
 					virtual ~Shape();
 					Shape(float height, float width, ShapeType type, Color color);
 					Shape(float height, float width, ShapeType type, Position pos, Color color);
-					float getHeight() const;
-					float getWidth() const;
+					// float getHeight() const;
+					// float getWidth() const;
 					virtual void onCollisionStart(Shape &other);
 					virtual void onCollisionStop(Shape &other);
 					virtual void onColliding(Shape &other);

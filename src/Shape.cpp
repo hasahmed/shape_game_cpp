@@ -22,8 +22,8 @@ Shape::Shape(
 
 Shape::Shape(float height, float width, ShapeType type, Color color) :
     Shape(height, width, type, Position(0.0, 0.0), color) {}
-float Shape::getHeight() const {return this->_height;}
-float Shape::getWidth() const {return this->_width;}
+// float Shape::getHeight() const {return this->_height;}
+// float Shape::getWidth() const {return this->_width;}
 
 
 bool Shape::isColliding(Shape &other) {

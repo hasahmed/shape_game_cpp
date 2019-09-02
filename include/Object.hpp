@@ -11,6 +11,8 @@ namespace shapegame {
 			friend class Position;
 			friend class MultiShape;
 			private:
+				float height = 0.0f;
+				float width = 0.0f;
 				bool canKill = false;
 				bool _dirty = false;
 				bool _inScene = false;
@@ -33,6 +35,8 @@ namespace shapegame {
 				virtual void onMouseClick(Mouse::Btn btn, Input::Action action);
 				virtual void setPosition(float x, float y); //shouldn't be virtual
 				virtual void setPosition(Point pos); // shouldn't be virtual?
+				virtual float getHeight();
+				virtual float getWidth();
 				void translate(float x, float y);
 				bool isInScene(); //what? why?
 				void setDirty(bool dirty) override; //private?
