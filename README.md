@@ -90,7 +90,8 @@ This aims to be that; minimal shape drawing in C++.
 
 ### A Simple Game
 
-You can download the example project (doesn't exist yet)
+You can check out the simple SHMUP game here https://github.com/hasahmed/shapegame-example
+The compilation instructions are the same as you'll find in the [Quickstart](#quickstart)
 
 
 <a name="downloads"><a/>
@@ -179,7 +180,8 @@ for people who want to modify engine code. You'll have to read the code for that
 ### Object
 <a name="object"></a>
 
-This is the base class for every object in the game. 
+This is the base class for every object in the game. It contains common functionality, and the virtual methods
+to be overriden by YOUR shapes
 
 ### Object Constructors
 
