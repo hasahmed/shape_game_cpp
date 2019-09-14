@@ -40,7 +40,7 @@ If you run into issues feel free to open an issue on github or send me an [email
 <a name="motivation"></a>
 # Motivation
 Want to quickly draw some shapes without learning a heavy-weight game engine like Unreal or Unity?
-This aims to be that. Minimal shape drawing in C++.
+This aims to be that; minimal shape drawing in C++.
 
 
 

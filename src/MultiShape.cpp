@@ -2,6 +2,9 @@
 using namespace shapegame;
 
 
+MultiShape::MultiShape(): Entity(Position()) {
+	this->name = "MultiShape";
+}
 MultiShape::MultiShape(Position pos): Entity(pos) {
 	this->name = "MultiShape";
 }
@@ -30,7 +33,8 @@ void MultiShape::setPosition(float x, float y) {
 }
 
 std::vector<Object*>& MultiShape::getShapes() {
-	this->shapes.clear();
+	this->shapes.clear(); // clear in case any shapes have been
+	// added or removed
 	for (auto &shape : this->shapeStorage) {
 		this->shapes.push_back(shape.get());
 	}
