@@ -267,14 +267,9 @@ int main() {
 	std::vector<float> leftRoadLanesX =  rawLeftRoadLines->getLanesX();
 	std::vector<float> rightRoadLanesX = rawRightRoadLines->getLanesX();
 	g.scene->addChild(std::make_unique<MidLine>(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
-	// g.scene->addChild(std::make_unique<Taxi>(Position(25, 500)));
 	for (auto lane : leftRoadLanesX) {
 		g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(lane + 25, 1000), 1600));
-		// g.scene->addChild(std::make_unique<Spawner<CarTri>>(Position(lane + 25, 1000), 500));
 	}
 
-	// for (int i = 0; i < 10; i++) {
-	// 	g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(i + 25, 1000), 500));
-	// }
 	g.run();
 }
