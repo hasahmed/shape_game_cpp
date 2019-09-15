@@ -1,14 +1,21 @@
 # Shapegame
 Shapegame is a simple and minimal 2D game engine for drawing shapes in C++ with a focus on ease of use and clarity.
 
+<a name="motivation"></a>
+
+# Motivation
+Want to quickly draw some shapes without learning a heavy-weight game engine like Unreal or Unity?
+This aims to be that; minimal shape drawing in C++.
+
+
 <a name="quickstart"></a>
 
 ## Quickstart
 
 1. Download The Shapegame Library from zip [here](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
 2. Unzip the files and put them in a directory where you want to work.
-3. Install [GLFW](https://www.glfw.org/) on your system. You can do it as described on their site or you can use
-a [package manager](#ez-install-glfw).
+3. Install dependency [GLFW](https://www.glfw.org/) on your system. You can do it as described on their site or
+follow instructions for doing it via a [package manager](#ez-install-glfw).
 4. Create a test file called `main.cpp` with the following contents:
 
 ```C++
@@ -37,10 +44,6 @@ g++ -std=c++17 -o main main.cpp `pkg-config --cflags glfw3` -I./shapegame/deps -
 
 If you run into issues feel free to open an issue on github or send me an [email](https://hasanyahmed.com/contact/)
 
-<a name="motivation"></a>
-# Motivation
-Want to quickly draw some shapes without learning a heavy-weight game engine like Unreal or Unity?
-This aims to be that; minimal shape drawing in C++.
 
 
 
@@ -50,7 +53,7 @@ This aims to be that; minimal shape drawing in C++.
 * [Examples](#examples)
 * [Downloads](#downloads)
 * [Supported Platforms](#supported-platforms)
-* [GLFW Package Manager Installation](#ez-install-glfw)
+* [Install Dependency GLFW With Package Manager](#ez-install-glfw)
   * [Linux](#ez-install-glfw-linux)
   * [Mac](#ez-install-glfw-mac)
   * [Windows](#ez-install-glfw-win)
@@ -114,7 +117,7 @@ better than intel integrated graphics 4000 for a pleasent experience.
 
 <a name="ez-install-glfw"><a/>
 
-### GLFW Package Manager Installation
+### Install Dependency GLFW With Package Manager
 
 The following section will walk you through using your package manager to install [GLFW](https://www.glfw.org) on your desired platform.
 
