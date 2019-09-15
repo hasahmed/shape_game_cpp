@@ -22,7 +22,7 @@ int main() {
 	game.run();
 }
 ```
-5. Compile it and link with glfw and shapegame. Here is what some example invocations might look like:
+5. Compile it and link with glfw and Shapegame. Here is what some example invocations might look like:
 - MacOS: `g++ -std=c++17 -o main main.cpp -I./shapegame/include shapegame/platform/mac/shapegame.a -lglfw -framework Cocoa -framework IOKit -framework CoreVideo -framework OpenGL`
 - Windows (after installing and setting up [MSYS2](https://www.msys2.org/)):
 ```
@@ -47,7 +47,7 @@ This aims to be that; minimal shape drawing in C++.
 ## Table of Contents
 * [Quick Start](#quickstart)
 * [Motivation](#motivation)
-* [A Simple Game](#simple-game)
+* [Examples](#examples)
 * [Downloads](#downloads)
 * [Supported Platforms](#supported-platforms)
 * [GLFW Package Manager Installation](#ez-install-glfw)
@@ -86,10 +86,11 @@ This aims to be that; minimal shape drawing in C++.
   * [Why Did You Make This?](#why)
 
 
-<a name="simple-game"><a/>
+<a name="examples"><a/>
 
-### A Simple Game
+### Examples
 
+## SHMUP Game
 You can check out the simple SHMUP game here https://github.com/hasahmed/shapegame-example
 The compilation instructions are the same as you'll find in the [Quickstart](#quickstart)
 
@@ -104,8 +105,11 @@ The compilation instructions are the same as you'll find in the [Quickstart](#qu
 
 ## Supported Platforms
 - Windows
-- Mac
+- Mac*
 - Linux
+
+*Apple nerfed to macOS opengl drivers presumably to push the adoption of metal so your graphics hardware may have to be
+better than intel integrated graphics 4000 for a pleasent experience.
 
 
 <a name="ez-install-glfw"><a/>
@@ -200,6 +204,14 @@ to be overriden by YOUR shapes
 * void [kill](#object-kill)()
 * [Object](#object)* [getParent](#object-get-parent)()
 * void [translate](#object-translate)(float x, float y);
+* virtual void [setPosition](#object-set-position)(float x, float y);
+* virtual void [setPosition](#object-set-position-point)([Point](#point) pos);
+* virtual void [update](#object-update)()
+* virtual void [onAdd](#object-on-add)()
+* virtual void [onRemove](#object-on-remove)()
+* virtual void [onKill](#object-on-kill)()
+* virtual void [onKeyPress](#object-on-key-press)([Kb::Key](#keyboard-key) key, [Input::Action](#action) action);
+* virtual void [onMouseClick](#object-on-mouse-click)([Mouse::Btn](#mouse-btn) btn, [Input::Action](#action) action);
 
 <a name="callbacks"></a>
 
@@ -210,8 +222,6 @@ to be overriden by YOUR shapes
 * virtual void [onKill](#object-on-kill)()
 * virtual void [onKeyPress](#object-on-key-press)([Kb::Key](#keyboard-key) key, [Input::Action](#action) action);
 * virtual void [onMouseClick](#object-on-mouse-click)([Mouse::Btn](#mouse-btn) btn, [Input::Action](#action) action);
-* virtual void [setPosition](#object-set-position)(float x, float y);
-* virtual void [setPosition](#object-set-position-point)([Point](#point) pos);
 
 
 ### Object Constructor Details
