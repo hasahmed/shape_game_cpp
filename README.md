@@ -3,7 +3,7 @@ Shapegame is a simple and minimal 2D game engine for drawing shapes in C++ with 
 
 <a name="motivation"></a>
 
-# Motivation
+## Motivation
 Want to quickly draw some shapes without learning a heavy-weight game engine like Unreal or Unity?
 This aims to be that; minimal shape drawing in C++.
 
