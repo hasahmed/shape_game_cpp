@@ -1,3 +1,5 @@
+# Test Test
+
 # Shapegame
 Shapegame is a simple and minimal 2D game engine for drawing shapes in C++ with a focus on ease of use and clarity.
 
@@ -8,14 +10,16 @@ Want to quickly draw some shapes without learning a heavy-weight game engine lik
 This aims to be that; minimal shape drawing in C++.
 
 
+[test](#test-test)
+
 <a name="quickstart"></a>
 
 ## Quickstart
 
-1. Download The Shapegame Library from zip [here](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
+1. Download The Shapegame Library zip from [here](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
 2. Unzip the files and put them in a directory where you want to work.
 3. Install dependency [GLFW](https://www.glfw.org/) on your system. You can do it as described on their site or
-follow instructions for doing it via a [package manager](#ez-install-glfw).
+follow my instructions for doing it via a [package manager](#ez-install-glfw).
 4. Create a test file called `main.cpp` with the following contents:
 
 ```C++
@@ -29,7 +33,7 @@ int main() {
 	game.run();
 }
 ```
-5. Compile it and link with glfw and Shapegame. Here is what some example invocations might look like:
+5. Compile it and link with glfw and Shapegame. I was able to compile with the following commands:
 - MacOS: `g++ -std=c++17 -o main main.cpp -I./shapegame/include shapegame/platform/mac/shapegame.a -lglfw -framework Cocoa -framework IOKit -framework CoreVideo -framework OpenGL`
 - Windows (after installing and setting up [MSYS2](https://www.msys2.org/)):
 ```
@@ -52,13 +56,13 @@ If you run into issues feel free to open an issue on github or send me an [email
 * [Motivation](#motivation)
 * [Examples](#examples)
 * [Downloads](#downloads)
-* [Supported Platforms](#supported-platforms)
 * [Install Dependency GLFW With Package Manager](#ez-install-glfw)
   * [Linux](#ez-install-glfw-linux)
   * [Mac](#ez-install-glfw-mac)
   * [Windows](#ez-install-glfw-win)
 * [Docs](#docs)
   * [Overview](#overview)
+	* [Supported Platforms](#supported-platforms)
   * [Classes](#classes)
 	  * [Object](#object)
 	  * [Shape](#shape)
@@ -104,15 +108,6 @@ The compilation instructions are the same as you'll find in the [Quickstart](#qu
 [ShapeGame v1.0.0](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
 
 
-<a name="supported-platforms"><a/>
-
-## Supported Platforms
-- Windows
-- Mac*
-- Linux
-
-*Apple nerfed to macOS opengl drivers presumably to push the adoption of metal so your graphics hardware may have to be
-better than intel integrated graphics 4000 for a pleasent experience.
 
 
 <a name="ez-install-glfw"><a/>
@@ -153,18 +148,18 @@ When these callbacks are called depend on what callback they are, but the most s
 the [Object::update](#object) callback. If your class overrides this method, then it will be called every frame. An
 example of how you might use that is a [Triangle](#triangle) that moves down 10 pixles every frame.
 ```C++
-
+#include "shapegame.hpp"
+using namespace shapegame;
 class MovingTriangle : public TriangleIsosceles {
 	public:
 		MovingTriangle(): TriangleIsosceles() {
 			this->setPosition(100, 10);
 		}
 
-		update() override {
-			this->translate(0, -10); // called every frame
+		void update() override {
+			this->translate(0, 10); // called every frame
 		}
-
-}
+};
 
 int main() {
 	Game g;
@@ -172,17 +167,25 @@ int main() {
 	g.run();
 }
 ```
-A list of every overrideable callback can be found [here](#callbacks)
+A list of every overrideable callback and their documentation can be found [here](#callbacks)
 
+<a name="supported-platforms"><a/>
 
+## Supported Platforms
+- Windows
+- Mac*
+- Linux
 
+*Apple nerfed to macOS opengl drivers presumably to push the adoption of metal so your graphics hardware may have to be
+better than intel integrated graphics 4000 for a pleasent experience.
 
 
 ### Classes
 <a name="classes"></a>
 
 This is a list of every class in the engine that is note worthy for users of the engine. I.e. this isn't documentation
-for people who want to modify engine code. You'll have to read the code for that!
+for people who want to modify engine code. You'll have to read the code for that! If you find that the following
+documentation is lacking, please open a github issue about it, or better yet a pull request!
 
 ### Object
 <a name="object"></a>
