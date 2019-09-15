@@ -3,6 +3,8 @@
 *.swo
 main.dSYM/*
 Session.vim
+*~
+*.un
 main
 *.code-workspace
 .DS_Store
@@ -25,3 +27,9 @@ dist/*.hpp
 __pycache__
 zip-dist/
 !zip-dist/.gitkeep
+
+# visual studio files
+
+Debug/*
+x64/*
+.vs/

@@ -1,6 +1,8 @@
 #pragma once
 #include "shapegl.hpp"
 #include "Position.hpp"
+
+#undef DELETE // dumb windows macros
 namespace shapegame {
 	namespace Input {
 		enum class Action {

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{B889159D-1C1B-4A81-9424-3A26743DB443}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)deps;$(ProjectDir)include;$(ProjectDir)deps\glfw-win\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NOGDI</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)deps\glfw-win\lib</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)deps;$(ProjectDir)include;$(ProjectDir)deps\glfw-win\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NOGDI</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)deps\glfw-win\lib</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="deps\getopt.c" />
+    <ClCompile Include="deps\glad.c" />
+    <ClCompile Include="deps\tinycthread.c" />
+    <ClCompile Include="examples\main.test.cpp" />
+    <ClCompile Include="src\CollisionTree.cpp" />
+    <ClCompile Include="src\Color.cpp" />
+    <ClCompile Include="src\Component.cpp" />
+    <ClCompile Include="src\Debug.cpp" />
+    <ClCompile Include="src\DebugKeyHandler.cpp" />
+    <ClCompile Include="src\Drawable.cpp" />
+    <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\FileUtil.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GLHandlerImpl.cpp" />
+    <ClCompile Include="src\Globals.cpp" />
+    <ClCompile Include="src\GLRenderObject.cpp" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\MultiShape.cpp" />
+    <ClCompile Include="src\NullGLHandler.cpp" />
+    <ClCompile Include="src\NullRenderer.cpp" />
+    <ClCompile Include="src\NullWindow.cpp" />
+    <ClCompile Include="src\Object.cpp" />
+    <ClCompile Include="src\Point.cpp" />
+    <ClCompile Include="src\Position.cpp" />
+    <ClCompile Include="src\Quad.cpp" />
+    <ClCompile Include="src\Rectangle.cpp" />
+    <ClCompile Include="src\RenderPackage.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\ShaderHandler.cpp" />
+    <ClCompile Include="src\Shape.cpp" />
+    <ClCompile Include="src\ShapePair.cpp" />
+    <ClCompile Include="src\SimpleCollision.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
+    <ClCompile Include="src\Tree.cpp" />
+    <ClCompile Include="src\Triangle.cpp" />
+    <ClCompile Include="src\TriangleIsosceles.cpp" />
+    <ClCompile Include="src\VertexGenerator.cpp" />
+    <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="tests\simple-glfw.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="deps\getopt.h" />
+    <ClInclude Include="deps\glad\glad.h" />
+    <ClInclude Include="deps\glfw-win\include\glfw\glfw3.h" />
+    <ClInclude Include="deps\glfw-win\include\glfw\glfw3native.h" />
+    <ClInclude Include="deps\gl\glcorearb.h" />
+    <ClInclude Include="deps\khr\khrplatform.h" />
+    <ClInclude Include="deps\linmath.h" />
+    <ClInclude Include="deps\mingw\dinput.h" />
+    <ClInclude Include="deps\mingw\xinput.h" />
+    <ClInclude Include="deps\mingw\_mingw_dxhelper.h" />
+    <ClInclude Include="deps\tinycthread.h" />
+    <ClInclude Include="deps\vulkan\vk_platform.h" />
+    <ClInclude Include="deps\vulkan\vulkan.h" />
+    <ClInclude Include="include\CollisionList.hpp" />
+    <ClInclude Include="include\CollisionTree.hpp" />
+    <ClInclude Include="include\Color.hpp" />
+    <ClInclude Include="include\Component.hpp" />
+    <ClInclude Include="include\Debug.hpp" />
+    <ClInclude Include="include\DebugKeyHandler.hpp" />
+    <ClInclude Include="include\Dirtyable.hpp" />
+    <ClInclude Include="include\Drawable.hpp" />
+    <ClInclude Include="include\Entity.hpp" />
+    <ClInclude Include="include\FileUtil.hpp" />
+    <ClInclude Include="include\Game.hpp" />
+    <ClInclude Include="include\GLHandler.hpp" />
+    <ClInclude Include="include\GLHandlerImpl.hpp" />
+    <ClInclude Include="include\Globals.hpp" />
+    <ClInclude Include="include\GLRenderObject.hpp" />
+    <ClInclude Include="include\Input.hpp" />
+    <ClInclude Include="include\IWindow.hpp" />
+    <ClInclude Include="include\MultiShape.hpp" />
+    <ClInclude Include="include\NullGLHandler.hpp" />
+    <ClInclude Include="include\NullRenderer.hpp" />
+    <ClInclude Include="include\NullWindow.hpp" />
+    <ClInclude Include="include\Object.hpp" />
+    <ClInclude Include="include\Point.hpp" />
+    <ClInclude Include="include\Position.hpp" />
+    <ClInclude Include="include\Quad.hpp" />
+    <ClInclude Include="include\Rectangle.hpp" />
+    <ClInclude Include="include\RenderPackage.hpp" />
+    <ClInclude Include="include\Scene.hpp" />
+    <ClInclude Include="include\ShaderHandler.hpp" />
+    <ClInclude Include="include\Shape.hpp" />
+    <ClInclude Include="include\shapegame.hpp" />
+    <ClInclude Include="include\shapegl.hpp" />
+    <ClInclude Include="include\ShapePair.hpp" />
+    <ClInclude Include="include\SimpleCollision.hpp" />
+    <ClInclude Include="include\Square.hpp" />
+    <ClInclude Include="include\Timer.hpp" />
+    <ClInclude Include="include\Tree.hpp" />
+    <ClInclude Include="include\Triangle.hpp" />
+    <ClInclude Include="include\TriangleIsosceles.hpp" />
+    <ClInclude Include="include\VertexGenerator.hpp" />
+    <ClInclude Include="include\Window.hpp" />
+    <ClInclude Include="tests\include\catch.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="deps\glfw-win\lib\glfw3.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
