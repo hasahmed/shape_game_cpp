@@ -90,7 +90,7 @@ This aims to be that; minimal shape drawing in C++.
 
 ### Examples
 
-## SHMUP Game
+#### SHMUP Game
 You can check out the simple SHMUP game here https://github.com/hasahmed/shapegame-example
 The compilation instructions are the same as you'll find in the [Quickstart](#quickstart)
 
