@@ -18,7 +18,7 @@ def create_archive():
 				dist_zip.write(os.path.join(root, file), os.path.join('shapegame', root, file))
 		os.chdir('..')
 		os.chdir(util.INCLUDE)
-		for root, dirs, files in os.walk('.'): #every file in dist-libs
+		for root, dirs, files in os.walk('.'): #every file in include/
 			for file in files:
 				dist_zip.write(os.path.join(root, file), os.path.join('shapegame', util.INCLUDE, root, file))
 		os.chdir('..')

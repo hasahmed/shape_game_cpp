@@ -14,15 +14,16 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{B889159D-1C1B-4A81-9424-3A26743DB443}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
@@ -40,8 +41,10 @@
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)deps;$(ProjectDir)include;$(ProjectDir)deps\glfw-win\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)deps;$(ProjectDir)include;$(ProjectDir)deps\glfw\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NOGDI</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -50,8 +53,10 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)deps;$(ProjectDir)include;$(ProjectDir)deps\glfw-win\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)deps;$(ProjectDir)include;$(ProjectDir)deps\glfw\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NOGDI</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -61,7 +66,6 @@
   <ItemGroup>
     <ClCompile Include="deps\getopt.c" />
     <ClCompile Include="deps\glad.c" />
-    <ClCompile Include="deps\tinycthread.c" />
     <ClCompile Include="examples\main.test.cpp" />
     <ClCompile Include="src\CollisionTree.cpp" />
     <ClCompile Include="src\Color.cpp" />
@@ -102,17 +106,14 @@
   <ItemGroup>
     <ClInclude Include="deps\getopt.h" />
     <ClInclude Include="deps\glad\glad.h" />
-    <ClInclude Include="deps\glfw-win\include\glfw\glfw3.h" />
-    <ClInclude Include="deps\glfw-win\include\glfw\glfw3native.h" />
+    <ClInclude Include="deps\glfw\include\GLFW\glfw3.h" />
+    <ClInclude Include="deps\glfw\include\GLFW\glfw3native.h" />
     <ClInclude Include="deps\gl\glcorearb.h" />
     <ClInclude Include="deps\khr\khrplatform.h" />
     <ClInclude Include="deps\linmath.h" />
     <ClInclude Include="deps\mingw\dinput.h" />
     <ClInclude Include="deps\mingw\xinput.h" />
     <ClInclude Include="deps\mingw\_mingw_dxhelper.h" />
-    <ClInclude Include="deps\tinycthread.h" />
-    <ClInclude Include="deps\vulkan\vk_platform.h" />
-    <ClInclude Include="deps\vulkan\vulkan.h" />
     <ClInclude Include="include\CollisionList.hpp" />
     <ClInclude Include="include\CollisionTree.hpp" />
     <ClInclude Include="include\Color.hpp" />
@@ -157,7 +158,7 @@
     <ClInclude Include="tests\include\catch.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="deps\glfw-win\lib\glfw3.dll">
+    <CopyFileToFolders Include="deps\glfw\lib\win\glfw3.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
   </ItemGroup>

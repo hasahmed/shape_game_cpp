@@ -21,9 +21,6 @@
     <ClCompile Include="deps\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="deps\tinycthread.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="examples\main.test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -140,19 +137,10 @@
     <ClInclude Include="deps\linmath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="deps\tinycthread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="deps\gl\glcorearb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="deps\glad\glad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\glfw-win\include\glfw\glfw3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\glfw-win\include\glfw\glfw3native.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="deps\khr\khrplatform.h">
@@ -165,12 +153,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="deps\mingw\_mingw_dxhelper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\vulkan\vk_platform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\vulkan\vulkan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\CollisionList.hpp">
@@ -299,8 +281,14 @@
     <ClInclude Include="tests\include\catch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="deps\glfw\include\GLFW\glfw3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="deps\glfw\include\GLFW\glfw3native.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="deps\glfw-win\lib\glfw3.dll" />
+    <CopyFileToFolders Include="deps\glfw\lib\win\glfw3.dll" />
   </ItemGroup>
 </Project>
