@@ -31,10 +31,12 @@ int main() {
 ```
 5. Compile it and link with glfw and Shapegame. I was able to compile with the following commands:
 - MacOS: `g++ -std=c++17 -o main main.cpp -I./shapegame/include shapegame/platform/mac/shapegame.a -lglfw -framework Cocoa -framework IOKit -framework CoreVideo -framework OpenGL`
-- Windows (after installing and setting up [MSYS2](https://www.msys2.org/)):
-```
-g++ -std=c++17 -o main.exe main.cpp `pkg-config --cflags glfw3` -I./shapegame/deps -I./shapegame/include shapegame/platform/win/shapegame.lib `pkg-config --libs glfw3`
-```
+- Window
+On windows utilize the pre configured Visual Studio solution located here
+https://github.com/hasahmed/shapegame-example-shmup.git 
+You should be able to simply open the solution in Visual Studio and run it as long as
+you have to proper C++ development components installed (Game development with C++).
+It comes preloaded with an example game, so you don't need to copy the above code
 - Linux:
 ```
 g++ -std=c++17 -o main main.cpp `pkg-config --cflags glfw3` -I./shapegame/deps -I./shapegame/include shapegame/platform/linux/shapegame.a `pkg-config --libs glfw3`
