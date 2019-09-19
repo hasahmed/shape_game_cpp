@@ -7,7 +7,7 @@ GLAD =
 
 ifeq ($(UNAME),Linux)
 	CXX := c++
-	LDFLAGS += platform/linux/libglfw.so
+	LDFLAGS += `pkg-config --libs glfw3`
 	CXXFLAGS += $(INC_DIR) -fPIC
 	GLAD = obj/glad.o
 endif
