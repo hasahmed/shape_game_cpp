@@ -39,6 +39,12 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)dist-libs\platform\win</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)dist-libs\platform\win</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>$(ProjectDir)deps;$(ProjectDir)include;$(ProjectDir)deps\glfw\include</AdditionalIncludeDirectories>
@@ -50,6 +56,9 @@
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)deps\glfw-win\lib</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>python $(SolutionDir)tools\zip_dist.py</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -62,9 +71,11 @@
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)deps\glfw-win\lib</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>python $(SolutionDir)tools\zip_dist.py</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="deps\getopt.c" />
     <ClCompile Include="deps\glad.c" />
     <ClCompile Include="examples\main.test.cpp" />
     <ClCompile Include="src\CollisionTree.cpp" />
@@ -104,16 +115,11 @@
     <ClCompile Include="tests\simple-glfw.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="deps\getopt.h" />
     <ClInclude Include="deps\glad\glad.h" />
-    <ClInclude Include="deps\glfw\include\GLFW\glfw3.h" />
-    <ClInclude Include="deps\glfw\include\GLFW\glfw3native.h" />
+    <ClInclude Include="deps\GLFW\glfw3.h" />
+    <ClInclude Include="deps\GLFW\glfw3native.h" />
     <ClInclude Include="deps\gl\glcorearb.h" />
     <ClInclude Include="deps\khr\khrplatform.h" />
-    <ClInclude Include="deps\linmath.h" />
-    <ClInclude Include="deps\mingw\dinput.h" />
-    <ClInclude Include="deps\mingw\xinput.h" />
-    <ClInclude Include="deps\mingw\_mingw_dxhelper.h" />
     <ClInclude Include="include\CollisionList.hpp" />
     <ClInclude Include="include\CollisionTree.hpp" />
     <ClInclude Include="include\Color.hpp" />
@@ -156,11 +162,6 @@
     <ClInclude Include="include\VertexGenerator.hpp" />
     <ClInclude Include="include\Window.hpp" />
     <ClInclude Include="tests\include\catch.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <CopyFileToFolders Include="deps\glfw\lib\win\glfw3.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

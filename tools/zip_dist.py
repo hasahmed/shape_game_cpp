@@ -3,6 +3,7 @@
 import zipfile
 import os
 import util
+from shutil import move
 
 util.cd_root()
 
@@ -29,4 +30,4 @@ def create_archive():
 		os.chdir('../') #leave directory in same state as before
 
 create_archive()
-os.rename(ARCH_NAME, os.path.join(ZIP_DIST, ARCH_NAME))
+move(ARCH_NAME, os.path.join(ZIP_DIST, ARCH_NAME))
