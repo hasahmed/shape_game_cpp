@@ -13,8 +13,9 @@ This aims to be that; minimal shape drawing in C++.
 
 1. Download The Shapegame Library zip from [here](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
 2. Unzip the files and put them in a directory where you want to work.
-3. Install dependency [GLFW](https://www.glfw.org/) on your system. You can do it as described on their site or
-follow my instructions for doing it via a [package manager](#ez-install-glfw).
+3. Mac and Linux (Its included in windows) Install dependency [GLFW](https://www.glfw.org/) on your system.
+You can do it as described on their site or follow my instructions for doing it via a
+[package manager](#ez-install-glfw).
 4. Create a test file called `main.cpp` with the following contents:
 
 ```C++
@@ -717,8 +718,6 @@ Constructs a Position with given x, y.
 
 ### *Position*::Position([Point](#point) pos)
 Constructs a Position with an x and y that are the same as pos.
-
-
 
 
 
