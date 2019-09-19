@@ -31,12 +31,12 @@ int main() {
 ```
 5. Compile it and link with glfw and Shapegame. I was able to compile with the following commands:
 - MacOS: `g++ -std=c++17 -o main main.cpp -I./shapegame/include shapegame/platform/mac/shapegame.a -lglfw -framework Cocoa -framework IOKit -framework CoreVideo -framework OpenGL`
-- Window
+- Windows
 On windows utilize the pre configured Visual Studio solution located here
 https://github.com/hasahmed/shapegame-example-shmup.git 
 You should be able to simply open the solution in Visual Studio and run it as long as
 you have to proper C++ development components installed (Game development with C++).
-It comes preloaded with an example game, so you don't need to copy the above code
+It comes preloaded with an example game, so you don't need to copy the above code.
 - Linux:
 ```
 g++ -std=c++17 -o main main.cpp `pkg-config --cflags glfw3` -I./shapegame/deps -I./shapegame/include shapegame/platform/linux/shapegame.a `pkg-config --libs glfw3`
@@ -935,6 +935,11 @@ The following are members of the enum class Kb::Key:
 * RIGHT_SUPER
 * MENU
 
+# Mouse
+
+## Mouse Btn
+
+## Mouse Map
 
 
 
@@ -945,45 +950,37 @@ development, then this shouldn't bee too bad.
 
 ### Windows Setup
 
-fill in later
+- Download Visual Studio 2019 (any edition)
+- Install Game Development With C++ components
+- Install latest Python *NOTE* The build step requires python 3 and it expects it to be called python.
+You should be able to type python into cmd.exe and have it run python3
+- Open this repos .sln file in visual studio.
 
-### Windows Setup
+This will allow you to make changes to the static library. In order to actually run it you will
+need to set up a project that depends on the static library, or use the example project linked above, and
+simply copy over the changes after they are made (I know I know, this process could use some automation)
 
-fill in later
+### Mac Setup
 
+Assuming your dev environment is already set up for C++ development:
 
-### Windows Setup
-*NOTE* This tutorial assumes 64 bit Windows. You will likely have to make tweaks if
-you are running on a 32 bit system.
-
-1. Install [MSYS2](https://www.msys2.org/)
-2. From MSYS2 run `pacman -S git gcc make mingw-w64-x86_64-glfw`
-3. From MSYS2 run `git clone https://github.com/hasahmed/shape_game_cpp.git`
-4. From MSYS2 run `cd shape_game_cpp`
-5. From MSYS2 run `make`
-6. From MSYS2 run `cd bin && ./main.test`
-
-If everything went correctly you should see a window open and a game run.
-The game is an example game from the examples/ folder. You should now be able
-to modify any engine code and rebuild with `make` from the project root directory.
-Note that the current `Makefile` does not rebuild all dependecies when one file is
-changed, so you may find yourself needing to run `make clean` and then running
-`make` again after that.
-
-If anyone feels like contributing tutorials / solution files for building with Visual Studio be my guest.
+- Type `brew install glfw`
+- Type `make`
+- Run with `./bin/main.test
 
 
+### Linux Setup
+Assuming your dev environment is already set up for C++ development:
 
-
-
+- Type `sudo apt-get install glfw3`
+- Type `make`
+- Run with `./bin/main.test
 
 
 ## FAQ
 
 FAQ is probably misleading because none of these questions have actually been asked of me, they are just questions that
 would probably come to my mind when reading about a game engine.
-
-
 
 
 
