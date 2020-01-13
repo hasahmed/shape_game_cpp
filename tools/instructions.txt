@@ -1,0 +1,1 @@
+for mac and linux to create the zip file that is going to be distributed run zip-dist.py. It will zip everything together and place it in the zip-dist directory
