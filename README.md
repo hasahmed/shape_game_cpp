@@ -14,8 +14,6 @@ This aims to be that; minimal shape drawing in C++.
 1. Download The Shapegame Library zip from [here](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
 2. Unzip the files and put them in a directory where you want to work.
 3. On Mac and Linux install dependency [GLFW](https://www.glfw.org/) on your system (it is included on Windows).
-You can do it as described on their site or follow my instructions for doing it via a
-[package manager](#ez-install-glfw).
 4. Create a test file called `main.cpp` with the following contents:
 
 ```C++
@@ -54,10 +52,6 @@ If you run into issues feel free to open an issue on github or send me an [email
 * [Motivation](#motivation)
 * [Examples](#examples)
 * [Downloads](#downloads)
-* [Install Dependency GLFW With Package Manager](#ez-install-glfw)
-  * [Linux](#ez-install-glfw-linux)
-  * [Mac](#ez-install-glfw-mac)
-  * [Windows](#ez-install-glfw-win)
 * [Docs](#docs)
   * [Overview](#overview)
 	* [Supported Platforms](#supported-platforms)
@@ -105,30 +99,6 @@ The compilation instructions are the same as you'll find in the [Quickstart](#qu
 ### Downloads
 [ShapeGame v1.0.0](https://github.com/hasahmed/shape_game_cpp/releases/tag/1.0.0).
 
-
-
-
-<a name="ez-install-glfw"><a/>
-
-### Install Dependency GLFW With Package Manager
-
-The following section will walk you through using your package manager to install [GLFW](https://www.glfw.org) on your desired platform.
-
-<a name="ez-install-glfw-mac"><a/>
-## Mac
-Via homebrew and run from the terminal
-`brew install glfw`
-
-<a name="ez-install-glfw-linux"><a/>
-## Linux
-
-Via apt on Ubuntu
-`sudo apt install libglfw3-dev`
-
-<a name="ez-install-glfw-win"><a/>
-## Windows
-1. Install [MSYS2](https://www.msys2.org/)
-2. From MSYS2 run `pacman -S git gcc make mingw-w64-x86_64-glfw`
 
 
 
