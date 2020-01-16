@@ -93,4 +93,4 @@ stages:
         downloadType: 'single'
         artifactName: 'MacBinary'
         downloadPath: '$(System.ArtifactsDirectory)'
-    - bash: 'ls $(System.ArtifactsDirectory)/'
+    - bash: 'ls $(System.ArtifactsDirectory)/*'
