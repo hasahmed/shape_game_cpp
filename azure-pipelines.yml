@@ -48,7 +48,7 @@ stages:
       buildConfiguration: 'Release'
 
     steps:
-    - script: 'make'
+    - script: 'make -j5 dist-linux'
 
     # - task: DownloadBuildArtifacts@0
     #   inputs:

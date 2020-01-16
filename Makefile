@@ -85,15 +85,19 @@ obj/add-child-as.o:
 $(OBJS): obj/%.o : src/%.cpp
 	$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@
 
-dist-mac: $(OBJS)
+dist-zip-mac: $(OBJS)
 	ar rcs $(MACOS_DIST_NAME) $(OBJS)
 	mv $(MACOS_DIST_NAME) ./$(DIST_DIR)/platform/mac
+	python3 tools/zip_dist.py
+
+dist-zip-linux: $(OBJS) $(GLAD)
+	ar rcs $(LINUX_DIST_NAME) $(OBJS) $(GLAD)
+	mv $(LINUX_DIST_NAME) ./$(DIST_DIR)/platform/linux
 	python3 tools/zip_dist.py
 
 dist-linux: $(OBJS) $(GLAD)
 	ar rcs $(LINUX_DIST_NAME) $(OBJS) $(GLAD)
 	mv $(LINUX_DIST_NAME) ./$(DIST_DIR)/platform/linux
-	python3 tools/zip_dist.py
 
 dist-win: $(OBJS) $(GLAD)
 	ar rcs $(WIN_DIST_NAME) $(OBJS) $(GLAD)
