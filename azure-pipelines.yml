@@ -72,17 +72,10 @@ stages:
       buildConfiguration: 'Release'
 
     steps:
-    - script: 'make -j5'
-    #- task: NuGetToolInstaller@1
+    - script: 'make -j5 dist-mac'
 
-    #- task: NuGetCommand@2
-    #inputs:
-    #restoreSolution: '$(solution)'
-
-    # - bash: 'echo hello world'
-    # - task: Bash@3
-    #   inputs:
-    #     script: 'echo Goodbye world!'
+    - publish: $(System.DefaultWorkingDirectory)/dist-libs/platform/mac/shapegame.a
+      artifact: MacBinary
 
 # - stage: PackageAndDeploy
 #   jobs:
