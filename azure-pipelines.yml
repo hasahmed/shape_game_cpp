@@ -8,33 +8,33 @@ trigger:
 stages:
 - stage: Build
   jobs:
-  - job: WindowsBuild
+  # - job: WindowsBuild
 
-    pool:
-      vmImage: 'windows-latest'
+  #   pool:
+  #     vmImage: 'windows-latest'
 
-    variables:
-      solution: '**/*.sln'
-      buildPlatform: 'x64'
-      buildConfiguration: 'Release'
+  #   variables:
+  #     solution: '**/*.sln'
+  #     buildPlatform: 'x64'
+  #     buildConfiguration: 'Release'
 
-    steps:
-    #- task: NuGetToolInstaller@1
+  #   steps:
+  #   #- task: NuGetToolInstaller@1
 
-    #- task: NuGetCommand@2
-    #inputs:
-    #restoreSolution: '$(solution)'
+  #   #- task: NuGetCommand@2
+  #   #inputs:
+  #   #restoreSolution: '$(solution)'
 
-    - task: VSBuild@1
-      inputs:
-        solution: '$(solution)'
-        platform: '$(buildPlatform)'
-        configuration: '$(buildConfiguration)'
+  #   - task: VSBuild@1
+  #     inputs:
+  #       solution: '$(solution)'
+  #       platform: '$(buildPlatform)'
+  #       configuration: '$(buildConfiguration)'
        
-    - powershell: 'ls $(System.DefaultWorkingDirectory)'
+  #   - powershell: 'ls $(System.DefaultWorkingDirectory)'
 
-    - publish: $(System.DefaultWorkingDirectory)\dist-libs\platform\win\shapegame.lib
-      artifact: WindowsBinaries
+  #   - publish: $(System.DefaultWorkingDirectory)\dist-libs\platform\win\shapegame.lib
+  #     artifact: WindowsBinaries
 
 
   - job: LinuxBuild
@@ -48,6 +48,7 @@ stages:
       buildConfiguration: 'Release'
 
     steps:
+    - script: 'make'
 
     # - task: DownloadBuildArtifacts@0
     #   inputs:
@@ -59,36 +60,36 @@ stages:
 
     - bash: 'ls $(System.ArtifactsDirectory)'
 
-  - job: MacBuild
+#   - job: MacBuild
 
-    pool:
-      vmImage: 'macOS-10.13'
+#     pool:
+#       vmImage: 'macOS-10.13'
 
-    variables:
-      solution: '**/*.sln'
-      buildPlatform: 'x64'
-      buildConfiguration: 'Release'
+#     variables:
+#       solution: '**/*.sln'
+#       buildPlatform: 'x64'
+#       buildConfiguration: 'Release'
 
-    steps:
-    #- task: NuGetToolInstaller@1
+#     steps:
+#     #- task: NuGetToolInstaller@1
 
-    #- task: NuGetCommand@2
-    #inputs:
-    #restoreSolution: '$(solution)'
+#     #- task: NuGetCommand@2
+#     #inputs:
+#     #restoreSolution: '$(solution)'
 
-    - bash: 'echo hello world'
-    # - task: Bash@3
-    #   inputs:
-    #     script: 'echo Goodbye world!'
+#     - bash: 'echo hello world'
+#     # - task: Bash@3
+#     #   inputs:
+#     #     script: 'echo Goodbye world!'
 
-- stage: PackageAndDeploy
-  jobs:
-  - job: PackageAndDeployJob
-    pool:
-      vmImage: 'macOS-10.13'
-    variables:
-      solution: '**/*.sln'
-      buildPlatform: 'x64'
-      buildConfiguration: 'Release'
-    steps:
-    - bash: 'echo hello world'
+# - stage: PackageAndDeploy
+#   jobs:
+#   - job: PackageAndDeployJob
+#     pool:
+#       vmImage: 'macOS-10.13'
+#     variables:
+#       solution: '**/*.sln'
+#       buildPlatform: 'x64'
+#       buildConfiguration: 'Release'
+#     steps:
+#     - bash: 'echo hello world'
