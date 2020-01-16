@@ -5,8 +5,8 @@
 trigger:
 - master
 
-jobs:
-- job: Windows
+stages:
+- stage: Windows
 
   pool:
     vmImage: 'windows-latest'
@@ -34,7 +34,7 @@ jobs:
   #platform: '$(buildPlatform)'
   #configuration: '$(buildConfiguration)'
 
-- job: Linux
+- stage: Linux
 
   pool:
     vmImage: 'ubuntu-latest'
@@ -63,7 +63,7 @@ jobs:
 
   - bash: 'ls $(System.ArtifactsDirectory)'
 
-- job: Mac
+- stage: Mac
 
   pool:
     vmImage: 'macOS-10.13'
