@@ -81,7 +81,7 @@ stages:
   jobs:
   - job: PackageAndDeployJob
     pool:
-      vmImage: 'macOS-10.13'
+      vmImage: 'ubuntu-latest'
     variables:
       solution: '**/*.sln'
       buildPlatform: 'x64'
@@ -91,6 +91,6 @@ stages:
       inputs:
         buildType: 'current'
         downloadType: 'single'
-        artifactName: 'drop'
+        artifactName: 'MacBinary'
         downloadPath: '$(System.ArtifactsDirectory)'
     - bash: 'ls $(System.ArtifactsDirectory)'
