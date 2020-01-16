@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
 
 jobs:
-  job: Windows Build
+  job: Windows
     trigger:
     - master
 
@@ -34,7 +34,7 @@ jobs:
     #platform: '$(buildPlatform)'
     #configuration: '$(buildConfiguration)'
 
-  job: Linux Build
+  job: Linux
     trigger:
     - master
 
@@ -61,7 +61,7 @@ jobs:
     #platform: '$(buildPlatform)'
     #configuration: '$(buildConfiguration)'
 
-  job: Mac Build
+  job: Mac
     trigger:
     - master
 
