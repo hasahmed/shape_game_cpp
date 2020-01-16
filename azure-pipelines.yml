@@ -52,7 +52,7 @@ jobs:
   #restoreSolution: '$(solution)'
 
   - task: Bash@3
-      script: 'echo Hello world!'
+    script: 'echo Hello world!'
 
   #- task: VSTest@2
   #inputs:
@@ -77,4 +77,4 @@ jobs:
   #restoreSolution: '$(solution)'
 
   - task: Bash@3
-      script: 'echo Goodbye world!'
+    script: 'echo Goodbye world!'
