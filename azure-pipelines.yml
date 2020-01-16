@@ -37,10 +37,34 @@ stages:
   #     artifact: WindowsBinary
 
 
-  - job: LinuxBuild
+  # - job: LinuxBuild
+
+  #   pool:
+  #     vmImage: 'ubuntu-latest'
+
+  #   variables:
+  #     solution: '**/*.sln'
+  #     buildPlatform: 'x64'
+  #     buildConfiguration: 'Release'
+
+  #   steps:
+  #   - script: 'make -j5 dist-linux'
+
+  #   - publish: $(System.DefaultWorkingDirectory)/dist-libs/platform/linux/shapegame.a
+  #     artifact: LinuxBinary
+
+  #   # - task: DownloadBuildArtifacts@0
+  #   #   inputs:
+  #   #     buildType: 'current'
+  #   #     downloadType: 'single'
+  #   #     artifactName: 'drop'
+  #   #     downloadPath: '$(System.ArtifactsDirectory)'
+
+
+  - job: MacBuild
 
     pool:
-      vmImage: 'ubuntu-latest'
+      vmImage: 'macOS-10.13'
 
     variables:
       solution: '**/*.sln'
@@ -48,42 +72,17 @@ stages:
       buildConfiguration: 'Release'
 
     steps:
-    - script: 'make -j5 dist-linux'
+    - script: 'make -j5'
+    #- task: NuGetToolInstaller@1
 
-    - publish: $(System.DefaultWorkingDirectory)/dist-libs/platform/linux/shapegame.a
-      artifact: LinuxBinary
+    #- task: NuGetCommand@2
+    #inputs:
+    #restoreSolution: '$(solution)'
 
-    # - task: DownloadBuildArtifacts@0
+    # - bash: 'echo hello world'
+    # - task: Bash@3
     #   inputs:
-    #     buildType: 'current'
-    #     downloadType: 'single'
-    #     artifactName: 'drop'
-    #     downloadPath: '$(System.ArtifactsDirectory)'
-
-
-    - bash: 'ls $(System.ArtifactsDirectory)'
-
-#   - job: MacBuild
-
-#     pool:
-#       vmImage: 'macOS-10.13'
-
-#     variables:
-#       solution: '**/*.sln'
-#       buildPlatform: 'x64'
-#       buildConfiguration: 'Release'
-
-#     steps:
-#     #- task: NuGetToolInstaller@1
-
-#     #- task: NuGetCommand@2
-#     #inputs:
-#     #restoreSolution: '$(solution)'
-
-#     - bash: 'echo hello world'
-#     # - task: Bash@3
-#     #   inputs:
-#     #     script: 'echo Goodbye world!'
+    #     script: 'echo Goodbye world!'
 
 # - stage: PackageAndDeploy
 #   jobs:
