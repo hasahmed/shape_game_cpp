@@ -8,7 +8,7 @@ trigger:
 stages:
 - stage: Windows
   jobs:
-  - job: WindowsJob
+  - job: WindowsBuild
 
     pool:
       vmImage: 'windows-latest'
@@ -30,6 +30,11 @@ stages:
         solution: '$(solution)'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
+       
+    - powershell: 'ls $(System.DefaultWorkingDirectory)'
+
+    # - publish: $(System.DefaultWorkingDirectory)/bin/WebApp
+      # artifact: WindowsBinaries
 
     #- task: VSTest@2
     #inputs:
@@ -38,7 +43,7 @@ stages:
 
 - stage: Linux
   jobs:
-  - job: LinuxJob
+  - job: LinuxBuild
 
     pool:
       vmImage: 'ubuntu-latest'
@@ -49,26 +54,19 @@ stages:
       buildConfiguration: 'Release'
 
     steps:
-    - task: DownloadBuildArtifacts@0
-      inputs:
-        buildType: 'current'
-        downloadType: 'single'
-        artifactName: 'drop'
-        downloadPath: '$(System.ArtifactsDirectory)'
-    #- task: VSTest@2
-    #inputs:
-    #platform: '$(buildPlatform)'
-    #configuration: '$(buildConfiguration)'
-    #- task: NuGetToolInstaller@1
 
-    #- task: NuGetCommand@2
-    #inputs:
-    #restoreSolution: '$(solution)'
+    # - task: DownloadBuildArtifacts@0
+    #   inputs:
+    #     buildType: 'current'
+    #     downloadType: 'single'
+    #     artifactName: 'drop'
+    #     downloadPath: '$(System.ArtifactsDirectory)'
+
 
     - bash: 'ls $(System.ArtifactsDirectory)'
 - stage: Mac
   jobs:
-  - job: MacJob
+  - job: MacBuild
 
     pool:
       vmImage: 'macOS-10.13'
