@@ -73,9 +73,17 @@ stages:
 
     steps:
     - script: 'make -j5 dist-mac'
+    - task: CopyFiles@2
+      inputs:
+        contents: '$(System.DefaultWorkingDirectory)/dist-libs/platform/mac/shapegame.a'
+        targetFolder: $(Build.ArtifactStagingDirectory)
 
-    - publish: $(System.DefaultWorkingDirectory)/dist-libs/platform/mac/shapegame.a
-      artifact: 'MacBinary'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: $(Build.ArtifactStagingDirectory)
+        artifactName: MacBinary
+    # - publish: $(System.DefaultWorkingDirectory)/dist-libs/platform/mac/shapegame.a
+    #   artifact: 'MacBinary'
 
   - job: PackageAndDeployJob
     pool:
