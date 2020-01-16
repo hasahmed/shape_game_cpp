@@ -2,11 +2,11 @@
 # Build and run tests for .NET Desktop or Windows classic desktop solutions.
 # Add steps that publish symbols, save build artifacts, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
+trigger:
+- master
 
 jobs:
   job: Windows
-    trigger:
-    - master
 
     pool:
       vmImage: 'windows-latest'
@@ -35,8 +35,6 @@ jobs:
     #configuration: '$(buildConfiguration)'
 
   job: Linux
-    trigger:
-    - master
 
     pool:
       vmImage: 'ubuntu-latest'
@@ -62,8 +60,6 @@ jobs:
     #configuration: '$(buildConfiguration)'
 
   job: Mac
-    trigger:
-    - master
 
     pool:
       vmImage: 'macOS-10.13'
