@@ -75,7 +75,7 @@ stages:
     - script: 'make -j5 dist-mac'
 
     - publish: $(System.DefaultWorkingDirectory)/dist-libs/platform/mac/shapegame.a
-      artifact: MacBinary
+      artifact: 'MacBinary'
 
 - stage: PackageAndDeploy
   jobs:
