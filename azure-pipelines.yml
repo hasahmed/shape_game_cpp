@@ -89,8 +89,12 @@ stages:
     steps:
     - task: DownloadBuildArtifacts@0
       inputs:
-        buildType: 'current'
+        buildType: 'specific'
+        pipeline: 'Build'
         downloadType: 'single'
         artifactName: 'MacBinary'
         downloadPath: '$(System.ArtifactsDirectory)'
-    - bash: 'ls $(System.ArtifactsDirectory)/*'
+    # - task: CopyFiles@2
+    #   inputs:
+    #     sourceFolder: 
+    - bash: 'ls $(System.ArtifactsDirectory)/'
