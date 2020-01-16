@@ -31,10 +31,10 @@ stages:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
        
-    - powershell: 'ls $(System.DefaultWorkingDirectory)'
+    - powershell: 'ls $(System.DefaultWorkingDirectory)\bin'
 
-    # - publish: $(System.DefaultWorkingDirectory)/bin/WebApp
-      # artifact: WindowsBinaries
+    # - publish: $(System.DefaultWorkingDirectory)/bin/
+    #   artifact: WindowsBinaries
 
     #- task: VSTest@2
     #inputs:
