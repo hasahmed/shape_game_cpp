@@ -72,31 +72,30 @@ stages:
       buildConfiguration: 'Release'
 
     steps:
-    # - script: 'make -j5 dist-mac'
-    - script: 'echo $(System.TeamProject)'
+    - script: 'make -j5 dist-mac'
 
     # - publish: $(System.DefaultWorkingDirectory)/dist-libs/platform/mac/shapegame.a
     #   artifact: MacBinary
 
-# - stage: PackageAndDeploy
-#   jobs:
-#   - job: PackageAndDeployJob
-#     pool:
-#       vmImage: 'ubuntu-latest'
-#     variables:
-#       solution: '**/*.sln'
-#       buildPlatform: 'x64'
-#       buildConfiguration: 'Release'
-#     steps:
-#     - task: DownloadBuildArtifacts@0
-#       inputs:
-#         buildType: 'specific'
-#         project: ''
-#         pipeline: 'Build'
-#         downloadType: 'single'
-#         artifactName: 'MacBinary'
-#         downloadPath: '$(System.ArtifactsDirectory)'
-#     # - task: CopyFiles@2
-#     #   inputs:
-#     #     sourceFolder: 
-#     - bash: 'ls $(System.ArtifactsDirectory)/'
+- stage: PackageAndDeploy
+  jobs:
+  - job: PackageAndDeployJob
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+      solution: '**/*.sln'
+      buildPlatform: 'x64'
+      buildConfiguration: 'Release'
+    steps:
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        buildType: 'specific'
+        project: 'shapegame'
+        pipeline: 'Build'
+        downloadType: 'single'
+        artifactName: 'MacBinary'
+        downloadPath: '$(System.ArtifactsDirectory)'
+    # - task: CopyFiles@2
+    #   inputs:
+    #     sourceFolder: 
+    - bash: 'ls $(System.ArtifactsDirectory)/'
