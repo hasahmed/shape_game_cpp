@@ -34,7 +34,7 @@ stages:
   #   - powershell: 'ls $(System.DefaultWorkingDirectory)'
 
   #   - publish: $(System.DefaultWorkingDirectory)\dist-libs\platform\win\shapegame.lib
-  #     artifact: WindowsBinaries
+  #     artifact: WindowsBinary
 
 
   - job: LinuxBuild
@@ -49,6 +49,9 @@ stages:
 
     steps:
     - script: 'make -j5 dist-linux'
+
+    - publish: $(System.DefaultWorkingDirectory)\dist-libs\platform\linux\shapegame.a
+      artifact: LinuxBinary
 
     # - task: DownloadBuildArtifacts@0
     #   inputs:
