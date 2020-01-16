@@ -6,75 +6,75 @@ trigger:
 - master
 
 jobs:
-  job: Windows
+- job: Windows
 
-    pool:
-      vmImage: 'windows-latest'
+  pool:
+    vmImage: 'windows-latest'
 
-    variables:
-      solution: '**/*.sln'
-      buildPlatform: 'x64'
-      buildConfiguration: 'Release'
+  variables:
+    solution: '**/*.sln'
+    buildPlatform: 'x64'
+    buildConfiguration: 'Release'
 
-    steps:
-    #- task: NuGetToolInstaller@1
+  steps:
+  #- task: NuGetToolInstaller@1
 
-    #- task: NuGetCommand@2
-    #inputs:
-    #restoreSolution: '$(solution)'
+  #- task: NuGetCommand@2
+  #inputs:
+  #restoreSolution: '$(solution)'
 
-    - task: VSBuild@1
-      inputs:
-        solution: '$(solution)'
-        platform: '$(buildPlatform)'
-        configuration: '$(buildConfiguration)'
+  - task: VSBuild@1
+    inputs:
+      solution: '$(solution)'
+      platform: '$(buildPlatform)'
+      configuration: '$(buildConfiguration)'
 
-    #- task: VSTest@2
-    #inputs:
-    #platform: '$(buildPlatform)'
-    #configuration: '$(buildConfiguration)'
+  #- task: VSTest@2
+  #inputs:
+  #platform: '$(buildPlatform)'
+  #configuration: '$(buildConfiguration)'
 
-  job: Linux
+- job: Linux
 
-    pool:
-      vmImage: 'ubuntu-latest'
+  pool:
+    vmImage: 'ubuntu-latest'
 
-    variables:
-      solution: '**/*.sln'
-      buildPlatform: 'x64'
-      buildConfiguration: 'Release'
+  variables:
+    solution: '**/*.sln'
+    buildPlatform: 'x64'
+    buildConfiguration: 'Release'
 
-    steps:
-    #- task: NuGetToolInstaller@1
+  steps:
+  #- task: NuGetToolInstaller@1
 
-    #- task: NuGetCommand@2
-    #inputs:
-    #restoreSolution: '$(solution)'
+  #- task: NuGetCommand@2
+  #inputs:
+  #restoreSolution: '$(solution)'
 
-    - task: Bash@3
-       script: 'echo Hello world!'
+  - task: Bash@3
+      script: 'echo Hello world!'
 
-    #- task: VSTest@2
-    #inputs:
-    #platform: '$(buildPlatform)'
-    #configuration: '$(buildConfiguration)'
+  #- task: VSTest@2
+  #inputs:
+  #platform: '$(buildPlatform)'
+  #configuration: '$(buildConfiguration)'
 
-  job: Mac
+- job: Mac
 
-    pool:
-      vmImage: 'macOS-10.13'
+  pool:
+    vmImage: 'macOS-10.13'
 
-    variables:
-      solution: '**/*.sln'
-      buildPlatform: 'x64'
-      buildConfiguration: 'Release'
+  variables:
+    solution: '**/*.sln'
+    buildPlatform: 'x64'
+    buildConfiguration: 'Release'
 
-    steps:
-    #- task: NuGetToolInstaller@1
+  steps:
+  #- task: NuGetToolInstaller@1
 
-    #- task: NuGetCommand@2
-    #inputs:
-    #restoreSolution: '$(solution)'
+  #- task: NuGetCommand@2
+  #inputs:
+  #restoreSolution: '$(solution)'
 
-    - task: Bash@3
-       script: 'echo Goodbye world!'
+  - task: Bash@3
+      script: 'echo Goodbye world!'
