@@ -77,8 +77,6 @@ stages:
     - publish: $(System.DefaultWorkingDirectory)/dist-libs/platform/mac/shapegame.a
       artifact: 'MacBinary'
 
-- stage: PackageAndDeploy
-  jobs:
   - job: PackageAndDeployJob
     pool:
       vmImage: 'ubuntu-latest'
@@ -89,9 +87,10 @@ stages:
     steps:
     - task: DownloadBuildArtifacts@0
       inputs:
-        buildType: 'specific'
-        project: 'shapegame'
-        pipeline: 'hasahmed.shape_game_cpp'
+        buildType: 'current'
+        # buildType: 'specific'
+        # project: 'shapegame'
+        # pipeline: 'hasahmed.shape_game_cpp'
         downloadType: 'single'
         artifactName: 'MacBinary'
         downloadPath: '$(System.ArtifactsDirectory)'
