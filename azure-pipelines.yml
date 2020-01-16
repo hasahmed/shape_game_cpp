@@ -37,6 +37,7 @@ stages:
     #configuration: '$(buildConfiguration)'
 
 - stage: Linux
+  jobs:
   - job: LinuxJob
 
     pool:
@@ -66,6 +67,7 @@ stages:
 
     - bash: 'ls $(System.ArtifactsDirectory)'
 - stage: Mac
+  jobs:
   - job: MacJob
 
     pool:
