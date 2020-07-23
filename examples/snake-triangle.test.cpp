@@ -78,11 +78,11 @@ class HeadNode: public BodyNode {
         puts("Colliding stopped");
     }
 
-    void onCollisionStart(Shape &other) override {
-        puts("Colliding");
-        this->colliding = false;
-        // puts("Head Collision");
-    }
+    // void onCollisionStart(Shape &other) override {
+    //     puts("Colliding");
+    //     this->colliding = false;
+    //     // puts("Head Collision");
+    // }
     void onColliding(Shape &other) override {
     }
 
@@ -157,22 +157,22 @@ class HeadNode: public BodyNode {
 class Food : public Rectangle {
     public: 
         Food(): Rectangle(NODE_SIZE, NODE_SIZE, Position(210, 240), Color::YELLOW) {
-            this->collidable = true;
+            // this->collidable = true;
         }
-        void onCollisionStart(Shape& other) override {
-            try {
-                HeadNode *h = dynamic_cast<HeadNode*>(&other);
-                this->kill();
-            } catch (std::bad_cast exp) {
-                puts("Not colliding with head");
-            }
-            puts("Food collided");
-        }
-        void onCollisionStop(Shape& other) override {
-            puts("Food stopped colliding");
-        }
-        void onColliding(Shape &other) override {
-        }
+        // void onCollisionStart(Shape& other) override {
+        //     try {
+        //         HeadNode *h = dynamic_cast<HeadNode*>(&other);
+        //         this->kill();
+        //     } catch (std::bad_cast exp) {
+        //         puts("Not colliding with head");
+        //     }
+        //     puts("Food collided");
+        // }
+        // void onCollisionStop(Shape& other) override {
+        //     puts("Food stopped colliding");
+        // }
+        // void onColliding(Shape &other) override {
+        // }
 };
 
 int main() {
@@ -208,7 +208,7 @@ int main() {
     for (int i = 0; i < NUM_BODY_NODES; i++) {
         game.scene->addChild(body[i]);
     }
-    auto *t = game.scene->addChildAs<Triangle>(new Triangle(Position(10, 10), Point(60, 600), Point(100, 10), Color::BLUE));
+    Triangle *t = (Triangle*) game.scene->addChild(new Triangle(Position(10, 10), Point(60, 600), Point(100, 10), Color::BLUE));
     t->setPosition(110, 10);
     t->setPosition(10, 10);
     t->setPosition(101, 101);
