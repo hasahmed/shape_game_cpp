@@ -8,7 +8,7 @@ int main() {
 	game.scene->setBackgroundColor(Color::BLUE);
 
 	game.scene->addChild(new DebugKeyHandler()); // escape key closes window, 1, 2, show traingles
-	game.scene->addChild(std::make_unique<Circle>(Position(500, 500), 500, 20, Color::BLACK));
+	game.scene->addChild(std::make_unique<Circle>(Position(500, 500), 10000, 100, Color::BLACK));
 
 	game.run();
 }
