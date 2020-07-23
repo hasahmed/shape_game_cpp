@@ -13,3 +13,4 @@ namespace shapegame {
 			virtual void setY(const float y);
 	};
 }
+std::ostream& operator<< (std::ostream& stream, const shapegame::Point& rObj);

@@ -11,3 +11,8 @@ void Point::setX(const float x){
 void Point::setY(const float y){
 	this->y = y;
 }
+std::ostream& operator<< (std::ostream& stream, const shapegame::Point& rObj) {
+	using namespace std;
+	cout << "[" << rObj.x << "," << rObj.y << "]";
+	return stream;
+}

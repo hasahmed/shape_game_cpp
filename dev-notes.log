@@ -15,3 +15,21 @@ Current Goals:
             from the list, and thus freed. Double check logic.
           - It seems then that calling
 
+7/20/2020:
+    No idea where we are at
+
+
+7/21/2020:
+    Currently trying to get circles to work in the Circle.hpp/cpp, and main.test.cpp files
+        The current issue is... well not sure. Tried to add all the triangles that the circle needs to be created, but its clearly not working.
+        Next steps for breakdown might be just draw the first triangle of the circle and see if we can get that to go right?
+
+7/21/2020:
+   Still working on trying to get circle drawing working, and just reached a
+   breakthrough. The is a circle-esque thing that I have gotten to draw, but it
+   is objectivly wrong. Could be an issue with Ben's algorithm, but could
+   also be an issue with the way I'm drawing triangles. To get to the bottom
+   of this I recommend that you draw the triangles generated on paper to try to get
+   to the bottom of this. A deeper underlying issue is that you don't know the order
+   in which triangles are drawn by your own game engine!!!!! You should get to the
+   bottom of that one too

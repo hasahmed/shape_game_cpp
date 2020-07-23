@@ -113,3 +113,8 @@ clean:
 	@rm -f $(OBJS) $(GLAD) bin/* obj/main.test.o $(EXE) $(MACOS_DIST_NAME) $(LINUX_DIST_NAME) $(WIN_DIST_NAME) *.o *.test
 	@rm -rf *.dSYM
 	@echo "Done cleaning"
+.PHONY: clean-main
+clean-main:
+	@echo "Cleaning main.test..."
+	@rm -f obj/main.test.o $(EXE)
+	@echo "Done cleaning main.test"

@@ -1,5 +1,4 @@
 #include "shapegame.hpp"
-#include <vector>
 using namespace shapegame;
 
 

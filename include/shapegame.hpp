@@ -39,3 +39,4 @@
 #include "IWindow.hpp"
 #include "NullWindow.hpp"
 #include "Tree.hpp"
+#include "Circle.hpp"
