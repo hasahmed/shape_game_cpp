@@ -15,17 +15,14 @@ void error_callback(int error, const char* description) {
     puts(description);
 }
 
-class BodyNode : public Triangle {
+class BodyNode : public Circle {
 // class BodyNode : public Rectangle {
     public:
     BodyNode *prev = nullptr;
     BodyNode *next = nullptr;
     BodyNode():
         // Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {
-        Triangle(Position(0, 0), Point(NODE_SIZE / 2.0f, NODE_SIZE), Point(NODE_SIZE, 0), BODY_COLOR) {
-            this->collidable = true;
-            // this->color.set((float)rand() / RAND_MAX, 1, 1);
-            this->color.set(1, 0, 1);
+        Circle(Position(0, 0), NODE_SIZE, BODY_COLOR) {
         }
     ~BodyNode(){
     }
@@ -67,24 +64,23 @@ class HeadNode: public BodyNode {
     std::queue<Dir> moves;
 
     HeadNode(): BodyNode() {
-        this->collidable = true;
         this->setPosition(240, 240);
         // this->pos.setX(240);
         // this->pos.setY(240);
     }
 
-    void onCollisionStop(Shape &other) override {
-        this->colliding = false;
-        puts("Colliding stopped");
-    }
+    // void onCollisionStop(Shape &other) override {
+    //     this->colliding = false;
+    //     puts("Colliding stopped");
+    // }
 
     // void onCollisionStart(Shape &other) override {
     //     puts("Colliding");
     //     this->colliding = false;
     //     // puts("Head Collision");
     // }
-    void onColliding(Shape &other) override {
-    }
+    // void onColliding(Shape &other) override {
+    // }
 
     void tick() {
         if (this->colliding)
