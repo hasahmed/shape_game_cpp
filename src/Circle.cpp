@@ -3,6 +3,8 @@
 
 using namespace shapegame;
 
+Circle::Circle(Position pos, double size, Color color): Circle(pos, size, 60, color)  {}
+
 Circle::Circle(Position pos, double size, int fidelity, Color color): MultiShape(pos) {
 	double const radius = size / 2;
 	std::vector<Point> pts(fidelity);
