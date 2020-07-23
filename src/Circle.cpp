@@ -31,18 +31,6 @@ Circle::Circle(Position pos, double size, int fidelity, Color color): MultiShape
 		}
 		prevPoint = pts[i];
 	}
-	// for (auto pt : pts) {
-	// 	if (!firstIteration) {
-	// 	  auto triangle = std::make_unique<Triangle>(pt, pos, prevPoint);
-	// 		this->addShape(std::move(triangle));
-	// 		// if (counter == 4) {
-	// 		// 	break;
-	// 		// }
-	// 	}
-	// 	prevPoint = pt;
-	// 	firstIteration = false;
-	// 	counter++;
-	// }
 }
 std::ostream& operator<< (std::ostream& stream, const shapegame::Circle& rObj) {
 	using namespace std;
