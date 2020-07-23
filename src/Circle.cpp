@@ -22,14 +22,12 @@ Circle::Circle(Position pos, double size, int fidelity, Color color): MultiShape
 
 	for(int i = 0; i < pts.size(); i++) {
 		if (i != 0) {
-			std::cout << "Second Iteration" << std::endl;
 		  auto triangle = std::make_unique<Triangle>(pts[i], pos, prevPoint);
 			this->addShape(std::move(triangle));
 		}
 		if (i == pts.size() -1) {
 		  auto triangle = std::make_unique<Triangle>(pts[0], pts[i], pos);
 			this->addShape(std::move(triangle));
-			std::cout << "Last Iteration" << std::endl;
 		}
 		prevPoint = pts[i];
 	}

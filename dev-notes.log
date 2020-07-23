@@ -33,3 +33,7 @@ Current Goals:
    to the bottom of this. A deeper underlying issue is that you don't know the order
    in which triangles are drawn by your own game engine!!!!! You should get to the
    bottom of that one too
+
+7/22/2020:
+    Got Circles working!!!! Just needed to convert degrees to radians and do a
+    couple other things with the algorithm
