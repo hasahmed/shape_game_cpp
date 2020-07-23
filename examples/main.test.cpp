@@ -204,35 +204,7 @@ int main() {
     for (int i = 0; i < NUM_BODY_NODES; i++) {
         game.scene->addChild(body[i]);
     }
-    Triangle *t = (Triangle*) game.scene->addChild(new Triangle(Position(10, 10), Point(60, 600), Point(100, 10), Color::BLUE));
-    t->setPosition(110, 10);
-    t->setPosition(10, 10);
-    t->setPosition(101, 101);
-    t->setPosition(-1, 10);
-    t->setPosition(Position(-1, 10));
-    t->translate(10, 100);
-    // t->setPosition(Position(10, 110));
-    // auto *t = new Triangle(Position(10, 10), Point(20, 0), Point(30, 10));
-    // game.scene->addChildAs<Timer>(new Timer(100, true, true, [=](){
-    //     head->color.set(
-    //         head->color.r,
-    //         head->color.g,
-    //         head->color.b,
-    //         head->color.a - 0.01
-    //     );
-    // }));
-
-    // int i = -1;
-    Game::inst().scene->addChild(new shapegame::Timer(0, true, true, [=]() mutable {
-			std::cout << G::fps << std::endl;
-    }));
-
-
-    Game::inst().scene->addChild(new Rectangle(20, 20, Position(15, 15), Color::BLACK));
-    Game::inst().scene->addChild(new Food());
-    Game::inst().scene->setBackgroundColor(Color::GREEN);
-
-    // Game::inst().scene->addChild(killTimer);
+    Game::inst().scene->setBackgroundColor(Color::GRAY);
 
     game.run();
 }

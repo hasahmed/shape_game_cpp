@@ -42,3 +42,8 @@ Current Goals:
 	Got the algorithm issues sorted out and everything is looking good with circles! Still to do with circles,
 	- optimize using opengls traingle fan function
 	- automatically deduce the fidelity based on circle size
+
+7/22/2020:
+	everything is working well, started working on recreating my snake game. Thinking about anti-aliasing, and trying to
+	match the snake game. Its clear that the engine needs an option for settings the anti-aliasing properties along with
+	potentially other engine properties
