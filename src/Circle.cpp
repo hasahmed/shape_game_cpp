@@ -13,7 +13,6 @@ Circle::Circle(Position pos, double size, int fidelity, Color color): MultiShape
 		pt.x = pos.x + sin(currentAngle * M_PI / 180) * radius;
 		pt.y = pos.y + cos(currentAngle * M_PI / 180) * radius;
 		pts[i] = pt;
-		// std::cout << pt << std::endl;
 		currentAngle += wedgeAngle;
 	}
 	Point prevPoint;
