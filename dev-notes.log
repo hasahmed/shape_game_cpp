@@ -37,3 +37,8 @@ Current Goals:
 7/22/2020:
     Got Circles working!!!! Just needed to convert degrees to radians and do a
     couple other things with the algorithm
+
+7/22/2020:
+	Got the algorithm issues sorted out and everything is looking good with circles! Still to do with circles,
+	- optimize using opengls traingle fan function
+	- automatically deduce the fidelity based on circle size
