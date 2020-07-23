@@ -1,5 +1,5 @@
 #define NUM_BODY_NODES 100
-#define NODE_SIZE 20
+#define NODE_SIZE 10
 #define MOVE_AMOUNT NODE_SIZE
 #define SPEED_MS 75
 #define BODY_COLOR Color::KATIE_PINK
@@ -22,7 +22,7 @@ class BodyNode : public Circle {
     BodyNode *next = nullptr;
     BodyNode():
         // Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {
-        Circle(Position(0, 0), NODE_SIZE, BODY_COLOR) {
+        Circle(Position(0, 0), NODE_SIZE, 10, BODY_COLOR) {
         }
     ~BodyNode(){
     }
