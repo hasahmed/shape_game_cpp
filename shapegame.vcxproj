@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClCompile Include="deps\glad.c" />
     <ClCompile Include="examples\main.test.cpp" />
+    <ClCompile Include="src\Circle.cpp" />
     <ClCompile Include="src\CollisionTree.cpp" />
     <ClCompile Include="src\Color.cpp" />
     <ClCompile Include="src\Component.cpp" />
@@ -120,6 +121,7 @@
     <ClInclude Include="deps\GLFW\glfw3native.h" />
     <ClInclude Include="deps\gl\glcorearb.h" />
     <ClInclude Include="deps\khr\khrplatform.h" />
+    <ClInclude Include="include\Circle.hpp" />
     <ClInclude Include="include\CollisionList.hpp" />
     <ClInclude Include="include\CollisionTree.hpp" />
     <ClInclude Include="include\Color.hpp" />
