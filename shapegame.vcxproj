@@ -66,6 +66,7 @@
       <PreprocessorDefinitions>NOGDI</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/NODEFAULTLIB %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
