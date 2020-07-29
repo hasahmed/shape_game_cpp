@@ -47,3 +47,7 @@ Current Goals:
 	everything is working well, started working on recreating my snake game. Thinking about anti-aliasing, and trying to
 	match the snake game. Its clear that the engine needs an option for settings the anti-aliasing properties along with
 	potentially other engine properties
+
+
+7/28/2020:
+  Got the library working with windows as a compiled static library along with headers and opengl
