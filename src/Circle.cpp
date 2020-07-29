@@ -1,7 +1,6 @@
-#define _USE_MATH_DEFINES
-#include <cmath>
-//#include "math.h"
+#include "math.h"
 #include "shapegame.hpp"
+constexpr long double pi = 3.1415926535897932384;
 
 using namespace shapegame;
 
@@ -10,7 +9,7 @@ Circle::Circle(Position pos, double size, Color color): Circle(pos, size, 60, co
 Circle::Circle(Position pos, double size, int fidelity, Color color): MultiShape(pos) {
 	double const radius = size / 2;
 	std::vector<Point> pts(fidelity);
-	double const wedgeAngle = 2 * M_PI / fidelity;
+	double const wedgeAngle = 2 * pi / fidelity;
 	double currentAngle = 0;
 	for (int i = 0; i < fidelity; i++) {
 		Point pt;
