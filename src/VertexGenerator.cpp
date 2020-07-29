@@ -27,6 +27,11 @@ void shapegame::VertexGenerator::triangleVerts(const Shape& shape, float *verts)
 		Shape *nonConstShape = const_cast<Shape*>(&shape);
 		Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
 		if (t) {
+			if (shape.getRotation() != 0) {
+				// apply rotation to each vertex first
+				// need an origin to rotate around
+				// I suppose pos.x,y
+			}
 			float x1 = this->xPxToGl(t->pos.getX());
 			float y1 = this->yPxToGl(t->pos.getY());
 			float x2 = this->xPxToGl(t->second.getX());

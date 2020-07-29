@@ -51,3 +51,11 @@ Current Goals:
 
 7/28/2020:
   Got the library working with windows as a compiled static library along with headers and opengl
+
+7/28/2020:
+  Added the boilerplate for rotation. Now just need to call the
+  rotation method on each point before converting them to a vertex.
+  Also need to implement the rotation method
+
+  See: VertexHandler.cpp::triangleVerts
+    Object.hpp/cpp

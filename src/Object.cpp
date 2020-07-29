@@ -34,6 +34,13 @@ void Object::setPosition(Point pos) {
 void Object::translate(float x, float y) {
 	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
 }
+void Object::rotate(float degrees) {
+	this->setDirty(true);
+	this->_rotation += degrees;
+}
+float Object::getRotation() const {
+	return this->_rotation;
+}
 void Object::setDirty(bool dirty) {
 	this->_dirty = dirty;
 }
