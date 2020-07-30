@@ -59,3 +59,7 @@ Current Goals:
 
   See: VertexHandler.cpp::triangleVerts
     Object.hpp/cpp
+
+
+7/30/2020:
+  Trying to get rotation working. Running into issues algorithmically clearly. Should try to reach out to Ben to see if he can help me.

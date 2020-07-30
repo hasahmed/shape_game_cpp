@@ -1,5 +1,7 @@
+#define _USE_MATH_DEFINES
 #include <vector>
 #include <stdexcept>
+#include <math.h>
 #include "shapegame.hpp"
 
 using namespace shapegame;
@@ -23,14 +25,27 @@ void shapegame::VertexGenerator::generate(const Shape &shape, float *verts) {
     }
 }
 
+void rotatePoint(Point &origin, Point &point, float rotationDegrees) {
+
+  float rotationRadians = rotationDegrees * M_PI / 180;
+
+  float s = sin(rotationRadians);
+  float c = cos(rotationRadians);
+
+  point.x = point.x * c - point.y * s;
+  point.y = point.x * s + point.y * c;
+
+}
+
 void shapegame::VertexGenerator::triangleVerts(const Shape& shape, float *verts) {
 		Shape *nonConstShape = const_cast<Shape*>(&shape);
 		Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
+
+
 		if (t) {
 			if (shape.getRotation() != 0) {
-				// apply rotation to each vertex first
-				// need an origin to rotate around
-				// I suppose pos.x,y
+                rotatePoint(t->pos, t->second, shape.getRotation());
+                rotatePoint(t->pos, t->third, shape.getRotation());
 			}
 			float x1 = this->xPxToGl(t->pos.getX());
 			float y1 = this->yPxToGl(t->pos.getY());
