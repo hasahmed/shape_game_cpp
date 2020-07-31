@@ -63,3 +63,8 @@ Current Goals:
 
 7/30/2020:
   Trying to get rotation working. Running into issues algorithmically clearly. Should try to reach out to Ben to see if he can help me.
+
+7/30/2020:
+  Got rotation working BETTER using algorithm from stack overflow, but still having issues. Plugging in a single degree rotates it WAYY more than 1 degree.
+  Its weird. Theories are: 1) It could have something to do with radians. 2) It could have something to do with the translation before the rotation?
+  Maybe that does something weird to the angle formula?

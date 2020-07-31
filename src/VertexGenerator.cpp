@@ -27,13 +27,35 @@ void shapegame::VertexGenerator::generate(const Shape &shape, float *verts) {
 
 void rotatePoint(Point &origin, Point &point, float rotationDegrees) {
 
-  float rotationRadians = rotationDegrees * M_PI / 180;
+  float rotationRadians = rotationDegrees * (M_PI / 180);
 
   float s = sin(rotationRadians);
   float c = cos(rotationRadians);
 
-  point.x = point.x * c - point.y * s;
-  point.y = point.x * s + point.y * c;
+
+  point.x -= origin.x;
+  point.y -= origin.y;
+
+  float xNew = point.x * c - point.y * s;
+  float yNew = point.x * s + point.y * c;
+
+  point.x = xNew + origin.x;
+  point.y = yNew + origin.y;
+
+
+
+
+
+
+
+  //point.x = point.x * c - point.y * s;
+  //point.y = point.x * s + point.y * c;
+
+  //point.x = c * (point.x - origin.x) - s * (point.y - origin.y) + origin.x;
+  //point.y = s * (point.x - origin.x) + c * (point.y - origin.y) + origin.y;
+
+  //point.x += origin.x;
+  //point.y += origin.y;
 
 }
 
