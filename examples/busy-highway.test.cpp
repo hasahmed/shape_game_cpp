@@ -1,6 +1,5 @@
 #include "shapegame.hpp"
 #include <map>
-#include <map>
 #include <vector>
 #include <random>
 using namespace shapegame;
@@ -79,7 +78,7 @@ class CarBase : public MultiShape {
 	CarBase(float width, float length, Point flair, Point flairHeight, Position pos, Color color): MultiShape(pos) {
 		this->name = "CarBase";
 		auto bodyLength = length - flairHeight.getX() - flairHeight.getX();
-		auto body = std::make_unique<Rectangle>(width, bodyLength, pos, color);
+		auto body = std::make_unique<shapegame::Rectangle>(width, bodyLength, pos, color);
 
 		auto front = std::make_unique<Quad>(
 			Position(0, 0),
@@ -98,16 +97,16 @@ class CarBase : public MultiShape {
 
 		auto windShield = std::make_unique<WindShield>(pos);
 		windShield->translate(5, 25);
-		auto leftWheel = std::make_unique<Rectangle>(2, 15, pos, Color::BLACK);
+		auto leftWheel = std::make_unique<shapegame::Rectangle>(2, 15, pos, Color::BLACK);
 		leftWheel->translate(-2, 5);
 
-		auto leftBackWheel = std::make_unique<Rectangle>(2, 15, pos, Color::BLACK);
+		auto leftBackWheel = std::make_unique<shapegame::Rectangle>(2, 15, pos, Color::BLACK);
 		leftBackWheel->translate(-2, 55);
 
-		auto rightWheel = std::make_unique<Rectangle>(2, 15, pos, Color::BLACK);
+		auto rightWheel = std::make_unique<shapegame::Rectangle>(2, 15, pos, Color::BLACK);
 		rightWheel->translate(width, 5);
 
-		auto rightBackWheel = std::make_unique<Rectangle>(2, 15, pos, Color::BLACK);
+		auto rightBackWheel = std::make_unique<shapegame::Rectangle>(2, 15, pos, Color::BLACK);
 		rightBackWheel->translate(width, 55);
 
 
@@ -149,16 +148,16 @@ class Taxi : public Car {
 	public:
 	Taxi(Position pos): Car(pos, Color::YELLOW) {
 		this->name = "Taxi";
-		auto topThing = std::make_unique<Rectangle>(25, 6, pos, Color::WHITE);
+		auto topThing = std::make_unique<shapegame::Rectangle>(25, 6, pos, Color::WHITE);
 		topThing->translate(7, 35);
 		this->addShape(std::move(topThing));
 	}
 };
 
-class RoadLine : public Rectangle {
+class RoadLine : public shapegame::Rectangle {
 	public:
 	RoadLine(Position pos, Point size = Point(LINE_WIDTH, LINE_HEIGHT), Color color = Color::WHITE):
-		Rectangle(size.getX(), size.getY(), pos, color) {
+		shapegame::Rectangle(size.getX(), size.getY(), pos, color) {
 			this->name = "RoadLine";
 		}
 };
