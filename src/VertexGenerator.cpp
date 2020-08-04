@@ -61,6 +61,7 @@ void shapegame::VertexGenerator::triangleVerts(const Shape& shape, float *verts)
 
 		if (t) {
 			if (shape.getRotation() != 0) {
+                //rotatePoint(t->getParent()->pos, t->pos, shape.getNextRotation());
                 rotatePoint(t->pos, t->second, shape.getNextRotation());
                 rotatePoint(t->pos, t->third, shape.getNextRotation());
 			}

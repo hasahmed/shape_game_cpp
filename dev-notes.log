@@ -68,3 +68,9 @@ Current Goals:
   Got rotation working BETTER using algorithm from stack overflow, but still having issues. Plugging in a single degree rotates it WAYY more than 1 degree.
   Its weird. Theories are: 1) It could have something to do with radians. 2) It could have something to do with the translation before the rotation?
   Maybe that does something weird to the angle formula?
+
+8/3/2020:
+  Got rotation working for a single triangle with Bens help. Next step, get rotaion working for entire MultiShapes.
+    The steps to get this working are:
+      - Get the highest parent in the heirarchy, and use it as the origin for all rotations INCLUDING the 'pos' rotation of the triangle.
+      - A potential optimization to this is to add a check to see if the origin == the rotation point, and don't rotate it if so

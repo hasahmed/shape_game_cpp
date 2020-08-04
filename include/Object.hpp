@@ -14,8 +14,8 @@ namespace shapegame {
 			private:
 				float height = 0.0f;
 				float width = 0.0f;
-				float _rotation = 0;
-				float _nextRotation = 0;
+				float _rotation = 0.0f;
+				float _nextRotation = 0.0f;
 				bool canKill = false;
 				bool _dirty = false;
 				bool _inScene = false;
