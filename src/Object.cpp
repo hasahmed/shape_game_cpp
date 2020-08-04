@@ -36,11 +36,18 @@ void Object::translate(float x, float y) {
 }
 void Object::rotate(float degrees) {
 	this->setDirty(true);
-	this->_rotation = degrees;
+	this->_nextRotation = degrees;
+	this->_rotation += degrees;
 	std::cout << "this->_rotation: " << this->_rotation << std::endl;
+}
+void Object::setRotation(float degrees) {
+	this-> _rotation = degrees;
 }
 float Object::getRotation() const {
 	return this->_rotation;
+}
+float Object::getNextRotation() const {
+	return this->_nextRotation;
 }
 void Object::setDirty(bool dirty) {
 	this->_dirty = dirty;

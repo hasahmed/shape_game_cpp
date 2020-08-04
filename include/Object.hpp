@@ -10,10 +10,12 @@ namespace shapegame {
 			friend class Scene;
 			friend class Position;
 			friend class MultiShape;
+			friend class RenderPackage;
 			private:
 				float height = 0.0f;
 				float width = 0.0f;
 				float _rotation = 0;
+				float _nextRotation = 0;
 				bool canKill = false;
 				bool _dirty = false;
 				bool _inScene = false;
@@ -40,7 +42,9 @@ namespace shapegame {
 				virtual float getWidth();
 				void translate(float x, float y);
 				void rotate(float degrees);
+				void setRotation(float degrees);
 				float getRotation() const;
+				float getNextRotation() const;
 				bool isInScene(); //what? why?
 				void setDirty(bool dirty) override; //private?
 				bool isDirty() override; //private
