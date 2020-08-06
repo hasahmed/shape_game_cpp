@@ -8,7 +8,7 @@ using namespace shapegame;
 
 shapegame::VertexGenerator* shapegame::VertexGenerator::_instance = NULL;
 
-void shapegame::VertexGenerator::generate(const Shape &shape, float *verts) {
+void shapegame::VertexGenerator::generate(Shape &shape, float *verts) {
     switch (shape.type) {
         case ShapeType::Triangle:
             return triangleVerts(shape, verts);
@@ -26,6 +26,7 @@ void shapegame::VertexGenerator::generate(const Shape &shape, float *verts) {
 }
 
 void rotatePoint(Point &origin, Point &point, float rotationDegrees) {
+    if (origin == point) { return; }
 
     // rotation needs to start from 0 degrees, NOT whatever it was rotated to before
   float rotationRadians = rotationDegrees * (M_PI / 180);
@@ -42,28 +43,30 @@ void rotatePoint(Point &origin, Point &point, float rotationDegrees) {
 
   point.x = xNew + origin.x;
   point.y = yNew + origin.y;
-
-  //point.x = point.x * c - point.y * s;
-  //point.y = point.x * s + point.y * c;
-
-  //point.x = c * (point.x - origin.x) - s * (point.y - origin.y) + origin.x;
-  //point.y = s * (point.x - origin.x) + c * (point.y - origin.y) + origin.y;
-
-  //point.x += origin.x;
-  //point.y += origin.y;
-
 }
 
-void shapegame::VertexGenerator::triangleVerts(const Shape& shape, float *verts) {
+void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 		Shape *nonConstShape = const_cast<Shape*>(&shape);
 		Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
-
+		Object* rootObj = shape.getRoot();
+        std::cout << rootObj->getNextRotation() << std::endl;
 
 		if (t) {
-			if (shape.getRotation() != 0) {
-                //rotatePoint(t->getParent()->pos, t->pos, shape.getNextRotation());
-                rotatePoint(t->pos, t->second, shape.getNextRotation());
-                rotatePoint(t->pos, t->third, shape.getNextRotation());
+			if (rootObj->getNextRotation() != 0) {
+                //std::cout << rootObj->pos << std::endl;
+                //std::cout << "RootObj: " << rootObj << std::endl;
+                //std::cout << rootObj->pos << std::endl;
+                //std::cout << "ShapObj: " << &shape << std::endl;
+
+                //std::cout << rootObj->getNextRotation() << std::endl;
+
+                rotatePoint(rootObj->pos, t->pos, rootObj->getNextRotation());
+                rotatePoint(rootObj->pos, t->second, rootObj->getNextRotation());
+                rotatePoint(rootObj->pos, t->third, rootObj->getNextRotation());
+
+                //rotatePoint(t->pos, t->pos, shape.getNextRotation());
+                //rotatePoint(t->pos, t->second, shape.getNextRotation());
+                //rotatePoint(t->pos, t->third, shape.getNextRotation());
 			}
 			float x1 = this->xPxToGl(t->pos.getX());
 			float y1 = this->yPxToGl(t->pos.getY());

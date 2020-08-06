@@ -18,6 +18,7 @@ Shape::Shape(
             color(color),
             type(type) {
 							this->name = "Shape";
+                            this->setPosition(pos);
 						}
 
 Shape::Shape(float height, float width, ShapeType type, Color color) :

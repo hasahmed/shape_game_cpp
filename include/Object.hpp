@@ -26,9 +26,10 @@ namespace shapegame {
 				Position pos;
 				Object();
 				Object(double x, double y); //should be floats
-				Object(Point pos); //should be a position
+				Object(Point pos);
 				void kill();
 				Object* getParent();
+				Object* getRoot();
 				virtual ~Object();
 				virtual void update();
 				virtual void onAdd();

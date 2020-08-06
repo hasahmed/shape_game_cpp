@@ -38,7 +38,6 @@ void Object::rotate(float degrees) {
 	this->setDirty(true);
 	this->_nextRotation = degrees;
 	this->_rotation += degrees;
-	std::cout << "this->_rotation: " << this->_rotation << std::endl;
 }
 void Object::setRotation(float degrees) {
 	this-> _rotation = degrees;
@@ -61,6 +60,15 @@ void Object::setParent(Object *parent) {
 }
 Object* Object::getParent() {
 	return this->_parent;
+}
+Object* getRootHelper(Object* obj) {
+	if (!obj->getParent()) {
+		return obj;
+	}
+	return getRootHelper(obj->getParent());
+}
+Object* Object::getRoot() {
+	return getRootHelper(this);
 }
 bool Object::isInScene() {
 	return this->_inScene;

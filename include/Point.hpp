@@ -11,6 +11,7 @@ namespace shapegame {
 			float getY() const;
 			virtual void setX(const float x);
 			virtual void setY(const float y);
+			bool operator==(const Point& rhs);
 	};
 }
 std::ostream& operator<< (std::ostream& stream, const shapegame::Point& rObj);
