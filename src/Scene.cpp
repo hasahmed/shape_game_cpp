@@ -100,7 +100,6 @@ void Scene::updateChildren() {
 	for (auto &orw : this->sceneChildren) {
 		childrenRefs.push_back(orw.get());
 	}
-	std::cout << childrenRefs.capacity() << std::endl;
 	for (auto orw : childrenRefs) {
 		orw->obj->update();
 		orw->obj->setDirty(false);

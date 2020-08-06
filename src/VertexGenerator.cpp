@@ -49,7 +49,6 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 		Shape *nonConstShape = const_cast<Shape*>(&shape);
 		Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
 		Object* rootObj = shape.getRoot();
-        std::cout << rootObj->getNextRotation() << std::endl;
 
 		if (t) {
 			if (rootObj->getNextRotation() != 0) {
