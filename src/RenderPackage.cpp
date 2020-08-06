@@ -16,8 +16,6 @@ RenderPackage::RenderPackage(const RenderPackage &rPack):
 bool RenderPackage::updateDirty() {
     if (this->shape.isDirty()){
         VertexGenerator::instance()->generate(this->shape, this->glRenderObject->verts);
-		this->shape.setDirty(false);
-		this->shape._nextRotation = 0;
         return true;
     }
     return false;

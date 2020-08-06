@@ -100,8 +100,11 @@ void Scene::updateChildren() {
 	for (auto &orw : this->sceneChildren) {
 		childrenRefs.push_back(orw.get());
 	}
+	std::cout << childrenRefs.capacity() << std::endl;
 	for (auto orw : childrenRefs) {
 		orw->obj->update();
+		orw->obj->setDirty(false);
+		orw->obj->_nextRotation = 0;
 		if (auto ent = dynamic_cast<Entity*>(orw->obj.get())) {
 			for (auto &compo : ent->compos) {
 				compo->update(ent);
