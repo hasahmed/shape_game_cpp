@@ -80,3 +80,6 @@ Current Goals:
   Working on getting rotation working in multishapes (circle). Its not working out well. It seems that the issue is that when the vertexGenerator goes to rotate shapes,
   the parent object in the multishpae isn't properly considered. I think the issue may be that the parent object isn't considered 'dirty' when it is roatated. Regardless
   things are left in a very messy state right now and should be addressed. ASAP
+
+8/6/2020:
+  Got rotation working well!
