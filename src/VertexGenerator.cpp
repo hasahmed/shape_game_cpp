@@ -52,20 +52,15 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 
 		if (t) {
 			if (rootObj->getNextRotation() != 0) {
-                //std::cout << rootObj->pos << std::endl;
-                //std::cout << "RootObj: " << rootObj << std::endl;
-                //std::cout << rootObj->pos << std::endl;
-                //std::cout << "ShapObj: " << &shape << std::endl;
+                Point origin = rootObj->pos;
+                RotationInfo& rotInfo = rootObj->getRotationInfo();
+                if (rotInfo.hasAlternateOrigin) {
+                    origin = rotInfo.alternateOrigin;
+                }
+                rotatePoint(origin, t->pos, rootObj->getNextRotation());
+                rotatePoint(origin, t->second, rootObj->getNextRotation());
+                rotatePoint(origin, t->third, rootObj->getNextRotation());
 
-                //std::cout << rootObj->getNextRotation() << std::endl;
-
-                rotatePoint(rootObj->pos, t->pos, rootObj->getNextRotation());
-                rotatePoint(rootObj->pos, t->second, rootObj->getNextRotation());
-                rotatePoint(rootObj->pos, t->third, rootObj->getNextRotation());
-
-                //rotatePoint(t->pos, t->pos, shape.getNextRotation());
-                //rotatePoint(t->pos, t->second, shape.getNextRotation());
-                //rotatePoint(t->pos, t->third, shape.getNextRotation());
 			}
 			float x1 = this->xPxToGl(t->pos.getX());
 			float y1 = this->yPxToGl(t->pos.getY());

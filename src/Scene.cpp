@@ -104,6 +104,8 @@ void Scene::updateChildren() {
 		orw->obj->update();
 		orw->obj->setDirty(false);
 		orw->obj->rotationInfo.nextRotation = 0;
+		orw->obj->rotationInfo.alternateOrigin = {};
+		orw->obj->rotationInfo.hasAlternateOrigin = false;
 		if (auto ent = dynamic_cast<Entity*>(orw->obj.get())) {
 			for (auto &compo : ent->compos) {
 				compo->update(ent);

@@ -39,6 +39,15 @@ void Object::rotate(float degrees) {
 	this->rotationInfo.nextRotation = degrees;
 	this->rotationInfo.currentRotation += degrees;
 }
+void Object::rotateAround(float degrees, Point origin) {
+	this->rotate(degrees);
+	this->rotationInfo.hasAlternateOrigin = true;
+	this->rotationInfo.alternateOrigin = origin;
+
+}
+void Object::rotateAround(float degrees, Object& origin) {
+	this->rotateAround(degrees, origin.pos);
+}
 // current rotation == 2;
 // degrees = 1
 void Object::setRotation(float degrees) {
@@ -51,6 +60,10 @@ float Object::getRotation() const {
 }
 float Object::getNextRotation() const {
 	return this->rotationInfo.nextRotation;
+}
+RotationInfo& shapegame::Object::getRotationInfo()
+{
+	return this->rotationInfo;
 }
 void Object::setDirty(bool dirty) {
 	this->_dirty = dirty;

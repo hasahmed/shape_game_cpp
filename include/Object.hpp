@@ -43,9 +43,12 @@ namespace shapegame {
 				virtual float getWidth();
 				void translate(float x, float y);
 				void rotate(float degrees);
+				void rotateAround(float degrees, Point origin);
+				void rotateAround(float degrees, Object &origin);
 				void setRotation(float degrees);
 				float getRotation() const;
 				float getNextRotation() const;
+				RotationInfo& getRotationInfo();
 				bool isInScene(); //what? why?
 				void setDirty(bool dirty) override; //private?
 				bool isDirty() override; //private
