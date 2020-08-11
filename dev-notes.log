@@ -83,3 +83,7 @@ Current Goals:
 
 8/6/2020:
   Got rotation working well!
+
+8/10/2020:
+  Working on other rotation methods such as setRotation, and rotateAround.
+    - setRotation is giving me some issues with, but I think I have an idea what I need to do.

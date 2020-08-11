@@ -36,17 +36,21 @@ void Object::translate(float x, float y) {
 }
 void Object::rotate(float degrees) {
 	this->setDirty(true);
-	this->_nextRotation = degrees;
-	this->_rotation += degrees;
+	this->rotationInfo.nextRotation = degrees;
+	this->rotationInfo.currentRotation += degrees;
 }
+// current rotation == 2;
+// degrees = 1
 void Object::setRotation(float degrees) {
-	this-> _rotation = degrees;
+	this->rotationInfo.nextRotation = this->rotationInfo.currentRotation * -1;
+	this->rotationInfo.nextRotation += degrees;
+	this->rotationInfo.currentRotation = degrees;
 }
 float Object::getRotation() const {
-	return this->_rotation;
+	return this->rotationInfo.currentRotation;
 }
 float Object::getNextRotation() const {
-	return this->_nextRotation;
+	return this->rotationInfo.nextRotation;
 }
 void Object::setDirty(bool dirty) {
 	this->_dirty = dirty;

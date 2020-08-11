@@ -150,6 +150,7 @@
     <ClInclude Include="include\Quad.hpp" />
     <ClInclude Include="include\Rectangle.hpp" />
     <ClInclude Include="include\RenderPackage.hpp" />
+    <ClInclude Include="include\RotationInfo.hpp" />
     <ClInclude Include="include\Scene.hpp" />
     <ClInclude Include="include\ShaderHandler.hpp" />
     <ClInclude Include="include\Shape.hpp" />
