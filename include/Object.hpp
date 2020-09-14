@@ -20,6 +20,7 @@ namespace shapegame {
 				bool _dirty = false;
 				bool _inScene = false;
 				Object *_parent = nullptr;
+				Point _nextScale = Point(0, 0);
 				void setParent(Object *parent);
 			public:
 				std::string name = "Object";
@@ -41,6 +42,8 @@ namespace shapegame {
 				virtual void setPosition(Point pos); // shouldn't be virtual?
 				virtual float getHeight();
 				virtual float getWidth();
+				// note if multiple operations happen at once, do them in this order
+				// translate -> roatate -> scale
 				void translate(float x, float y);
 				void rotate(float degrees);
 				void rotateAround(float degrees, Point origin);
@@ -49,6 +52,10 @@ namespace shapegame {
 				float getRotation() const;
 				float getNextRotation() const;
 				RotationInfo& getRotationInfo();
+				void scaleX(float scaleFactor);
+				void scaleY(float scaleFactor);
+				void scale(float scaleX, float scaleY);
+				Point getNextScale() const;
 				bool isInScene(); //what? why?
 				void setDirty(bool dirty) override; //private?
 				bool isDirty() override; //private

@@ -14,6 +14,9 @@ void Point::setY(const float y){
 bool Point::operator==(const Point& rhs) {
 	return this->x == rhs.x && this->y == rhs.y;
 }
+Point::operator bool() const {
+	return this->x or this->y;
+}
 std::ostream& operator<< (std::ostream& stream, const shapegame::Point& rObj) {
 	using namespace std;
 	cout << "[" << rObj.x << "," << rObj.y << "]";

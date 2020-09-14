@@ -65,6 +65,21 @@ RotationInfo& shapegame::Object::getRotationInfo()
 {
 	return this->rotationInfo;
 }
+void Object::scaleX(float scaleFactor) {
+	this->_nextScale.x = scaleFactor;
+	this->setDirty(true);
+}
+void Object::scaleY(float scaleFactor) {
+	this->_nextScale.y = scaleFactor;
+	this->setDirty(true);
+}
+void Object::scale(float scaleX, float scaleY) {
+	this->_nextScale = Point(scaleX, scaleY);
+	this->setDirty(true);
+}
+Point Object::getNextScale() const {
+	return this->_nextScale;
+}
 void Object::setDirty(bool dirty) {
 	this->_dirty = dirty;
 }

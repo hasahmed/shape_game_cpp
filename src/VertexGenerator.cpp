@@ -25,8 +25,27 @@ void shapegame::VertexGenerator::generate(Shape &shape, float *verts) {
     }
 }
 
+void scalePointX(Point &origin, Point &point, float scaleFactor) {
+	std::cout << "Here scaling x" << std::endl;
+	if (point == origin) return;
+	if (point.x == origin.x) return;
+	point.x *= scaleFactor;
+}
+void scalePointY(Point &origin, Point &point, float scaleFactor) {
+	if (point == origin) return;
+	if (point.y == origin.y) return;
+	point.y *= scaleFactor;
+}
+void scalePoint(Point &origin, Point &point, float scaleFactorX, float scaleFactorY) {
+	scalePointX(origin, point, scaleFactorX);
+	scalePointY(origin, point, scaleFactorY);
+}
+void scalePoint(Point &origin, Point &point, Point scaleFactors) {
+	scalePoint(origin, point, scaleFactors.x, scaleFactors.y);
+}
+
 void rotatePoint(Point &origin, Point &point, float rotationDegrees) {
-    if (origin == point) { return; }
+    if (point == origin) return; 
 
     // rotation needs to start from 0 degrees, NOT whatever it was rotated to before
   float rotationRadians = rotationDegrees * (M_PI / 180);
@@ -61,6 +80,11 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
                 rotatePoint(origin, t->second, rootObj->getNextRotation());
                 rotatePoint(origin, t->third, rootObj->getNextRotation());
 
+			}
+			if (Point scale = rootObj->getNextScale()) {
+				scalePoint(rootObj->pos, t->pos, scale);
+				scalePoint(rootObj->pos, t->second, scale);
+				scalePoint(rootObj->pos, t->third, scale);
 			}
 			float x1 = this->xPxToGl(t->pos.getX());
 			float y1 = this->yPxToGl(t->pos.getY());

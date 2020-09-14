@@ -92,3 +92,10 @@ Current Goals:
   Got setRotation working well, as well as rotateAround working well.
   All is well up to this point, want to work on scaling next, and then have a 'code-freeze' (with the exception of cleanup)
   and try to get ready to release v1.0.0
+
+
+9/10/2020:
+    Begining to work on scaling
+
+9/13/2020:
+	Just got scaling to 'work' but its certainly not working correctly. Look into whats going on
