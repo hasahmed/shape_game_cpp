@@ -143,3 +143,5 @@ Current Goals:
 				and height values change? What if an object is added while an object is rotated, do we need to roatate that object
 				first and then calculate? This actually brings forth a deeper question about how do we handle objects being added
 				to rotated objects in the first place. We need to figure that one out.
+9/17/2020:
+    Just created a branch to work on height-width as per above comments
