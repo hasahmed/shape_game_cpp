@@ -26,7 +26,6 @@ void shapegame::VertexGenerator::generate(Shape &shape, float *verts) {
 }
 
 void scalePointX(Point &origin, Point &point, float scaleFactor) {
-	std::cout << "Here scaling x" << std::endl;
 	if (point == origin) return;
 	if (point.x == origin.x) return;
 	point.x *= scaleFactor;
@@ -34,13 +33,19 @@ void scalePointX(Point &origin, Point &point, float scaleFactor) {
 void scalePointY(Point &origin, Point &point, float scaleFactor) {
 	if (point == origin) return;
 	if (point.y == origin.y) return;
+	// std::cout << "Here scaling y" << std::endl;
+	// std::cout << "Y before: " << point.y << std::endl;
 	point.y *= scaleFactor;
+	// std::cout << "Y after: " << point.y << std::endl;
+
 }
 void scalePoint(Point &origin, Point &point, float scaleFactorX, float scaleFactorY) {
 	scalePointX(origin, point, scaleFactorX);
 	scalePointY(origin, point, scaleFactorY);
 }
 void scalePoint(Point &origin, Point &point, Point scaleFactors) {
+	// std::cout << point << std::endl;
+	// std::cout << origin << std::endl;
 	scalePoint(origin, point, scaleFactors.x, scaleFactors.y);
 }
 
@@ -82,9 +87,14 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 
 			}
 			if (Point scale = rootObj->getNextScale()) {
+				std::cout << t->second << std::endl;
+			// std::cout << "Scale" << scale << std::endl;
 				scalePoint(rootObj->pos, t->pos, scale);
 				scalePoint(rootObj->pos, t->second, scale);
 				scalePoint(rootObj->pos, t->third, scale);
+				// std::cout << t->pos << scale << std::endl;
+				std::cout << t->second << std::endl;
+				// std::cout << t->pos << scale << std::endl;
 			}
 			float x1 = this->xPxToGl(t->pos.getX());
 			float y1 = this->yPxToGl(t->pos.getY());

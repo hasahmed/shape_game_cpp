@@ -20,7 +20,8 @@ namespace shapegame {
 				bool _dirty = false;
 				bool _inScene = false;
 				Object *_parent = nullptr;
-				Point _nextScale = Point(0, 0);
+				Point _nextScale = {};
+				Point _scale = {1, 1};
 				void setParent(Object *parent);
 			public:
 				std::string name = "Object";
@@ -52,9 +53,11 @@ namespace shapegame {
 				float getRotation() const;
 				float getNextRotation() const;
 				RotationInfo& getRotationInfo();
-				void scaleX(float scaleFactor);
-				void scaleY(float scaleFactor);
-				void scale(float scaleX, float scaleY);
+				// void scaleX(float scaleFactor);
+				// void scaleY(float scaleFactor);
+				// void scale(float scaleFactorX, float scaleFactorY);
+				// void scale(Point scaleFactor);
+				void setScale(Point scale);
 				Point getNextScale() const;
 				bool isInScene(); //what? why?
 				void setDirty(bool dirty) override; //private?

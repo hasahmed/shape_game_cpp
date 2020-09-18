@@ -99,3 +99,47 @@ Current Goals:
 
 9/13/2020:
 	Just got scaling to 'work' but its certainly not working correctly. Look into whats going on
+9/14/2020:
+	Scaling on the Y axis still doesn't seem to be working. Decided to rewrite the scaling in a simpler way
+	first by writing and implementing a setScale method first. That way we know we don't need to keep track
+	of as much. So far all I've done is write the boilerplate to the Object class, still needs implementation
+	in object to be thought out, and needs to be implemented in the vertexGenerator. Things won't compile now
+
+9/17/2020:
+	Realzing that there are issues with my scaling algorithm. I'm scaling based on posiiton of points, thinking through
+	it now, the scale should be considering the height and the width of the object its self right? Because scaling a point
+	on the y axsis at 1 * 2 will only move the point 1 pixel even if the object is 100 pixels tall. So the scaling algorithm
+	should be:
+		y += (scaleFactor * height)
+		x += (scaleFactor * width)
+
+
+	NOTE* Godot scaling moves everything AWAY from the origin (which makes sense).
+
+	So in order to implement this feature we need to first implement a few other features, which may be non-trivial
+
+	- Width
+	- Height
+	- Calculate Direction between points (e.g. Up, Down, Left, Right) (should be pretty easy)
+
+		e.g. y = 1, height = 100, scaleFactor = 2;
+		scale(y, scaleFactor) == 2 * 100 == 200
+
+
+	Width, Height:
+		These numbers will have to be calculated, and here is a suggested algorithm,
+
+			For height: difference between heighest and lowest y value
+			For width: difference between left most and right most x value
+				We can keep track of these numbers as shapes are added to multi shapes,
+				we need to figure out how to handle it cleanly between MultiShapes and Triangles and MultiMultiShapes. Maybe
+				what we should do is keep track of it in every triangle and multishpae, then when a shape is added to a multishape
+				we ask for most exreme poitns, if any of them are father (more extreme) than the multishape being added to, they
+				become the new value.
+
+				With this implementation something else we'll have to do is update these values when any scaling, adding, or removing
+				happens.
+				Another place where this might get hairy is in rotations. If any object is rotated 90 degrees, does its width
+				and height values change? What if an object is added while an object is rotated, do we need to roatate that object
+				first and then calculate? This actually brings forth a deeper question about how do we handle objects being added
+				to rotated objects in the first place. We need to figure that one out.
