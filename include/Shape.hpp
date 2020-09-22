@@ -11,10 +11,6 @@
 namespace shapegame {
     class Shape : public Entity {
         friend class Scene;
-        //friend class RenderPackage;
-        protected:
-					float _height; // not needed?
-					float _width; //not needed?
         public:
 					bool collidable = false; //not needed?
 					Color color;

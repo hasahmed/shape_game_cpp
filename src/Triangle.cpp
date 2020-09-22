@@ -39,8 +39,8 @@ Triangle::Triangle(Position first, Point second, Point third, Color color):
 				maxY = std::max<float>(maxY, p->getY());
 				minY = std::min<float>(minY, p->getY());
 		});
-		this->_height = maxX - minX;
-		this->_width = maxY - minY;
+		this->height = maxX - minX;
+		this->width = maxY - minY;
 		this->collisionPosition = Position(minX, minXPoint.getY() + maxY);
 	}
 

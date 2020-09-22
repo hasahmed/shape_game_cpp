@@ -13,12 +13,12 @@ Shape::Shape(
         Color color
         ) :
             Entity(pos),
-            _height(height),
-            _width(width),
             color(color),
             type(type) {
 							this->name = "Shape";
-                            this->setPosition(pos);
+							this->setPosition(pos);
+							this->width = width;
+							this-> height = height;
 						}
 
 Shape::Shape(float height, float width, ShapeType type, Color color) :

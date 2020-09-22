@@ -145,3 +145,6 @@ Current Goals:
 				to rotated objects in the first place. We need to figure that one out.
 9/17/2020:
     Just created a branch to work on height-width as per above comments
+9/21/2020:
+	Apparently there was already an implementation for width and height, it just wasn't finished. I went ahead and finished
+	it, but it needs more work for mulitshapes

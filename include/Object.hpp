@@ -13,8 +13,6 @@ namespace shapegame {
 			friend class MultiShape;
 			friend class RenderPackage;
 			private:
-				float height = 0.0f;
-				float width = 0.0f;
 				RotationInfo rotationInfo;
 				bool canKill = false;
 				bool _dirty = false;
@@ -23,6 +21,10 @@ namespace shapegame {
 				Point _nextScale = {};
 				Point _scale = {1, 1};
 				void setParent(Object *parent);
+			protected:
+				float height = 0.0f;
+				float width = 0.0f;
+
 			public:
 				std::string name = "Object";
 				Position pos;
