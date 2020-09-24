@@ -148,3 +148,5 @@ Current Goals:
 9/21/2020:
 	Apparently there was already an implementation for width and height, it just wasn't finished. I went ahead and finished
 	it, but it needs more work for mulitshapes
+9/23/2020:
+    Going to try to implement width and height for multishapes

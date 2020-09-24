@@ -5,6 +5,7 @@ int main() {
 	game.scene->setBackgroundColor(Color::BLUE);
 	game.scene->addChild(std::make_unique<DebugKeyHandler>());
 	Triangle* t = game.scene->addChildAs<Triangle>(std::make_unique<TriangleIsosceles>(100, 100, Position(100, 101), Color::BLACK));
+	Square* s = game.scene->addChildAs<Square>(std::make_unique<Square>(Point(10, 10), 100, Color::YELLOW));
 
 	game.scene->addChild(new Timer(2000, true, true, [&t]{
 		// t->scaleX(2);
