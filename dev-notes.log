@@ -150,3 +150,7 @@ Current Goals:
 	it, but it needs more work for mulitshapes
 9/23/2020:
     Going to try to implement width and height for multishapes
+
+    UPDATE:
+        - Implemented the algorithm and it seems to almost be working. Looks like we need to account for position somewhere?
+        The main file shows that an objects width is 110 when it should just be 100. Look into this

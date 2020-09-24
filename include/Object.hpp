@@ -24,7 +24,8 @@ namespace shapegame {
 			protected:
 				float height = 0.0f;
 				float width = 0.0f;
-
+				Point minXY = Point();
+				Point maxXY = Point();
 			public:
 				std::string name = "Object";
 				Position pos;
@@ -45,6 +46,7 @@ namespace shapegame {
 				virtual void setPosition(Point pos); // shouldn't be virtual?
 				virtual float getHeight();
 				virtual float getWidth();
+				Point getSize();
 				// note if multiple operations happen at once, do them in this order
 				// translate -> roatate -> scale
 				void translate(float x, float y);

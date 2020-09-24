@@ -28,6 +28,7 @@ void Object::setPosition(float x, float y){
 }
 float Object::getHeight() { return this->height; }
 float Object::getWidth() { return this->width; }
+Point Object::getSize() {return Point(this->width, this->height);}
 void Object::setPosition(Point pos) {
 	this->setPosition(pos.getX(), pos.getY());
 }

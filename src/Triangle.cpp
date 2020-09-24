@@ -41,6 +41,8 @@ Triangle::Triangle(Position first, Point second, Point third, Color color):
 		});
 		this->height = maxX - minX;
 		this->width = maxY - minY;
+		this->minXY = Point(minX, minY);
+		this-> maxXY = Point(maxX, maxY);
 		this->collisionPosition = Position(minX, minXPoint.getY() + maxY);
 	}
 

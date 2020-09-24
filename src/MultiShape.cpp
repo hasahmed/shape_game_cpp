@@ -1,4 +1,5 @@
 #include "shapegame.hpp"
+#include <algorithm>
 using namespace shapegame;
 
 
@@ -11,6 +12,15 @@ MultiShape::MultiShape(Position pos): Entity(pos) {
 /* BASE IMPL */
 void MultiShape::addShape(std::unique_ptr<Object> obj) {
 	obj->setParent(this);
+
+	this->minXY.x = std::min(this->minXY.x, obj->minXY.x);
+	this->minXY.y = std::min(this->minXY.y, obj->minXY.y);
+	this->maxXY.x = std::max(this->maxXY.x, obj->maxXY.x);
+	this->maxXY.y = std::max(this->maxXY.y, obj->maxXY.y);
+
+	this->height = this->maxXY.x - this->minXY.x;
+	this->width = this->maxXY.y - this->minXY.y;
+
 	this->shapeStorage.push_back(std::move(obj));
 }
 void MultiShape::addShape(Object* obj) {
