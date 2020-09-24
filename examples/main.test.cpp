@@ -14,8 +14,8 @@ int main() {
 		t->setScale(Point(1, 2));
 	}));
 
-	std::cout << t->getWidth() << std::endl;
-	std::cout << t->getHeight() << std::endl;
+	// std::cout << t->getWidth() << std::endl;
+	// std::cout << t->getHeight() << std::endl;
 
 	game.run();
 }

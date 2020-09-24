@@ -87,13 +87,13 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 
 			}
 			if (Point scale = rootObj->getNextScale()) {
-				std::cout << t->second << std::endl;
+				// std::cout << t->second << std::endl;
 			// std::cout << "Scale" << scale << std::endl;
 				scalePoint(rootObj->pos, t->pos, scale);
 				scalePoint(rootObj->pos, t->second, scale);
 				scalePoint(rootObj->pos, t->third, scale);
 				// std::cout << t->pos << scale << std::endl;
-				std::cout << t->second << std::endl;
+				// std::cout << t->second << std::endl;
 				// std::cout << t->pos << scale << std::endl;
 			}
 			float x1 = this->xPxToGl(t->pos.getX());
