@@ -12,10 +12,17 @@ Object::~Object(){
 	std::cout << "Object Killed" << std::endl;
 	#endif
 }
+
+bool Object::recalculateSize() {
+	// objects size never changes, its always (0, 0)
+	return false;
+}
+
 void Object::kill() {
 	this->onKill();
 	this->canKill = true;
 }
+
 void Object::onAdd(){}
 void Object::update(){}
 void Object::onKill(){}

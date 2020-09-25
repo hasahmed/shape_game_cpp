@@ -9,17 +9,39 @@ MultiShape::MultiShape(): Entity(Position()) {
 MultiShape::MultiShape(Position pos): Entity(pos) {
 	this->name = "MultiShape";
 }
+
+// updates the size of the mutishape given the object obj.
+// this assumes that obj is a part of the multishape,
+// and its either being added to the multishape for the
+// first time, or its points have changed in some way
+// so we need to reevaluate what our objects total size is.
+// returns true if the size has changed, or false
+// if there was no change
+bool MultiShape::updateSize(Object &obj) {
+	Point oldSize = this->getSize();
+	if (this->getShapes().size() >= 1) { // then we already have shapes, and therefor have a size, and we need to recalcuate
+		this->minXY.x = std::min(this->minXY.x, obj.minXY.x);
+		this->minXY.y = std::min(this->minXY.y, obj.minXY.y);
+		this->maxXY.x = std::max(this->maxXY.x, obj.maxXY.x);
+		this->maxXY.y = std::max(this->maxXY.y, obj.maxXY.y);
+
+		this->height = this->maxXY.x - this->minXY.x;
+		this->width = this->maxXY.y - this->minXY.y;
+	}
+	else { // we have no shapes, and have no size, so our size is the size of our first object
+		this->minXY = obj.minXY;
+		this->maxXY = obj.maxXY;
+		this->height = obj.height;
+		this->width = obj.width;
+	}
+	return oldSize == this->getSize();
+}
+
 /* BASE IMPL */
 void MultiShape::addShape(std::unique_ptr<Object> obj) {
 	obj->setParent(this);
 
-	this->minXY.x = std::min(this->minXY.x, obj->minXY.x);
-	this->minXY.y = std::min(this->minXY.y, obj->minXY.y);
-	this->maxXY.x = std::max(this->maxXY.x, obj->maxXY.x);
-	this->maxXY.y = std::max(this->maxXY.y, obj->maxXY.y);
-
-	this->height = this->maxXY.x - this->minXY.x;
-	this->width = this->maxXY.y - this->minXY.y;
+	this->updateSize(*obj);
 
 	this->shapeStorage.push_back(std::move(obj));
 }

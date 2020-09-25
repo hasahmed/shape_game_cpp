@@ -154,3 +154,8 @@ Current Goals:
     UPDATE:
         - Implemented the algorithm and it seems to almost be working. Looks like we need to account for position somewhere?
         The main file shows that an objects width is 110 when it should just be 100. Look into this
+
+9/24/2020:
+	Tried to finish implementing height and width, but running into issues recalulating the height and width after
+	 the size has changed when a triangle is scaled. Also the implementation of the calculation of the triangle size is
+	 very convoluted and should be reworked.

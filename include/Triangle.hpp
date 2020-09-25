@@ -6,8 +6,13 @@
 #include "Globals.hpp"
 #include "Point.hpp"
 
+
 namespace shapegame {
+	class VertexGenerator;
     class Triangle : public Shape {
+			friend class VertexGenerator;
+				protected:
+				virtual bool recalculateSize() override;
         public:
 				using Shape::setPosition;
 				// pos inherited from Object

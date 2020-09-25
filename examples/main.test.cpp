@@ -12,7 +12,7 @@ int main() {
 		// t->scaleY(2);
 		// t->scaleY(1.1);
 		t->setScale(Point(1, 2));
-		std::cout << s->getWidth() << std::endl;
+		std::cout << t->getHeight() << std::endl;
 	}));
 
 	// std::cout << t->getWidth() << std::endl;

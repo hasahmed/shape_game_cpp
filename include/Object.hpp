@@ -26,6 +26,7 @@ namespace shapegame {
 				float width = 0.0f;
 				Point minXY = Point();
 				Point maxXY = Point();
+				virtual bool recalculateSize();
 			public:
 				std::string name = "Object";
 				Position pos;

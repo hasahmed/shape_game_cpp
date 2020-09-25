@@ -92,6 +92,7 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 				scalePoint(rootObj->pos, t->pos, scale);
 				scalePoint(rootObj->pos, t->second, scale);
 				scalePoint(rootObj->pos, t->third, scale);
+				t->recalculateSize();
 				// std::cout << t->pos << scale << std::endl;
 				// std::cout << t->second << std::endl;
 				// std::cout << t->pos << scale << std::endl;
