@@ -43,6 +43,11 @@ void MultiShape::addShape(std::unique_ptr<Object> obj) {
 
 	this->updateSize(*obj);
 
+	if (this->isInScene()) {
+		this->unAddedObjects.push_back(obj.get());
+		this->hasUnaddedObjects = true;
+	}
+
 	this->shapeStorage.push_back(std::move(obj));
 }
 void MultiShape::addShape(Object* obj) {

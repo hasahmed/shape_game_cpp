@@ -51,6 +51,7 @@ Object* Scene::addChild(Object *obj) {
 }
 
 Object* Scene::addChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
+	obj->_inScene = true;
 	auto orw = std::make_unique<ObjRenderWrapper>(std::move(obj));
 	ObjRenderWrapper *orwRaw = orw.get();
 	Object *objRaw = orw->obj.get();
@@ -71,15 +72,15 @@ Object* Scene::addChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
 	return objRaw;
 }
 
-void Scene::addSubChild(ObjRenderWrapper &owr, Object* subObj) {
+void Scene::addSubChild(ObjRenderWrapper &orw, Object* subObj) {
 	subObj->onAdd();
 	if (auto *multi = dynamic_cast<MultiShape*>(subObj)) {
 		for (auto *subObj : multi->getShapes()) {
-			addSubChild(owr, subObj);
+			addSubChild(orw, subObj);
 		}
 	}
 	else if (auto *shape = dynamic_cast<Shape*>(subObj)) {
-		initRenderables(owr, *shape);
+		initRenderables(orw, *shape);
 	}
 	else if (auto *object = dynamic_cast<Object*>(subObj)) {
 		// do nothing
@@ -94,6 +95,7 @@ void Scene::drawChildren() {
 	}
 }
 
+// Why TF is this being done like this? This seems increadibly ineffecient
 void Scene::updateChildren() {
 	std::vector<ObjRenderWrapper*> childrenRefs;
 	childrenRefs.reserve(this->sceneChildren.size());
@@ -101,6 +103,18 @@ void Scene::updateChildren() {
 		childrenRefs.push_back(orw.get());
 	}
 	for (auto orw : childrenRefs) {
+		// this block is to handle adding multishapes to the scene,
+		// when they have had shapes added to them after they have
+		// already been added to the scene
+		if (auto *multi = dynamic_cast<MultiShape*>(orw->obj.get())) {
+			if (multi->hasUnaddedObjects) {
+				for (auto obj : multi->unAddedObjects) {
+					this->addChild(obj);
+				}
+				multi->hasUnaddedObjects = false;
+				multi->unAddedObjects.clear();
+			}
+		}
 		orw->obj->update();
 		orw->obj->setDirty(false);
 		orw->obj->rotationInfo.nextRotation = 0;

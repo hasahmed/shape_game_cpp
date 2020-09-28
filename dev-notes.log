@@ -165,3 +165,11 @@ Current Goals:
 	Realized that the scaling does work, but the height and width are mixed up. Lets try to sort that out
 	UPDATE:
 		- Turns out I was just setting the variables opposite in the calulation code
+	UPDATE:
+		- While trying to write some test code, i realized that using the MutliShape::addShape method doesn't work
+		outside of the constructor. I think the reason is that shapes aren't actually added to the scene in multishapes
+		when they are added, so we need to figure that one out.
+	UPDATE:
+		- Was finally able to get the feature working where you can add an object to a multishape after Its
+		already been added to the scene, BUT WITH A BIG CAVIAT! It seg faults when the game is closed. This seems
+		to be due to a double free or something. Figure this out next

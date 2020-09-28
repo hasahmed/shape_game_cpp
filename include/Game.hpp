@@ -15,6 +15,7 @@ namespace shapegame {
 			std::unique_ptr<GLHandler> _glHandler;
 			std::unique_ptr<VertexGenerator> _vertexGenerator;
 			static Game *_inst;
+			static bool _isRunning;
 		public:
 			std::unique_ptr<Scene> scene;
 			Game(
@@ -24,6 +25,7 @@ namespace shapegame {
 					);
 			Game();
 			static Game& inst();
+			static bool isRunning();
 			void draw(RenderPackage &rPack);
 			void run();
 			void initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint shaderProg);

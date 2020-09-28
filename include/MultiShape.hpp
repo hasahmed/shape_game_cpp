@@ -13,6 +13,8 @@ namespace shapegame {
 			// for storing of the memory
 			std::vector<std::unique_ptr<Object>> shapeStorage; 
 			bool updateSize(Object &obj);
+			std::vector<Object*> unAddedObjects;
+			bool hasUnaddedObjects = false;
 		public:
 			virtual ~MultiShape();
 			MultiShape();

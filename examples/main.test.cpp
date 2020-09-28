@@ -9,15 +9,17 @@ int main() {
 	std::unique_ptr<Square> newSquare = std::make_unique<Square>(Point(10, 10), 100, Color::GREEN);
 	newSquare->translate(100, 0);
 
+
+	// std::unique_ptr<Square> s = std::make_unique<Square>(Point(10, 10), 100, Color::YELLOW);
 	s->addShape(std::move(newSquare));
 
-	// game.scene->addChild(std::move(newSquare));
+	// game.scene->addChild(std::move(s));
 
 	game.scene->addChild(new Timer(2000, true, true, [&t, &s]{
 		// t->scaleX(2);
 		// t->scaleY(2);
 		// t->scaleY(1.1);
-		t->setScale(Point(1, 2));
+		// t->setScale(Point(1, 2));
 		std::cout << s->getShapes()[0]->getWidth() << std::endl;
 		// std::cout << t->getHeight() << std::endl;
 		// std::cout << t->getWidth() << std::endl;
