@@ -98,8 +98,8 @@ bool Triangle::recalculateSize() {
 			maxY = std::max<float>(maxY, p->getY());
 			minY = std::min<float>(minY, p->getY());
 	});
-	this->height = maxX - minX;
-	this->width = maxY - minY;
+	this->width = maxX - minX;
+	this->height = maxY - minY;
 	this->minXY = Point(minX, minY);
 	this-> maxXY = Point(maxX, maxY);
 
