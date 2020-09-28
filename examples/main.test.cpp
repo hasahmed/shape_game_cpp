@@ -9,7 +9,9 @@ int main() {
 	std::unique_ptr<Square> newSquare = std::make_unique<Square>(Point(10, 10), 100, Color::GREEN);
 	newSquare->translate(100, 0);
 
-	game.scene->addChild(newSquare);
+	s->addShape(std::move(newSquare));
+
+	// game.scene->addChild(std::move(newSquare));
 
 	game.scene->addChild(new Timer(2000, true, true, [&t, &s]{
 		// t->scaleX(2);
