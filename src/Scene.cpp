@@ -109,7 +109,7 @@ void Scene::updateChildren() {
 		if (auto *multi = dynamic_cast<MultiShape*>(orw->obj.get())) {
 			if (multi->hasUnaddedObjects) {
 				for (auto obj : multi->unAddedObjects) {
-					this->addChild(obj);
+					this->addSubChild(*orw, obj);
 				}
 				multi->hasUnaddedObjects = false;
 				multi->unAddedObjects.clear();
