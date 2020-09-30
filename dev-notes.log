@@ -177,4 +177,7 @@ Current Goals:
 		- Fixed the seg fault issue. Everything seems to be working properly with adding objects to multishape after
 		its been added to the scene
 9/29/2020:
-	Going to try to keep working on implementing scaling properly
+		While testing out scaling, realized that although the results of the getSize()
+		method is acurate, its not actually acturate until the vertexes are updated for
+		the given object, which is needless to say not right away. So a good idea would
+		be to calculate what the new size is going to be before the vertexes are updated

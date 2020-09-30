@@ -5,8 +5,10 @@
 
 namespace shapegame {
 	class Scene;
+	class VetexGenerator;
 	class MultiShape : public Entity {
 		friend class Scene;
+		friend class VertexGenerator;
 		private:
 			// for public access via getShapes
 			std::vector<Object*> shapes;
