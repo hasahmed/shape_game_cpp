@@ -173,3 +173,8 @@ Current Goals:
 		- Was finally able to get the feature working where you can add an object to a multishape after Its
 		already been added to the scene, BUT WITH A BIG CAVIAT! It seg faults when the game is closed. This seems
 		to be due to a double free or something. Figure this out next
+	UPDATE:
+		- Fixed the seg fault issue. Everything seems to be working properly with adding objects to multishape after
+		its been added to the scene
+9/29/2020:
+	Going to try to keep working on implementing scaling properly
