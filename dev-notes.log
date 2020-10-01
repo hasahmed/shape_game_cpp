@@ -184,3 +184,11 @@ Current Goals:
 9/30/2020:
 	Now calculate the size of the object before and after scaling. The after scaling is probably overkill,
 	but kind of a fail safe because the calculation method seems more accurate? Maybe rethink this in the future
+	TODO:
+		Scale relative to original. setScale method should be relative to the objects original size. E.g. psudo code
+			print(obj.size) // (10, 10)
+			obj.setScale(5, 5);
+			print(obj.size) (50, 50);
+			obj.setScale(1, 1);
+			print(obj.size) (10, 10);
+
