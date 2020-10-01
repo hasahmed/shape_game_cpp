@@ -6,6 +6,7 @@ int main() {
 	game.scene->addChild(std::make_unique<DebugKeyHandler>());
 	Triangle* t = game.scene->addChildAs<Triangle>(std::make_unique<Triangle>(Point(100, 50), Point(200, 10), Point(86, 200) , Color::BLACK));
 	Square* s = game.scene->addChildAs<Square>(std::make_unique<Square>(Point(10, 10), 10, Color::YELLOW));
+	// Square* s = game.scene->addChildAs<Square>(std::make_unique<Square>(Point(10, 10), 620, Color::YELLOW));
 	std::unique_ptr<Square> newSquare = std::make_unique<Square>(Point(10, 10), 10, Color::GREEN);
 	newSquare->translate(100, 0);
 
@@ -15,12 +16,12 @@ int main() {
 
 
 	// std::cout << t->getHeight() << std::endl;
-		std::cout << s->getSize() << std::endl;
+		// std::cout << s->getSize() << std::endl;
 	game.scene->addChild(new Timer(2000, true, true, [&t, &s]{
 		// t->scaleX(2);
 		// t->scaleY(2);
+		s->setScale(Point(2, 1));
 		std::cout << s->getSize() << std::endl;
-		s->setScale(Point(2, 2));
 		// t->scaleY(1.1);
 		// std::cout << s->getHeight() << std::endl;
 		// std::cout << s->getWidth() << std::endl;

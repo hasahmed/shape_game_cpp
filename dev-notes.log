@@ -181,3 +181,6 @@ Current Goals:
 		method is acurate, its not actually acturate until the vertexes are updated for
 		the given object, which is needless to say not right away. So a good idea would
 		be to calculate what the new size is going to be before the vertexes are updated
+9/30/2020:
+	Now calculate the size of the object before and after scaling. The after scaling is probably overkill,
+	but kind of a fail safe because the calculation method seems more accurate? Maybe rethink this in the future

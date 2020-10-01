@@ -25,8 +25,8 @@ bool MultiShape::updateSize(Object &obj) {
 		this->maxXY.x = std::max(this->maxXY.x, obj.maxXY.x);
 		this->maxXY.y = std::max(this->maxXY.y, obj.maxXY.y);
 
-		this->height = this->maxXY.x - this->minXY.x;
-		this->width = this->maxXY.y - this->minXY.y;
+		this->width = this->maxXY.x - this->minXY.x;
+		this->height = this->maxXY.y - this->minXY.y;
 	}
 	else { // we have no shapes, and have no size, so our size is the size of our first object
 		this->minXY = obj.minXY;

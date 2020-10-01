@@ -92,6 +92,8 @@ RotationInfo& shapegame::Object::getRotationInfo()
 void Object::setScale(Point scale) {
 	this->_scale = scale;
 	this->_nextScale = scale;
+	this->width *= scale.x;
+	this->height *= scale.y;
 	this->setDirty(true);
 }
 Point Object::getNextScale() const {
