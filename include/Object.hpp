@@ -63,6 +63,7 @@ namespace shapegame {
 				// void scale(float scaleFactorX, float scaleFactorY);
 				// void scale(Point scaleFactor);
 				void setScale(Point scale);
+				Point getScale();
 				Point getNextScale() const;
 				bool isInScene();
 				void setDirty(bool dirty) override; //private?

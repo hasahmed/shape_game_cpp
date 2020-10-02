@@ -15,12 +15,19 @@ int main() {
 	// s->addShape(std::move(newSquare));
 
 
+	int has_scaled = 0;
 	// std::cout << t->getHeight() << std::endl;
 		// std::cout << s->getSize() << std::endl;
-	game.scene->addChild(new Timer(2000, true, true, [&t, &s]{
+	game.scene->addChild(new Timer(2000, true, true, [&t, &s, &has_scaled]{
 		// t->scaleX(2);
 		// t->scaleY(2);
-		s->setScale(Point(2, 1));
+		if (has_scaled == 0) {
+			s->setScale(Point(2, 1));
+		}
+		else {
+			s->setScale(Point(1, 1));
+		}
+		std::cout << s->getScale() << std::endl;
 		std::cout << s->getSize() << std::endl;
 		// t->scaleY(1.1);
 		// std::cout << s->getHeight() << std::endl;

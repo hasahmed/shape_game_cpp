@@ -191,4 +191,6 @@ Current Goals:
 			print(obj.size) (50, 50);
 			obj.setScale(1, 1);
 			print(obj.size) (10, 10);
+10/1/2020:
+	- Working on reimplemneting setScale method to scale relative to original scale as described in yesterdays notes
 

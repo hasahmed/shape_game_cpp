@@ -12,7 +12,19 @@ namespace shapegame {
 			float getY() const;
 			virtual void setX(const float x);
 			virtual void setY(const float y);
-			bool operator==(const Point& rhs);
+			bool operator==(const Point& rhs); //
+			Point operator+(const Point& rhs); //
+			Point operator+(const float& rhs); //
+			Point operator-(const Point& rhs); //
+			Point operator-(const float& rhs);//
+			Point operator*(const Point& rhs); //
+			Point operator*(const float& rhs); //
+			void operator+=(const Point& rhs); //
+			void operator+=(const float& rhs); //
+			void operator-=(const Point& rhs); //
+			void operator-=(const float& rhs); //
+			void operator*=(const Point& rhs);
+			void operator*=(const float& rhs);
 			operator bool() const;
 	};
 }
