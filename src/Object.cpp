@@ -77,10 +77,22 @@ RotationInfo& shapegame::Object::getRotationInfo()
 // 	this->_nextScale.x = scaleFactor;
 // 	this->setDirty(true);
 // }
-// void Object::scaleY(float scaleFactor) {
-// 	this->_nextScale.y = scaleFactor;
-// 	this->setDirty(true);
-// }
+void Object::scale(Point scaleFactor) {
+	this->_scale += scaleFactor;
+	this->_nextScale = scaleFactor;
+	this->width *= scaleFactor.x;
+	this->height *= scaleFactor.y;
+	this->setDirty(true);
+}
+void Object::scale(float scaleFactorX, float scaleFactorY) {
+	this->scale(Point(scaleFactorX, scaleFactorY));
+}
+void Object::scaleY(float scaleFactor) {
+	this->scale(scaleFactor, scaleFactor);
+}
+void Object::scaleX(float scaleFactor) {
+	this->scale(scaleFactor, scaleFactor);
+}
 // void Object::scale(float scaleFactor) {
 // 	this->_nextScale = Point(scaleFactor, scaleFactor);
 // 	this->setDirty(true);
@@ -90,10 +102,6 @@ RotationInfo& shapegame::Object::getRotationInfo()
 // 	this->setDirty(true);
 // }
 void Object::setScale(Point scale) {
-	if (scale == _scale) {
-		return;
-	}
-	// scale back to 1
 	this->_scale = scale;
 	this->_nextScale = scale;
 	this->width *= scale.x;

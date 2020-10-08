@@ -203,3 +203,14 @@ Current Goals:
     - Trying to figure out how to get the scaling how I want it.
     - Can't figure out how to get scaling the way I want it to be. I'm going to do it in 2 steps
         and maybe optimize later if needed
+
+10/7/2020:
+    - Can't figure out how to get scaling the way I want it to be. I'm going to do it in 2 steps
+        and maybe optimize later if needed
+		UPDATE:
+			- Copied the current implementation of the setScale method into the scale method because that is the behavior we want
+			for scale I believe. We could possibly call it scaleBy
+
+			UPDATE:
+				- The setScale method has code in it, but it is not correct. We are going to need some other control variables
+				to determine how much we need to scale down by and what not

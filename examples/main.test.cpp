@@ -21,12 +21,13 @@ int main() {
 	game.scene->addChild(new Timer(2000, true, true, [&t, &s, &has_scaled]{
 		// t->scaleX(2);
 		// t->scaleY(2);
-		if (has_scaled == 0) {
-			s->setScale(Point(2, 1));
-		}
-		else {
-			s->setScale(Point(1, 1));
-		}
+		// if (has_scaled == 0) {
+		// 	s->setScale(Point(2, 1));
+		// }
+		// else {
+		// 	s->setScale(Point(1, 1));
+		// }
+		s->setScale(Point(2, 2));
 		std::cout << s->getScale() << std::endl;
 		std::cout << s->getSize() << std::endl;
 		// t->scaleY(1.1);

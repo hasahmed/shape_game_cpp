@@ -33,6 +33,7 @@ Point Point::operator*(const float& rhs) {
 	return Point(this->x * rhs, this->y * rhs);
 }
 void Point::operator+=(const Point& rhs) {
+	std::cout << "Here" << std::endl;
 	this->x += rhs.x;
 	this->y += rhs.y;
 }
