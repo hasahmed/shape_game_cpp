@@ -27,7 +27,7 @@ int main() {
 		// else {
 		// 	s->setScale(Point(1, 1));
 		// }
-		s->setScale(Point(2, 2));
+		s->scale(2);
 		std::cout << s->getScale() << std::endl;
 		std::cout << s->getSize() << std::endl;
 		// t->scaleY(1.1);

@@ -58,10 +58,9 @@ namespace shapegame {
 				float getRotation() const;
 				float getNextRotation() const;
 				RotationInfo& getRotationInfo();
-				void scaleX(float scaleFactor);
-				void scaleY(float scaleFactor);
-				void scale(float scaleFactorX, float scaleFactorY);
 				void scale(Point scaleFactor);
+				void scale(float scaleFactorX, float scaleFactorY);
+				void scale(float scaleFactor);
 				void setScale(Point scale);
 				Point getScale();
 				Point getNextScale() const;
