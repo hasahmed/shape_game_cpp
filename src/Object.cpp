@@ -93,6 +93,7 @@ void Object::setScale(Point scale) {
 	if (scale == _scale) {
 		return;
 	}
+	// scale back to 1
 	this->_scale = scale;
 	this->_nextScale = scale;
 	this->width *= scale.x;

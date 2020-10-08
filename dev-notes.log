@@ -193,4 +193,13 @@ Current Goals:
 			print(obj.size) (10, 10);
 10/1/2020:
 	- Working on reimplemneting setScale method to scale relative to original scale as described in yesterdays notes
+	UPDATE:
+		- Gave up on trying to scale object correctly for now. Haven't figured out the algorithm yet other than 
+		two do it in 2 steps, scale back to 1, then scale up from there and that would be waste as well as annoying and dirty to implement. Think on it more
 
+
+
+10/4/2020:
+    - Trying to figure out how to get the scaling how I want it.
+    - Can't figure out how to get scaling the way I want it to be. I'm going to do it in 2 steps
+        and maybe optimize later if needed
