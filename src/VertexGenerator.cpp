@@ -87,16 +87,33 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 
 			}
 			if (Point scale = rootObj->getNextScale()) {
+				Point currentScale = rootObj->getScale();
+				// if (scale != rootObj->getScale()) {
+					// if (scale != 1) {
+					std::cout << "CurrentScale: " << currentScale << std::endl;
+					std::cout << "Scale First: " << scale << std::endl;
+					if (currentScale != Point(1, 1)) {
+						scale = Point(scale.x / currentScale.x, scale.y / currentScale.y);
+						puts("Hereerere");
+					}
+					// }
+					std::cout << "Scale: " << scale << std::endl;
+					// scalePoint(rootObj->pos, t->pos, scale);
+					// scalePoint(rootObj->pos, t->second, scale);
+					// scalePoint(rootObj->pos, t->third, scale);
+
+					scalePoint(rootObj->pos, t->pos, scale);
+					scalePoint(rootObj->pos, t->second, scale);
+					scalePoint(rootObj->pos, t->third, scale);
+
+					t->recalculateSize();
+					if (t->getParent()) {
+						MultiShape *m = (MultiShape*)t->getParent();
+						m->updateSize(*t);
+					}
+				// }
 				// std::cout << t->second << std::endl;
 			// std::cout << "Scale" << scale << std::endl;
-				scalePoint(rootObj->pos, t->pos, scale);
-				scalePoint(rootObj->pos, t->second, scale);
-				scalePoint(rootObj->pos, t->third, scale);
-				t->recalculateSize();
-				if (t->getParent()) {
-					MultiShape *m = (MultiShape*)t->getParent();
-					m->updateSize(*t);
-				}
 				// std::cout << t->pos << scale << std::endl;
 				// std::cout << t->second << std::endl;
 				// std::cout << t->pos << scale << std::endl;

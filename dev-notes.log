@@ -214,3 +214,8 @@ Current Goals:
 			UPDATE:
 				- The setScale method has code in it, but it is not correct. We are going to need some other control variables
 				to determine how much we need to scale down by and what not
+
+			UPDATE:
+				- Trying to update the scaling algorithm in the vertex generator, but I'm just taking shots in the dark. Need to think this throught
+10/8/2020:
+	Think I may have gotten the setScale method to work the way I want it to. I'll have to run more tests tomorrow

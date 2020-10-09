@@ -14,6 +14,9 @@ void Point::setY(const float y){
 bool Point::operator==(const Point& rhs) {
 	return this->x == rhs.x && this->y == rhs.y;
 }
+bool Point::operator!=(const Point& rhs) {
+	return !(*this == rhs);
+}
 Point Point::operator+(const Point& rhs) {
 	return Point(this->x + rhs.x, this->y + rhs.y);
 }
@@ -56,6 +59,14 @@ void Point::operator*=(const Point& rhs) {
 void Point::operator*=(const float& rhs) {
 	this->x *= rhs;
 	this->y *= rhs;
+}
+void Point::operator/=(const Point& rhs) {
+	this->x /= rhs.x;
+	this->y /= rhs.y;
+}
+void Point::operator/=(const float& rhs) {
+	this->x /= rhs;
+	this->y /= rhs;
 }
 
 Point::operator bool() const {

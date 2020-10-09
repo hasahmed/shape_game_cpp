@@ -5,6 +5,8 @@
 #include "Dirtyable.hpp"
 #include "Point.hpp"
 #include "RotationInfo.hpp"
+
+
 namespace shapegame {
 	using namespace Input;
     class Object : public Dirtyable {

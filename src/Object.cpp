@@ -87,6 +87,11 @@ void Object::scale(float scaleFactor) {
 	this->scale(Point(scaleFactor, scaleFactor));
 }
 void Object::setScale(Point scale) {
+	// std::cout << "What we're scaling to: " << scale << std::endl;
+	// std::cout << "Our current scale: " << _scale << std::endl;
+	// if (scale == _scale) {
+	// 	return;
+	// }
 	// this->_scale = scale;
 	this->_nextScale = scale;
 	this->width *= scale.x;
