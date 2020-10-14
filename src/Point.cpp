@@ -23,6 +23,9 @@ Point Point::operator+(const Point& rhs) {
 Point Point::operator+(const float& rhs) {
 	return Point(this->x + rhs, this->y + rhs);
 }
+// Point Point::operator+(const float& rhs) {
+// 	return Point(this->x + rhs, this->y + rhs);
+// }
 Point Point::operator-(const Point& rhs) {
 	return Point(this->x - rhs.x, this->y - rhs.y);
 }

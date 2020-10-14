@@ -98,6 +98,9 @@ void Object::setScale(Point scale) {
 	this->height *= scale.y;
 	this->setDirty(true);
 }
+void Object::setScale(float scale) {
+	this->setScale(Point(scale, scale));
+}
 Point Object::getScale() {
 	return _scale;
 }

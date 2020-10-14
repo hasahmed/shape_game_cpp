@@ -18,19 +18,23 @@ int main() {
 	int has_scaled = 0;
 	// std::cout << t->getHeight() << std::endl;
 		// std::cout << s->getSize() << std::endl;
-	game.scene->addChild(new Timer(2000, true, true, [&t, &s, &has_scaled]{
-		// t->scaleX(2);
-		// t->scaleY(2);
-		if (has_scaled == 0) {
-			s->setScale(Point(2, 2));
-			has_scaled = 1;
-		}
-		else {
-			// s->setScale(Point(1, 1));
-			s->setScale(Point(1,1));
-		}
-		std::cout << s->getScale() << std::endl;
-		std::cout << s->getSize() << std::endl;
+	game.scene->addChild(new Timer(0, true, true, [&t, &s, &has_scaled]{
+		// if (has_scaled == 0) {
+		// 	s->setScale(Point(2, 2));
+		// 	has_scaled = 1;
+		// }
+		// else {
+		// 	// s->setScale(Point(1, 1));
+			has_scaled++;
+			// s->setScale(Point(s->getScale().x + 1, s->getScale().y + 1));
+			s->rotate(1);
+			s->translate(100 * game, 0);
+			// s->setScale(s->getScale().x + 0.1);
+			// if (has_scaled == 5) {
+			// 	s->setScale(1);
+			// }
+		// }
+		// s->setScale(s->getScale() + 1);
 		// t->scaleY(1.1);
 		// std::cout << s->getHeight() << std::endl;
 		// std::cout << s->getWidth() << std::endl;

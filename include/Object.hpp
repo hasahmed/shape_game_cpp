@@ -64,6 +64,7 @@ namespace shapegame {
 				void scale(float scaleFactorX, float scaleFactorY);
 				void scale(float scaleFactor);
 				void setScale(Point scale);
+				void setScale(float scale);
 				Point getScale();
 				Point getNextScale() const;
 				bool isInScene();
