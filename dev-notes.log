@@ -219,3 +219,8 @@ Current Goals:
 				- Trying to update the scaling algorithm in the vertex generator, but I'm just taking shots in the dark. Need to think this throught
 10/8/2020:
 	Think I may have gotten the setScale method to work the way I want it to. I'll have to run more tests tomorrow
+
+
+10/13/2020:
+	- Testing out scaling. Have found some issues so far:
+		- When scaling and rotating at the same time things don't go right
