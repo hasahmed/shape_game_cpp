@@ -75,6 +75,7 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 		Object* rootObj = shape.getRoot();
 
 		if (t) {
+			// rotation
 			if (rootObj->getNextRotation() != 0) {
                 Point origin = rootObj->pos;
                 RotationInfo& rotInfo = rootObj->getRotationInfo();
@@ -86,21 +87,13 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
                 rotatePoint(origin, t->third, rootObj->getNextRotation());
 
 			}
+			// scale
 			if (Point scale = rootObj->getNextScale()) {
 				Point currentScale = rootObj->getScale();
-				// if (scale != rootObj->getScale()) {
-					// if (scale != 1) {
-					std::cout << "CurrentScale: " << currentScale << std::endl;
-					std::cout << "Scale First: " << scale << std::endl;
 					if (currentScale != Point(1, 1)) {
 						scale = Point(scale.x / currentScale.x, scale.y / currentScale.y);
-						puts("Hereerere");
 					}
-					// }
 					std::cout << "Scale: " << scale << std::endl;
-					// scalePoint(rootObj->pos, t->pos, scale);
-					// scalePoint(rootObj->pos, t->second, scale);
-					// scalePoint(rootObj->pos, t->third, scale);
 
 					scalePoint(rootObj->pos, t->pos, scale);
 					scalePoint(rootObj->pos, t->second, scale);
@@ -111,13 +104,8 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 						MultiShape *m = (MultiShape*)t->getParent();
 						m->updateSize(*t);
 					}
-				// }
-				// std::cout << t->second << std::endl;
-			// std::cout << "Scale" << scale << std::endl;
-				// std::cout << t->pos << scale << std::endl;
-				// std::cout << t->second << std::endl;
-				// std::cout << t->pos << scale << std::endl;
 			}
+			// translate
 			float x1 = this->xPxToGl(t->pos.getX());
 			float y1 = this->yPxToGl(t->pos.getY());
 			float x2 = this->xPxToGl(t->second.getX());
