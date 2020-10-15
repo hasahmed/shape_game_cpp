@@ -25,10 +25,11 @@ void shapegame::VertexGenerator::generate(Shape &shape, float *verts) {
     }
 }
 
-void scalePointX(Point &origin, Point &point, float scaleFactor) {
+void scalePointX(Point &origin, Point &point, float scaleFactor, float objectWidth) {
 	if (point == origin) return;
 	if (point.x == origin.x) return;
 	point.x *= scaleFactor;
+	// point.x = point.x + (objectWidth * scaleFactor);
 }
 void scalePointY(Point &origin, Point &point, float scaleFactor) {
 	if (point == origin) return;
@@ -39,14 +40,12 @@ void scalePointY(Point &origin, Point &point, float scaleFactor) {
 	// std::cout << "Y after: " << point.y << std::endl;
 
 }
-void scalePoint(Point &origin, Point &point, float scaleFactorX, float scaleFactorY) {
-	scalePointX(origin, point, scaleFactorX);
+void scalePoint(Point &origin, Point &point, float scaleFactorX, float scaleFactorY, Point objectSize) {
+	scalePointX(origin, point, scaleFactorX, objectSize.x);
 	scalePointY(origin, point, scaleFactorY);
 }
-void scalePoint(Point &origin, Point &point, Point scaleFactors) {
-	// std::cout << point << std::endl;
-	// std::cout << origin << std::endl;
-	scalePoint(origin, point, scaleFactors.x, scaleFactors.y);
+void scalePoint(Point &origin, Point &point, Point scaleFactors, Point objectSize) {
+	scalePoint(origin, point, scaleFactors.x, scaleFactors.y, objectSize);
 }
 
 void rotatePoint(Point &origin, Point &point, float rotationDegrees) {
@@ -116,9 +115,11 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 					}
 					std::cout << "Scale: " << scale << std::endl;
 
-					scalePoint(rootObj->pos, t->pos, scale);
-					scalePoint(rootObj->pos, t->second, scale);
-					scalePoint(rootObj->pos, t->third, scale);
+					scalePoint(rootObj->pos, t->pos, scale, t->getSize());
+					scalePoint(rootObj->pos, t->second, scale, t->getSize());
+					scalePoint(rootObj->pos, t->third, scale, t->getSize());
+
+					std::cout << "Triangle Size: " << t->getSize() << std::endl;
 
 					t->recalculateSize();
 					if (t->getParent()) {

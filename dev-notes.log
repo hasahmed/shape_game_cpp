@@ -229,5 +229,13 @@ Current Goals:
 10/14/2020:
 	- The scaling algorithm clearly has issues, scaling doesn't work correctly when the object is
 	at different positions on the screen. I think it has something to do with the way that the
-	origin point is being scaled. Check it out
+	origin point is being scaled. Check it out.
+
+	UPDATE:
+		- New revalation, scaling algorithm is incorrect. The scale depends on location of the point,
+		which doesn't make any sense. Thats where the wonky scaling is coming from (at least some of it)
+		What we actually need to do, not multiply the x or y location times the scale factor, but ADD 
+		the scale factor times the width, to the x or y location
+	UPDATE:
+		- That ^ doesn't actually work. Rethink algorithm
 
