@@ -227,4 +227,7 @@ Current Goals:
 
 
 10/14/2020:
+	- The scaling algorithm clearly has issues, scaling doesn't work correctly when the object is
+	at different positions on the screen. I think it has something to do with the way that the
+	origin point is being scaled. Check it out
 

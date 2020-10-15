@@ -42,6 +42,9 @@ void Object::setPosition(Point pos) {
 void Object::translate(float x, float y) {
 	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
 }
+void Object::translate(Point xy) {
+	this->translate(xy.x, xy.y);
+}
 void Object::rotate(float degrees) {
 	this->setDirty(true);
 	this->rotationInfo.nextRotation = degrees;

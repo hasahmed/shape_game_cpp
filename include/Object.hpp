@@ -53,6 +53,7 @@ namespace shapegame {
 				// note if multiple operations happen at once, do them in this order
 				// translate -> roatate -> scale
 				void translate(float x, float y);
+				void translate(Point xy);
 				void rotate(float degrees);
 				void rotateAround(float degrees, Point origin);
 				void rotateAround(float degrees, Object &origin);
