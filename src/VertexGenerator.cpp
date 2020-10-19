@@ -28,15 +28,19 @@ void shapegame::VertexGenerator::generate(Shape &shape, float *verts) {
 void scalePointX(Point &origin, Point &point, float scaleFactor, float objectWidth) {
 	if (point == origin) return;
 	if (point.x == origin.x) return;
-	point.x *= scaleFactor;
+
+	float distanceFromOrigin = abs(origin.x - point.x);
+	point.x += distanceFromOrigin * scaleFactor;
 	// point.x = point.x + (objectWidth * scaleFactor);
 }
 void scalePointY(Point &origin, Point &point, float scaleFactor) {
 	if (point == origin) return;
 	if (point.y == origin.y) return;
+
+	float distanceFromOrigin = abs(origin.y - point.y);
 	// std::cout << "Here scaling y" << std::endl;
 	// std::cout << "Y before: " << point.y << std::endl;
-	point.y *= scaleFactor;
+	point.y += distanceFromOrigin * scaleFactor;
 	// std::cout << "Y after: " << point.y << std::endl;
 
 }

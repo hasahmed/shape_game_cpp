@@ -5,7 +5,7 @@ int main() {
 	game.scene->setBackgroundColor(Color::BLUE);
 	game.scene->addChild(std::make_unique<DebugKeyHandler>());
 	Triangle* t = game.scene->addChildAs<Triangle>(std::make_unique<Triangle>(Point(100, 50), Point(200, 10), Point(86, 200) , Color::BLACK));
-	Square* s = game.scene->addChildAs<Square>(std::make_unique<Square>(Point(0, 10), 10, Color::YELLOW));
+	Square* s = game.scene->addChildAs<Square>(std::make_unique<Square>(Point(100, 10), 10, Color::YELLOW));
 	// Square* s = game.scene->addChildAs<Square>(std::make_unique<Square>(Point(10, 10), 620, Color::YELLOW));
 	std::unique_ptr<Square> newSquare = std::make_unique<Square>(Point(0, 10), 10, Color::GREEN);
 	newSquare->translate(100, 0);

@@ -239,3 +239,7 @@ Current Goals:
 	UPDATE:
 		- That ^ doesn't actually work. Rethink algorithm
 
+
+10/21/2020:
+	- Updated the scaling algorithm, it seems to be ALMOST working, but doesn't scale back
+		down properly
