@@ -240,6 +240,9 @@ Current Goals:
 		- That ^ doesn't actually work. Rethink algorithm
 
 
-10/21/2020:
+10/18/2020:
 	- Updated the scaling algorithm, it seems to be ALMOST working, but doesn't scale back
 		down properly
+
+10/19/2020:
+	- Trying to figure out scaling issues. It seems to be scaling up okay, but scaling down, sill scales up

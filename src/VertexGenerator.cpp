@@ -117,8 +117,6 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 					if (currentScale != Point(1, 1)) {
 						scale = Point(scale.x / currentScale.x, scale.y / currentScale.y);
 					}
-					std::cout << "Scale: " << scale << std::endl;
-
 					scalePoint(rootObj->pos, t->pos, scale, t->getSize());
 					scalePoint(rootObj->pos, t->second, scale, t->getSize());
 					scalePoint(rootObj->pos, t->third, scale, t->getSize());

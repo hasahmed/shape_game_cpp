@@ -32,21 +32,23 @@ int main() {
 		// if (has_scaled == 0) {
 		// 	s->translate(100, 0);
 		// }
-		// if (has_scaled == 1) {
-		// 	s->setScale(3);
-		// }
-		// if (has_scaled == 2) {
-		// 	s->setScale(1);
-		// }
+		if (has_scaled == 1) {
+			s->setScale(3);
+			std::cout << "Setting scale to 3" << std::endl;
+		}
+		if (has_scaled > 1) {
+			s->setScale(1);
+			std::cout << "Setting scale to 1" << std::endl;
+		}
 		// if (has_scaled == 3) {
 		// 	s->translate(-100, 0);
 		// }
-		// has_scaled++;
+		has_scaled++;
 
 
 
 
-			s->setScale(3);
+			// s->setScale(3);
 			// s->setScale(Point(s->getScale().x + 1, s->getScale().y + 1));
 			// s->rotate(1);
 			// s->setScale(s->getScale().x + 0.1);
