@@ -20,10 +20,10 @@ MultiShape::MultiShape(Position pos): Entity(pos) {
 bool MultiShape::updateSize(Object &obj) {
 	Point oldSize = this->getSize();
 	if (this->getShapes().size() >= 1) { // then we already have shapes, and therefor have a size, and we need to recalcuate
-		this->minXY.x = std::min(this->minXY.x, obj.minXY.x);
-		this->minXY.y = std::min(this->minXY.y, obj.minXY.y);
-		this->maxXY.x = std::max(this->maxXY.x, obj.maxXY.x);
-		this->maxXY.y = std::max(this->maxXY.y, obj.maxXY.y);
+		this->minXY.x = (std::min)(this->minXY.x, obj.minXY.x);
+		this->minXY.y = (std::min)(this->minXY.y, obj.minXY.y);
+		this->maxXY.x = (std::max)(this->maxXY.x, obj.maxXY.x);
+		this->maxXY.y = (std::max)(this->maxXY.y, obj.maxXY.y);
 
 		this->width = this->maxXY.x - this->minXY.x;
 		this->height = this->maxXY.y - this->minXY.y;
