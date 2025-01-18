@@ -9,6 +9,10 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="test-exe|x64">
+      <Configuration>test-exe</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -25,6 +29,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='test-exe|x64'">
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -76,8 +83,18 @@
       <Command>python $(SolutionDir)tools\zip_dist.py</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='test-exe|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)deps;$(ProjectDir)include;$(ProjectDir)deps\glfw\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(ProjectDir)shapegame\dist-libs\platform\win;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="deps\glad.c" />
+    <ClCompile Include="examples\main.cpp" />
     <ClCompile Include="examples\main.test.cpp" />
     <ClCompile Include="src\Circle.cpp" />
     <ClCompile Include="src\CollisionTree.cpp" />
@@ -108,6 +125,7 @@
     <ClCompile Include="src\Shape.cpp" />
     <ClCompile Include="src\ShapePair.cpp" />
     <ClCompile Include="src\SimpleCollision.cpp" />
+    <ClCompile Include="src\Square.cpp" />
     <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\Tree.cpp" />
     <ClCompile Include="src\Triangle.cpp" />
@@ -166,6 +184,16 @@
     <ClInclude Include="include\VertexGenerator.hpp" />
     <ClInclude Include="include\Window.hpp" />
     <ClInclude Include="tests\include\catch.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="dist-libs\platform\win\glfw3.lib" />
+    <Library Include="dist-libs\platform\win\glfw3dll.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="dist-libs\platform\win\glfw3.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='test-exe|x64'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

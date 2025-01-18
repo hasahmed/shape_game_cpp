@@ -32,14 +32,15 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     //compile and link shaders
     //------------------------------------------------------------------------
     //vert
-    // std::string _vert_shader = FileUtil::read("shaders/default.vert");
-    const char *vertex_shader =
-		"#version 410 core\n"
-		"in vec3 vp;\n"
-		"void main() {\n"
-				"gl_Position.xyz = vp;\n"
-				"gl_Position.w = 1.0;\n"
-		"}\n";
+     std::string _vert_shader = FileUtil::read("default.frag");
+	 const char* vertex_shader = _vert_shader.c_str();
+  //  const char *vertex_shader =
+		//"#version 410 core\n"
+		//"in vec3 vp;\n"
+		//"void main() {\n"
+		//		"gl_Position.xyz = vp;\n"
+		//		"gl_Position.w = 1.0;\n"
+		//"}\n";
 
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
     GLCALL(glShaderSource(vs, 1, &vertex_shader, NULL));
@@ -48,19 +49,19 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     //end vert
 
     //frag
-    // std::string _frag_shader = FileUtil::read("shaders/default.frag");
-		const char *fragment_shader = 
-			"#version 410 core\n"
-			"out vec4 frag_color;\n"
-			"uniform vec4 incolor;\n"
-			"uniform vec3 mouse;\n"
-			"uniform vec2 screen_res;\n"
-			"uniform float u_time;\n"
-			"void main() {\n"
-					"frag_color = incolor;\n"
-			"}\n";
+	 std::string _frag_shader = FileUtil::read("default.vert");
+		const char *fragment_shader = _frag_shader.c_str();
+		//const char *fragment_shader = 
+		//	"#version 410 core\n"
+		//	"out vec4 frag_color;\n"
+		//	"uniform vec4 incolor;\n"
+		//	"uniform vec3 mouse;\n"
+		//	"uniform vec2 screen_res;\n"
+		//	"uniform float u_time;\n"
+		//	"void main() {\n"
+		//			"frag_color = incolor;\n"
+		//	"}\n";
 
-		// _frag_shader.c_str();
     GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
     GLCALL(glShaderSource(fs, 1, &fragment_shader, NULL));
     GLCALL(glCompileShader(fs));

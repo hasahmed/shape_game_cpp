@@ -129,6 +129,12 @@
     <ClCompile Include="src\Circle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Square.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="examples\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="deps\gl\glcorearb.h">
@@ -278,5 +284,12 @@
     <ClInclude Include="include\RotationInfo.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="dist-libs\platform\win\glfw3dll.lib" />
+    <Library Include="dist-libs\platform\win\glfw3.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dist-libs\platform\win\glfw3.dll" />
   </ItemGroup>
 </Project>

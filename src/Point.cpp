@@ -72,6 +72,10 @@ void Point::operator/=(const float& rhs) {
 	this->y /= rhs;
 }
 
+Point::operator bool() const {
+	return this->x || this->y;
+}
+
 std::ostream& operator<< (std::ostream& stream, const shapegame::Point& rObj) {
 	using namespace std;
 	cout << "[" << rObj.x << "," << rObj.y << "]";
