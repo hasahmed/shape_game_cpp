@@ -11,6 +11,9 @@ void Point::setX(const float x){
 void Point::setY(const float y){
 	this->y = y;
 }
+Point::operator bool() const {
+	return this->x >= 0 && this->y >= 0;
+}
 bool Point::operator==(const Point& rhs) {
 	return this->x == rhs.x && this->y == rhs.y;
 }

@@ -13,10 +13,12 @@ ifeq ($(UNAME),Linux)
 endif
 
 ifeq ($(UNAME),Darwin)
+
 	CXX := clang++
-	LD=clang++
+	LD=lld
 	LDFLAGS += -lglfw -framework Cocoa -framework IOKit -framework CoreVideo -framework OpenGL -g
-	LDFLAGS += -L/usr/local/opt/llvm/lib
+	LDFLAGS += -L${HOMEBREW_PREFIX}/opt/llvm/lib/c++
+	LDFLAGS += -L${HOMEBREW_PREFIX}/lib
 	CXXFLAGS += $(INC_DIR)
 endif
 
