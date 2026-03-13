@@ -87,6 +87,13 @@ obj/add-child-as.o:
 $(OBJS): obj/%.o : src/%.cpp
 	$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@
 
+# Generic rule for building any example file from ./examples
+%: $(OBJS) $(GLAD) obj/%.o
+	$(CXX) -o bin/$@ $^ $(LDFLAGS)
+
+obj/%.o: examples/%.cpp
+	$(CXX) $(CXXFLAGS) $(INC_DIR) -c $< -o $@
+
 dist-zip-mac: $(OBJS)
 	ar rcs $(MACOS_DIST_NAME) $(OBJS)
 	mv $(MACOS_DIST_NAME) ./$(DIST_DIR)/platform/mac
