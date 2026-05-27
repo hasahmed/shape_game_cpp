@@ -1,5 +1,6 @@
 UNAME := $(shell uname -s)
-CXXFLAGS = -std=c++17 -Wall -Wno-unused-variable -Wno-unused-private-field
+CPP_VER = -std=c++17
+CXXFLAGS = $(CPP_VER) -Wall -Wno-unused-variable -Wno-unused-private-field
 SRC = $(wildcard src/*.cpp)
 OBJS = $(SRC:src/%.cpp=obj/%.o)
 INC_DIR := -Ideps -Iinclude
@@ -74,7 +75,7 @@ obj/glad.o:
 
 
 shapegame.dylib: $(OBJS)
-	$(CXX) -std=c++17 -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
+	$(CXX) $(CPP_VER) -dynamiclib -current_version 0.0.1 -compatibility_version 0.0.1\
 	-undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
 
 
