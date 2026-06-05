@@ -88,22 +88,20 @@ int main() {
 	// Object *ov[NUM_OBJ];
 
 	g.scene->addChild(new Timer(WAIT_TIME , true, true, [&g]() mutable {
-		std::cout << "Children: " << g.scene->numChildren() << std::endl;
+		// std::cout << "Children: " << g.scene->numChildren() << std::endl;
 		std::cout << "Adding children" << std::endl;
 		for (int i = 0; i < NUM_OBJ ; i++) {
 			auto x = new TriangleIsosceles(100, 100, Position(500, 500), Color::BLACK);
 			g.scene->addChild(x);
 			x->kill();
 		}
-		// std::cout << "Children: " << g.scene->numChildren() << std::endl;
-		// g.scene->addChild(new Timer(WAIT_TIME, false, true, [&ov, &g](){
-		// 	std::cout << "killing" << std::endl;
-		// 	for (int i = 0; i < NUM_OBJ; i++) {
-		// 		ov[i]->kill();
-		// 		// std::cout << ov[i] << std::endl;
-		// 	}
-		// 	std::cout << "Children: " << g.scene->numChildren() << std::endl;
-		// }));
+		g.scene->addChild(new Timer(WAIT_TIME, false, true, [&ov, &g]() mutable{
+			std::cout << "killing" << std::endl;
+			for (int i = 0; i < NUM_OBJ; i++) {
+				ov[i]->kill();
+				// std::cout << ov[i] << std::endl;
+			}
+		}));
 	}));
 	// g.scene->addChild(new T(Position(600, 500)));
 	g.run();

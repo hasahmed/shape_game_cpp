@@ -39,11 +39,11 @@ shapegame::Scene::Scene() :
 				sceneChildren.reserve(1000);
 }
 
-void Scene::initRenderables(ObjRenderWrapper &owr, Shape &shape) {
+void Scene::initRenderables(ObjRenderWrapper &orw, Shape &shape) {
 		GLRenderObject renderObj;
 		Game::inst().initRenderObj(renderObj, shape, this->_shaderProg);
 		auto rPack = std::make_unique<RenderPackage>(shape, renderObj);
-		owr.rPacks.push_back(std::move(rPack));
+		orw.rPacks.push_back(std::move(rPack));
 }
 
 Object* Scene::addChild(Object *obj) {

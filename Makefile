@@ -30,7 +30,7 @@ ifeq ($(UNAME),MINGW64_NT-10.0-17134)
 	LDFLAGS += platform/win/glfw3.dll
 endif
 
-EXE = main
+EXE = main.test
 MACOS_DIST_NAME = shapegame.a
 LINUX_DIST_NAME = shapegame.a
 WIN_DIST_NAME = shapegame.lib
@@ -40,7 +40,7 @@ DIST_DIR=dist-libs
 all: main.test
 
 run: all
-	./$(EXE)
+	./bin/$(EXE)
 
 main.test: $(OBJS) $(GLAD) obj/main.test.o
 	$(CXX) -o bin/$@ $^ $(LDFLAGS)

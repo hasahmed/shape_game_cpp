@@ -25,12 +25,6 @@ namespace shapegame {
 		std::unique_ptr<Object> obj;
 		std::vector<std::unique_ptr<RenderPackage>> rPacks;
 		ObjRenderWrapper(std::unique_ptr<Object> pObj): obj(std::move(pObj)) {}
-		// ObjRenderWrapper(std::unique_ptr<Object> pObj, RenderPackage* rPack): ObjRenderWrapper(std::move(pObj)) {
-		// 	this->rPacks.emplace_back(*rPack);
-		// }
-		// void addRPack(RenderPackage *rPack) {
-		// 	this->rPacks.emplace_back(std::move(*rPack));
-		// }
 	};
 
 	class Scene {
@@ -44,10 +38,10 @@ namespace shapegame {
 				std::vector<Object*> killList;
 				std::vector<std::unique_ptr<ObjRenderWrapper>> sceneChildren;
 				static Scene *_inst;
-				void initRenderables(ObjRenderWrapper &owr, Shape &shape);
-				void addSubChild(ObjRenderWrapper &owr, Object* subObj);
+				void initRenderables(ObjRenderWrapper &orw, Shape &shape);
+				void addSubChild(ObjRenderWrapper &orw, Object* subObj);
 				void killQueued();
-				void drawChild(ObjRenderWrapper &owr);
+				void drawChild(ObjRenderWrapper &orw);
 				void updateChildren();
 				void drawChildren();
 				std::unique_ptr<CollisionList> collisionList;
