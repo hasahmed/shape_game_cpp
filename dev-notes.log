@@ -246,3 +246,10 @@ Current Goals:
 
 10/19/2020:
 	- Trying to figure out scaling issues. It seems to be scaling up okay, but scaling down, sill scales up
+
+
+6/5/2026:
+- Just gave up trying to get clion to debug my project
+- Found out lldb has a 'gui' feature that is pretty nifty
+- Finally got shader pulled in from its own file rather than inline.
+- Next step...?
