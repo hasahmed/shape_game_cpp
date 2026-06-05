@@ -121,7 +121,7 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 					// scalePoint(rootObj->pos, t->second, scale, t->getSize());
 					// scalePoint(rootObj->pos, t->third, scale, t->getSize());
 
-					std::cout << "Triangle Size: " << t->getSize() << std::endl;
+					// std::cout << "Triangle Size: " << t->getSize() << std::endl;
 
 					t->recalculateSize();
 					if (t->getParent()) {

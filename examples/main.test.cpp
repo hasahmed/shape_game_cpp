@@ -1,3 +1,4 @@
+#include <print>
 #include "shapegame.hpp"
 using namespace shapegame;
 int main() {
@@ -32,8 +33,9 @@ int main() {
 		// if (has_scaled == 0) {
 		// 	s->translate(100, 0);
 		// }
+		std::cout << s->getSize() << std::endl;
+		s->setScale(100);
 		if (has_scaled == 1) {
-			s->setScale(3);
 			std::cout << "Setting scale to 3" << std::endl;
 		}
 		if (has_scaled > 1) {
@@ -65,6 +67,7 @@ int main() {
 		// std::cout << t->getWidth() << std::endl;
 	}));
 
+	std::cout << "this is text" << std::endl;
 	// std::cout << t->getWidth() << std::endl;
 	// std::cout << t->getHeight() << std::endl;
 

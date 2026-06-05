@@ -1,5 +1,5 @@
 UNAME := $(shell uname -s)
-CPP_VER = -std=c++17
+CPP_VER = -std=c++23
 CXXFLAGS = $(CPP_VER) -Wall -Wno-unused-variable -Wno-unused-private-field
 SRC = $(wildcard src/*.cpp)
 OBJS = $(SRC:src/%.cpp=obj/%.o)
@@ -62,7 +62,7 @@ dbg: LDFLAGS += -g
 dbg: main.test
 
 dbg-run: dbg
-	PATH=/usr/bin /usr/bin/lldb ./main.test
+	PATH=/usr/bin /usr/bin/lldb ./bin/main.test
 
 deletion.test: $(OBJS) deletion.test.o
 	$(CXX) -o $@ $^ $(LDFLAGS)

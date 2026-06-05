@@ -84,8 +84,7 @@ class HeadNode: public BodyNode {
     // }
 
     void tick() {
-        if (this->colliding)
-            return;
+        if (this->colliding) return;
         this->setPrev();
         tickChildren(this->next);
         Dir nextMove = this->moveDir;
