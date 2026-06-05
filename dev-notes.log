@@ -253,3 +253,9 @@ Current Goals:
 - Found out lldb has a 'gui' feature that is pretty nifty
 - Finally got shader pulled in from its own file rather than inline.
 - Next step...?
+	- It would be a good idea to continue trying to implement all transforms
+		- rotate
+		- scale
+		- translate
+
+- It would be fun to make more games and implement features as needed to the engine
