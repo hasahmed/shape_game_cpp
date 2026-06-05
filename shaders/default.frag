@@ -1,7 +1,7 @@
 #version 410 core
 out vec4 frag_color;
 uniform vec4 incolor;
-uniform vec3 mouse;
+// uniform vec3 mouse;
 uniform vec2 screen_res;
 uniform float u_time;
 

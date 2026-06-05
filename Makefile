@@ -1,6 +1,6 @@
 UNAME := $(shell uname -s)
 CPP_VER = -std=c++23
-CXXFLAGS = $(CPP_VER) -Wall -Wno-unused-variable -Wno-unused-private-field
+CXXFLAGS = $(CPP_VER) -Wall -Wno-unused-variable -Wno-unused-private-field -DPROJECT_ROOT=\"$(shell pwd)/\"
 SRC = $(wildcard src/*.cpp)
 OBJS = $(SRC:src/%.cpp=obj/%.o)
 INC_DIR := -Ideps -Iinclude

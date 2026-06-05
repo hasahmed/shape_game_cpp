@@ -32,14 +32,15 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     //compile and link shaders
     //------------------------------------------------------------------------
     //vert
-    // std::string _vert_shader = FileUtil::read("shaders/default.vert");
-    const char *vertex_shader =
-		"#version 410 core\n"
-		"in vec3 vp;\n"
-		"void main() {\n"
-				"gl_Position.xyz = vp;\n"
-				"gl_Position.w = 1.0;\n"
-		"}\n";
+    std::string _vert_shader = FileUtil::read(std::string(PROJECT_ROOT) + "shaders/default.vert");
+    // const char *vertex_shader =
+	// 	"#version 410 core\n"
+	// 	"in vec3 vp;\n"
+	// 	"void main() {\n"
+	// 			"gl_Position.xyz = vp;\n"
+	// 			"gl_Position.w = 1.0;\n"
+	// 	"}\n";
+    const char *vertex_shader = _vert_shader.c_str();
 
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
     GLCALL(glShaderSource(vs, 1, &vertex_shader, NULL));
@@ -48,19 +49,8 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     //end vert
 
     //frag
-    // std::string _frag_shader = FileUtil::read("shaders/default.frag");
-		const char *fragment_shader = 
-			"#version 410 core\n"
-			"out vec4 frag_color;\n"
-			"uniform vec4 incolor;\n"
-			"uniform vec3 mouse;\n"
-			"uniform vec2 screen_res;\n"
-			"uniform float u_time;\n"
-			"void main() {\n"
-					"frag_color = incolor;\n"
-			"}\n";
-
-		// _frag_shader.c_str();
+    std::string _frag_shader = FileUtil::read(std::string(PROJECT_ROOT) + "shaders/default.frag");
+    const char *fragment_shader = _frag_shader.c_str();
     GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
     GLCALL(glShaderSource(fs, 1, &fragment_shader, NULL));
     GLCALL(glCompileShader(fs));
@@ -71,11 +61,17 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     //shader prog
     this->shader_prog = glCreateProgram();
     scene.setShaderProg(this->shader_prog);
-    GLCALL(glBindAttribLocation(this->shader_prog, 2, "mouse_vert"));
+    // GLCALL(glBindAttribLocation(this->shader_prog, 2, "mouse_vert"));
     //std::cout << this->shader_prog << std::endl;
     GLCALL(glAttachShader(this->shader_prog, fs));
     GLCALL(glAttachShader(this->shader_prog, vs));
     GLCALL(glLinkProgram(this->shader_prog));
+    char progLog[1000];
+    GLsizei actual_length;
+    GLCALL(glGetProgramInfoLog(this->shader_prog, 1000, &actual_length, progLog));
+    if (actual_length) {
+        std::cerr << "Shader Error: " << progLog << std::endl;
+    }
     check_shader_err(fs);
     GLCALL(glUseProgram(this->shader_prog));
     //end shader prog
