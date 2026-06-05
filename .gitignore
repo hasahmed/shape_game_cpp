@@ -13,7 +13,6 @@ CMakeFiles/
 cmake_install.cmake
 *.test
 !*.test.cpp
-.idea/
 *.dSYM
 .vscode/*
 obj/*
