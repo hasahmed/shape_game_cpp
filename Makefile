@@ -19,6 +19,7 @@ ifeq ($(UNAME),Darwin)
 	LD=lld
 	LDFLAGS += -lglfw -framework Cocoa -framework IOKit -framework CoreVideo -framework OpenGL -g
 	LDFLAGS += -L${HOMEBREW_PREFIX}/opt/llvm/lib/c++
+	LDFLAGS += "-L${HOMEBREW_PREFIX}/opt/llvm/lib"
 	LDFLAGS += -L${HOMEBREW_PREFIX}/lib
 	CXXFLAGS += $(INC_DIR)
 endif
@@ -53,7 +54,7 @@ prod: CXXFLAGS += -Ofast
 prod: main.test
 
 sani: CXXFLAGS += -fsanitize=address -fno-omit-frame-pointer -glldb -g -O0 -gfull -g3 -gcolumn-info
-sani: LDFLAGS += -L/usr/local/opt/llvm/lib -fsanitize=address -fno-omit-frame-pointer -g
+sani: LDFLAGS += -L${HOMEBREW_PREFIX}/opt/llvm/lib -fsanitize=address -fno-omit-frame-pointer -g
 sani: main.test
 
 
@@ -79,7 +80,7 @@ shapegame.dylib: $(OBJS)
 	-undefined suppress -flat_namespace $(OBJS) -o $(MACOS_DIST_NAME)
 
 
-obj/main.test.o:
+obj/main.test.o: examples/main.test.cpp
 	$(CXX) $(CXXFLAGS) $(INC_DIR) -c examples/main.test.cpp -o obj/main.test.o
 
 obj/add-child-as.o:

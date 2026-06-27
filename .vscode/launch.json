@@ -5,10 +5,10 @@
             "name": "C++ LLDB: Launch",
             "type": "lldb",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/bin/main.test",
             "args": [],
             "cwd": "${workspaceFolder}",
-            "preLaunchTask": "C/C++: clang++ build active file",
+            "preLaunchTask": "make dbg",
             "stdio": [null, null, null],
             "terminal": "integrated"
         }

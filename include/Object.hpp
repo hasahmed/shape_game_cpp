@@ -5,6 +5,7 @@
 #include "Dirtyable.hpp"
 #include "Point.hpp"
 #include "RotationInfo.hpp"
+#include "Transform.hpp"
 
 
 namespace shapegame {

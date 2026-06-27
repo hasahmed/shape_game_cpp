@@ -259,3 +259,20 @@ Current Goals:
 		- translate
 
 - It would be fun to make more games and implement features as needed to the engine
+
+6/26/2026
+
+- Debugging can now happen in vscode with F5 from 'main.test.cpp'
+- Updated 'sani' paths for new homebrew location so that address sanitizer builds should work
+	- Might be nice to have this enabled by default since this laptop has a bit more power
+- Working a little bit more on implementing scaling:
+
+	Added a Transform object top-level then also added it to Object.
+
+	The idea is to implement all transform actions based on that object.
+
+	I think that the implementation will be like:
+
+	We'll have a global 'Position point(x,y)'
+	- Then we'll apply transforms on a per-frame basis?
+	- Could we apply the transform in openGL?

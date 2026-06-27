@@ -976,3 +976,54 @@ There are about [a million game engines](https://en.wikipedia.org/wiki/List_of_g
 and they are all probably better and faster than this one and a few are open source.
 But I wrote this game engine as a learning experience for myself. I wanted to learn C++ and OpenGL. To that end I consider
 it a success. I am by no means a master of either, but I know more than when I started.
+
+
+
+
+# Development
+
+Compile
+
+`make all`
+
+Run
+
+`make run`
+
+Debug Build
+
+`make dbg`
+
+Run debug build
+
+`make dbg-run`
+
+Build with address sanitizers
+
+`make sani`
+
+`./bin/main.test`
+
+
+Bear Clang help https://github.com/rizsotto/bear
+
+I'm not sure exactly what this helps with
+
+`bear -- make all`
+
+
+Debug VSCode
+
+F5 on `main.test.cpp`
+
+
+## Prereqs
+
+- make
+- glfw
+- clang
+- llvm
+
+### Macos
+- install llvm with `brew install llvm`
+- install libomp with `brew install libomp`
