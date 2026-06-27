@@ -33,13 +33,6 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     //------------------------------------------------------------------------
     //vert
     std::string _vert_shader = FileUtil::read(std::string(PROJECT_ROOT) + "shaders/default.vert");
-    // const char *vertex_shader =
-	// 	"#version 410 core\n"
-	// 	"in vec3 vp;\n"
-	// 	"void main() {\n"
-	// 			"gl_Position.xyz = vp;\n"
-	// 			"gl_Position.w = 1.0;\n"
-	// 	"}\n";
     const char *vertex_shader = _vert_shader.c_str();
 
     GLuint vs = glCreateShader(GL_VERTEX_SHADER);
