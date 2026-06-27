@@ -21,8 +21,6 @@ namespace shapegame {
 				bool _dirty = false;
 				bool _inScene = false;
 				Object *_parent = nullptr;
-				Point _nextScale = {};
-				Point _scale = {1, 1};
 				void setParent(Object *parent);
 			protected:
 				float height = 0.0f;
@@ -62,13 +60,6 @@ namespace shapegame {
 				float getRotation() const;
 				float getNextRotation() const;
 				RotationInfo& getRotationInfo();
-				void scale(Point scaleFactor);
-				void scale(float scaleFactorX, float scaleFactorY);
-				void scale(float scaleFactor);
-				void setScale(Point scale);
-				void setScale(float scale);
-				Point getScale();
-				Point getNextScale() const;
 				bool isInScene();
 				void setDirty(bool dirty) override; //private?
 				bool isDirty() override; //private

@@ -76,40 +76,6 @@ RotationInfo& shapegame::Object::getRotationInfo()
 {
 	return this->rotationInfo;
 }
-void Object::scale(Point scaleFactor) {
-	// this->_scale += scaleFactor;
-	this->_nextScale = scaleFactor;
-	this->width *= scaleFactor.x;
-	this->height *= scaleFactor.y;
-	this->setDirty(true);
-}
-void Object::scale(float scaleFactorX, float scaleFactorY) {
-	this->scale(Point(scaleFactorX, scaleFactorY));
-}
-void Object::scale(float scaleFactor) {
-	this->scale(Point(scaleFactor, scaleFactor));
-}
-void Object::setScale(Point scale) {
-	// std::cout << "What we're scaling to: " << scale << std::endl;
-	// std::cout << "Our current scale: " << _scale << std::endl;
-	if (scale == _scale) {
-		return;
-	}
-	// this->_scale = scale;
-	this->_nextScale = scale;
-	this->width *= scale.x;
-	this->height *= scale.y;
-	this->setDirty(true);
-}
-void Object::setScale(float scale) {
-	this->setScale(Point(scale, scale));
-}
-Point Object::getScale() {
-	return _scale;
-}
-Point Object::getNextScale() const {
-	return this->_nextScale;
-}
 void Object::setDirty(bool dirty) {
 	this->_dirty = dirty;
 }

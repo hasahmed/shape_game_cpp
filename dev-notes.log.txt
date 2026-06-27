@@ -276,3 +276,7 @@ Current Goals:
 	We'll have a global 'Position point(x,y)'
 	- Then we'll apply transforms on a per-frame basis?
 	- Could we apply the transform in openGL?
+
+
+6/27/26
+- Going to try to remove all other scaling logic

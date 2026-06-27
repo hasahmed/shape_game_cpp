@@ -41,7 +41,6 @@ class BodyNode : public Circle {
     void tick() {
         setPrev();
         this->setPosition(this->prev->prevPos);
-        this->scale(10);
     }
     void update() override {
     }
