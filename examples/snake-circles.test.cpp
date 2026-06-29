@@ -21,8 +21,8 @@ class BodyNode : public Circle {
     BodyNode *prev = nullptr;
     BodyNode *next = nullptr;
     BodyNode():
-        // Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {
-        Circle(Position(0, 0), NODE_SIZE, 10, BODY_COLOR) {
+        // Rectangle(NODE_SIZE, NODE_SIZE, Point(), BODY_COLOR) {
+        Circle(Point(0, 0), NODE_SIZE, 10, BODY_COLOR) {
         }
     ~BodyNode(){
     }
@@ -33,7 +33,7 @@ class BodyNode : public Circle {
             this->prev->pos.getY() + this->prev->getHeight()
         );
     }
-    Position prevPos;
+    Point prevPos;
     void setPrev() {
         prevPos.setX(this->pos.getX());
         prevPos.setY(this->pos.getY());
@@ -150,7 +150,7 @@ class HeadNode: public BodyNode {
 
 class Food : public Rectangle {
     public: 
-        Food(): Rectangle(NODE_SIZE, NODE_SIZE, Position(210, 240), Color::YELLOW) {
+        Food(): Rectangle(NODE_SIZE, NODE_SIZE, Point(210, 240), Color::YELLOW) {
             // this->collidable = true;
         }
         // void onCollisionStart(Shape& other) override {

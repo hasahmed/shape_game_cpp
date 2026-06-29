@@ -3,10 +3,10 @@
 using namespace shapegame;
 
 
-MultiShape::MultiShape(): Entity(Position()) {
+MultiShape::MultiShape(): Entity(Point()) {
 	this->name = "MultiShape";
 }
-MultiShape::MultiShape(Position pos): Entity(pos) {
+MultiShape::MultiShape(Point pos): Entity(pos) {
 	this->name = "MultiShape";
 }
 

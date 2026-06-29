@@ -11,8 +11,8 @@ using namespace shapegame::Input;
 class Projectile : public Triangle {
 	public:
 	const int SPEED = rand() % 100;
-	Projectile(Position pos, Point size = Point(10, 50)):
-		Triangle(Position(0.0, 0.0), Point(5, -20), Point(10, 0), Color::WHITE) {
+	Projectile(Point pos, Point size = Point(10, 50)):
+		Triangle(Point(0.0, 0.0), Point(5, -20), Point(10, 0), Color::WHITE) {
 			this->setPosition(pos);
 	}
 	void update() override {
@@ -24,8 +24,8 @@ class Player : public Triangle {
 	const double speed = 250;
 	public: 
 	enum Dir {LEFT, RIGHT, NONE};
-		Player(double size=40, Position pos=Position(100, 100)): 
-		Triangle(Position(0, 0), Point(size / 2, -size), Point(size, 0), Color::BLACK) {
+		Player(double size=40, Point pos=Point(100, 100)): 
+		Triangle(Point(0, 0), Point(size / 2, -size), Point(size, 0), Color::BLACK) {
 			this->setPosition(pos);
 		}
 

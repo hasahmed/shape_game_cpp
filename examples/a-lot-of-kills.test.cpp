@@ -47,7 +47,7 @@ class CarComponent : public Component {
 template <class T>
 class Spawner: public Object {
 	public:
-	Spawner(Position pos, unsigned int intervalMs): Object(pos) {
+	Spawner(Point pos, unsigned int intervalMs): Object(pos) {
 		Game::inst().scene->addChild(new Timer(intervalMs, true, true, [=](){
 			Game::inst().scene->addChild(new T(pos));
 		}));
@@ -65,7 +65,7 @@ void printVect(std::vector<T> *vect) {
 
 class T : public TriangleIsosceles {
 	public:
-	T(Position pos): TriangleIsosceles(40, 40, pos, Color::PURPLE) {
+	T(Point pos): TriangleIsosceles(40, 40, pos, Color::PURPLE) {
 		this->kill();
 		// this->addComponent(new CarComponent);
 	}
@@ -81,7 +81,7 @@ int main() {
 	Game g(1200, 700, "Busy Highway");
 	g.scene->setBackgroundColor(Color::GRAY);
 	g.scene->addChild(new DebugKeyHandler());
-	// g.scene->addChild(new Spawner<T>(Position(600, 500), 0));
+	// g.scene->addChild(new Spawner<T>(Point(600, 500), 0));
 	#define NUM_OBJ 32
 	#define WAIT_TIME 0
 	// #define NUM_OBJ 10
@@ -91,7 +91,7 @@ int main() {
 		// std::cout << "Children: " << g.scene->numChildren() << std::endl;
 		std::cout << "Adding children" << std::endl;
 		for (int i = 0; i < NUM_OBJ ; i++) {
-			auto x = new TriangleIsosceles(100, 100, Position(500, 500), Color::BLACK);
+			auto x = new TriangleIsosceles(100, 100, Point(500, 500), Color::BLACK);
 			g.scene->addChild(x);
 			x->kill();
 		}
@@ -103,6 +103,6 @@ int main() {
 			}
 		}));
 	}));
-	// g.scene->addChild(new T(Position(600, 500)));
+	// g.scene->addChild(new T(Point(600, 500)));
 	g.run();
 }

@@ -14,6 +14,6 @@ namespace shapegame {
 			// RenderPackage(RenderPackage &&rPack); //move ctor
 			RenderPackage(Shape &shape, GLRenderObject &glRenderObject);
 			// void draw();
-			bool updateDirty();
+			bool generateVerts();
 	};
 }

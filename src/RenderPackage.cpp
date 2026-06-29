@@ -13,12 +13,9 @@ RenderPackage::RenderPackage(const RenderPackage &rPack):
 		this->glRenderObject = std::make_unique<GLRenderObject>(*rPack.glRenderObject.get());
 	}
 
-bool RenderPackage::updateDirty() {
-    // if (this->shape.isDirty()){
-        VertexGenerator::instance()->generate(this->shape, this->glRenderObject->verts);
-        return true;
-    // }
-    // return false;
+bool RenderPackage::generateVerts() {
+    VertexGenerator::instance()->generate(this->shape, this->glRenderObject->verts);
+    return true;
 }
 
 RenderPackage::~RenderPackage(){

@@ -9,10 +9,10 @@ bool Kb::up(Kb::Key key) {
 	return !Kb::down(key);
 }
 
-Position Mouse::getPos() {
+Point Mouse::getPos() {
 	GLFWwindow *w = Game::inst().getWindow()->getWindowHandle();
 	double x = 0;
 	double y = 0;
 	glfwGetCursorPos(w, &x, &y);
-	return Position(x, y);
+	return Point(x, y);
 }

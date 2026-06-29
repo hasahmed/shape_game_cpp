@@ -1,8 +1,6 @@
 #pragma once
 #include "Scene.hpp"
-#include "Position.hpp"
 #include "Input.hpp"
-#include "Dirtyable.hpp"
 #include "Point.hpp"
 #include "RotationInfo.hpp"
 #include "Transform.hpp"
@@ -10,9 +8,8 @@
 
 namespace shapegame {
 	using namespace Input;
-    class Object : public Dirtyable {
+    class Object {
 			friend class Scene;
-			friend class Position;
 			friend class MultiShape;
 			friend class RenderPackage;
 			private:
@@ -30,10 +27,10 @@ namespace shapegame {
 				virtual bool recalculateSize();
 			public:
 				std::string name = "Object";
-				Position pos;
+				Point pos;
 				Transform transform = Transform();
 				Object();
-				Object(double x, double y); //should be floats
+				Object(float x, float y); //should be floats
 				Object(Point pos);
 				void kill();
 				Object* getParent();
@@ -60,7 +57,5 @@ namespace shapegame {
 				float getNextRotation() const;
 				RotationInfo& getRotationInfo();
 				bool isInScene();
-				void setDirty(bool dirty) override; //private?
-				bool isDirty() override; //private
     };
 }

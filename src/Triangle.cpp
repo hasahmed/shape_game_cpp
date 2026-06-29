@@ -11,7 +11,7 @@ Triangle::~Triangle(){
 	#endif
 }
 
-Triangle::Triangle(Position first, Point second, Point third, Color color):
+Triangle::Triangle(Point first, Point second, Point third, Color color):
 	Shape(0, 0, ShapeType::Triangle, first, color), second(second), third(third) {
 		this->name = "Triangle";
 		// std::vector<Point*> verts {
@@ -45,10 +45,10 @@ Triangle::Triangle(Position first, Point second, Point third, Color color):
 		// this-> maxXY = Point(maxX, maxY);
 		// called recalculate size, but this is the first time its being called
 		this->recalculateSize();
-		// this->collisionPosition = Position(minX, minXPoint.getY() + maxY);
+		// this->collisionPosition = Point(minX, minXPoint.getY() + maxY);
 	}
 
-Triangle::Triangle( Position first, Point second, Point third):
+Triangle::Triangle( Point first, Point second, Point third):
 	Triangle(first, second, third, Color::BLACK) {}
 Triangle::Triangle(): Triangle(Point(), Point(), Point(), Color::NIL) {}
 void Triangle::setPosition(float x, float y){

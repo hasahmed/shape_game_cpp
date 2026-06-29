@@ -15,7 +15,7 @@ int main(){
   assert(s.pos.getX() == 0.0);
   assert(s.pos.getY() == 0.0);
 
-  Shape s1(-100, 12.2, ShapeType::Triangle, Position(10, -10), Color::WHITE);
+  Shape s1(-100, 12.2, ShapeType::Triangle, Point(10, -10), Color::WHITE);
   assert(s1.getHeight() == -100);
   assert(s1.getWidth() == 12.2f);
   assert(s1.type == ShapeType::Triangle);

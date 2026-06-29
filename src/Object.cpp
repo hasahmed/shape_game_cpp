@@ -2,8 +2,8 @@
 
 using namespace shapegame;
 using namespace shapegame::Input;
-Object::Object(double x, double y) {
-	this->pos = Position(x, y, this);
+Object::Object(float x, float y) {
+	this->pos = Point(x, y);
 }
 Object::Object() {}
 Object::Object(Point pos) : Object(pos.getX(), pos.getY()) {}
@@ -46,7 +46,6 @@ void Object::translate(Point xy) {
 	this->translate(xy.x, xy.y);
 }
 void Object::rotate(float degrees) {
-	this->setDirty(true);
 	this->rotationInfo.nextRotation = degrees;
 	this->rotationInfo.currentRotation += degrees;
 }
@@ -75,12 +74,6 @@ float Object::getNextRotation() const {
 RotationInfo& shapegame::Object::getRotationInfo()
 {
 	return this->rotationInfo;
-}
-void Object::setDirty(bool dirty) {
-	this->_dirty = dirty;
-}
-bool Object::isDirty() {
-	return this->_dirty;
 }
 
 void Object::setParent(Object *parent) {

@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include "Position.hpp"
 #include "Entity.hpp"
 
 namespace shapegame {
@@ -20,7 +19,7 @@ namespace shapegame {
 		public:
 			virtual ~MultiShape();
 			MultiShape();
-			MultiShape(Position pos);
+			MultiShape(Point pos);
 			bool removeShape(Object* obj);
 			void addShape(Object* obj);
 			void addShape(std::unique_ptr<Object> obj);

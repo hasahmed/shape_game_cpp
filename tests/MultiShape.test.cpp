@@ -42,16 +42,16 @@ class CarComponent : public Component {
 
 class TwoRects : public MultiShape {
 	public:
-	TwoRects(Position pos): MultiShape(pos) {
+	TwoRects(Point pos): MultiShape(pos) {
 		this->addShape(new Rectangle(100, 100, pos, Color::BLACK));
-		this->addShape(new Rectangle(100, 100, Position(pos.getX() + 200, pos.getY()), Color::BLACK));
+		this->addShape(new Rectangle(100, 100, Point(pos.getX() + 200, pos.getY()), Color::BLACK));
 	}
 };
 
 
 class CarTri : public TriangleIsosceles {
 	public:
-	CarTri(Position pos): TriangleIsosceles(100, 100, pos, Color::BLACK) {
+	CarTri(Point pos): TriangleIsosceles(100, 100, pos, Color::BLACK) {
 		this->addComponent(new CarComponent());
 	}
 	void onKill() override {
@@ -64,11 +64,11 @@ class CarTri : public TriangleIsosceles {
 std::multimap<unsigned int, std::unique_ptr<Object>> mm;
 
 int main(){
-	// new Position(100, 100);
+	// new Point(100, 100);
 	for (int i = 0; i < SIZE; i++) {
 		mm.insert({
 			1,
-			std::unique_ptr<Object>(new CarTri(Position(100, 100)))
+			std::unique_ptr<Object>(new CarTri(Point(100, 100)))
 		});
 	}
 	std::cout<<  "Erased: " << mm.erase(1) << std::endl;

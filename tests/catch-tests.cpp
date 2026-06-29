@@ -5,9 +5,9 @@ using namespace shapegame;
 
 class TwoTri : public MultiShape {
 	public:
-		TwoTri(): MultiShape(Position()) {
-			this->addShape(std::make_unique<Triangle>(Position(0, 0), Point(10, 10), Point(11, 11)));
-			this->addShape(std::make_unique<Triangle>(Position(0, 0), Point(10, 10), Point(11, 11)));
+		TwoTri(): MultiShape(Point()) {
+			this->addShape(std::make_unique<Triangle>(Point(0, 0), Point(10, 10), Point(11, 11)));
+			this->addShape(std::make_unique<Triangle>(Point(0, 0), Point(10, 10), Point(11, 11)));
 		}
 };
 

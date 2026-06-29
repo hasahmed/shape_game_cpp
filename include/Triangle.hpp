@@ -1,7 +1,6 @@
 #pragma once
 #include "Shape.hpp"
 #include "Color.hpp"
-#include "Position.hpp"
 #include "shapegl.hpp"
 #include "Globals.hpp"
 #include "Point.hpp"
@@ -18,11 +17,11 @@ namespace shapegame {
 				// pos inherited from Object
 				Point second; // should be private?
 				Point third; // should be private?
-				Position collisionPosition;
+				Point collisionPosition;
 				virtual ~Triangle();
 				Triangle();
-				Triangle(Position first, Point second, Point third);
-				Triangle(Position first, Point second, Point third, Color color);
+				Triangle(Point first, Point second, Point third);
+				Triangle(Point first, Point second, Point third, Color color);
 				virtual void setPosition(float x, float y) override;
     };
 }

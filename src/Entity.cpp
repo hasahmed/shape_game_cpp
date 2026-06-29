@@ -2,7 +2,7 @@
 
 using namespace shapegame;
 
-Entity::Entity(Position pos): Object(pos){
+Entity::Entity(Point pos): Object(pos){
 	this->name = "Entity";
 }
 void Entity::addComponent(Component *compo) {

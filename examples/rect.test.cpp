@@ -7,7 +7,7 @@ int main() {
 	Game g(1200, 700, "Kill Tests");
 	g.scene->setBackgroundColor(Color::GRAY);
 	g.scene->addChild(new DebugKeyHandler());
-	auto rect = new Rectangle(100, 100, Position(100, 500), Color::WHITE);
+	auto rect = new Rectangle(100, 100, Point(100, 500), Color::WHITE);
 	g.scene->addChild(rect);
 	g.run();
 }

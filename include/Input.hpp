@@ -1,6 +1,6 @@
 #pragma once
 #include "shapegl.hpp"
-#include "Position.hpp"
+#include "Point.hpp"
 
 #undef DELETE // dumb windows macros
 namespace shapegame {
@@ -25,7 +25,7 @@ namespace shapegame {
 				N7 = GLFW_MOUSE_BUTTON_7,
 				N8 = GLFW_MOUSE_BUTTON_8
 			};
-			static Position getPos();
+			static Point getPos();
 		};
 		class Kb {
 			public:

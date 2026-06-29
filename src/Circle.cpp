@@ -4,9 +4,9 @@
 
 using namespace shapegame;
 
-Circle::Circle(Position pos, double size, Color color): Circle(pos, size, 60, color)  {}
+Circle::Circle(Point pos, double size, Color color): Circle(pos, size, 60, color)  {}
 
-Circle::Circle(Position pos, double size, int fidelity, Color color): MultiShape(pos) {
+Circle::Circle(Point pos, double size, int fidelity, Color color): MultiShape(pos) {
 	double const radius = size / 2;
 	std::vector<Point> pts(fidelity);
 	double const wedgeAngle = 2 * M_PI / fidelity;

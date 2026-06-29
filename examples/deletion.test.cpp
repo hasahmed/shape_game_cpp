@@ -7,7 +7,7 @@ int main(){
 	Rectangle *rectVect[100];
 
 	for (int i = 0; i < 50; i++) {
-		rectVect[i] = new Rectangle(5, 100, Position(i * 2, (i + 2) * 5), Color::BLUE);
+		rectVect[i] = new Rectangle(5, 100, Point(i * 2, (i + 2) * 5), Color::BLUE);
 		game.scene->addChild(rectVect[i]);
 	}
 

@@ -140,18 +140,15 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
 	GLCALL(glUniform4fv(uniloc, 1, rPack.shape.color.getRawColor()));
 	GLCALL(glBindVertexArray(renderObj.vao));
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo));
-	// if (rPack.updateDirty()){
-	if (true) {
-        rPack.updateDirty();
-		GLCALL(
-			glBufferData(
-				GL_ARRAY_BUFFER,
-				renderObj.numVerts * sizeof(float),
-				renderObj.verts,
-				GL_DYNAMIC_DRAW
-			)
-		);
-	}
+    rPack.generateVerts();
+    GLCALL(
+        glBufferData(
+            GL_ARRAY_BUFFER,
+            renderObj.numVerts * sizeof(float),
+            renderObj.verts,
+            GL_DYNAMIC_DRAW
+        )
+    );
 	GLCALL(
 		glVertexAttribPointer(
 			renderObj.vertexAttribIndex,

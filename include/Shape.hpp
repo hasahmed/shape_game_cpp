@@ -3,9 +3,7 @@
 #include "Drawable.hpp"
 #include "Color.hpp"
 #include "Scene.hpp"
-#include "Position.hpp"
 #include "Globals.hpp"
-#include "Dirtyable.hpp"
 #include "Entity.hpp"
 
 namespace shapegame {
@@ -17,7 +15,7 @@ namespace shapegame {
 					ShapeType type;
 					virtual ~Shape();
 					Shape(float height, float width, ShapeType type, Color color);
-					Shape(float height, float width, ShapeType type, Position pos, Color color);
+					Shape(float height, float width, ShapeType type, Point pos, Color color);
 					// float getHeight() const;
 					// float getWidth() const;
 					virtual void onCollisionStart(Shape &other);
@@ -25,7 +23,7 @@ namespace shapegame {
 					virtual void onColliding(Shape &other);
 					bool isColliding(Shape &other);
 					virtual void translate(float x, float y);
-					virtual void translate(Position pos);
+					virtual void translate(Point pos);
     };
 }
 // std::ostream& operator<< (std::ostream& stream, const shapegame::Shape& shape);

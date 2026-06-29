@@ -5,18 +5,18 @@ using namespace shapegame;
 Rectangle::Rectangle(
 	float width,
 	float height,
-	Position pos,
+	Point pos,
 	Color color
 ) : MultiShape(pos) {
 	this->name = "Rectangle";
 	auto firstTriangle = std::make_unique<Triangle>(
-		Position(pos.getX(), pos.getY() + height),
+		Point(pos.getX(), pos.getY() + height),
 		Point(pos),
 		Point(pos.getX() + width, pos.getY() + height),
 		color
 	);
 	std::unique_ptr<Triangle> secondTriangle = std::make_unique<Triangle>(
-		Position(pos),
+		Point(pos),
 		Point(pos.getX() + width, pos.getY()),
 		Point(pos.getX() + width, pos.getY() + height),
 		color
@@ -31,4 +31,4 @@ Rectangle::~Rectangle() {
 	#endif
 }
 
-// Rectangle(): Rectangle(0, 0, Position(), Color()) {}
+// Rectangle(): Rectangle(0, 0, Point(), Color()) {}

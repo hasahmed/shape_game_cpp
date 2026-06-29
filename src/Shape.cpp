@@ -9,7 +9,7 @@ Shape::Shape(
         float height,
         float width,
         ShapeType type,
-        Position pos,
+        Point pos,
         Color color
         ) :
             Entity(pos),
@@ -22,7 +22,7 @@ Shape::Shape(
 						}
 
 Shape::Shape(float height, float width, ShapeType type, Color color) :
-    Shape(height, width, type, Position(0.0, 0.0), color) {}
+    Shape(height, width, type, Point(0.0, 0.0), color) {}
 // float Shape::getHeight() const {return this->_height;}
 // float Shape::getWidth() const {return this->_width;}
 
@@ -45,7 +45,7 @@ void Shape::onColliding(Shape &other) {}
 void Shape::translate(float x, float y) {
 	this->setPosition(this->pos.getX() + x, this->pos.getY() + y);
 }
-void Shape::translate(Position pos){
+void Shape::translate(Point pos){
     this->translate(pos.getX(), pos.getY());
 }
 // std::ostream& operator<< (std::ostream& stream, const Shape& shape) {

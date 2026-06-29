@@ -59,10 +59,10 @@ class Steerable : public Component {
 
 class WindShield : public MultiShape {
 	public:
-	WindShield(Position pos): WindShield(30, 10, pos, 3) {}
-	WindShield(float width, float height, Position pos, float flair): MultiShape(pos) {
+	WindShield(Point pos): WindShield(30, 10, pos, 3) {}
+	WindShield(float width, float height, Point pos, float flair): MultiShape(pos) {
 		auto q = std::make_unique<Quad>(
-			Position(0, 0),
+			Point(0, 0),
 			Point(-flair, -height),
 			Point(width + flair, -height),
 			Point(width, 0),
@@ -75,19 +75,19 @@ class WindShield : public MultiShape {
 
 class CarBase : public MultiShape {
 	public:
-	CarBase(float width, float length, Point flair, Point flairHeight, Position pos, Color color): MultiShape(pos) {
+	CarBase(float width, float length, Point flair, Point flairHeight, Point pos, Color color): MultiShape(pos) {
 		auto bodyLength = length - flairHeight.getX() - flairHeight.getX();
 		auto body = std::make_unique<Rectangle>(width, bodyLength, pos, color);
 
 		auto front = std::make_unique<Quad>(
-			Position(0, 0),
+			Point(0, 0),
 			Point(flair.getX(), -flairHeight.getX()),
 			Point(width - flair.getX(), -flairHeight.getX()),
 			Point(width, 0),
 			color
 		);
 		auto back = std::make_unique<Quad>(
-			Position(0, 0),
+			Point(0, 0),
 			Point(flair.getY(), flairHeight.getY()),
 			Point(width - flair.getY(), flairHeight.getY()),
 			Point(width, 0),
@@ -130,7 +130,7 @@ class CarBase : public MultiShape {
 class Car : public CarBase {
 	public:
 	// using CarBase::CarBase;
-		Car(Position pos, Color color, Direction dir = Direction::UP): CarBase(
+		Car(Point pos, Color color, Direction dir = Direction::UP): CarBase(
 			BASE_CAR_WIDTH,
 			BASE_CAR_LENGTH,
 			BASE_FLAIR,
@@ -145,7 +145,7 @@ class Car : public CarBase {
 };
 class Taxi : public Car {
 	public:
-	Taxi(Position pos): Car(pos, Color::YELLOW) {
+	Taxi(Point pos): Car(pos, Color::YELLOW) {
 		auto topThing = std::make_unique<Rectangle>(25, 6, pos, Color::WHITE);
 		topThing->translate(7, 35);
 		this->addShape(std::move(topThing));
@@ -162,18 +162,18 @@ class Taxi : public Car {
 
 class RoadLine : public Rectangle {
 	public:
-	RoadLine(Position pos, Point size = Point(LINE_WIDTH, LINE_HEIGHT), Color color = Color::WHITE):
+	RoadLine(Point pos, Point size = Point(LINE_WIDTH, LINE_HEIGHT), Color color = Color::WHITE):
 		Rectangle(size.getX(), size.getY(), pos, color) {}
 };
 
 class MidLine : public MultiShape {
 	public:
-	MidLine(Position pos): MultiShape(pos) {
+	MidLine(Point pos): MultiShape(pos) {
 		this->addShape(
 			std::make_unique<RoadLine>(pos, Point(LINE_WIDTH, SCREEN_HEIGHT), Color::YELLOW)
 		);
 		this->addShape(
-			std::make_unique<RoadLine>(Position(pos.getX() + (LINE_WIDTH * 2), pos.getY()), Point(3, 1000), Color::YELLOW)
+			std::make_unique<RoadLine>(Point(pos.getX() + (LINE_WIDTH * 2), pos.getY()), Point(3, 1000), Color::YELLOW)
 		);
 	}
 };
@@ -183,11 +183,11 @@ class RoadLines : public MultiShape {
 	Point freq;
 	Point amount;
 	public:
-	RoadLines(Position pos, Point freq, Point amount): MultiShape(pos), freq(freq), amount(amount)  {
+	RoadLines(Point pos, Point freq, Point amount): MultiShape(pos), freq(freq), amount(amount)  {
 		for (int x = 0; x < amount.getX(); x++) {
 			for (int y = 0; y < amount.getY(); y++) {
 				this->addShape(
-					std::make_unique<RoadLine>(Position(pos.getX() + x * freq.getX(), pos.getY() + y * freq.getY()))
+					std::make_unique<RoadLine>(Point(pos.getX() + x * freq.getX(), pos.getY() + y * freq.getY()))
 				);
 			}
 		}
@@ -211,7 +211,7 @@ class Spawner: public Object {
 	private:
 	Timer *t;
 	public:
-	Spawner(Position pos, unsigned int intervalMs): Object(pos) {
+	Spawner(Point pos, unsigned int intervalMs): Object(pos) {
 		this->t = (Timer*) Game::inst().scene->addChild(std::make_unique<Timer>(intervalMs, true, true, [=]() mutable {
 			i++;
 			// std::cout << "Car spawned: " << i << std::endl;
@@ -235,7 +235,7 @@ void printVect(std::vector<T> *vect) {
 
 class CarTri : public TriangleIsosceles {
 	public:
-	CarTri(Position pos): TriangleIsosceles(100, 100, pos, Color::BLACK) {
+	CarTri(Point pos): TriangleIsosceles(100, 100, pos, Color::BLACK) {
 		this->addComponent(std::make_unique<CarComponent>());
 	}
 	void onKill() override {
@@ -270,8 +270,8 @@ int main() {
 	std::vector<float> rightRoadLanesX = rawRightRoadLines->getLanesX();
 	g.scene->addChild(std::make_unique<MidLine>(Point((SCREEN_WIDTH / 2) - ((LINE_WIDTH * 3) / 2), 0)));
 	for (auto lane : leftRoadLanesX) {
-		g.scene->addChild(std::make_unique<Spawner<Taxi>>(Position(lane + 25, 1000), 500));
-		// g.scene->addChild(std::move(std::make_unique<Spawner<CarTri>(Position(lane + 25, 1000), 500));
+		g.scene->addChild(std::make_unique<Spawner<Taxi>>(Point(lane + 25, 1000), 500));
+		// g.scene->addChild(std::move(std::make_unique<Spawner<CarTri>(Point(lane + 25, 1000), 500));
 	}
 	g.run();
 }

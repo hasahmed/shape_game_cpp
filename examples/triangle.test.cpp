@@ -15,14 +15,14 @@ class KeyHandler : public Object {
 int main() {
     shapegame::Game game(720, 720, "Triangle Test");
     game.scene->addChild(new KeyHandler());
-    game.scene->addChild(new Triangle(Position(10, 10), Point(5, 0), Point(20, 100), Color::WHITE));
+    game.scene->addChild(new Triangle(Point(10, 10), Point(5, 0), Point(20, 100), Color::WHITE));
     // game.scene->setBackgroundColor(Color::BLACK);
-    game.scene->addChild(new Triangle(Position(10, 10), Point(60, 100), Point(100, 10), Color::YELLOW));
+    game.scene->addChild(new Triangle(Point(10, 10), Point(60, 100), Point(100, 10), Color::YELLOW));
     game.scene->addChild(
-        new Triangle(Position(110, 10), Point(110, 600), Point(1120, 10), Color::GREEN)
+        new Triangle(Point(110, 10), Point(110, 600), Point(1120, 10), Color::GREEN)
         );
     auto *t = game.scene->addChildAs<Triangle>(
-        new Triangle(Position(10, 0), Point(600, 650), Point(9, 700), Color::PURPLE));
+        new Triangle(Point(10, 0), Point(600, 650), Point(9, 700), Color::PURPLE));
     auto *timer = game.scene->addChildAs<Timer>(new Timer(0, true, true, [=](){
         using namespace std;
         cout << t->third.getX() << endl;

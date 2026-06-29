@@ -21,8 +21,8 @@ class BodyNode : public Triangle {
     BodyNode *prev = nullptr;
     BodyNode *next = nullptr;
     BodyNode():
-        // Rectangle(NODE_SIZE, NODE_SIZE, Position(), BODY_COLOR) {
-        Triangle(Position(0, 0), Point(NODE_SIZE / 2.0f, NODE_SIZE), Point(NODE_SIZE, 0), BODY_COLOR) {
+        // Rectangle(NODE_SIZE, NODE_SIZE, Point(), BODY_COLOR) {
+        Triangle(Point(0, 0), Point(NODE_SIZE / 2.0f, NODE_SIZE), Point(NODE_SIZE, 0), BODY_COLOR) {
             this->collidable = true;
             // this->color.set((float)rand() / RAND_MAX, 1, 1);
             this->color.set(1, 0, 1);
@@ -36,7 +36,7 @@ class BodyNode : public Triangle {
             this->prev->pos.getY() + this->prev->getHeight()
         );
     }
-    Position prevPos;
+    Point prevPos;
     void setPrev() {
         prevPos.setX(this->pos.getX());
         prevPos.setY(this->pos.getY());
@@ -156,7 +156,7 @@ class HeadNode: public BodyNode {
 
 class Food : public Rectangle {
     public: 
-        Food(): Rectangle(NODE_SIZE, NODE_SIZE, Position(210, 240), Color::YELLOW) {
+        Food(): Rectangle(NODE_SIZE, NODE_SIZE, Point(210, 240), Color::YELLOW) {
             // this->collidable = true;
         }
         // void onCollisionStart(Shape& other) override {
@@ -208,15 +208,15 @@ int main() {
     for (int i = 0; i < NUM_BODY_NODES; i++) {
         game.scene->addChild(body[i]);
     }
-    Triangle *t = (Triangle*) game.scene->addChild(new Triangle(Position(10, 10), Point(60, 600), Point(100, 10), Color::BLUE));
+    Triangle *t = (Triangle*) game.scene->addChild(new Triangle(Point(10, 10), Point(60, 600), Point(100, 10), Color::BLUE));
     t->setPosition(110, 10);
     t->setPosition(10, 10);
     t->setPosition(101, 101);
     t->setPosition(-1, 10);
-    t->setPosition(Position(-1, 10));
+    t->setPosition(Point(-1, 10));
     t->translate(10, 100);
-    // t->setPosition(Position(10, 110));
-    // auto *t = new Triangle(Position(10, 10), Point(20, 0), Point(30, 10));
+    // t->setPosition(Point(10, 110));
+    // auto *t = new Triangle(Point(10, 10), Point(20, 0), Point(30, 10));
     // game.scene->addChildAs<Timer>(new Timer(100, true, true, [=](){
     //     head->color.set(
     //         head->color.r,
@@ -232,7 +232,7 @@ int main() {
     }));
 
 
-    Game::inst().scene->addChild(new Rectangle(20, 20, Position(15, 15), Color::BLACK));
+    Game::inst().scene->addChild(new Rectangle(20, 20, Point(15, 15), Color::BLACK));
     Game::inst().scene->addChild(new Food());
     Game::inst().scene->setBackgroundColor(Color::GREEN);
 
