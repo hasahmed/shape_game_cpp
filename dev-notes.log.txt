@@ -301,3 +301,9 @@ gross.
 For now we're just going to be dumb and update everything in the scene all the time.
 
 Optimize when needed.
+
+
+-----------------------
+TODO next time -- actually try to implement scaling and rotation
+
+Maybe with Matrix multiplication?
