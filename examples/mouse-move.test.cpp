@@ -38,8 +38,8 @@ class Player : public Triangle {
 		}
 		void update() override {
 			this->setPosition(
-				Mouse::pos().getX() - this->getWidth() / 2,
-				Mouse::pos().getY() + this->getHeight() / 2 - 10);
+				Mouse::getPos().getX() - this->getWidth() / 2,
+				Mouse::getPos().getY() + this->getHeight() / 2 - 10);
 
 		}
 };

@@ -42,8 +42,7 @@ class BodyNode : public Circle {
         setPrev();
         this->setPosition(this->prev->prevPos);
     }
-    void update() override {
-    }
+    void update() override {}
     void onKill() override {
         if (this->prev){
             this->prev->next = this->next;

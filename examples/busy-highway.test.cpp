@@ -66,7 +66,7 @@ class WindShield : public MultiShape {
 			Point(-flair, -height),
 			Point(width + flair, -height),
 			Point(width, 0),
-			Color::BLUE_LIGHT
+			Color::LIGHT_BLUE
 		);
 		q->setPosition(pos);
 		this->addShape(std::move(q));

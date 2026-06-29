@@ -31,6 +31,25 @@ namespace shapegame {
             static Color YELLOW;
             static Color PURPLE;
             static Color NIL;
+            static Color ORANGE;
+            static Color CYAN;
+            static Color TEAL;
+            static Color NAVY;
+            static Color MAROON;
+            static Color OLIVE;
+            static Color LIME;
+            static Color CORAL;
+            static Color SALMON;
+            static Color GOLD;
+            static Color INDIGO;
+            static Color VIOLET;
+            static Color TURQUOISE;
+            static Color MINT;
+            static Color LAVENDER;
+            static Color PEACH;
+            static Color BROWN;
+            static Color TAN;
+            static Color CRIMSON;
     };
 }
 

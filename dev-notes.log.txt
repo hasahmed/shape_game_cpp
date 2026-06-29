@@ -283,4 +283,11 @@ Current Goals:
 - Removed all existing scaling logic and the snake game seems to be working more correctly now!
 
 6/28/26
-- Wondering 
+- Realized that shape's 'update' methods weren't working properly, but entity update methods
+were. Brute force removed 'dirtyable' logic from re-draw pipeline and now application stupidly
+recalculates everything all the time.
+
+This worked!
+
+Going to strip out the rest of the 'dirtyable' logic and see if we can come up with a cleaner
+solution if/when it is needed

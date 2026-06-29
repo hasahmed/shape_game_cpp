@@ -14,11 +14,11 @@ RenderPackage::RenderPackage(const RenderPackage &rPack):
 	}
 
 bool RenderPackage::updateDirty() {
-    if (this->shape.isDirty()){
+    // if (this->shape.isDirty()){
         VertexGenerator::instance()->generate(this->shape, this->glRenderObject->verts);
         return true;
-    }
-    return false;
+    // }
+    // return false;
 }
 
 RenderPackage::~RenderPackage(){

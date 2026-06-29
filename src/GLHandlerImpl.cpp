@@ -140,8 +140,9 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
 	GLCALL(glUniform4fv(uniloc, 1, rPack.shape.color.getRawColor()));
 	GLCALL(glBindVertexArray(renderObj.vao));
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo));
-
-	if (rPack.updateDirty()){
+	// if (rPack.updateDirty()){
+	if (true) {
+        rPack.updateDirty();
 		GLCALL(
 			glBufferData(
 				GL_ARRAY_BUFFER,
