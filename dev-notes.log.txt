@@ -291,3 +291,13 @@ This worked!
 
 Going to strip out the rest of the 'dirtyable' logic and see if we can come up with a cleaner
 solution if/when it is needed
+
+--
+Removed 'dirtyable' logic and 'Position.hpp' and replaced it with a Point everywhere.
+
+'Position' was exactly the same as 'point' except it captured dirty logic and that was pretty
+gross.
+
+For now we're just going to be dumb and update everything in the scene all the time.
+
+Optimize when needed.
