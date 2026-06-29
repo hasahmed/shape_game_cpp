@@ -280,3 +280,4 @@ Current Goals:
 
 6/27/26
 - Going to try to remove all other scaling logic
+- Removed all existing scaling logic and the snake game seems to be working more correctly now!

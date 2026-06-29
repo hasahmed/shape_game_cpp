@@ -31,6 +31,7 @@ namespace shapegame {
 			public:
 				std::string name = "Object";
 				Position pos;
+				Transform transform = Transform();
 				Object();
 				Object(double x, double y); //should be floats
 				Object(Point pos);
@@ -49,8 +50,6 @@ namespace shapegame {
 				virtual float getHeight();
 				virtual float getWidth();
 				Point getSize();
-				// note if multiple operations happen at once, do them in this order
-				// translate -> roatate -> scale
 				void translate(float x, float y);
 				void translate(Point xy);
 				void rotate(float degrees);

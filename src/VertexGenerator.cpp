@@ -31,7 +31,6 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 		Object* rootObj = shape.getRoot();
 
 		if (t) {
-			// translate
 			float x1 = this->xPxToGl(t->pos.getX());
 			float y1 = this->yPxToGl(t->pos.getY());
 			float x2 = this->xPxToGl(t->second.getX());
@@ -54,16 +53,6 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 			throw std::runtime_error("Shape should be a triangle");
     }
 }
-// void shapegame::VertexGenerator::circleVerts(const Shape &shape, std::vector<float> &verts) {
-//     throw std::runtime_error("Not Implemented");
-// }
-// void shapegame::VertexGenerator::rectangleVerts(const Shape &shape, std::vector<float> &verts) {
-
-//     float x = this->xPxToGl(shape.pos.getX());
-//     float y = this->yPxToGl(shape.pos.getY());
-//     float xsize = shape.getWidth() * horPxStep();
-//     float ysize = shape.getHeight() * vertPxStep();
-// }
 
 shapegame::VertexGenerator::VertexGenerator(IWindow *window) : _window(window) {
     shapegame::VertexGenerator::_instance = this;
