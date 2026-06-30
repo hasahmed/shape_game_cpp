@@ -17,23 +17,11 @@ int main() {
 
 
 	int has_scaled = 0;
-	// std::cout << t->getHeight() << std::endl;
-		// std::cout << s->getSize() << std::endl;
 	game.scene->addChild(new Timer(1000, true, true, [&t, &s, &has_scaled]{
-		// if (has_scaled == 0) {
-		// 	s->setScale(Point(2, 2));
-		// 	has_scaled = 1;
-		// }
-		// else {
-		// 	// s->setScale(Point(1, 1));
 
 
 
 
-		// if (has_scaled == 0) {
-		// 	s->translate(100, 0);
-		// }
-		std::cout << s->getSize() << std::endl;
 		s->setScale(100);
 		if (has_scaled == 1) {
 			std::cout << "Setting scale to 3" << std::endl;
@@ -62,7 +50,6 @@ int main() {
 		// t->scaleY(1.1);
 		// std::cout << s->getHeight() << std::endl;
 		// std::cout << s->getWidth() << std::endl;
-		// std::cout << s->getShapes()[0]->getSize() << std::endl;
 		// t->setScale(Point(2, 2));
 		// std::cout << t->getWidth() << std::endl;
 	}));

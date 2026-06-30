@@ -13,11 +13,6 @@ Object::~Object(){
 	#endif
 }
 
-bool Object::recalculateSize() {
-	// objects size never changes, its always (0, 0)
-	return false;
-}
-
 void Object::kill() {
 	this->onKill();
 	this->canKill = true;
@@ -35,7 +30,6 @@ void Object::setPosition(float x, float y){
 }
 float Object::getHeight() { return this->height; }
 float Object::getWidth() { return this->width; }
-Point Object::getSize() {return Point(this->width, this->height);}
 void Object::setPosition(Point pos) {
 	this->setPosition(pos.getX(), pos.getY());
 }
@@ -45,37 +39,6 @@ void Object::translate(float x, float y) {
 void Object::translate(Point xy) {
 	this->translate(xy.x, xy.y);
 }
-void Object::rotate(float degrees) {
-	this->rotationInfo.nextRotation = degrees;
-	this->rotationInfo.currentRotation += degrees;
-}
-void Object::rotateAround(float degrees, Point origin) {
-	this->rotate(degrees);
-	this->rotationInfo.hasAlternateOrigin = true;
-	this->rotationInfo.alternateOrigin = origin;
-
-}
-void Object::rotateAround(float degrees, Object& origin) {
-	this->rotateAround(degrees, origin.pos);
-}
-// current rotation == 2;
-// degrees = 1
-void Object::setRotation(float degrees) {
-	this->rotationInfo.nextRotation = this->rotationInfo.currentRotation * -1;
-	this->rotationInfo.nextRotation += degrees;
-	this->rotationInfo.currentRotation = degrees;
-}
-float Object::getRotation() const {
-	return this->rotationInfo.currentRotation;
-}
-float Object::getNextRotation() const {
-	return this->rotationInfo.nextRotation;
-}
-RotationInfo& shapegame::Object::getRotationInfo()
-{
-	return this->rotationInfo;
-}
-
 void Object::setParent(Object *parent) {
 	this->_parent = parent;
 }

@@ -2,7 +2,6 @@
 #include "Scene.hpp"
 #include "Input.hpp"
 #include "Point.hpp"
-#include "RotationInfo.hpp"
 #include "Transform.hpp"
 
 
@@ -13,7 +12,6 @@ namespace shapegame {
 			friend class MultiShape;
 			friend class RenderPackage;
 			private:
-				RotationInfo rotationInfo;
 				bool canKill = false;
 				bool _dirty = false;
 				bool _inScene = false;
@@ -24,7 +22,6 @@ namespace shapegame {
 				float width = 0.0f;
 				Point minXY = Point();
 				Point maxXY = Point();
-				virtual bool recalculateSize();
 			public:
 				std::string name = "Object";
 				Point pos;
@@ -46,16 +43,9 @@ namespace shapegame {
 				virtual void setPosition(Point pos); // shouldn't be virtual?
 				virtual float getHeight();
 				virtual float getWidth();
-				Point getSize();
 				void translate(float x, float y);
 				void translate(Point xy);
 				void rotate(float degrees);
-				void rotateAround(float degrees, Point origin);
-				void rotateAround(float degrees, Object &origin);
-				void setRotation(float degrees);
-				float getRotation() const;
-				float getNextRotation() const;
-				RotationInfo& getRotationInfo();
 				bool isInScene();
     };
 }
