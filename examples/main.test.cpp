@@ -38,7 +38,10 @@ int main() {
 	g.scene->addChild(std::make_unique<DebugKeyHandler>());
 	g.scene->addChild(new Rectangle(100, 100, Point(20, 20), Color::LIGHT_BLUE));
 	g.scene->addChild(new TriangleIsosceles(100, 200, Point(600, 300), Color::KATIE_PINK));
-	g.scene->addChild(new Player(Point(300, 600)));
+	Player *p = (Player*) g.scene->addChild(new Player(Point(300, 600)));
+	float circleX = (p->pos.getX() + p->second.getX() + p->third.getX()) / 3;
+	float circleY = (p->pos.getY() + p->second.getY() + p->third.getY()) / 3;
+	g.scene->addChild(new Circle(Point(circleX, circleY), 30, Color::PURPLE));
 	// auto x = g.scene->addChild(std::make_unique<Box>(Point(100, 100)));
 	// x->kill();
 	g.run();

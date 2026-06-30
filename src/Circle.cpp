@@ -4,7 +4,7 @@
 
 using namespace shapegame;
 
-Circle::Circle(Point pos, double size, Color color): Circle(pos, size, 60, color)  {}
+Circle::Circle(Point pos, double size, Color color): Circle(pos, size, 20, color)  {}
 
 Circle::Circle(Point pos, double size, int fidelity, Color color): MultiShape(pos) {
 	double const radius = size / 2;
@@ -24,16 +24,14 @@ Circle::Circle(Point pos, double size, int fidelity, Color color): MultiShape(po
 	for(int i = 0; i < pts.size(); i++) {
 
 		if (i != 0) {
-		  auto triangle = std::make_unique<Triangle>(pts[i], pos, prevPoint);
+		  auto triangle = std::make_unique<Triangle>(pts[i], pos, prevPoint, color);
 			this->addShape(std::move(triangle));
 		}
 		if (i == pts.size() -1) {
-		  auto triangle = std::make_unique<Triangle>(pts[0], pts[i], pos);
+		  auto triangle = std::make_unique<Triangle>(pts[0], pts[i], pos, color);
 			this->addShape(std::move(triangle));
 		}
 		prevPoint = pts[i];
-
-
 	}
 }
 std::ostream& operator<< (std::ostream& stream, const shapegame::Circle& rObj) {
