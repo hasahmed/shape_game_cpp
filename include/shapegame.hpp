@@ -7,7 +7,6 @@
 #include "GLHandlerImpl.hpp"
 #include "ShaderHandler.hpp"
 #include "Game.hpp"
-#include "Transform.hpp"
 #include "Object.hpp"
 #include "Scene.hpp"
 #include "Drawable.hpp"

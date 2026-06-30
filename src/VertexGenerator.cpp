@@ -28,7 +28,7 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 		Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
 		Object* rootObj = shape.getRoot();
 		assert(t && "Triangle should not be null");
-		// SRT: scale, rotate, transform
+		// SRT: scale, rotate, translate
 
 		float x1 = this->xPxToGl(t->pos.getX());
 		float y1 = this->yPxToGl(t->pos.getY());

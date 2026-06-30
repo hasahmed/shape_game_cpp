@@ -2,7 +2,6 @@
 #include "Scene.hpp"
 #include "Input.hpp"
 #include "Point.hpp"
-#include "Transform.hpp"
 
 
 namespace shapegame {
@@ -25,7 +24,6 @@ namespace shapegame {
 			public:
 				std::string name = "Object";
 				Point pos;
-				Transform transform = Transform();
 				Object();
 				Object(float x, float y); //should be floats
 				Object(Point pos);

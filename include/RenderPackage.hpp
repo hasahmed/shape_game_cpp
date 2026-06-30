@@ -11,9 +11,7 @@ namespace shapegame {
 			// the type of render object it holds could be arbitrary for other rendering systems
 			~RenderPackage();
 			RenderPackage(const RenderPackage &rPack); //copy ctor
-			// RenderPackage(RenderPackage &&rPack); //move ctor
 			RenderPackage(Shape &shape, GLRenderObject &glRenderObject);
-			// void draw();
 			bool generateVerts();
 	};
 }
