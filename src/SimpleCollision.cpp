@@ -8,7 +8,7 @@ std::vector<ShapePair> SimpleCollision::findContaining(Shape *shape) {
 	std::vector<ShapePair> ret;
 	for (auto sp : this->currentlyColliding_) {
 		if (sp.first == shape || sp.second == shape) {
-			ret.push_back(sp);
+			ret.emplace_back(sp);
 		}
 	}
 	return ret;

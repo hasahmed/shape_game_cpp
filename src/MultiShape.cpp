@@ -44,11 +44,11 @@ void MultiShape::addShape(std::unique_ptr<Object> obj) {
 	this->updateSize(*obj);
 
 	if (this->isInScene()) {
-		this->unAddedObjects.push_back(obj.get());
+		this->unAddedObjects.emplace_back(obj.get());
 		this->hasUnaddedObjects = true;
 	}
 
-	this->shapeStorage.push_back(std::move(obj));
+	this->shapeStorage.emplace_back(std::move(obj));
 }
 void MultiShape::addShape(Object* obj) {
 	this->addShape(std::unique_ptr<Object>(obj));
@@ -73,7 +73,7 @@ std::vector<Object*>& MultiShape::getShapes() {
 	this->shapes.clear(); // clear in case any shapes have been
 	// added or removed
 	for (auto &shape : this->shapeStorage) {
-		this->shapes.push_back(shape.get());
+		this->shapes.emplace_back(shape.get());
 	}
 	return this->shapes;
 }

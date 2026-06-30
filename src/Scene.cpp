@@ -43,7 +43,7 @@ void Scene::initRenderables(ObjRenderWrapper &orw, Shape &shape) {
 		GLRenderObject renderObj;
 		Game::inst().initRenderObj(renderObj, shape, this->_shaderProg);
 		auto rPack = std::make_unique<RenderPackage>(shape, renderObj);
-		orw.rPacks.push_back(std::move(rPack));
+		orw.rPacks.emplace_back(std::move(rPack));
 }
 
 Object* Scene::addChild(Object *obj) {
@@ -55,7 +55,7 @@ Object* Scene::addChild(std::unique_ptr<Object> obj) { /* BASE IMPL */
 	auto orw = std::make_unique<ObjRenderWrapper>(std::move(obj));
 	ObjRenderWrapper *orwRaw = orw.get();
 	Object *objRaw = orw->obj.get();
-	this->sceneChildren.push_back(std::move(orw));
+	this->sceneChildren.emplace_back(std::move(orw));
 	objRaw->onAdd();
 
 	if (auto *multi = dynamic_cast<MultiShape*>(objRaw)) {
@@ -100,7 +100,7 @@ void Scene::updateChildren() {
 	std::vector<ObjRenderWrapper*> childrenRefs;
 	childrenRefs.reserve(this->sceneChildren.size());
 	for (auto &orw : this->sceneChildren) {
-		childrenRefs.push_back(orw.get());
+		childrenRefs.emplace_back(orw.get());
 	}
 	for (auto orw : childrenRefs) {
 		// this block is to handle adding multishapes to the scene,

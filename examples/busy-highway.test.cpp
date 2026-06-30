@@ -193,7 +193,7 @@ class RoadLines : public MultiShape {
 	std::vector<float> getLanesX(){
 		std::vector<float> ret;
 		for (int x = 0; x < this->amount.getX(); x++) {
-			ret.push_back(this->pos.getX() + x * freq.getX());
+			ret.emplace_back(this->pos.getX() + x * freq.getX());
 		}
 		return ret;
 	}
