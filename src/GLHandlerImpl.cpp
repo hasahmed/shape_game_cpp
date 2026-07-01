@@ -1,9 +1,19 @@
 #include <iostream>
 #include <iomanip>
 #include <ctime>
+#include <time.h>
 #include <chrono>
 #include "shapegame.hpp"
 #include "GLRenderObject.hpp"
+
+// This is to help with pulling shaders in, then
+// also making the language server happy.
+// Note this is actually set at compile time
+// and this is only to make the language server
+// happy for the IDE
+#ifndef PROJECT_ROOT
+#define PROJECT_ROOT ""
+#endif
 
 
 using namespace shapegame;
@@ -11,6 +21,8 @@ using namespace shapegame;
 int shapegame::GLHandlerImpl::_assignableVertexAttribIndex = 0;
 
 float color[4] = {1.0, 1.0, 0.0, 1.0};
+
+float shaderNoise = 0.0;
 
 
 void GLHandlerImpl::setClearColor(Color& color) {
@@ -135,10 +147,14 @@ void GLHandlerImpl::terminateRenderObj(RenderPackage &rPack) {
 }
 
 void GLHandlerImpl::draw(RenderPackage &rPack) {
+    shaderNoise += 0.1;
 	auto &renderObj = *rPack.glRenderObject;
 	GLint uniloc = glGetUniformLocation(renderObj.shaderProg, "incolor");
-	// GLint = glGetUniformLocation(renderObj.shaderProg, "incolor");
+	GLint utime_loc = glGetUniformLocation(renderObj.shaderProg, "u_time");
 	GLCALL(glUniform4fv(uniloc, 1, rPack.shape.color.getRawColor()));
+    // float aTimeVal = (float) time(NULL);
+    // std::cout << shaderNoise << std::endl;
+	GLCALL(glUniform1f(utime_loc, shaderNoise));
 	GLCALL(glBindVertexArray(renderObj.vao));
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo));
     rPack.generateVerts();

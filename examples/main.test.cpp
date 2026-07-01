@@ -37,7 +37,7 @@ class Player : public TriangleIsosceles {
 		}
 		void update() override {
 			// this->setPosition(this->pos.getX() + 0.1, this->pos.getY() - 0.1);
-			this->translate(0.1, -0.1);
+			// this->translate(0.1, -0.1);
 			// printf("Point{%f}{%f}\n", this->pos.getX(), this->pos.getY());
 		}
 };
@@ -53,7 +53,7 @@ int main() {
 	// float circleX = (p->pos.getX() + p->second.getX() + p->third.getX()) / 3;
 	// float circleY = (p->pos.getY() + p->second.getY() + p->third.getY()) / 3;
 	Circle *x = (Circle*) g.scene->addChild(new Circle(p->getCenter(), 30, Color::LAVENDER));
-	x->addComponent(new Follower(p));
+	// x->addComponent(new Follower(p));
 	// auto x = g.scene->addChild(std::make_unique<Box>(Point(100, 100)));
 	// x->kill();
 	g.run();
