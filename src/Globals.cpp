@@ -31,6 +31,5 @@ void shapegame::_gl_check_error(const char *file, int line) {
         err = glGetError();
     }
 }
-
 double G::dt = 1;
 double G::fps = 0;

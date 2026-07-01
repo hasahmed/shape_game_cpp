@@ -3,6 +3,7 @@
 #include <ctime>
 #include <time.h>
 #include <chrono>
+#include <numeric>
 #include "shapegame.hpp"
 #include "GLRenderObject.hpp"
 
@@ -216,9 +217,13 @@ void GLHandlerImpl::initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint sha
 
 }
 
+double duration = 0.0;
+int frameCount = 0;
+
 void shapegame::GLHandlerImpl::run() {
     typedef std::chrono::high_resolution_clock Clock;
     auto t1 = Clock::now();
+    glfwSwapInterval(1);
     while (!glfwWindowShouldClose(this->windowHandle)) {
         auto t2 = Clock::now();
         std::chrono::duration<double> elapsed_seconds = t2 - t1;
@@ -239,11 +244,10 @@ void shapegame::GLHandlerImpl::run() {
 
         glfwPollEvents();
         // put the stuff we've been drawing onto the display
-        glfwSwapInterval(1);
         glfwSwapBuffers(this->windowHandle);
         std::chrono::duration<double> frameLength = Clock::now() - t2;
-				G::dt = frameLength.count();
-				G::fps = 1.0f / G::dt;
+        G::dt = frameLength.count();
+        duration += G::dt;
     }
 
     glfwTerminate();

@@ -13,17 +13,17 @@
 #define GLCALL(gl_function) gl_function
 #endif
 namespace shapegame {
-    void _gl_check_error(const char *file, int line);
-    enum class ShapeType {
-        Triangle,
-        Rectangle,
-        Circle,
-        Multi
-    };
-    class Globals {
-			public:
-				static double dt;
-				static double fps;
-    };
+  void _gl_check_error(const char *file, int line);
+  enum class ShapeType {
+      Triangle,
+      Rectangle,
+      Circle,
+      Multi
+  };
+  class Globals {
+    public:
+    static double dt;
+    static double fps;
+  };
 	typedef Globals G; //alias
 }

@@ -46,9 +46,6 @@ class Player : public TriangleIsosceles {
 			if (this->scale.x <= minScale) {
 				scaleStep = abs(scaleStep);
 			}
-			// std::cout << this->scale << std::endl;
-			// G::fps
-			// printf("Point{%f}{%f}\n", this->pos.getX(), this->pos.getY());
 		}
 };
 

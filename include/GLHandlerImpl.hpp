@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <limits.h>
 #include "shapegl.hpp"
 #include "IWindow.hpp"
 #include "Scene.hpp"
@@ -17,7 +18,6 @@ namespace shapegame {
             static int _assignableVertexAttribIndex;
             Color _clearColor;
         public:
-
             GLuint shader_prog;
             GLHandlerImpl(IWindow *window, Scene &scene);
             //methods
@@ -25,7 +25,6 @@ namespace shapegame {
             void setClearColor(Color& color) override;
 						void terminateRenderObj(RenderPackage &rPack) override;
 						void initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint shaderProg) override;
-            //void cursor_position_callback(GLFWwindow *window, double x, double y);
 						void draw(RenderPackage &rPack) override;
             void run() override;
     };
