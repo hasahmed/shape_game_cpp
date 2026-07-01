@@ -312,3 +312,20 @@ Maybe with Matrix multiplication?
 Tuesday 6/30/26
 
 Going to try to move some rendering logic into shader
+
+--------------
+
+Been messing with shaders a bunch. Was able to get more data into vert shader, a float that increments
+by 0.1 per frame -- its called u_time in but that is a bad name because it has nothing to do with
+time. 
+
+Got a random rotation algorithm off the internet and it doesn't work, but it does look cool.
+
+It looks like its rotating these 2d objects in 3d space which is pretty dope.
+
+Kinda makes me want to mess with 3d stuff. Maybe for shape_game_cpp_3d. lol.
+
+
+Next:
+- Figure out why we're passing in more vector data than we need, seems like we could be working with
+vec2's everywhere but we're using vec3's with the last value being 0?

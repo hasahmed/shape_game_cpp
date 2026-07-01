@@ -150,10 +150,9 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
     shaderNoise += 0.1;
 	auto &renderObj = *rPack.glRenderObject;
 	GLint uniloc = glGetUniformLocation(renderObj.shaderProg, "incolor");
-	GLint utime_loc = glGetUniformLocation(renderObj.shaderProg, "u_time");
 	GLCALL(glUniform4fv(uniloc, 1, rPack.shape.color.getRawColor()));
-    // float aTimeVal = (float) time(NULL);
-    // std::cout << shaderNoise << std::endl;
+
+	GLint utime_loc = glGetUniformLocation(renderObj.shaderProg, "u_time");
 	GLCALL(glUniform1f(utime_loc, shaderNoise));
 	GLCALL(glBindVertexArray(renderObj.vao));
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo));
