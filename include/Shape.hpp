@@ -10,7 +10,6 @@ namespace shapegame {
     class Shape : public Entity {
         friend class Scene;
         public:
-					bool collidable = false; //not needed?
 					Color color;
 					ShapeType type;
 					virtual ~Shape();

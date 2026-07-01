@@ -13,16 +13,27 @@ class Box : public MultiShape {
 		this->addShape(left);
 	}
 };
-class Mover : public Component {
+class Follower : public Component {
+	Triangle *toFollow;
+	public:
+		Follower(Triangle *toFollow) {
+			this->toFollow = toFollow;
+		}
+		void update(Entity *ent) override {
+			ent->setPosition(this->toFollow->getCenter());
+		}
+};
+class Mover: public Component {
 	public:
 		void update(Entity *ent) override {
-			// ent->translate(Point(0, 1));
+			ent->setPosition(ent->pos.getX() + 0.1, ent->pos.getY() + 0.1);
 		}
 };
 class Player : public TriangleIsosceles {
 	public:
 		Player(Point pos): TriangleIsosceles(100, 200, pos, Color::PEACH) {
-			this->addComponent(new Mover());
+			// this->addComponent(new Follower(this));
+			// this->addComponent(new Mover);
 		}
 		void update() override {
 			// this->setPosition(this->pos.getX() + 0.1, this->pos.getY() - 0.1);
@@ -39,9 +50,10 @@ int main() {
 	g.scene->addChild(new Rectangle(100, 100, Point(20, 20), Color::LIGHT_BLUE));
 	g.scene->addChild(new TriangleIsosceles(100, 200, Point(600, 300), Color::KATIE_PINK));
 	Player *p = (Player*) g.scene->addChild(new Player(Point(300, 600)));
-	float circleX = (p->pos.getX() + p->second.getX() + p->third.getX()) / 3;
-	float circleY = (p->pos.getY() + p->second.getY() + p->third.getY()) / 3;
-	g.scene->addChild(new Circle(Point(circleX, circleY), 30, Color::PURPLE));
+	// float circleX = (p->pos.getX() + p->second.getX() + p->third.getX()) / 3;
+	// float circleY = (p->pos.getY() + p->second.getY() + p->third.getY()) / 3;
+	Circle *x = (Circle*) g.scene->addChild(new Circle(p->getCenter(), 30, Color::LAVENDER));
+	x->addComponent(new Follower(p));
 	// auto x = g.scene->addChild(std::make_unique<Box>(Point(100, 100)));
 	// x->kill();
 	g.run();

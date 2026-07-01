@@ -16,6 +16,7 @@ namespace shapegame {
 				Point second; // should be private?
 				Point third; // should be private?
 				Point collisionPosition;
+				Point getCenter();
 				virtual ~Triangle();
 				Triangle();
 				Triangle(Point first, Point second, Point third);
