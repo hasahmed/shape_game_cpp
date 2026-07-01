@@ -329,3 +329,10 @@ Kinda makes me want to mess with 3d stuff. Maybe for shape_game_cpp_3d. lol.
 Next:
 - Figure out why we're passing in more vector data than we need, seems like we could be working with
 vec2's everywhere but we're using vec3's with the last value being 0?
+
+- Also, it seems like my conversion of everything from pixel-space to gl space may be doable on the
+gpu in the shader, and may also be the key to performing the rotation and scaling transforms
+in the shader as well.
+
+This would leave the CPU purely for game calculations and have all rendering logic in the gpu
+which is better anyway and would leave the future open to swapping out renderers in the future.
