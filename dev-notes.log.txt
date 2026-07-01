@@ -307,3 +307,8 @@ Optimize when needed.
 TODO next time -- actually try to implement scaling and rotation
 
 Maybe with Matrix multiplication?
+
+
+Tuesday 6/30/26
+
+Going to try to move some rendering logic into shader

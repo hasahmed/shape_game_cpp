@@ -32,22 +32,22 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     //compile and link shaders
     //------------------------------------------------------------------------
     //vert
-    std::string _vert_shader = FileUtil::read(std::string(PROJECT_ROOT) + "shaders/default.vert");
-    const char *vertex_shader = _vert_shader.c_str();
+    std::string vertexShaderString = FileUtil::read(std::string(PROJECT_ROOT) + "shaders/default.vert");
+    const char *vertexShaderCString = vertexShaderString.c_str();
 
-    GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-    GLCALL(glShaderSource(vs, 1, &vertex_shader, NULL));
-    GLCALL(glCompileShader(vs));
-    check_shader_err(vs);
+    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    GLCALL(glShaderSource(vertexShader, 1, &vertexShaderCString, NULL));
+    GLCALL(glCompileShader(vertexShader));
+    check_shader_err(vertexShader);
     //end vert
 
     //frag
-    std::string _frag_shader = FileUtil::read(std::string(PROJECT_ROOT) + "shaders/default.frag");
-    const char *fragment_shader = _frag_shader.c_str();
-    GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-    GLCALL(glShaderSource(fs, 1, &fragment_shader, NULL));
-    GLCALL(glCompileShader(fs));
-    check_shader_err(fs);
+    std::string fragmentShaderString = FileUtil::read(std::string(PROJECT_ROOT) + "shaders/default.frag");
+    const char *fragmentShaderCString = fragmentShaderString.c_str();
+    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    GLCALL(glShaderSource(fragmentShader, 1, &fragmentShaderCString, NULL));
+    GLCALL(glCompileShader(fragmentShader));
+    check_shader_err(fragmentShader);
     //end frag
 
 
@@ -56,8 +56,8 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     scene.setShaderProg(this->shader_prog);
     // GLCALL(glBindAttribLocation(this->shader_prog, 2, "mouse_vert"));
     //std::cout << this->shader_prog << std::endl;
-    GLCALL(glAttachShader(this->shader_prog, fs));
-    GLCALL(glAttachShader(this->shader_prog, vs));
+    GLCALL(glAttachShader(this->shader_prog, fragmentShader));
+    GLCALL(glAttachShader(this->shader_prog, vertexShader));
     GLCALL(glLinkProgram(this->shader_prog));
     char progLog[1000];
     GLsizei actual_length;
@@ -65,13 +65,13 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     if (actual_length) {
         std::cerr << "Shader Error: " << progLog << std::endl;
     }
-    check_shader_err(fs);
+    check_shader_err(fragmentShader);
     GLCALL(glUseProgram(this->shader_prog));
     //end shader prog
 
     //delete shader
-    GLCALL(glDeleteShader(fs));
-    GLCALL(glDeleteShader(vs));
+    GLCALL(glDeleteShader(fragmentShader));
+    GLCALL(glDeleteShader(vertexShader));
     //end delete shader
 
 
@@ -96,7 +96,7 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     GLCALL(glUniform4fv(uniloc, 1, color));
     uniloc = glGetUniformLocation(this->shader_prog, "screen_res");
     GLCALL(glUniform2f(uniloc, window->getWidth(), window->getHeight()));
-    check_shader_err(vs);
+    check_shader_err(vertexShader);
 
 
     // other gl settings
@@ -114,7 +114,7 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
 // uncomment if back culling is desired
     // GLCALL(glCullFace(GL_BACK));
     // GLCALL(glEnable(GL_CULL_FACE));
-		GLCALL(glDepthFunc(GL_NEVER));
+    GLCALL(glDepthFunc(GL_NEVER));
 
 
 }
@@ -137,6 +137,7 @@ void GLHandlerImpl::terminateRenderObj(RenderPackage &rPack) {
 void GLHandlerImpl::draw(RenderPackage &rPack) {
 	auto &renderObj = *rPack.glRenderObject;
 	GLint uniloc = glGetUniformLocation(renderObj.shaderProg, "incolor");
+	// GLint = glGetUniformLocation(renderObj.shaderProg, "incolor");
 	GLCALL(glUniform4fv(uniloc, 1, rPack.shape.color.getRawColor()));
 	GLCALL(glBindVertexArray(renderObj.vao));
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo));
