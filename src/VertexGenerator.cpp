@@ -55,15 +55,12 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 
 		verts[0] = x1;
 		verts[1] = y1;
-		verts[2] = 0.0f;
 
-		verts[3] = x2;
-		verts[4] = y2;
-		verts[5] = 0.0f;
+		verts[2] = x2;
+		verts[3] = y2;
 
-		verts[6] = x3;
-		verts[7] = y3;
-		verts[8] = 0.0f;
+		verts[4] = x3;
+		verts[5] = y3;
 }
 
 shapegame::VertexGenerator::VertexGenerator(IWindow *window) : _window(window) {

@@ -168,7 +168,7 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
 	GLCALL(
 		glVertexAttribPointer(
 			renderObj.vertexAttribIndex,
-			3,
+			2,
 			GL_FLOAT,
 			GL_FALSE,
 			0,
