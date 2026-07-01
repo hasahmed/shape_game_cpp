@@ -336,3 +336,11 @@ in the shader as well.
 
 This would leave the CPU purely for game calculations and have all rendering logic in the gpu
 which is better anyway and would leave the future open to swapping out renderers in the future.
+
+-------------
+
+Updated to pass gl only the required vec2 for our image data due to our 2d pipeline.
+
+Also very verified that scaling isn't working correctly it scales and moves at the same time.
+
+We need to figure that out ASAP!
