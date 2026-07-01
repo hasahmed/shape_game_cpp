@@ -30,6 +30,22 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 		assert(t && "Triangle should not be null");
 		// SRT: scale, rotate, translate
 
+		// A problem:
+		// Translation kind of happens immediately.
+		// The position is 'updated' as soon as it happens,
+		// therefore, the 'scale' and 'rotate' can't really happen
+		// first because we don't know the old values?
+		// WAIT WE DO have the old positions!
+		// They're what currently reside in *verts!
+
+		// So we currently overwrite previous verts because they're opengl
+		// representation of the data, rather than our pixel representation
+
+
+		// So alas the data we need we do not have...
+		// effectivly the translation has already occurred
+		// but why does that matter?
+		// Seems like these opporations should NOT be in any way dependant on eachother
 		float x1 = this->xPxToGl(t->pos.getX());
 		float y1 = this->yPxToGl(t->pos.getY());
 		float x2 = this->xPxToGl(t->second.getX());

@@ -12,7 +12,6 @@ namespace shapegame {
 			friend class RenderPackage;
 			private:
 				bool canKill = false;
-				bool _dirty = false;
 				bool _inScene = false;
 				Object *_parent = nullptr;
 				void setParent(Object *parent);
@@ -24,6 +23,8 @@ namespace shapegame {
 			public:
 				std::string name = "Object";
 				Point pos;
+				Point scale = {1, 1};
+				float rotation = 0;
 				Object();
 				Object(float x, float y); //should be floats
 				Object(Point pos);
