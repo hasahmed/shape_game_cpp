@@ -154,6 +154,13 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
 
 	GLint utime_loc = glGetUniformLocation(renderObj.shaderProg, "u_time");
 	GLCALL(glUniform1f(utime_loc, shaderNoise));
+
+	GLint scale_loc = glGetUniformLocation(renderObj.shaderProg, "scale");
+    float scale[2] = {0, 0};
+    scale[0] = rPack.shape.scale.getX();
+    scale[1] = rPack.shape.scale.getY();
+	GLCALL(glUniform2fv(scale_loc, 1, scale));
+
 	GLCALL(glBindVertexArray(renderObj.vao));
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo));
     rPack.generateVerts();

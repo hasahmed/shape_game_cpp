@@ -30,14 +30,24 @@ class Mover: public Component {
 		}
 };
 class Player : public TriangleIsosceles {
+	float scaleStep = 0.5;
 	public:
 		Player(Point pos): TriangleIsosceles(100, 200, pos, Color::PEACH) {
 			// this->addComponent(new Follower(this));
 			// this->addComponent(new Mover);
 		}
 		void update() override {
-			// this->setPosition(this->pos.getX() + 0.1, this->pos.getY() - 0.1);
-			this->translate(0.1, -0.1);
+			float maxScale = 1.2;
+			float minScale = 0.2;
+			this->scale += scaleStep * G::dt;
+			if (this->scale.x >= maxScale) {
+				scaleStep = -scaleStep;
+			}
+			if (this->scale.x <= minScale) {
+				scaleStep = abs(scaleStep);
+			}
+			// std::cout << this->scale << std::endl;
+			// G::fps
 			// printf("Point{%f}{%f}\n", this->pos.getX(), this->pos.getY());
 		}
 };
@@ -50,6 +60,7 @@ int main() {
 	g.scene->addChild(new Rectangle(100, 100, Point(20, 20), Color::LIGHT_BLUE));
 	g.scene->addChild(new TriangleIsosceles(100, 200, Point(600, 300), Color::KATIE_PINK));
 	Player *p = (Player*) g.scene->addChild(new Player(Point(300, 600)));
+	p->scale = {0.1, 0.1};
 	// float circleX = (p->pos.getX() + p->second.getX() + p->third.getX()) / 3;
 	// float circleY = (p->pos.getY() + p->second.getY() + p->third.getY()) / 3;
 	Circle *x = (Circle*) g.scene->addChild(new Circle(p->getCenter(), 30, Color::LAVENDER));
