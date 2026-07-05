@@ -344,3 +344,18 @@ Updated to pass gl only the required vec2 for our image data due to our 2d pipel
 Also very verified that scaling isn't working correctly it scales and moves at the same time.
 
 We need to figure that out ASAP!
+
+
+Wednesday 7/1/26
+
+Thinking about scaling.
+
+So we know that the algorithm is
+1) Move shape such that center is 0, 0
+2) Apply scaling
+3) Move vertex back to original position
+
+This algorithm begs a few questions:
+
+1) 
+

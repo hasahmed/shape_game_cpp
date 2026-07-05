@@ -40,6 +40,7 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     _scene(scene),
     _clearColor(Color::BLACK)
 {
+    this->window = window;
     this->windowHandle = window->getWindowHandle();
 
     //compile and link shaders
@@ -107,8 +108,8 @@ shapegame::GLHandlerImpl::GLHandlerImpl(IWindow *window, Scene &scene) :
     //input to shader program
     GLint uniloc = glGetUniformLocation(this->shader_prog, "incolor");
     GLCALL(glUniform4fv(uniloc, 1, color));
-    uniloc = glGetUniformLocation(this->shader_prog, "screen_res");
-    GLCALL(glUniform2f(uniloc, window->getWidth(), window->getHeight()));
+    // uniloc = glGetUniformLocation(this->shader_prog, "window_dim");
+    // GLCALL(glUniform2f(uniloc, window->getWidth(), window->getHeight()));
     check_shader_err(vertexShader);
 
 
@@ -150,18 +151,40 @@ void GLHandlerImpl::terminateRenderObj(RenderPackage &rPack) {
 void GLHandlerImpl::draw(RenderPackage &rPack) {
     shaderNoise += 0.1;
 	auto &renderObj = *rPack.glRenderObject;
+
+    // color
 	GLint uniloc = glGetUniformLocation(renderObj.shaderProg, "incolor");
 	GLCALL(glUniform4fv(uniloc, 1, rPack.shape.color.getRawColor()));
 
+    // utime
 	GLint utime_loc = glGetUniformLocation(renderObj.shaderProg, "u_time");
 	GLCALL(glUniform1f(utime_loc, shaderNoise));
+    // window dim
+	GLint window_dim_loc = glGetUniformLocation(renderObj.shaderProg, "window_dim");
+    float window_dim[2] = {0, 0};
+    window_dim[0] = this->window->getWidth();
+    window_dim[1] = this->window->getHeight();
+	GLCALL(glUniform2fv(window_dim_loc, 1, window_dim));
 
+    //scale 
 	GLint scale_loc = glGetUniformLocation(renderObj.shaderProg, "scale");
-    float scale[2] = {0, 0};
-    scale[0] = rPack.shape.scale.getX();
-    scale[1] = rPack.shape.scale.getY();
+    float scale[2] = {2, 2};
+    // scale[0] = rPack.shape.scale.getX();
+    // scale[1] = rPack.shape.scale.getY();
+    // scale[0] = 2;
+    // scale[1] = 2;
+    std::cout << scale[0] << std::endl;
+    // std::cout << this->window->getHeight() << std::endl;
 	GLCALL(glUniform2fv(scale_loc, 1, scale));
 
+    // origin
+	GLint origin_loc = glGetUniformLocation(renderObj.shaderProg, "origin");
+    float origin[2] = {0, 0};
+    origin[0] = rPack.shape.getOrigin().x;
+    origin[1] = rPack.shape.getOrigin().y;
+	GLCALL(glUniform2fv(origin_loc, 1, origin));
+
+    // verts
 	GLCALL(glBindVertexArray(renderObj.vao));
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo));
     rPack.generateVerts();
@@ -234,13 +257,8 @@ void shapegame::GLHandlerImpl::run() {
 
         _scene.updateChildren();
         _scene.drawChildren();
-				_scene.killQueued();
+        _scene.killQueued();
 
-				// std::cout << "\r";
-				// std::cout << std::flush;
-				// std::cout << "drawChildren:" << _scene.drawVect.size() << std::endl;
-				// std::cout << "\rdrawChildren:" << _scene.drawVect.size();
-				// std::cout << "\rsceneChildren:" << _scene.sceneChildren.size();
 
         glfwPollEvents();
         // put the stuff we've been drawing onto the display

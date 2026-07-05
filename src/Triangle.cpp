@@ -16,6 +16,9 @@ Point Triangle::getCenter() {
 	float centerY = (this->pos.getY() + this->second.getY() + this->third.getY()) / 3;
 	return Point(centerX, centerY);
 }
+Point Triangle::getOrigin() {
+	return this->getCenter();
+}
 
 Triangle::Triangle(Point first, Point second, Point third, Color color):
 	Shape(0, 0, ShapeType::Triangle, first, color), second(second), third(third) {

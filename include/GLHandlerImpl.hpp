@@ -17,6 +17,7 @@ namespace shapegame {
             Scene &_scene;
             static int _assignableVertexAttribIndex;
             Color _clearColor;
+            IWindow *window;
         public:
             GLuint shader_prog;
             GLHandlerImpl(IWindow *window, Scene &scene);

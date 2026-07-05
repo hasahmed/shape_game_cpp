@@ -32,6 +32,7 @@ namespace shapegame {
 				Object* getParent();
 				Object* getRoot();
 				virtual ~Object();
+				Point getOrigin();
 				virtual void update();
 				virtual void onAdd();
 				virtual void onRemove(); //called on removal

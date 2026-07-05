@@ -17,6 +17,7 @@ void Object::kill() {
 	this->onKill();
 	this->canKill = true;
 }
+Point Object::getOrigin() { return this->pos; }
 
 void Object::onAdd(){}
 void Object::update(){}
