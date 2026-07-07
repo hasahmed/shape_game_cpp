@@ -359,3 +359,28 @@ This algorithm begs a few questions:
 
 1) 
 
+Sunday 7/5/26
+
+Commented out the in-shader scaling and the shapes are again being drawn to the screen.
+
+This brings to my mind a refactor that should be done.
+
+1) Shapes will contain their verts that define the shape itself in opengl space
+2) They will contain their 'position' in 'screen' aka world coordinates
+3) Shader rendering will algo will then be:
+	- Pass in verts
+	- Pass in screen diminsions
+	- Pass in shape position
+	- Pass in shape 'origin'
+
+	-- Draw verts 
+	-- Perform transform
+	-- 'Move' shape to world position
+
+Open question:
+	- What is origin?
+	- Is it the same as 'position'?
+	- Should be user be able to change a shpes 'origin'?
+
+
+
