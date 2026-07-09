@@ -32,7 +32,6 @@ void Game::initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint shaderProg) 
 shapegame::Game::Game() : Game(480, 480, "ShapeGame") {}
 
 void shapegame::Game::run() {
-    // std::cout << this->_window->infoString() << std::endl;
 		shapegame::Game::_isRunning = true;
     this->_glHandler->run();
 }

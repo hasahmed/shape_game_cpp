@@ -14,18 +14,10 @@
 #include "Color.hpp"
 #include "MultiShape.hpp"
 #include "NullRenderer.hpp"
+#include "ObjRenderWrapper.hpp"
 
 
 namespace shapegame {
-
-	/*
-		Wraps objects in with the components needed to render them
-	*/
-	struct ObjRenderWrapper {
-		std::unique_ptr<Object> obj;
-		std::vector<std::unique_ptr<RenderPackage>> rPacks;
-		ObjRenderWrapper(std::unique_ptr<Object> pObj): obj(std::move(pObj)) {}
-	};
 
 	class Scene {
 			friend class GLHandlerImpl;

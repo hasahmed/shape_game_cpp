@@ -38,3 +38,4 @@
 #include "NullWindow.hpp"
 #include "Tree.hpp"
 #include "Circle.hpp"
+#include "ObjRenderWrapper.hpp"

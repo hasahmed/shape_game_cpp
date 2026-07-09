@@ -415,3 +415,12 @@ Step 1)
 	- Update code to:
 		- Generate verts in glSpace
 		- Pass glSpace verts to shader
+	
+	log:
+		- Found that ObjRenderWrapper seems to be the place where the vertex generation seems to be
+		happening at this point. Moved it into its own header and implementation files.
+
+		Next TODO:
+			- See where the vertex generation happens...
+			- Fix
+			- Or maybe restructure? Seems like the shape should contain the model
