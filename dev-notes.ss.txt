@@ -380,7 +380,35 @@ This brings to my mind a refactor that should be done.
 Open question:
 	- What is origin?
 	- Is it the same as 'position'?
-	- Should be user be able to change a shpes 'origin'?
+	- Should be user be able to change a shapes 'origin'?
+
+
+Okay, so we're going to break it down as tasks
+
+Epic:
+
+- Renderer
+
+Stage 1)
+    - Render Shape
+Stage 2)
+    - Apply 'translation'
+        - To Position
+        - Relative to 'origin'
+
+    - Need
+        - Screen Width, Height
+        - Origin x, y
+        - Position x, y
+    Steps:
+        - Generate verts - origin at 0, 0
+        - Pass to shader
+        - 
+Stage 3)
+    - 
+
+
+
 
 
 
