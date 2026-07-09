@@ -407,8 +407,11 @@ Stage 2)
 Stage 3)
     - 
 
+Tasks:
+- Current shape generation generates 'pixel' sized shapes, then converts into glspace, then in the
+shader, we need to convert BACK to gl space to perform transforms, then again back to glspace.
 
-
-
-
-
+Step 1)
+	- Update code to:
+		- Generate verts in glSpace
+		- Pass glSpace verts to shader
