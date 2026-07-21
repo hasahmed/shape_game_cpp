@@ -23,8 +23,6 @@ int shapegame::GLHandlerImpl::_assignableVertexAttribIndex = 0;
 
 float color[4] = {1.0, 1.0, 0.0, 1.0};
 
-float shaderNoise = 0.0;
-
 
 void GLHandlerImpl::setClearColor(Color& color) {
     this->_clearColor = color;
@@ -149,16 +147,19 @@ void GLHandlerImpl::terminateRenderObj(RenderPackage &rPack) {
 }
 
 void GLHandlerImpl::draw(RenderPackage &rPack) {
-    shaderNoise += 0.1;
 	auto &renderObj = *rPack.glRenderObject;
 
     // color
 	GLint uniloc = glGetUniformLocation(renderObj.shaderProg, "incolor");
 	GLCALL(glUniform4fv(uniloc, 1, rPack.shape.color.getRawColor()));
 
-    // utime
-	GLint utime_loc = glGetUniformLocation(renderObj.shaderProg, "u_time");
-	GLCALL(glUniform1f(utime_loc, shaderNoise));
+    // position
+	GLint positionLoc = glGetUniformLocation(renderObj.shaderProg, "pos");
+    float pos[2] = {0.0f, 0.0f};
+    pos[0] = rPack.shape.pos.x;
+    pos[1] = rPack.shape.pos.y;
+	GLCALL(glUniform2fv(positionLoc, 1, pos));
+
     // window dim
 	GLint window_dim_loc = glGetUniformLocation(renderObj.shaderProg, "window_dim");
     float window_dim[2] = {0, 0};
@@ -173,7 +174,6 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
     // scale[1] = rPack.shape.scale.getY();
     // scale[0] = 2;
     // scale[1] = 2;
-    std::cout << scale[0] << std::endl;
     // std::cout << this->window->getHeight() << std::endl;
 	GLCALL(glUniform2fv(scale_loc, 1, scale));
 
@@ -187,7 +187,8 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
     // verts
 	GLCALL(glBindVertexArray(renderObj.vao));
 	GLCALL(glBindBuffer(GL_ARRAY_BUFFER, renderObj.vbo));
-    rPack.generateVerts();
+    // rPack.generateVerts(); // no longer generate verts
+    // instead need to do the movements 
     GLCALL(
         glBufferData(
             GL_ARRAY_BUFFER,
@@ -213,7 +214,7 @@ void GLHandlerImpl::draw(RenderPackage &rPack) {
 void GLHandlerImpl::initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint shaderProg) {
 	rObj.shaderProg = shaderProg;
 	rObj.vertexAttribIndex = 0;
-	VertexGenerator::instance()->generate(shape, rObj.verts);
+	VertexGenerator::instance()->generateMesh(shape, rObj.verts);
 
 	GLint uniloc = glGetUniformLocation(rObj.shaderProg, "incolor");
 	GLCALL(glUniform4fv(uniloc, 1, shape.color.getRawColor()));
@@ -241,7 +242,6 @@ void GLHandlerImpl::initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint sha
 }
 
 double duration = 0.0;
-int frameCount = 0;
 
 void shapegame::GLHandlerImpl::run() {
     typedef std::chrono::high_resolution_clock Clock;

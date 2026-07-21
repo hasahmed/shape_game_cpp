@@ -26,6 +26,7 @@ shapegame::Game::Game(
 }
 
 void Game::initRenderObj(GLRenderObject &rObj, Shape &shape, GLuint shaderProg) {
+    // the init render object is called one time
 	this->_glHandler->initRenderObj(rObj, shape, shaderProg);
 }
 

@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "file": "src/GLHandlerImpl.cpp",
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++23",
+      "-Wall",
+      "-Wno-unused-variable",
+      "-Wno-unused-private-field",
+      "-DPROJECT_ROOT=\"/Users/hahmed/src/repos/other/shape_game_cpp/\"",
+      "-Ideps",
+      "-Iinclude",
+      "-glldb",
+      "-g",
+      "-O0",
+      "-gfull",
+      "-g3",
+      "-gcolumn-info",
+      "-Ideps",
+      "-Iinclude",
+      "-c",
+      "src/GLHandlerImpl.cpp",
+      "-o",
+      "obj/GLHandlerImpl.o"
+    ],
+    "directory": "/Users/hahmed/src/repos/other/shape_game_cpp",
+    "output": "obj/GLHandlerImpl.o"
+  }
+]

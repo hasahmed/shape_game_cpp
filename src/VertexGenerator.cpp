@@ -9,10 +9,10 @@ using namespace shapegame;
 
 shapegame::VertexGenerator* shapegame::VertexGenerator::_instance = NULL;
 
-void shapegame::VertexGenerator::generate(Shape &shape, float *verts) {
+void shapegame::VertexGenerator::generateMesh(Shape &shape, float *verts) {
     switch (shape.type) {
         case ShapeType::Triangle:
-            return triangleVerts(shape, verts);
+            return triangleMesh(shape, verts);
 				default:
 					throw std::invalid_argument(
 							std::string(
@@ -23,11 +23,11 @@ void shapegame::VertexGenerator::generate(Shape &shape, float *verts) {
 }
 
 // So we generate verticies every frame?
-void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
-		Shape *nonConstShape = const_cast<Shape*>(&shape);
-		Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
-		Object* rootObj = shape.getRoot();
-		assert(t && "Triangle should not be null");
+void shapegame::VertexGenerator::triangleMesh(Shape& shape, float *verts) {
+	Shape *nonConstShape = const_cast<Shape*>(&shape);
+	Triangle *t = dynamic_cast<Triangle*>(nonConstShape);
+	Object* rootObj = shape.getRoot();
+	assert(t && "Triangle should not be null");
 		// SRT: scale, rotate, translate
 
 		// A problem:
@@ -46,8 +46,8 @@ void shapegame::VertexGenerator::triangleVerts(Shape& shape, float *verts) {
 		// effectivly the translation has already occurred
 		// but why does that matter?
 		// Seems like these opporations should NOT be in any way dependant on eachother
-		float x1 = this->xPxToGl(t->pos.getX());
-		float y1 = this->yPxToGl(t->pos.getY());
+		float x1 = this->xPxToGl(t->first.getX());
+		float y1 = this->yPxToGl(t->first.getY());
 		float x2 = this->xPxToGl(t->second.getX());
 		float y2 = this->yPxToGl(t->second.getY());
 		float x3 = this->xPxToGl(t->third.getX());

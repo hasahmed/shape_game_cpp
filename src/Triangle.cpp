@@ -12,8 +12,8 @@ Triangle::~Triangle(){
 }
 
 Point Triangle::getCenter() {
-	float centerX = (this->pos.getX() + this->second.getX() + this->third.getX()) / 3;
-	float centerY = (this->pos.getY() + this->second.getY() + this->third.getY()) / 3;
+	float centerX = (this->first.getX() + this->second.getX() + this->third.getX()) / 3;
+	float centerY = (this->first.getY() + this->second.getY() + this->third.getY()) / 3;
 	return Point(centerX, centerY);
 }
 Point Triangle::getOrigin() {
@@ -28,9 +28,12 @@ Triangle::Triangle(Point first, Point second, Point third, Color color):
 Triangle::Triangle( Point first, Point second, Point third):
 	Triangle(first, second, third, Color::BLACK) {}
 Triangle::Triangle(): Triangle(Point(), Point(), Point(), Color::NIL) {}
-void Triangle::setPosition(float x, float y){
-	float xDiff = x - this->pos.getX();
-	float yDiff = y - this->pos.getY();
+void Triangle::setPosition(float x, float y) {
+	/*
+		This determines world-position coorinates of each of the triangles points
+	 */
+	float xDiff = x - this->first.getX();
+	float yDiff = y - this->first.getY();
 
 	int numPoints = 2;
 
@@ -38,11 +41,14 @@ void Triangle::setPosition(float x, float y){
 		&this->second,
 		&this->third
 	};
-	this->pos.setX(x);
-	this->pos.setY(y);
+	this->first.setX(x);
+	this->first.setY(y);
+	// this->pos.setX(x);
+	// this->pos.setY(y);
 	for (int i = 0; i < numPoints; i++) { // skip the first
 		Point& newP = *points[i];
 		newP.setX(newP.getX() + xDiff);
 		newP.setY(newP.getY() + yDiff);
 	}
+	this->pos = this->getCenter();
 }

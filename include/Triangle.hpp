@@ -10,11 +10,13 @@ namespace shapegame {
 	class VertexGenerator;
     class Triangle : public Shape {
 			friend class VertexGenerator;
-        public:
+			private:
+				Point first;
+				Point second;
+				Point third; 
+			public:
 				using Shape::setPosition;
 				// pos inherited from Object
-				Point second; // should be private?
-				Point third; // should be private?
 				Point collisionPosition;
 				Point getCenter();
 				Point getOrigin();

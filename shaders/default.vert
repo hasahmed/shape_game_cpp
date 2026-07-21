@@ -3,6 +3,7 @@ layout(location = 0) in vec2 verts;
 // attribute vec4 in gl_Vertex;
 uniform float u_time;
 uniform vec2 scale;
+uniform vec2 pos;
 uniform vec2 origin;
 uniform vec2 window_dim;
 uniform float rotation; // TODO pass in

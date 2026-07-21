@@ -14,7 +14,7 @@ RenderPackage::RenderPackage(const RenderPackage &rPack):
 	}
 
 bool RenderPackage::generateVerts() {
-    VertexGenerator::instance()->generate(this->shape, this->glRenderObject->verts);
+    VertexGenerator::instance()->generateMesh(this->shape, this->glRenderObject->verts);
     return true;
 }
 

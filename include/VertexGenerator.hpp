@@ -10,12 +10,12 @@ namespace shapegame {
         friend class Game;
         public:
             static VertexGenerator* instance();
-            void generate(Shape &shape, float *verts);
+            void generateMesh(Shape &shape, float *verts);
             VertexGenerator(IWindow *window);
         private:
             static VertexGenerator *_instance;
             IWindow *_window;
-            void triangleVerts(Shape &shape, float *verts);
+            void triangleMesh(Shape &shape, float *verts);
             float horPxStep();
             float vertPxStep();
             float yPxToGl(float coord);

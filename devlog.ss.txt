@@ -1,0 +1,56 @@
+Working on zig leet code
+
+
+OpenGL Notes
+
+NDC = Normalized Device Coordinates
+
+
+World space = all of the coordinate values available in the world. Unit could be anything, but we're using pixels
+
+Camera Space = The defined viewport of the camera. E.g, maybe the port center is at 100, 100, and our object is at 1000, 1000
+and it is outside of the viewport. We can move our 'camera' towards the object in world space such that our object is in view,
+and the object hasn't moved
+
+Wednesday 7/15/2026
+
+So we're already good at making triangles in relative pixel space.
+
+Lets keep going off of that
+
+Evertyhing is going to be focused on the triangle rigth now.
+
+So I'm wondering HOW does triangle's position relate to it's final shape?
+
+
+Okay
+TODO:
+    - Decouple triangles points from the triangle's position.
+    - Currently the 'pos' field is utilized as both the triangles position AND its 1st vertex for triangle creation.
+    - We'll first decouple that
+
+
+Okay okay,
+    - So for sure the vertex generation step needs to change
+        - The vertexes are generated in WORLD SPACE and we are switching to keeping them in local space
+    - Objects will keep track of their world space data
+    - Scene will keep track of rendering data
+    - We'll start calling the local vertex data the 'mesh'
+
+So we currently have triangle world-space data in 'points' 'first, second' 'third'
+
+
+-------------------
+
+MIND_DUMP:
+    - initRenderObj is called one time, we should generate the mesh at that point, then we shouldn't re-generate verticies unless the shape has changed, instead we're
+    just going to move it based on position
+    - First, second, and third verts should be private for now?
+
+
+Thursday 7/16/2026
+MIND_DUMP:
+    - renamed vertexGenerator to mesh generator and commented it out re-generating on every frame.
+    - Also passed into the vertex shader the position
+    - Next TODO - put logic into shader for moving the shape via pos via shader
+    - 
