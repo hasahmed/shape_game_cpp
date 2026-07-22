@@ -32,17 +32,20 @@ void Triangle::setPosition(float x, float y) {
 	/*
 		This determines world-position coorinates of each of the triangles points
 	 */
-	float xDiff = x - this->first.getX();
-	float yDiff = y - this->first.getY();
+	// float xDiff = x - this->first.getX();
+	// float yDiff = y - this->first.getY();
+	float xDiff = x - this->getOrigin().x;
+	float yDiff = y - this->getOrigin().y;
 
-	int numPoints = 2;
+	int numPoints = 3;
 
 	Point *points[] = {
+		&this->first,
 		&this->second,
 		&this->third
 	};
-	this->first.setX(x);
-	this->first.setY(y);
+	// this->first.setX(x);
+	// this->first.setY(y);
 	// this->pos.setX(x);
 	// this->pos.setY(y);
 	for (int i = 0; i < numPoints; i++) { // skip the first

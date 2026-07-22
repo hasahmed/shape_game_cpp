@@ -16,6 +16,7 @@ void main() {
     // gl_Position.xy = ((verts.xy - origin) * scale + origin) * adj_scale;
     // gl_Position.xy = ((verts.xy - origin) * scale + origin) * adj_scale;
     // vec2 adj_scale = vec2(2.0f / window_dim.x, 2.0f / window_dim.y);
+    // gl_Position.xy = verts.xy + vec2(0.1, 0.1);
     gl_Position.xy = verts.xy;
     // gl_Position.xy = verts.xy * rotate2d(u_time / 3600);
     // gl_Position.xy = verts.xy * rotate2d(u_time / 3600);

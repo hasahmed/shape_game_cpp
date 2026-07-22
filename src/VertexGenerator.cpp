@@ -45,7 +45,7 @@ void shapegame::VertexGenerator::triangleMesh(Shape& shape, float *verts) {
 		// So alas the data we need we do not have...
 		// effectivly the translation has already occurred
 		// but why does that matter?
-		// Seems like these opporations should NOT be in any way dependant on eachother
+		// Seems like these opperations should NOT be in any way dependant on eachother
 		float x1 = this->xPxToGl(t->first.getX());
 		float y1 = this->yPxToGl(t->first.getY());
 		float x2 = this->xPxToGl(t->second.getX());

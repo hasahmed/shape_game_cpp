@@ -55,7 +55,7 @@ int main() {
 	g.scene->setBackgroundColor(Color::DARK_GRAY);
 	g.scene->addChild(std::make_unique<DebugKeyHandler>());
 	// g.scene->addChild(new Rectangle(100, 100, Point(20, 20), Color::LIGHT_BLUE));
-	g.scene->addChild(new TriangleIsosceles(100, 200, Point(600, 300), Color::KATIE_PINK));
+	g.scene->addChild(new TriangleIsosceles(100, 200, Point(600, 350), Color::KATIE_PINK));
 	// Player *p = (Player*) g.scene->addChild(new Player(Point(300, 600)));
 	// p->scale = {2, 2};
 	// float circleX = (p->pos.getX() + p->second.getX() + p->third.getX()) / 3;
